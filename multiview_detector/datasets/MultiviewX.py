@@ -92,7 +92,9 @@ class MultiviewX(VisionDataset):
         fp_calibration.release()
 
         rotation_matrix, _ = cv2.Rodrigues(rvec)
-        translation_matrix = np.array(tvec, dtype=np.float).reshape(3, 1)
+        # translation_matrix = np.array(tvec, dtype=np.float).reshape(3, 1)
+        translation_matrix = np.array(tvec, dtype=float).reshape(3, 1)
+        ####numpy 已经删除了float，直接用python内置的float####
         extrinsic_matrix = np.hstack((rotation_matrix, translation_matrix))
 
         return intrinsic_matrix, extrinsic_matrix

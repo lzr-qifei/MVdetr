@@ -12,6 +12,7 @@ from multiview_detector.models.conv_world_feat import ConvWorldFeat, DeformConvW
 from multiview_detector.models.trans_world_feat import TransformerWorldFeat, DeformTransWorldFeat, \
     DeformTransWorldFeat_aio
 import matplotlib.pyplot as plt
+from kornia.geometry.transform import warp_perspective
 
 
 def fill_fc_weights(layers):
@@ -148,7 +149,7 @@ class MVDeTr(nn.Module):
         fill_fc_weights(self.world_offset)
         pass
 
-    def forward(self, imgs, M, visualize=False):
+    def forward(self, imgs, M,visualize=True ):#visualize=False
         B, N, C, H, W = imgs.shape
         imgs = imgs.view(B * N, C, H, W)
 
@@ -160,28 +161,28 @@ class MVDeTr(nn.Module):
         # Rworldgrid(xy)_from_Rimggrid(xy)
         proj_mats = self.proj_mats.repeat(B, 1, 1, 1).view(B * N, 3, 3).float() @ imgcoord_from_Rimggrid_mat
 
-        if visualize:
-            denorm = img_color_denormalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
-            proj_imgs = kornia.warp_perspective(T.Resize(self.Rimg_shape)(imgs), proj_mats.to(imgs.device),
-                                                self.Rworld_shape, align_corners=False). \
-                view(B, N, 3, self.Rworld_shape[0], self.Rworld_shape[1])
-            for cam in range(N):
-                visualize_img = T.ToPILImage()(denorm(imgs.detach())[cam * B])
-                visualize_img.save(f'../../imgs/augimg{cam + 1}.png')
-                plt.imshow(visualize_img)
-                plt.show()
-                visualize_img = T.ToPILImage()(denorm(proj_imgs.detach())[0, cam])
-                plt.imshow(visualize_img)
-                plt.show()
+        # if visualize:
+        #     denorm = img_color_denormalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
+        #     proj_imgs = kornia.warp_perspective(T.Resize(self.Rimg_shape)(imgs), proj_mats.to(imgs.device),
+        #                                         self.Rworld_shape, align_corners=False). \
+        #         view(B, N, 3, self.Rworld_shape[0], self.Rworld_shape[1])
+        #     for cam in range(N):
+        #         visualize_img = T.ToPILImage()(denorm(imgs.detach())[cam * B])
+        #         visualize_img.save(f'../../imgs/augimg{cam + 1}.png')
+        #         plt.imshow(visualize_img)
+        #         plt.show()
+        #         visualize_img = T.ToPILImage()(denorm(proj_imgs.detach())[0, cam])
+        #         plt.imshow(visualize_img)
+        #         plt.show()
 
         imgs_feat = self.base(imgs)
         imgs_feat = self.bottleneck(imgs_feat)
         if visualize:
             for cam in range(N):
                 visualize_img = array2heatmap(torch.norm(imgs_feat[cam * B].detach(), dim=0).cpu())
-                visualize_img.save(f'../../imgs/augimgfeat{cam + 1}.png')
-                plt.imshow(visualize_img)
-                plt.show()
+                visualize_img.save(f'/home/mnt/lizirui/vis_result/mvdetr/augimgfeat{cam + 1}.png')
+                # plt.imshow(visualize_img)
+                # plt.show()
 
         # img heads
         _, C, H, W = imgs_feat.shape
@@ -191,16 +192,20 @@ class MVDeTr(nn.Module):
 
         # world feat
         H, W = self.Rworld_shape
-        world_feat = kornia.warp_perspective(imgs_feat, proj_mats.to(imgs.device),
+        # print('before proj: ',imgs_feat.shape)
+        # world_feat = kornia.warp_perspective(imgs_feat, proj_mats.to(imgs.device),
+        #                                      self.Rworld_shape, align_corners=False).view(B, N, C, H, W)
+        world_feat = warp_perspective(imgs_feat, proj_mats.to(imgs.device),
                                              self.Rworld_shape, align_corners=False).view(B, N, C, H, W)
         if visualize:
             for cam in range(N):
                 visualize_img = array2heatmap(torch.norm(world_feat[0, cam].detach(), dim=0).cpu())
-                visualize_img.save(f'../../imgs/projfeat{cam + 1}.png')
-                plt.imshow(visualize_img)
-                plt.show()
+                visualize_img.save(f'/home/mnt/lizirui/vis_result/mvdetr/projfeat{cam + 1}.png')
+                # plt.imshow(visualize_img)
+                # plt.show()
+        # print('before DT: ',world_feat.shape)
         world_feat = self.world_feat(world_feat, visualize=visualize)
-
+        # print('after DT: ',world_feat.shape)
         # world heads
         world_heatmap = self.world_heatmap(world_feat)
         world_offset = self.world_offset(world_feat)
@@ -208,13 +213,13 @@ class MVDeTr(nn.Module):
 
         if visualize:
             visualize_img = array2heatmap(torch.norm(world_feat[0].detach(), dim=0).cpu())
-            visualize_img.save(f'../../imgs/worldfeatall.png')
-            plt.imshow(visualize_img)
-            plt.show()
+            visualize_img.save('/home/mnt/lizirui/vis_result/mvdetr/worldfeatall.png')
+            # plt.imshow(visualize_img)
+            # plt.show()
             visualize_img = array2heatmap(torch.sigmoid(world_heatmap.detach())[0, 0].cpu())
-            visualize_img.save(f'../../imgs/worldres.png')
-            plt.imshow(visualize_img)
-            plt.show()
+            visualize_img.save('/home/mnt/lizirui/vis_result/mvdetr/worldres.png')
+            # plt.imshow(visualize_img)
+            # plt.show()
         return (world_heatmap, world_offset), (imgs_heatmap, imgs_offset, imgs_wh)
 
 

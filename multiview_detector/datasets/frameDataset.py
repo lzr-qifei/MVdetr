@@ -14,12 +14,14 @@ import torchvision.transforms as T
 from multiview_detector.utils.projection import *
 from multiview_detector.utils.image_utils import draw_umich_gaussian, random_affine
 import matplotlib.pyplot as plt
+from kornia.geometry.transform import warp_perspective
 
 
 def get_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k=100, kernel_size=4):
     H, W = Rshape
     heatmap = np.zeros([1, H, W], dtype=np.float32)
-    reg_mask = np.zeros([top_k], dtype=np.bool)
+    # reg_mask = np.zeros([top_k], dtype=np.bool)
+    reg_mask = np.zeros([top_k], dtype=bool)
     idx = np.zeros([top_k], dtype=np.int64)
     pid = np.zeros([top_k], dtype=np.int64)
     offset = np.zeros([top_k, 2], dtype=np.float32)
@@ -77,9 +79,10 @@ class frameDataset(VisionDataset):
 
         self.world_from_img, self.img_from_world = self.get_world_imgs_trans()
         world_masks = torch.ones([self.num_cam, 1] + self.worldgrid_shape)
-        self.imgs_region = kornia.warp_perspective(world_masks, self.img_from_world, self.img_shape, 'nearest',
+        # self.imgs_region = kornia.warp_perspective(world_masks, self.img_from_world, self.img_shape, 'nearest',
+        #                                            align_corners=False)
+        self.imgs_region = warp_perspective(world_masks, self.img_from_world, self.img_shape, 'nearest',
                                                    align_corners=False)
-
         self.img_fpaths = self.base.get_image_fpaths(frame_range)
         self.world_gt = {}
         self.imgs_gt = {}

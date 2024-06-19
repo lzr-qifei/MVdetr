@@ -101,7 +101,7 @@ class DeformTransWorldFeat(nn.Module):
             for cam in range(N):
                 world_feat = memory.view(B, N, H, W, C).permute(0, 1, 4, 2, 3).contiguous()
                 visualize_img = array2heatmap(torch.norm(world_feat[0, cam].detach(), dim=0).cpu())
-                visualize_img.save(f'../../imgs/worldfeat{cam + 1}.png')
+                visualize_img.save(f'/home/mnt/lizirui/vis_result/mvdetr/worldfeat{cam + 1}.png')
                 plt.imshow(visualize_img)
                 plt.show()
         merged_feat = self.merge_linear(memory.view(B, N, H, W, C).permute(0, 1, 4, 2, 3).contiguous().
