@@ -19,7 +19,9 @@ from multiview_detector.utils.logger import Logger
 from multiview_detector.utils.draw_curve import draw_curve
 from multiview_detector.utils.str2bool import str2bool
 from multiview_detector.trainer import PerspectiveTrainer
+import ssl
 
+ssl._create_default_https_context = ssl._create_unverified_context
 
 def main(args):
     # check if in debug mode
@@ -48,10 +50,12 @@ def main(args):
         torch.backends.cudnn.benchmark = True
 
     # dataset
+    data_path = args.data
     if 'wildtrack' in args.dataset:
-        base = Wildtrack(os.path.expanduser('~/Data/Wildtrack'))
+        base = Wildtrack(os.path.expanduser('./Data/Wildtrack'))
     elif 'multiviewx' in args.dataset:
-        base = MultiviewX(os.path.expanduser('~/Data/MultiviewX'))
+        # base = MultiviewX(os.path.expanduser('./Data/MultiviewX'))
+        base = MultiviewX(data_path)
     else:
         raise Exception('must choose from [wildtrack, multiviewx]')
     train_set = frameDataset(base, train=True, world_reduce=args.world_reduce,
@@ -81,7 +85,7 @@ def main(args):
                  f'worldRK{args.world_reduce}_{args.world_kernel_size}_imgRK{args.img_reduce}_{args.img_kernel_size}_' \
                  f'{datetime.datetime.today():%Y-%m-%d_%H-%M-%S}'
         os.makedirs(logdir, exist_ok=True)
-        copy_tree('./multiview_detector', logdir + '/scripts/multiview_detector')
+        # copy_tree('./multiview_detector', logdir + '/scripts/multiview_detector')
         for script in os.listdir('.'):
             if script.split('.')[-1] == 'py':
                 dst_file = os.path.join(logdir, 'scripts', os.path.basename(script))
@@ -180,6 +184,7 @@ if __name__ == '__main__':
     parser.add_argument('--world_kernel_size', type=int, default=10)
     parser.add_argument('--img_reduce', type=int, default=12)
     parser.add_argument('--img_kernel_size', type=int, default=10)
+    parser.add_argument('--data', type=str, default='./Data')
 
     args = parser.parse_args()
 

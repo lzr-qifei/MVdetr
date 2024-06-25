@@ -1,0 +1,1 @@
+python /home/SENSETIME/lizirui/from_sensecore/Mvdetr0619/MVDeTr-main/main.py  -d multiviewx  --data /mnt/data/MultiviewX
