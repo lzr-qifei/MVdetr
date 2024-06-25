@@ -18,6 +18,16 @@ from torch.nn.init import xavier_uniform_, constant_, uniform_, normal_
 import numpy as np
 from multiview_detector.models.ops.modules import MSDeformAttn
 
+def _get_activation_fn(activation):
+    """Return an activation function given a string"""
+    if activation == "relu":
+        return F.relu
+    if activation == "gelu":
+        return F.gelu
+    if activation == "glu":
+        return F.glu
+    raise RuntimeError(F"activation should be relu/gelu, not {activation}.")
+
 def create_pos_embedding(img_size, num_pos_feats=64, temperature=10000, normalize=True, scale=None):
     if scale is not None and normalize is False:
         raise ValueError("normalize should be True if scale is passed")
@@ -69,7 +79,7 @@ class DeformableTransformer(nn.Module):
 
         self.reference_points = nn.Linear(d_model, 2)
 
-        self.pos_embedding = create_pos_embedding(np.array(Rworld_shape) // stride, hidden_dim // 2)
+        query_embeds = create_pos_embedding(np.array(Rworld_shape) // stride, hidden_dim // 2)
 
         self._reset_parameters()
 
@@ -142,7 +152,7 @@ class DeformableTransformer(nn.Module):
         return valid_ratio
 
     def forward(self, x, masks, pos_embeds):
-        # assert self.pos_embedding is not None
+        # assert query_embeds is not None
         
         # prepare input for encoder
         src_flatten = []
@@ -153,7 +163,7 @@ class DeformableTransformer(nn.Module):
         x = self.downsample(x.view(B * N, C, H, W))
         _, _, H, W = x.shape
         src_flatten = x.view(B, N, C, H, W).permute(0, 1, 3, 4, 2).contiguous().view([B, N * H * W, C])
-        lvl_pos_embed_flatten = (self.pos_embedding.to(x.device).flatten(2).transpose(1, 2).unsqueeze(1) +
+        lvl_pos_embed_flatten = (query_embeds.to(x.device).flatten(2).transpose(1, 2).unsqueeze(1) +
                                  self.lvl_embedding.view([B, N, 1, C])).view([B, N * H * W, C])
         spatial_shapes = torch.as_tensor(np.array([[H, W]] * N), dtype=torch.long, device=x.device)
         level_start_index = torch.cat((spatial_shapes.new_zeros((1,)), spatial_shapes.prod(1).cumsum(0)[:-1]))
@@ -169,15 +179,15 @@ class DeformableTransformer(nn.Module):
 
         # prepare input for decoder
         bs, _, c = memory.shape
-        self.pos_embedding, tgt = torch.split(self.pos_embedding, c, dim=1)
-        self.pos_embedding = self.pos_embedding.unsqueeze(0).expand(bs, -1, -1)
+        query_embeds, tgt = torch.split(query_embeds, c, dim=1)
+        query_embeds = query_embeds.unsqueeze(0).expand(bs, -1, -1)
         tgt = tgt.unsqueeze(0).expand(bs, -1, -1)
-        reference_points = self.reference_points(self.pos_embedding).sigmoid()
+        reference_points = self.reference_points(query_embeds).sigmoid()
         init_reference_out = reference_points
 
         # decoder
         hs, inter_references = self.decoder(tgt, reference_points, memory,
-                                            spatial_shapes, level_start_index, valid_ratios, self.pos_embedding, mask_flatten)
+                                            spatial_shapes, level_start_index, valid_ratios, query_embeds, mask_flatten)
 
         inter_references_out = inter_references
         return hs, init_reference_out, inter_references_out, None, None
