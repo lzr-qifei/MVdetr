@@ -17,7 +17,7 @@ from torch import nn, Tensor
 from torch.nn.init import xavier_uniform_, constant_, uniform_, normal_
 import numpy as np
 from multiview_detector.models.ops.modules import MSDeformAttn
-
+from mvdetr_with_decoder import inverse_sigmoid
 def _get_activation_fn(activation):
     """Return an activation function given a string"""
     if activation == "relu":
@@ -173,9 +173,9 @@ class DeformableTransformer(nn.Module):
         # encoder
         # memory = self.encoder(src_flatten, spatial_shapes, level_start_index, valid_ratios, lvl_pos_embed_flatten, mask_flatten)
         memory = self.encoder(src_flatten, spatial_shapes, level_start_index, valid_ratios, lvl_pos_embed_flatten)
-        # 这里不融合，让query在不同的相机维度上查，把相机维度等同原有的scale维度
-        # merged_feat = self.merge_linear(memory.view(B, N, H, W, C).permute(0, 1, 4, 2, 3).contiguous().
-        #                                 view(B, N * C, H, W))
+        # 这里如果不融合，可以让query在不同的相机维度上查，把相机维度等同原有的scale维度
+        merged_feat = self.merge_linear(memory.view(B, N, H, W, C).permute(0, 1, 4, 2, 3).contiguous().
+                                        view(B, N * C, H, W))
 
         # prepare input for decoder
         bs, _, c = memory.shape
@@ -200,7 +200,10 @@ class DeformableTransformerDecoderLayer(nn.Module):
         super().__init__()
 
         # cross attention
-        self.cross_attn = MSDeformAttn(d_model, n_levels, n_heads, n_points)
+        if self.multiscale_decoder:
+            self.cross_attn = MSDeformAttn(d_model, n_levels, n_heads, n_points)
+        else:
+            self.cross_attn = nn.MultiheadAttention(d_model,n_heads,dropout=dropout)
         self.dropout1 = nn.Dropout(dropout)
         self.norm1 = nn.LayerNorm(d_model)
 
@@ -235,6 +238,7 @@ class DeformableTransformerDecoderLayer(nn.Module):
         tgt = self.norm2(tgt)
 
         # cross attention
+        
         tgt2 = self.cross_attn(self.with_pos_embed(tgt, query_pos),
                                reference_points,
                                src, src_spatial_shapes, level_start_index, src_padding_mask)

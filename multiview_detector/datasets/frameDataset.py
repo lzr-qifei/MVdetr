@@ -234,8 +234,11 @@ class frameDataset(VisionDataset):
                 imgs_gt[key][drop_cam] = 0
         # world gt
         world_pt_s, world_pid_s = self.world_gt[frame]
-        world_gt = get_gt(self.Rworld_shape, world_pt_s[:, 0], world_pt_s[:, 1], v_s=world_pid_s,
-                          reduce=self.world_reduce, top_k=self.top_k, kernel_size=self.world_kernel_size)
+        world_labels = np.ones(world_pt_s.shape(0))
+        world_gt = {'world_pts':torch.from_numpy(world_pt_s),'world_pids':torch.from_numpy(world_pid_s),
+                    'world_labels':torch.from_numpy(world_labels)}
+        # world_gt = get_gt(self.Rworld_shape, world_pt_s[:, 0], world_pt_s[:, 1], v_s=world_pid_s,
+        #                   reduce=self.world_reduce, top_k=self.top_k, kernel_size=self.world_kernel_size)
         return imgs, world_gt, imgs_gt, affine_mats, frame
 
     def __len__(self):
