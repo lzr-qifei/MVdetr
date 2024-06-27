@@ -5,8 +5,8 @@ from torch import nn
 import torch.nn.functional as F
 from torch.nn.init import xavier_uniform_, constant_, uniform_, normal_
 from multiview_detector.models.transformer import TransformerEncoderLayer, TransformerEncoder
-from multiview_detector.models.deformable_transformer import DeformableTransformerEncoderLayer, \
-    DeformableTransformerEncoder
+from multiview_detector.models.deformable_transformer import DeformableTransformerEncoderLayer,DeformableTransformerEncoder
+    
 from multiview_detector.models.ops.modules import MSDeformAttn
 from multiview_detector.utils.image_utils import array2heatmap
 import matplotlib.pyplot as plt

@@ -8,7 +8,7 @@ import kornia
 from multiview_detector.models.resnet import resnet18
 from multiview_detector.utils.image_utils import img_color_denormalize, array2heatmap
 from multiview_detector.utils.projection import get_worldcoord_from_imgcoord_mat, project_2d_points
-from multiview_detector.models.conv_world_feat import ConvWorldFeat, DeformConvWorldFeat
+# from multiview_detector.models.conv_world_feat import ConvWorldFeat, DeformConvWorldFeat
 from multiview_detector.models.trans_world_feat import TransformerWorldFeat, DeformTransWorldFeat, \
     DeformTransWorldFeat_aio
 import matplotlib.pyplot as plt
@@ -128,11 +128,13 @@ class MVDeTr_w_dec(nn.Module):
 
         # world feat
         if world_feat_arch == 'conv':
-            self.world_feat = ConvWorldFeat(dataset.num_cam, dataset.Rworld_shape, base_dim)
+            pass
+            # self.world_feat = ConvWorldFeat(dataset.num_cam, dataset.Rworld_shape, base_dim)
         elif world_feat_arch == 'trans':
             self.world_feat = TransformerWorldFeat(dataset.num_cam, dataset.Rworld_shape, base_dim)
         elif world_feat_arch == 'deform_conv':
-            self.world_feat = DeformConvWorldFeat(dataset.num_cam, dataset.Rworld_shape, base_dim)
+            # self.world_feat = DeformConvWorldFeat(dataset.num_cam, dataset.Rworld_shape, base_dim)
+            pass
         elif world_feat_arch == 'deform_trans':
             n_points = 4
             reference_points = create_reference_map(dataset, n_points).repeat([dataset.num_cam, 1, 1, 1])

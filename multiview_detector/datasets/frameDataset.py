@@ -1,4 +1,6 @@
 import os
+import sys
+sys.path.append('/root/MVdetr')
 import json
 import time
 from operator import itemgetter
@@ -47,6 +49,37 @@ def get_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k=100, 
         ret.update({'wh': torch.from_numpy(wh)})
     return ret
 
+def get_world_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k=100, kernel_size=4):
+    H, W = Rshape
+    # heatmap = np.zeros([1, H, W], dtype=np.float32)
+    ct_ints = np.zeros([top_k, 2], dtype=np.int64)
+    # reg_mask = np.zeros([top_k], dtype=np.bool)
+    reg_mask = np.zeros([top_k], dtype=bool)
+    idx = np.zeros([top_k], dtype=np.int64)
+    pid = np.zeros([top_k], dtype=np.int64)
+    offset = np.zeros([top_k, 2], dtype=np.float32)
+    wh = np.zeros([top_k, 2], dtype=np.float32)
+
+    for k in range(len(v_s)):
+        ct = np.array([x_s[k] / reduce, y_s[k] / reduce], dtype=np.float32)
+        if 0 <= ct[0] < W and 0 <= ct[1] < H:
+            ct_int = ct.astype(np.int32)
+            # draw_umich_gaussian(heatmap[0], ct_int, kernel_size / reduce)
+            ct_ints[k] = ct_int
+            reg_mask[k] = 1
+            idx[k] = ct_int[1] * W + ct_int[0]
+            pid[k] = v_s[k]
+            offset[k] = ct - ct_int
+            if w_s is not None and h_s is not None:
+                wh[k] = [w_s[k] / reduce, h_s[k] / reduce]
+            # plt.imshow(heatmap[0])
+            # plt.show()
+
+    ret = {'world_pts': torch.from_numpy(ct_ints), 'reg_mask': torch.from_numpy(reg_mask), 'idx': torch.from_numpy(idx),
+           'pid': torch.from_numpy(pid), 'offset': torch.from_numpy(offset)}
+    if w_s is not None and h_s is not None:
+        ret.update({'wh': torch.from_numpy(wh)})
+    return ret
 
 class frameDataset(VisionDataset):
     def __init__(self, base, train=True, reID=False, world_reduce=4, img_reduce=12,
@@ -234,11 +267,12 @@ class frameDataset(VisionDataset):
                 imgs_gt[key][drop_cam] = 0
         # world gt
         world_pt_s, world_pid_s = self.world_gt[frame]
-        world_labels = np.ones(world_pt_s.shape(0))
-        world_gt = {'world_pts':torch.from_numpy(world_pt_s),'world_pids':torch.from_numpy(world_pid_s),
-                    'world_labels':torch.from_numpy(world_labels)}
-        # world_gt = get_gt(self.Rworld_shape, world_pt_s[:, 0], world_pt_s[:, 1], v_s=world_pid_s,
-        #                   reduce=self.world_reduce, top_k=self.top_k, kernel_size=self.world_kernel_size)
+        # print('world_pt_s: ',world_pt_s)
+        world_labels = np.ones(len(world_pt_s))
+        # world_gt = {'world_pts':torch.from_numpy(world_pt_s),'world_pids':torch.from_numpy(world_pid_s),
+        #             'world_labels':torch.from_numpy(world_labels)}
+        world_gt = get_world_gt(self.Rworld_shape, world_pt_s[:, 0], world_pt_s[:, 1], v_s=world_pid_s,
+                          reduce=self.world_reduce, top_k=self.top_k, kernel_size=self.world_kernel_size)
         return imgs, world_gt, imgs_gt, affine_mats, frame
 
     def __len__(self):
@@ -250,8 +284,8 @@ def test(test_projection=False):
     from multiview_detector.datasets.Wildtrack import Wildtrack
     from multiview_detector.datasets.MultiviewX import MultiviewX
 
-    dataset = frameDataset(Wildtrack(os.path.expanduser('~/Data/Wildtrack')), train=True, augmentation=False)
-    # dataset = frameDataset(MultiviewX(os.path.expanduser('~/Data/MultiviewX')), train=True)
+    # dataset = frameDataset(Wildtrack(os.path.expanduser('~/Data/Wildtrack')), train=True, augmentation=False)
+    dataset = frameDataset(MultiviewX(os.path.expanduser('/root/autodl-tmp/MultiviewX')), train=True)
     # dataset = frameDataset(Wildtrack(os.path.expanduser('~/Data/Wildtrack')), train=True, semi_supervised=.1)
     # dataset = frameDataset(MultiviewX(os.path.expanduser('~/Data/MultiviewX')), train=True, semi_supervised=.1)
     # dataset = frameDataset(Wildtrack(os.path.expanduser('~/Data/Wildtrack')), train=True, semi_supervised=0.5)
@@ -269,6 +303,9 @@ def test(test_projection=False):
     t0 = time.time()
     imgs, world_gt, imgs_gt, M, frame = dataset.__getitem__(0, visualize=False)
     print(time.time() - t0)
+    print('w_gt',world_gt)
+    # print('id_len: ',len(world_gt['world_pids']))
+    print('labels_len: ',len(world_gt['world_pts']))
 
     pass
     if test_projection:

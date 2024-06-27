@@ -17,7 +17,7 @@ from torch import nn, Tensor
 from torch.nn.init import xavier_uniform_, constant_, uniform_, normal_
 import numpy as np
 from multiview_detector.models.ops.modules import MSDeformAttn
-from mvdetr_with_decoder import inverse_sigmoid
+from multiview_detector.models.mvdetr_with_decoder import inverse_sigmoid
 def _get_activation_fn(activation):
     """Return an activation function given a string"""
     if activation == "relu":
@@ -57,7 +57,7 @@ class DeformableTransformer(nn.Module):
                  num_encoder_layers=6, num_decoder_layers=6, dim_feedforward=1024, dropout=0.1,
                  activation="relu", return_intermediate_dec=False,
                  num_cam=4, dec_n_points=4,  enc_n_points=4,
-                 Rworld_shape, base_dim, hidden_dim=128,stride=2):
+                 Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2):
         
         super().__init__()
 

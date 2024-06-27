@@ -6,4 +6,4 @@
 # ------------------------------------------------------------------------------------------------
 # Modified from https://github.com/chengdazhi/Deformable-Convolution-V2-PyTorch/tree/pytorch_1.0.0
 # ------------------------------------------------------------------------------------------------
-python /home/SENSETIME/lizirui/from_sensecore/Mvdetr0619/MVDeTr-main/multiview_detector/models/ops/setup.py build install
+python /root/MVdetr/multiview_detector/models/ops/setup.py build install
