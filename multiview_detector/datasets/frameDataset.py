@@ -303,13 +303,14 @@ def test(test_projection=False):
     t0 = time.time()
     imgs, world_gt, imgs_gt, M, frame = dataset.__getitem__(0, visualize=False)
     print(time.time() - t0)
-    print('w_gt',world_gt)
+    # print('w_gt',world_gt)
     # print('id_len: ',len(world_gt['world_pids']))
-    print('labels_len: ',len(world_gt['world_pts']))
+    # print('labels_len: ',len(world_gt['world_pts']))
 
     pass
     if test_projection:
         import matplotlib.pyplot as plt
+        import cv2
         from multiview_detector.utils.projection import get_worldcoord_from_imagecoord
         world_grid_maps = []
         xx, yy = np.meshgrid(np.arange(0, 1920, 20), np.arange(0, 1080, 20))
@@ -330,7 +331,9 @@ def test(test_projection=False):
                     else:
                         if x in range(dataset.worldgrid_shape[0]) and y in range(dataset.worldgrid_shape[1]):
                             world_grid_map[int(x), int(y)] += 1
+            print(world_grid_map.shape)
             world_grid_map = world_grid_map != 0
+            # cv2.imwrite('/root/wgm.jpg',world_grid_map)
             plt.imshow(world_grid_map)
             plt.show()
             world_grid_maps.append(world_grid_map)
