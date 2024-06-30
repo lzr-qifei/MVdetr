@@ -27,7 +27,7 @@ class HungarianMatcher(nn.Module):
 
     def __init__(self,
                  cost_class: float = 1,
-                 cost_bbox: float = 1,
+                 cost_pts: float = 1,
                  cost_giou: float = 1):
         """Creates the matcher
 
@@ -38,9 +38,9 @@ class HungarianMatcher(nn.Module):
         """
         super().__init__()
         self.cost_class = cost_class
-        self.cost_bbox = cost_bbox
+        self.cost_pts = cost_pts
         self.cost_giou = cost_giou
-        assert cost_class != 0 or cost_bbox != 0 or cost_giou != 0, "all costs cant be 0"
+        assert cost_class != 0 or cost_pts != 0 or cost_giou != 0, "all costs cant be 0"
 
     def forward(self, outputs, targets):
         """ Performs the matching
@@ -92,7 +92,7 @@ class HungarianMatcher(nn.Module):
 
             # Final cost matrix
             # C = self.cost_bbox * cost_bbox + self.cost_class * cost_class + self.cost_giou * cost_giou
-            C = self.cost_bbox * cost_pts + self.cost_class * cost_class 
+            C = self.cost_pts * cost_pts + self.cost_class * cost_class 
             C = C.view(bs, num_queries, -1).cpu()
 
             sizes = [len(v["world_pts"]) for v in targets]
@@ -102,5 +102,5 @@ class HungarianMatcher(nn.Module):
 
 def build_matcher(args):
     return HungarianMatcher(cost_class=args.set_cost_class,
-                            cost_bbox=args.set_cost_bbox,
+                            cost_pts=args.set_cost_bbox,
                             cost_giou=args.set_cost_giou)

@@ -162,6 +162,7 @@ class MVDeTr_w_dec(nn.Module):
         num_classes = 1
         self.class_embed = nn.Linear(hidden_dim, num_classes)
         self.center_embed = MLP(hidden_dim, hidden_dim, 2, 3)
+        self.offset_embed = MLP(hidden_dim, hidden_dim, 2, 3)
         # world heads
         self.world_heatmap = output_head(base_dim, outfeat_dim, 1)
         self.world_offset = output_head(base_dim, outfeat_dim, 2)
@@ -240,6 +241,7 @@ class MVDeTr_w_dec(nn.Module):
             hs, init_reference_out, inter_references_out=self.world_feat(world_feat)
             outputs_classes = []
             outputs_coords = []
+            outputs_offsets = []
             for lvl in range(hs.shape[0]):
                 if lvl == 0:
                     reference = init_reference_out
@@ -248,6 +250,7 @@ class MVDeTr_w_dec(nn.Module):
                 reference = inverse_sigmoid(reference)
                 outputs_class = self.class_embed[lvl](hs[lvl])
                 tmp = self.center_embed[lvl](hs[lvl])
+                offset = self.offset_embed[lvl](hs[lvl])
                 if reference.shape[-1] == 4:
                     tmp += reference
                 else:
@@ -256,9 +259,12 @@ class MVDeTr_w_dec(nn.Module):
                 outputs_coord = tmp.sigmoid()
                 outputs_classes.append(outputs_class)
                 outputs_coords.append(outputs_coord)
+                outputs_offsets.append(offset)
             outputs_class = torch.stack(outputs_classes)
             outputs_coord = torch.stack(outputs_coords)
-            out = {'pred_logits': outputs_class[-1], 'pred_ct_pts': outputs_coord[-1]}
+            outputs_offset = torch.stack(outputs_offsets)
+            out = {'pred_logits': outputs_class[-1], 'pred_ct_pts': outputs_coord[-1],
+                   'pred_offsets':outputs_offsets[-1]}
             return out
         # print('after DT: ',world_feat.shape)
         # world heads

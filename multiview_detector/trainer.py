@@ -34,7 +34,7 @@ class PerspectiveTrainer(BaseTrainer):
         self.use_mse = use_mse
         self.id_ratio = id_ratio
 
-    def train(self, epoch, dataloader, optimizer, scaler, scheduler=None, log_interval=100):
+    def train(self, epoch, dataloader,criterion, optimizer, scaler, scheduler=None, log_interval=100):
         self.model.train()
         losses = 0
         t0 = time.time()
