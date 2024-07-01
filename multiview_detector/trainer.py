@@ -49,36 +49,39 @@ class PerspectiveTrainer(BaseTrainer):
                 
             # with autocast():
             # supervised
-            (world_heatmap, world_offset), (imgs_heatmap, imgs_offset, imgs_wh) = self.model(data, affine_mats)
+            # (world_heatmap, world_offset), (imgs_heatmap, imgs_offset, imgs_wh) = self.model(data, affine_mats)
+            outputs = self.model(data,affine_mats)
+            targets = world_gt
+            loss_dict = criterion(outputs,targets)
+            weight_dict = criterion.weight_dict
+            losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
+
             #TODO:写ct的loss
-            loss_w_hm = self.focal_loss(world_heatmap, world_gt['heatmap'])
-            loss_w_off = self.regress_loss(world_offset, world_gt['reg_mask'], world_gt['idx'], world_gt['offset'])
-            # loss_w_id = self.ce_loss(world_id, world_gt['reg_mask'], world_gt['idx'], world_gt['pid'])
-            loss_img_hm = self.focal_loss(imgs_heatmap, imgs_gt['heatmap'])
-            loss_img_off = self.regress_loss(imgs_offset, imgs_gt['reg_mask'], imgs_gt['idx'], imgs_gt['offset'])
-            loss_img_wh = self.regress_loss(imgs_wh, imgs_gt['reg_mask'], imgs_gt['idx'], imgs_gt['wh'])
+            # loss_w_hm = self.focal_loss(world_heatmap, world_gt['heatmap'])
+            # loss_w_off = self.regress_loss(world_offset, world_gt['reg_mask'], world_gt['idx'], world_gt['offset'])
+            # # loss_w_id = self.ce_loss(world_id, world_gt['reg_mask'], world_gt['idx'], world_gt['pid'])
+            # loss_img_hm = self.focal_loss(imgs_heatmap, imgs_gt['heatmap'])
+            # loss_img_off = self.regress_loss(imgs_offset, imgs_gt['reg_mask'], imgs_gt['idx'], imgs_gt['offset'])
+            # loss_img_wh = self.regress_loss(imgs_wh, imgs_gt['reg_mask'], imgs_gt['idx'], imgs_gt['wh'])
             # loss_img_id = self.ce_loss(imgs_id, imgs_gt['reg_mask'], imgs_gt['idx'], imgs_gt['pid'])
+
             # multiview regularization
 
-            w_loss = loss_w_hm + loss_w_off  # + self.id_ratio * loss_w_id
-            img_loss = loss_img_hm + loss_img_off + loss_img_wh * 0.1  # + self.id_ratio * loss_img_id
-            loss = w_loss + img_loss / N * self.alpha
-            if self.use_mse:
-                loss = self.mse_loss(world_heatmap, world_gt['heatmap'].to(world_heatmap.device)) + \
-                       self.alpha * self.mse_loss(imgs_heatmap, imgs_gt['heatmap'].to(imgs_heatmap.device))
+            # w_loss = loss_w_hm + loss_w_off  # + self.id_ratio * loss_w_id
+            # img_loss = loss_img_hm + loss_img_off + loss_img_wh * 0.1  # + self.id_ratio * loss_img_id
+            # loss = w_loss + img_loss / N * self.alpha
+            # if self.use_mse:
+            #     loss = self.mse_loss(world_heatmap, world_gt['heatmap'].to(world_heatmap.device)) + \
+            #            self.alpha * self.mse_loss(imgs_heatmap, imgs_gt['heatmap'].to(imgs_heatmap.device))
 
             t_f = time.time()
             t_forward += t_f - t_b
 
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
+            scaler.scale(losses).backward()
+            scaler.step(optimizer)
+            scaler.update()
 
-            # scaler.scale(loss).backward()
-            # scaler.step(optimizer)
-            # scaler.update()
-
-            losses += loss.item()
+            losses_total += losses.item()
 
             t_b = time.time()
             t_backward += t_b - t_f
@@ -94,7 +97,7 @@ class PerspectiveTrainer(BaseTrainer):
                 t1 = time.time()
                 t_epoch = t1 - t0
                 print(f'Train Epoch: {epoch}, Batch:{(batch_idx + 1)}, loss: {losses / (batch_idx + 1):.6f}, '
-                      f'Time: {t_epoch:.1f}, maxima: {world_heatmap.max():.3f}')
+                      f'Time: {t_epoch:.1f}')
                 pass
         return losses / len(dataloader)
 

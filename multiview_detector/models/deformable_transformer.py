@@ -17,7 +17,7 @@ from torch import nn, Tensor
 from torch.nn.init import xavier_uniform_, constant_, uniform_, normal_
 import numpy as np
 from multiview_detector.models.ops.modules import MSDeformAttn
-from multiview_detector.models.mvdetr_with_decoder import inverse_sigmoid
+from multiview_detector.utils.transformer_utils import inverse_sigmoid
 def _get_activation_fn(activation):
     """Return an activation function given a string"""
     if activation == "relu":
@@ -53,31 +53,34 @@ def create_pos_embedding(img_size, num_pos_feats=64, temperature=10000, normaliz
     return pos
 
 class DeformableTransformer(nn.Module):
-    def __init__(self, d_model=256, nhead=8,
-                 num_encoder_layers=6, num_decoder_layers=6, dim_feedforward=1024, dropout=0.1,
+    def __init__(self, d_model=128, nhead=8,
+                 num_encoder_layers=6, num_decoder_layers=6, dim_feedforward=512, dropout=0.1,
                  activation="relu", return_intermediate_dec=False,
                  num_cam=4, dec_n_points=4,  enc_n_points=4,
-                 Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2):
+                 Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None):
         
         super().__init__()
-
+        self.two_stage = False
         self.d_model = d_model
+        self.decoder_levels = 1
         self.nhead = nhead
+        # self.reference_points = reference_points
         self.downsample = nn.Sequential(nn.Conv2d(base_dim, hidden_dim, 3, stride, 1), nn.ReLU(), )
 
         encoder_layer = DeformableTransformerEncoderLayer(d_model, dim_feedforward,
-                                                          dropout, activation,
+                                                          dropout,
                                                           num_cam, nhead, enc_n_points)
-        self.encoder = DeformableTransformerEncoder(encoder_layer, num_encoder_layers)
+        self.encoder = DeformableTransformerEncoder(encoder_layer, num_encoder_layers,reference_points)
+        self.merge_linear = nn.Sequential(nn.Conv2d(hidden_dim * num_cam, hidden_dim, 1), nn.ReLU())
 
         decoder_layer = DeformableTransformerDecoderLayer(d_model, dim_feedforward,
                                                           dropout, activation,
-                                                          num_cam, nhead, dec_n_points)
+                                                          self.decoder_levels, nhead, dec_n_points)
         self.decoder = DeformableTransformerDecoder(decoder_layer, num_decoder_layers, return_intermediate_dec)
 
         self.level_embed = nn.Parameter(torch.Tensor(num_cam, d_model))
 
-        self.reference_points = nn.Linear(d_model, 2)
+        # self.reference_points = nn.Linear(d_model, 2)
 
         self.pos_embedding = create_pos_embedding(np.array(Rworld_shape) // stride, hidden_dim // 2)
 
@@ -90,10 +93,8 @@ class DeformableTransformer(nn.Module):
         for m in self.modules():
             if isinstance(m, MSDeformAttn):
                 m._reset_parameters()
-        if not self.two_stage:
-            xavier_uniform_(self.reference_points.weight.data, gain=1.0)
-            constant_(self.reference_points.bias.data, 0.)
         normal_(self.level_embed)
+
 
     def get_proposal_pos_embed(self, proposals):
         num_pos_feats = 128
@@ -164,7 +165,7 @@ class DeformableTransformer(nn.Module):
         _, _, H, W = x.shape
         src_flatten = x.view(B, N, C, H, W).permute(0, 1, 3, 4, 2).contiguous().view([B, N * H * W, C])
         lvl_pos_embed_flatten = (self.pos_embedding.to(x.device).flatten(2).transpose(1, 2).unsqueeze(1) +
-                                 self.lvl_embedding.view([B, N, 1, C])).view([B, N * H * W, C])
+                                 self.level_embed.view([B, N, 1, C])).view([B, N * H * W, C])
         spatial_shapes = torch.as_tensor(np.array([[H, W]] * N), dtype=torch.long, device=x.device)
         level_start_index = torch.cat((spatial_shapes.new_zeros((1,)), spatial_shapes.prod(1).cumsum(0)[:-1]))
         valid_ratios = torch.ones([B, N, 2], device=x.device)
@@ -196,14 +197,15 @@ class DeformableTransformer(nn.Module):
 class DeformableTransformerDecoderLayer(nn.Module):
     def __init__(self, d_model=256, d_ffn=1024,
                  dropout=0.1, activation="relu",
-                 n_levels=4, n_heads=8, n_points=4):
+                 n_levels=1, n_heads=8, n_points=4):
         super().__init__()
 
         # cross attention
-        if self.multiscale_decoder:
-            self.cross_attn = MSDeformAttn(d_model, n_levels, n_heads, n_points)
-        else:
-            self.cross_attn = nn.MultiheadAttention(d_model,n_heads,dropout=dropout)
+        self.cross_attn = MSDeformAttn(d_model, n_levels, n_heads, n_points)
+        # if self.multiscale_decoder:
+            # self.cross_attn = MSDeformAttn(d_model, n_levels, n_heads, n_points)
+        # else:
+        #     self.cross_attn = nn.MultiheadAttention(d_model,n_heads,dropout=dropout)
         self.dropout1 = nn.Dropout(dropout)
         self.norm1 = nn.LayerNorm(d_model)
 
@@ -321,10 +323,12 @@ class DeformableTransformerEncoder(nn.Module):
 
     def forward(self, src, spatial_shapes, level_start_index, valid_ratios, pos=None, padding_mask=None):
         output = src
+        print('self.rpts: ',self.reference_points.shape)
         if self.reference_points is None:
             reference_points = self.get_reference_points(spatial_shapes, valid_ratios, device=src.device)
         else:
             reference_points = self.reference_points.unsqueeze(0).repeat([src.shape[0], 1, 1, 1, 1]).to(src.device)
+            print('rpts: ',reference_points.shape)
         for _, layer in enumerate(self.layers):
             output = layer(output, pos, reference_points, spatial_shapes, level_start_index, padding_mask)
 

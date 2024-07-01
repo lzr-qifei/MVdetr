@@ -6,6 +6,7 @@ from torch import nn
 import math
 import torch.distributed as dist
 import copy
+from multiview_detector.loss import *
 def sigmoid_focal_loss(inputs, targets, num_boxes, alpha: float = 0.25, gamma: float = 2):
     """
     Loss used in RetinaNet for dense detection: https://arxiv.org/abs/1708.02002.
@@ -107,21 +108,42 @@ class SetCriterion(nn.Module):
             losses['class_error'] = 100 - accuracy(src_logits[idx], target_classes_o)[0]
         return losses
 
-    @torch.no_grad()
-    def loss_cardinality(self, outputs, targets, indices, num_boxes):
-        """ Compute the cardinality error, ie the absolute error in the number of predicted non-empty boxes
-        This is not really a loss, it is intended for logging purposes only. It doesn't propagate gradients
-        """
-        pred_logits = outputs['pred_logits']
-        device = pred_logits.device
-        tgt_lengths = torch.as_tensor([len(v["labels"]) for v in targets], device=device)
-        # Count the number of predictions that are NOT "no-object" (which is the last class)
-        card_pred = (pred_logits.argmax(-1) != pred_logits.shape[-1] - 1).sum(1)
-        card_err = F.l1_loss(card_pred.float(), tgt_lengths.float())
-        losses = {'cardinality_error': card_err}
+    # @torch.no_grad()
+    # def loss_cardinality(self, outputs, targets, indices, num_boxes):
+    #     """ Compute the cardinality error, ie the absolute error in the number of predicted non-empty boxes
+    #     This is not really a loss, it is intended for logging purposes only. It doesn't propagate gradients
+    #     """
+    #     pred_logits = outputs['pred_logits']
+    #     device = pred_logits.device
+    #     tgt_lengths = torch.as_tensor([len(v["labels"]) for v in targets], device=device)
+    #     # Count the number of predictions that are NOT "no-object" (which is the last class)
+    #     card_pred = (pred_logits.argmax(-1) != pred_logits.shape[-1] - 1).sum(1)
+    #     card_err = F.l1_loss(card_pred.float(), tgt_lengths.float())
+    #     losses = {'cardinality_error': card_err}
+    #     return losses
+
+    def loss_center(self,outputs, targets ,indices,log=True):
+        src_centers = outputs['pred_ct_pts']
+        idx = self._get_src_permutation_idx(indices)
+        target_centers_o = torch.cat([t["world_pts"][J] for t, (_, J) in zip(targets, indices)])
+        target_centers = torch.full(src_centers.shape[:2], self.num_classes,
+                            dtype=torch.int64, device=src_centers.device)
+        target_centers[idx] = target_centers_o
+        loss_center = RegL1Loss(src_centers,targets['reg_mask'], targets['idx'], targets['world_pts'])
+        losses = {'loss_center': loss_center}
+        return losses
+    def loss_offset(self,outputs, targets ,indices,log=True):
+        src_offsets = outputs['pred_offsets']
+        idx = self._get_src_permutation_idx(indices)
+        target_centers_o = torch.cat([t["offsets"][J] for t, (_, J) in zip(targets, indices)])
+        target_centers = torch.full(src_offsets.shape[:2], self.num_classes,
+                            dtype=torch.int64, device=src_offsets.device)
+        target_centers[idx] = target_centers_o
+        loss_offset = RegL1Loss(src_offsets,targets['reg_mask'], targets['idx'], targets['offsets'])
+        losses = {'loss_offset': loss_offset}
         return losses
 
-
+        
 
     def _get_src_permutation_idx(self, indices):
         # permute predictions following indices
@@ -136,11 +158,16 @@ class SetCriterion(nn.Module):
         return batch_idx, tgt_idx
 
     def get_loss(self, loss, outputs, targets, indices, num_boxes, **kwargs):
+        # loss_map = {
+        #     'labels': self.loss_labels,
+        #     'cardinality': self.loss_cardinality,
+        #     'boxes': self.loss_boxes,
+        #     'masks': self.loss_masks
+        # }
         loss_map = {
-            'labels': self.loss_labels,
-            'cardinality': self.loss_cardinality,
-            'boxes': self.loss_boxes,
-            'masks': self.loss_masks
+            'labels':self.loss_labels,
+            'center':self.loss_center,
+            'offset':self.loss_offset
         }
         assert loss in loss_map, f'do you really want to compute {loss} loss?'
         return loss_map[loss](outputs, targets, indices, num_boxes, **kwargs)
@@ -158,17 +185,17 @@ class SetCriterion(nn.Module):
         indices = self.matcher(outputs_without_aux, targets)
 
         # Compute the average number of target boxes accross all nodes, for normalization purposes
-        num_boxes = sum(len(t["labels"]) for t in targets)
-        num_boxes = torch.as_tensor([num_boxes], dtype=torch.float, device=next(iter(outputs.values())).device)
+        num_points = sum(len(t["labels"]) for t in targets)
+        num_points = torch.as_tensor([num_points], dtype=torch.float, device=next(iter(outputs.values())).device)
         if is_dist_avail_and_initialized():
-            torch.distributed.all_reduce(num_boxes)
-        num_boxes = torch.clamp(num_boxes / get_world_size(), min=1).item()
+            torch.distributed.all_reduce(num_points)
+        num_points = torch.clamp(num_points / get_world_size(), min=1).item()
 
         # Compute all the requested losses
         losses = {}
         for loss in self.losses:
             kwargs = {}
-            losses.update(self.get_loss(loss, outputs, targets, indices, num_boxes, **kwargs))
+            losses.update(self.get_loss(loss, outputs, targets, indices, num_points, **kwargs))
 
         # In case of auxiliary losses, we repeat this process with the output of each intermediate layer.
         if 'aux_outputs' in outputs:
@@ -182,7 +209,7 @@ class SetCriterion(nn.Module):
                     if loss == 'labels':
                         # Logging is enabled only for the last layer
                         kwargs['log'] = False
-                    l_dict = self.get_loss(loss, aux_outputs, targets, indices, num_boxes, **kwargs)
+                    l_dict = self.get_loss(loss, aux_outputs, targets, indices, num_points, **kwargs)
                     l_dict = {k + f'_{i}': v for k, v in l_dict.items()}
                     losses.update(l_dict)
 
@@ -200,7 +227,7 @@ class SetCriterion(nn.Module):
                 if loss == 'labels':
                     # Logging is enabled only for the last layer
                     kwargs['log'] = False
-                l_dict = self.get_loss(loss, enc_outputs, bin_targets, indices, num_boxes, **kwargs)
+                l_dict = self.get_loss(loss, enc_outputs, bin_targets, indices, num_points, **kwargs)
                 l_dict = {k + f'_enc': v for k, v in l_dict.items()}
                 losses.update(l_dict)
 

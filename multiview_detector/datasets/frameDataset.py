@@ -74,9 +74,9 @@ def get_world_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k
                 wh[k] = [w_s[k] / reduce, h_s[k] / reduce]
             # plt.imshow(heatmap[0])
             # plt.show()
-
+    world_labels = np.ones(len(ct_ints))
     ret = {'world_pts': torch.from_numpy(ct_ints), 'reg_mask': torch.from_numpy(reg_mask), 'idx': torch.from_numpy(idx),
-           'pid': torch.from_numpy(pid), 'offset': torch.from_numpy(offset)}
+           'pid': torch.from_numpy(pid), 'offset': torch.from_numpy(offset),'labels':torch.from_numpy(world_labels)}
     if w_s is not None and h_s is not None:
         ret.update({'wh': torch.from_numpy(wh)})
     return ret
@@ -268,7 +268,7 @@ class frameDataset(VisionDataset):
         # world gt
         world_pt_s, world_pid_s = self.world_gt[frame]
         # print('world_pt_s: ',world_pt_s)
-        world_labels = np.ones(len(world_pt_s))
+        
         # world_gt = {'world_pts':torch.from_numpy(world_pt_s),'world_pids':torch.from_numpy(world_pid_s),
         #             'world_labels':torch.from_numpy(world_labels)}
         world_gt = get_world_gt(self.Rworld_shape, world_pt_s[:, 0], world_pt_s[:, 1], v_s=world_pid_s,

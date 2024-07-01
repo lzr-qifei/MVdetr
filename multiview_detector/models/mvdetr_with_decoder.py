@@ -13,7 +13,8 @@ from multiview_detector.models.trans_world_feat import TransformerWorldFeat, Def
     DeformTransWorldFeat_aio
 import matplotlib.pyplot as plt
 from kornia.geometry.transform import warp_perspective
-from deformable_transformer import DeformableTransformer
+from multiview_detector.models.deformable_transformer import DeformableTransformer
+from multiview_detector.utils.transformer_utils import inverse_sigmoid
 
 def fill_fc_weights(layers):
     for m in layers.modules():
@@ -127,6 +128,7 @@ class MVDeTr_w_dec(nn.Module):
             self.bottleneck = nn.Identity()
 
         # world feat
+
         if world_feat_arch == 'conv':
             pass
             # self.world_feat = ConvWorldFeat(dataset.num_cam, dataset.Rworld_shape, base_dim)
@@ -145,11 +147,14 @@ class MVDeTr_w_dec(nn.Module):
         elif world_feat_arch == 'deform_trans_w_dec':
             n_points = 4
             reference_points = create_reference_map(dataset, n_points).repeat([dataset.num_cam, 1, 1, 1])
-            self.world_feat = DeformableTransformer(num_cam=dataset.numcam,Rworld_shape=dataset.Rworld_shape,base_dim=base_dim)
+            print('rpts: ',reference_points.shape)
+            self.world_feat = DeformableTransformer(num_cam=dataset.num_cam,Rworld_shape=dataset.Rworld_shape,base_dim=base_dim,reference_points=reference_points)
             hidden_dim=self.world_feat.d_model
         else:
             raise Exception
         self.world_feat_arch = world_feat_arch
+                # 给hidden_dim一个默认值
+        hidden_dim = self.world_feat.d_model
 
         # img heads
         self.img_heatmap = output_head(base_dim, outfeat_dim, 1)
@@ -160,6 +165,8 @@ class MVDeTr_w_dec(nn.Module):
 
         #bev heads
         num_classes = 1
+        num_queries = 100
+        self.query_embed = nn.Embedding(num_queries, hidden_dim*2)
         self.class_embed = nn.Linear(hidden_dim, num_classes)
         self.center_embed = MLP(hidden_dim, hidden_dim, 2, 3)
         self.offset_embed = MLP(hidden_dim, hidden_dim, 2, 3)
@@ -176,7 +183,7 @@ class MVDeTr_w_dec(nn.Module):
         fill_fc_weights(self.world_offset)
         pass
 
-    def forward(self, imgs, M,visualize=True ):#visualize=False
+    def forward(self, imgs, M,visualize=False ):#visualize=False
         B, N, C, H, W = imgs.shape
         imgs = imgs.view(B * N, C, H, W)
 
@@ -238,7 +245,8 @@ class MVDeTr_w_dec(nn.Module):
             world_offset = self.world_offset(world_feat)
             return (world_heatmap, world_offset), (imgs_heatmap, imgs_offset, imgs_wh)
         else:
-            hs, init_reference_out, inter_references_out=self.world_feat(world_feat)
+            query_embeds = self.query_embed.weight
+            hs, init_reference_out, inter_references_out=self.world_feat(world_feat,query_embeds)
             outputs_classes = []
             outputs_coords = []
             outputs_offsets = []
@@ -302,11 +310,7 @@ def test():
     xysc = ctdet_decode(world_heatmap, world_offset)
     pass
 
-def inverse_sigmoid(x, eps=1e-5):
-    x = x.clamp(min=0, max=1)
-    x1 = x.clamp(min=eps)
-    x2 = (1 - x).clamp(min=eps)
-    return torch.log(x1/x2)
+
 
 if __name__ == '__main__':
     test()

@@ -14,7 +14,7 @@ from torch.cuda.amp import GradScaler
 from torch import optim
 from torch.utils.data import DataLoader
 from multiview_detector.datasets import *
-from multiview_detector.models.mvdetr import MVDeTr
+# from multiview_detector.models.mvdetr import MVDeTr
 from multiview_detector.models.mvdetr_with_decoder import MVDeTr_w_dec
 from multiview_detector.utils.logger import Logger
 from multiview_detector.utils.draw_curve import draw_curve
@@ -90,7 +90,7 @@ def main(args):
         for script in os.listdir('.'):
             if script.split('.')[-1] == 'py':
                 dst_file = os.path.join(logdir, 'scripts', os.path.basename(script))
-                shutil.copyfile(script, dst_file)
+                # shutil.copyfile(script, dst_file)
         sys.stdout = Logger(os.path.join(logdir, 'log.txt'), )
     else:
         logdir = f'logs/{args.dataset}/{args.resume}'
@@ -99,7 +99,7 @@ def main(args):
     print(vars(args))
 
     # model
-    model = MVDeTr(train_set, args.arch, world_feat_arch=args.world_feat,
+    model = MVDeTr_w_dec(train_set, args.arch, world_feat_arch=args.world_feat,
                    bottleneck_dim=args.bottleneck_dim, outfeat_dim=args.outfeat_dim, droupout=args.dropout).cuda()
 
     param_dicts = [{"params": [p for n, p in model.named_parameters() if 'base' not in n and p.requires_grad], },
@@ -177,8 +177,8 @@ if __name__ == '__main__':
     parser.add_argument('--deterministic', type=str2bool, default=False)
     parser.add_argument('--augmentation', type=str2bool, default=True)
 
-    parser.add_argument('--world_feat', type=str, default='deform_trans',
-                        choices=['conv', 'trans', 'deform_conv', 'deform_trans', 'aio'])
+    parser.add_argument('--world_feat', type=str, default='deform_trans_w_dec',
+                        choices=['conv', 'trans', 'deform_conv', 'deform_trans', 'aio','deform_trans_w_dec'])
     parser.add_argument('--bottleneck_dim', type=int, default=128)
     parser.add_argument('--outfeat_dim', type=int, default=0)
     parser.add_argument('--world_reduce', type=int, default=4)
