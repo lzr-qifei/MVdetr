@@ -5,6 +5,7 @@ import torch.nn as nn
 from torchvision.models import vgg11
 import torchvision.transforms as T
 import kornia
+import math
 from multiview_detector.models.resnet import resnet18
 from multiview_detector.utils.image_utils import img_color_denormalize, array2heatmap
 from multiview_detector.utils.projection import get_worldcoord_from_imgcoord_mat, project_2d_points
@@ -15,7 +16,7 @@ import matplotlib.pyplot as plt
 from kornia.geometry.transform import warp_perspective
 from multiview_detector.models.deformable_transformer import DeformableTransformer
 from multiview_detector.utils.transformer_utils import inverse_sigmoid
-
+import torch.nn.functional as F
 def fill_fc_weights(layers):
     for m in layers.modules():
         if isinstance(m, nn.Conv2d):
@@ -154,7 +155,7 @@ class MVDeTr_w_dec(nn.Module):
             raise Exception
         self.world_feat_arch = world_feat_arch
                 # 给hidden_dim一个默认值
-        hidden_dim = self.world_feat.d_model
+        hidden_dim = self.world_feat.hidden_dim
 
         # img heads
         self.img_heatmap = output_head(base_dim, outfeat_dim, 1)
@@ -166,10 +167,22 @@ class MVDeTr_w_dec(nn.Module):
         #bev heads
         num_classes = 1
         self.num_queries = 100
-        self.query_embed = nn.Embedding(self.num_queries, hidden_dim)
+        self.query_embed = nn.Embedding(self.num_queries, hidden_dim*2)
         self.class_embed = nn.Linear(hidden_dim, num_classes)
         self.center_embed = MLP(hidden_dim, hidden_dim, 2, 3)
         self.offset_embed = MLP(hidden_dim, hidden_dim, 2, 3)
+
+        prior_prob = 0.01
+        num_pred = 1
+        bias_value = -math.log((1 - prior_prob) / prior_prob)
+        self.class_embed.bias.data = torch.ones(num_classes) * bias_value
+        self.class_embed = nn.ModuleList([self.class_embed for _ in range(num_pred)])
+        nn.init.constant_(self.center_embed.layers[-1].weight.data, 0)
+        nn.init.constant_(self.center_embed.layers[-1].bias.data, 0)
+        self.center_embed = nn.ModuleList([self.center_embed for _ in range(num_pred)])
+        nn.init.constant_(self.offset_embed.layers[-1].weight.data, 0)
+        nn.init.constant_(self.offset_embed.layers[-1].bias.data, 0)
+        self.offset_embed = nn.ModuleList([self.offset_embed for _ in range(num_pred)])
         # world heads
         self.world_heatmap = output_head(base_dim, outfeat_dim, 1)
         self.world_offset = output_head(base_dim, outfeat_dim, 2)
@@ -263,7 +276,8 @@ class MVDeTr_w_dec(nn.Module):
                     tmp += reference
                 else:
                     assert reference.shape[-1] == 2
-                    tmp[..., :2] += reference
+                    tmp[..., :2] += reference[0]
+                    # tmp += reference
                 outputs_coord = tmp.sigmoid()
                 outputs_classes.append(outputs_class)
                 outputs_coords.append(outputs_coord)

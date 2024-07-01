@@ -14,7 +14,7 @@ import torch
 from scipy.optimize import linear_sum_assignment
 from torch import nn
 
-from util.box_ops import box_cxcywh_to_xyxy, generalized_box_iou
+from multiview_detector.utils.box_ops import box_cxcywh_to_xyxy, generalized_box_iou
 
 
 class HungarianMatcher(nn.Module):
@@ -63,15 +63,17 @@ class HungarianMatcher(nn.Module):
                 len(index_i) = len(index_j) = min(num_queries, num_target_boxes)
         """
         with torch.no_grad():
+            targets = [targets]
             bs, num_queries = outputs["pred_logits"].shape[:2]
 
             # We flatten to compute the cost matrices in a batch
             out_prob = outputs["pred_logits"].flatten(0, 1).sigmoid()
-            # out_bbox = outputs["pred_boxes"].flatten(0, 1)  # [batch_size * num_queries, 4]
+            # out_bbox = outputs["pred_boxes"].flatten(0, 1)  # [batch_size * num_queries, 2]
             out_pts = outputs['pred_ct_pts'].flatten(0,1)
 
             # Also concat the target labels and boxes
-            tgt_ids = torch.cat([v["world_labels"] for v in targets])
+            tgt_ids = torch.cat([v["labels"] for v in targets])
+            print('tgtid: ',tgt_ids.shape)
             # tgt_bbox = torch.cat([v["boxes"] for v in targets])
             tgt_pts = torch.cat([v["world_pts"] for v in targets])
 
@@ -80,7 +82,8 @@ class HungarianMatcher(nn.Module):
             gamma = 2.0
             neg_cost_class = (1 - alpha) * (out_prob ** gamma) * (-(1 - out_prob + 1e-8).log())
             pos_cost_class = alpha * ((1 - out_prob) ** gamma) * (-(out_prob + 1e-8).log())
-            cost_class = pos_cost_class[:, tgt_ids] - neg_cost_class[:, tgt_ids]
+            cost_class = pos_cost_class[:, tgt_ids[0]] - neg_cost_class[:, tgt_ids[0]]
+            cost_class = 0
 
             # Compute the L1 cost between boxes
             # cost_bbox = torch.cdist(out_bbox, tgt_bbox, p=1)

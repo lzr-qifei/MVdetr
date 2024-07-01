@@ -64,6 +64,7 @@ class DeformableTransformer(nn.Module):
         self.d_model = d_model
         self.decoder_levels = 1
         self.nhead = nhead
+        self.hidden_dim = hidden_dim
         # self.reference_points = reference_points
         self.downsample = nn.Sequential(nn.Conv2d(base_dim, hidden_dim, 3, stride, 1), nn.ReLU(), )
 
@@ -197,7 +198,7 @@ class DeformableTransformer(nn.Module):
                                             dec_spatial_shapes, level_start_index, valid_ratios_dec, query_embed)
 
         inter_references_out = inter_references
-        return hs, init_reference_out, inter_references_out, None, None
+        return hs, init_reference_out, inter_references_out
 #TODO: 1.确认传入的query_embed,2.输出后处理成center+置信度的形式，3.修改匹配、loss
 
 class DeformableTransformerDecoderLayer(nn.Module):
@@ -276,15 +277,16 @@ class DeformableTransformerDecoder(nn.Module):
         intermediate = []
         intermediate_reference_points = []
         print('before repeat: ',reference_points.shape)
-        reference_points = reference_points.unsqueeze(0).repeat([src.shape[0], 1, 1, 1, 1]).to(src.device)
+        # reference_points = reference_points.unsqueeze(0).repeat([src.shape[0], 1, 1, 1, 1]).to(src.device)
         print('ref pts dec: ',reference_points.shape)
         for lid, layer in enumerate(self.layers):
-            if reference_points.shape[-1] == 4:
-                reference_points_input = reference_points[:, :, None] \
-                                         * torch.cat([src_valid_ratios, src_valid_ratios], -1)[:, None]
-            else:
-                assert reference_points.shape[-1] == 2
-                reference_points_input = reference_points[:, :, None] * src_valid_ratios[:, None]
+            # if reference_points.shape[-1] == 4:
+            #     reference_points_input = reference_points[:, :, None] \
+            #                              * torch.cat([src_valid_ratios, src_valid_ratios], -1)[:, None]
+            # else:
+            #     assert reference_points.shape[-1] == 2
+            #     reference_points_input = reference_points[:, :, None] * src_valid_ratios[:, None]
+            reference_points_input = reference_points.unsqueeze(2).repeat([1,1,8,1,4,1])#b,l,nhead,1,npoints,xy
             print(reference_points_input.shape)
             output = layer(output, query_pos, reference_points_input, src, src_spatial_shapes, src_level_start_index, src_padding_mask)
 
