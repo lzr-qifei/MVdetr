@@ -93,6 +93,7 @@ class MSDeformAttn(nn.Module):
         N, Len_in, _ = input_flatten.shape
         assert (input_spatial_shapes[:, 0] * input_spatial_shapes[:, 1]).sum() == Len_in
 
+        print('input_flatten: ',input_flatten.shape)
         value = self.value_proj(input_flatten)
         if input_padding_mask is not None:
             value = value.masked_fill(input_padding_mask[..., None], float(0))
@@ -103,6 +104,8 @@ class MSDeformAttn(nn.Module):
         # N, Len_q, n_heads, n_levels, n_points, 2
         if reference_points.shape[-1] == 2:
             offset_normalizer = torch.stack([input_spatial_shapes[..., 1], input_spatial_shapes[..., 0]], -1)
+            o = sampling_offsets / offset_normalizer[None, None, None, :, None, :]
+            print('o: ',o.shape)
             sampling_locations = reference_points[:, :, None, :, :, :] \
                                  + sampling_offsets / offset_normalizer[None, None, None, :, None, :]
         elif reference_points.shape[-1] == 4:
