@@ -81,31 +81,41 @@ class SetCriterion(nn.Module):
         self.weight_dict = weight_dict
         self.losses = losses
         self.focal_alpha = focal_alpha
-
+        self.l1loss = RegL1Loss()
     def loss_labels(self, outputs, targets, indices, num_boxes, log=True):
         """Classification loss (NLL)
         targets dicts must contain the key "labels" containing a tensor of dim [nb_target_boxes]
         """
         assert 'pred_logits' in outputs
         src_logits = outputs['pred_logits']
+        print('outlabel_shape: ',src_logits.shape)
+        # targets = list(targets)
+        targets = [targets]
 
         idx = self._get_src_permutation_idx(indices)
-        target_classes_o = torch.cat([t["labels"][J] for t, (_, J) in zip(targets, indices)])
-        target_classes = torch.full(src_logits.shape[:2], self.num_classes,
+        target_classes_o = torch.cat([t["labels"][0][J] for t, (_, J) in zip(targets, indices)])
+        print(target_classes_o)
+        target_classes_o = target_classes_o.long().to(src_logits.device)
+        target_classes = torch.full(src_logits.shape[:1], self.num_classes,
                                     dtype=torch.int64, device=src_logits.device)
-        target_classes[idx] = target_classes_o
+        target_classes[idx[1]] = target_classes_o
+        print('idx: ',idx)
+        # print(max(target_classes))
+        # print(target_classes_o)
 
-        target_classes_onehot = torch.zeros([src_logits.shape[0], src_logits.shape[1], src_logits.shape[2] + 1],
-                                            dtype=src_logits.dtype, layout=src_logits.layout, device=src_logits.device)
-        target_classes_onehot.scatter_(2, target_classes.unsqueeze(-1), 1)
+        # target_classes_onehot = torch.zeros([src_logits.shape[0], src_logits.shape[1], src_logits.shape[2] + 1],
+        #                                     dtype=src_logits.dtype, layout=src_logits.layout, device=src_logits.device)
+        target_classes_onehot = torch.zeros([src_logits.shape[0], src_logits.shape[1]+1],
+                                    dtype=src_logits.dtype, layout=src_logits.layout, device=src_logits.device)
+        target_classes_onehot.scatter_(1, target_classes.unsqueeze(-1), 1)
 
-        target_classes_onehot = target_classes_onehot[:,:,:-1]
+        target_classes_onehot = target_classes_onehot[:,:-1]
         loss_ce = sigmoid_focal_loss(src_logits, target_classes_onehot, num_boxes, alpha=self.focal_alpha, gamma=2) * src_logits.shape[1]
         losses = {'loss_ce': loss_ce}
 
-        if log:
-            # TODO this should probably be a separate loss, not hacked in this one here
-            losses['class_error'] = 100 - accuracy(src_logits[idx], target_classes_o)[0]
+        # if log:
+        #     # TODO this should probably be a separate loss, not hacked in this one here
+        #     losses['class_error'] = 100 - accuracy(src_logits[idx], target_classes_o)[0]
         return losses
 
     # @torch.no_grad()
@@ -123,23 +133,32 @@ class SetCriterion(nn.Module):
     #     return losses
 
     def loss_center(self,outputs, targets ,indices,log=True):
+        targets = [targets]
         src_centers = outputs['pred_ct_pts']
+        # print('pred_center_shape: ',src_centers.shape)
         idx = self._get_src_permutation_idx(indices)
-        target_centers_o = torch.cat([t["world_pts"][J] for t, (_, J) in zip(targets, indices)])
+        target_centers_o = torch.cat([t["world_pts"][0][J] for t, (_, J) in zip(targets, indices)])
+        print('tgt_pts_shape: ',target_centers_o.shape)
         target_centers = torch.full(src_centers.shape[:2], self.num_classes,
                             dtype=torch.int64, device=src_centers.device)
-        target_centers[idx] = target_centers_o
-        loss_center = RegL1Loss(src_centers,targets['reg_mask'], targets['idx'], targets['world_pts'])
+        target_centers_o = target_centers_o.to(src_centers.device)
+        # target_centers[idx[1]] = target_centers_o
+        # loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], targets[0]['world_pts'])
+        loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], target_centers_o)
         losses = {'loss_center': loss_center}
         return losses
     def loss_offset(self,outputs, targets ,indices,log=True):
+        targets = [targets]
         src_offsets = outputs['pred_offsets']
+        # print('pred_offset_shape: ',src_offsets.shape)
         idx = self._get_src_permutation_idx(indices)
-        target_centers_o = torch.cat([t["offsets"][J] for t, (_, J) in zip(targets, indices)])
-        target_centers = torch.full(src_offsets.shape[:2], self.num_classes,
+        target_offsets_o = torch.cat([t["offset"][0][J] for t, (_, J) in zip(targets, indices)])
+        print('tgt_ofst_shape: ',target_offsets_o.shape)
+        target_offsets = torch.full(src_offsets.shape[:2], self.num_classes,
                             dtype=torch.int64, device=src_offsets.device)
-        target_centers[idx] = target_centers_o
-        loss_offset = RegL1Loss(src_offsets,targets['reg_mask'], targets['idx'], targets['offsets'])
+        # target_offsets_o = target_offsets_o.to(src_offsets.device)
+        # target_offsets[idx[1]] = target_offsets_o
+        loss_offset = self.l1loss(src_offsets,targets[0]['reg_mask'], targets[0]['idx'], target_offsets_o)
         losses = {'loss_offset': loss_offset}
         return losses
 
@@ -183,9 +202,11 @@ class SetCriterion(nn.Module):
 
         # Retrieve the matching between the outputs of the last layer and the targets
         indices = self.matcher(outputs_without_aux, targets)
+        # print('indices shape: ',indices.shape)
 
         # Compute the average number of target boxes accross all nodes, for normalization purposes
-        num_points = sum(len(t["labels"]) for t in targets)
+        # num_points = sum(len(t["labels"]) for t in targets)
+        num_points = len(targets["labels"])
         num_points = torch.as_tensor([num_points], dtype=torch.float, device=next(iter(outputs.values())).device)
         if is_dist_avail_and_initialized():
             torch.distributed.all_reduce(num_points)

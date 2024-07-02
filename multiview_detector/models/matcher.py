@@ -67,27 +67,38 @@ class HungarianMatcher(nn.Module):
             bs, num_queries = outputs["pred_logits"].shape[:2]
 
             # We flatten to compute the cost matrices in a batch
-            out_prob = outputs["pred_logits"].flatten(0, 1).sigmoid()
-            # out_bbox = outputs["pred_boxes"].flatten(0, 1)  # [batch_size * num_queries, 2]
-            out_pts = outputs['pred_ct_pts'].flatten(0,1)
+            # out_prob = outputs["pred_logits"].flatten(0, 1).sigmoid()
+            out_prob = outputs["pred_logits"].sigmoid()
+            out_pts = outputs['pred_ct_pts'].cpu()
+            # out_bbox = outputs["pred_boxes"].flatten(0, 1)  
+            # out_pts = outputs['pred_ct_pts'].flatten(0,1)# [batch_size * num_queries, 2]
+            # test_pts = outputs['pred_ct_pts']
+            # print('out_pt shape: ',test_pts.shape)
+            # test_cls = out_prob
 
             # Also concat the target labels and boxes
             tgt_ids = torch.cat([v["labels"] for v in targets])
-            print('tgtid: ',tgt_ids.shape)
+            # print('tgtid: ',tgt_ids.shape)
+            tgt_ids = tgt_ids.long()
             # tgt_bbox = torch.cat([v["boxes"] for v in targets])
             tgt_pts = torch.cat([v["world_pts"] for v in targets])
+            tgt_pts = tgt_pts.float()
+            # print('tgt_pt:',tgt_pts.shape)
 
             # Compute the classification cost.
             alpha = 0.25
             gamma = 2.0
             neg_cost_class = (1 - alpha) * (out_prob ** gamma) * (-(1 - out_prob + 1e-8).log())
             pos_cost_class = alpha * ((1 - out_prob) ** gamma) * (-(out_prob + 1e-8).log())
-            cost_class = pos_cost_class[:, tgt_ids[0]] - neg_cost_class[:, tgt_ids[0]]
-            cost_class = 0
+            # print(pos_cost_class.shape)
+            # cost_class = pos_cost_class[:, tgt_ids[0]] - neg_cost_class[:, tgt_ids[0]]
+            cost_class = pos_cost_class[tgt_ids[0], :] - neg_cost_class[tgt_ids[0], :]
+            cost_class = cost_class.cpu()
+            # cost_class = 0
 
             # Compute the L1 cost between boxes
             # cost_bbox = torch.cdist(out_bbox, tgt_bbox, p=1)
-            cost_pts = torch.cdist(out_pts,tgt_pts,p=1)
+            cost_pts = torch.cdist(out_pts,tgt_pts[0],p=1)
 
             # Compute the giou cost betwen boxes
             # cost_giou = -generalized_box_iou(box_cxcywh_to_xyxy(out_bbox),
@@ -96,9 +107,13 @@ class HungarianMatcher(nn.Module):
             # Final cost matrix
             # C = self.cost_bbox * cost_bbox + self.cost_class * cost_class + self.cost_giou * cost_giou
             C = self.cost_pts * cost_pts + self.cost_class * cost_class 
-            C = C.view(bs, num_queries, -1).cpu()
+            # C = C.view(bs, num_queries, -1).cpu()
+            C = C.view( num_queries,bs, -1)
+            print('cost',C.shape)
 
-            sizes = [len(v["world_pts"]) for v in targets]
+            # sizes = [len(v["world_pts"]) for v in targets]
+            sizes = len(tgt_pts[0])
+            print('sizes: ',sizes)
             indices = [linear_sum_assignment(c[i]) for i, c in enumerate(C.split(sizes, -1))]
             return [(torch.as_tensor(i, dtype=torch.int64), torch.as_tensor(j, dtype=torch.int64)) for i, j in indices]
 

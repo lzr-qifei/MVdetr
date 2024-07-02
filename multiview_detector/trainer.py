@@ -41,6 +41,7 @@ class PerspectiveTrainer(BaseTrainer):
         t_b = time.time()
         t_forward = 0
         t_backward = 0
+        # device = 'cuda:0'
         for batch_idx, (data, world_gt, imgs_gt, affine_mats, frame) in enumerate(dataloader):
             B, N = imgs_gt['heatmap'].shape[:2]
             data = data.cuda()
@@ -53,6 +54,8 @@ class PerspectiveTrainer(BaseTrainer):
             outputs = self.model(data,affine_mats)
             targets = world_gt
             loss_dict = criterion(outputs,targets)
+            # q = loss_dict.cpu()
+            # print(q)
             weight_dict = criterion.weight_dict
             losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
 
@@ -77,9 +80,12 @@ class PerspectiveTrainer(BaseTrainer):
             t_f = time.time()
             t_forward += t_f - t_b
 
-            scaler.scale(losses).backward()
-            scaler.step(optimizer)
-            scaler.update()
+            # scaler.scale(losses).backward()
+            # scaler.step(optimizer)
+            # scaler.update()
+            optimizer.zero_grad()
+            losses.backward()
+            optimizer.step()
 
             losses_total += losses.item()
 

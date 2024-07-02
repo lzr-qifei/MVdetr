@@ -21,7 +21,8 @@ from multiview_detector.utils.draw_curve import draw_curve
 from multiview_detector.utils.str2bool import str2bool
 from multiview_detector.trainer import PerspectiveTrainer
 import ssl
-
+from multiview_detector.models.criterion import SetCriterion
+from multiview_detector.models.matcher import HungarianMatcher
 ssl._create_default_https_context = ssl._create_unverified_context
 
 def main(args):
@@ -106,9 +107,17 @@ def main(args):
                    {"params": [p for n, p in model.named_parameters() if 'base' in n and p.requires_grad],
                     "lr": args.lr * args.base_lr_ratio, }, ]
     # optimizer = optim.SGD(param_dicts, lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
+    weight_dict ={
+            'labels':1,
+            'center':1,
+            'offset':1
+    }
+    # losses = ['labels','center','offset']
+    losses = ['labels','center']
     optimizer = optim.Adam(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
     scaler = GradScaler()
-
+    matcher = HungarianMatcher()
+    criterion = SetCriterion(1,matcher,weight_dict,losses)
     # def warmup_lr_scheduler(epoch, warmup_epochs=2):
     #     if epoch < warmup_epochs:
     #         return epoch / warmup_epochs
@@ -134,7 +143,7 @@ def main(args):
     if args.resume is None:
         for epoch in tqdm.tqdm(range(1, args.epochs + 1)):
             print('Training...')
-            train_loss = trainer.train(epoch, train_loader, optimizer, scaler, scheduler)
+            train_loss = trainer.train(epoch, train_loader, criterion,optimizer, scaler, scheduler)
             print('Testing...')
             test_loss, moda = trainer.test(epoch, test_loader, res_fpath, visualize=True)
 
