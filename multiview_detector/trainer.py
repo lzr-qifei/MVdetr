@@ -36,7 +36,9 @@ class PerspectiveTrainer(BaseTrainer):
 
     def train(self, epoch, dataloader,criterion, optimizer, scaler, scheduler=None, log_interval=100):
         self.model.train()
-        losses = 0
+        
+        criterion.train()
+        # losses = 0
         t0 = time.time()
         t_b = time.time()
         t_forward = 0
@@ -54,10 +56,16 @@ class PerspectiveTrainer(BaseTrainer):
             outputs = self.model(data,affine_mats)
             targets = world_gt
             loss_dict = criterion(outputs,targets)
+            print(loss_dict)
             # q = loss_dict.cpu()
             # print(q)
             weight_dict = criterion.weight_dict
-            losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
+            losses = torch.tensor(0,dtype=float,device='cuda:0',requires_grad=True)
+            for k in loss_dict.keys():
+                if k in weight_dict:
+                    tmp = loss_dict[k] * weight_dict[k]
+                    losses+=tmp
+            # losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
 
             #TODO:写ct的loss
             # loss_w_hm = self.focal_loss(world_heatmap, world_gt['heatmap'])
@@ -87,7 +95,7 @@ class PerspectiveTrainer(BaseTrainer):
             losses.backward()
             optimizer.step()
 
-            losses_total += losses.item()
+            # losses_total += losses.item()
 
             t_b = time.time()
             t_backward += t_b - t_f

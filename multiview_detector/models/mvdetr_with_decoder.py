@@ -286,7 +286,7 @@ class MVDeTr_w_dec(nn.Module):
             outputs_coord = torch.stack(outputs_coords)
             outputs_offset = torch.stack(outputs_offsets)
             out = {'pred_logits': outputs_class[-1], 'pred_ct_pts': outputs_coord[-1],
-                   'pred_offsets':outputs_offsets[-1]}
+                   'pred_offsets':outputs_offset[-1]}
             return out
         # print('after DT: ',world_feat.shape)
         # world heads

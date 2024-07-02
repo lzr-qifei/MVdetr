@@ -62,11 +62,12 @@ class RegL1Loss(nn.Module):
         else:
             mask, ind= mask.to(output.device), ind.to(output.device)
         print(output.device,mask.device,ind.device,target.device)
-        output = output.unsqueeze(0)
-        output = output.unsqueeze(0)
-        pred = _transpose_and_gather_feat(output, ind)
-        mask = mask.unsqueeze(2).expand_as(pred).float()
-        loss = F.l1_loss(pred * mask, target * mask, reduction='sum')
+        # output = output.unsqueeze(0)
+        # output = output.unsqueeze(0)
+        # pred = _transpose_and_gather_feat(output, ind)
+        pred = output
+        # mask = mask.unsqueeze(2).expand_as(pred).float()
+        loss = F.l1_loss(pred , target , reduction='sum')
         loss = loss / (mask.sum() + 1e-4)
         return loss
 
