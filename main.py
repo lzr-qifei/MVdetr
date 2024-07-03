@@ -108,9 +108,9 @@ def main(args):
                     "lr": args.lr * args.base_lr_ratio, }, ]
     # optimizer = optim.SGD(param_dicts, lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
     weight_dict ={
-            'labels':1,
-            'center':1,
-            'offset':1
+            'labels':torch.tensor(1,dtype=float,device='cuda:0'),
+            'center':torch.tensor(1,dtype=float,device='cuda:0'),
+            'offset':torch.tensor(1,dtype=float,device='cuda:0')
     }
     # losses = ['labels','center','offset']
     losses = ['labels','center']
@@ -118,6 +118,7 @@ def main(args):
     scaler = GradScaler()
     matcher = HungarianMatcher()
     criterion = SetCriterion(1,matcher,weight_dict,losses)
+    criterion.to('cuda:0')
     # def warmup_lr_scheduler(epoch, warmup_epochs=2):
     #     if epoch < warmup_epochs:
     #         return epoch / warmup_epochs
@@ -139,14 +140,16 @@ def main(args):
     test_moda_s = []
 
     # learn
-    res_fpath = os.path.join(logdir, 'test.txt')
+    res_fpath = os.path.join('/root/MVdetr/multiview_detector/results', 'test.txt')
     if args.resume is None:
         for epoch in tqdm.tqdm(range(1, args.epochs + 1)):
             print('Training...')
             train_loss = trainer.train(epoch, train_loader, criterion,optimizer, scaler, scheduler)
             print('Testing...')
-            test_loss, moda = trainer.test(epoch, test_loader, res_fpath, visualize=True)
-
+            # train_loss = 0.55
+            test_loss, moda = trainer.test(epoch, criterion,test_loader, res_fpath, visualize=True)
+            train_loss = train_loss.cpu().detach()
+            # test_loss = test_loss.cpu()
             # draw & save
             x_epoch.append(epoch)
             train_loss_s.append(train_loss)

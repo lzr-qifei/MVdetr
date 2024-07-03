@@ -115,8 +115,9 @@ class PerspectiveTrainer(BaseTrainer):
                 pass
         return losses / len(dataloader)
 
-    def test(self, epoch, dataloader, res_fpath=None, visualize=False):
+    def test(self, epoch, criterion,dataloader, res_fpath=None, visualize=False):
         self.model.eval()
+        # criterion.eval()
         losses = 0
         res_list = []
         t0 = time.time()
@@ -127,51 +128,62 @@ class PerspectiveTrainer(BaseTrainer):
                 imgs_gt[key] = imgs_gt[key].view([B * N] + list(imgs_gt[key].shape)[2:])
             # with autocast():
             with torch.no_grad():
-                (world_heatmap, world_offset), (imgs_heatmap, imgs_offset, imgs_wh) = self.model(data, affine_mats)
-                loss_w_hm = self.focal_loss(world_heatmap, world_gt['heatmap'])
-                loss = loss_w_hm
-                if self.use_mse:
-                    loss = self.mse_loss(world_heatmap, world_gt['heatmap'].to(world_heatmap.device)) + \
-                           self.alpha * self.mse_loss(imgs_heatmap, imgs_gt['heatmap'].to(imgs_heatmap.device))
+                # (world_heatmap, world_offset), (imgs_heatmap, imgs_offset, imgs_wh) = self.model(data, affine_mats)
+                outputs = self.model(data,affine_mats)
+                targets = world_gt
+                loss_dict = criterion(outputs,targets)
+                weight_dict = criterion.weight_dict
+                loss = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
+                # loss_w_hm = self.focal_loss(world_heatmap, world_gt['heatmap'])
+                # loss = loss_w_hm
+                # if self.use_mse:
+                #     loss = self.mse_loss(world_heatmap, world_gt['heatmap'].to(world_heatmap.device)) + \
+                #            self.alpha * self.mse_loss(imgs_heatmap, imgs_gt['heatmap'].to(imgs_heatmap.device))
 
-            losses += loss.item()
+            losses += loss
 
             if res_fpath is not None:
-                xys = mvdet_decode(torch.sigmoid(world_heatmap.detach().cpu()), world_offset.detach().cpu(),
-                                   reduce=dataloader.dataset.world_reduce)
+                # xys = mvdet_decode(torch.sigmoid(world_heatmap.detach().cpu()), world_offset.detach().cpu(),
+                #                    reduce=dataloader.dataset.world_reduce)
                 # xys = mvdet_decode(world_heatmap.detach().cpu(), reduce=dataloader.dataset.world_reduce)
-                grid_xy, scores = xys[:, :, :2], xys[:, :, 2:3]
+                # grid_xy, scores = xys[:, :, :2], xys[:, :, 2:3]
+                grid_xy,scores = outputs['pred_ct_pts'],outputs['pred_logits']
                 if dataloader.dataset.base.indexing == 'xy':
                     positions = grid_xy
                 else:
                     positions = grid_xy[:, :, [1, 0]]
 
                 for b in range(B):
+                    print('pos shape:',positions.shape)
+                    print('scores shape: ',scores.shape)
                     ids = scores[b].squeeze() > self.cls_thres
                     pos, s = positions[b, ids], scores[b, ids, 0]
-                    res = torch.cat([torch.ones([len(s), 1]) * frame[b], pos], dim=1)
+                    pos_cpu = pos.cpu()
+                    res = torch.cat([torch.ones([len(s), 1]) * frame[b], pos_cpu], dim=1)
                     ids, count = nms(pos, s, 20, np.inf)
-                    res = torch.cat([torch.ones([count, 1]) * frame[b], pos[ids[:count]]], dim=1)
+                    ids_cpu = ids.cpu()
+                    res = torch.cat([torch.ones([count, 1]) * frame[b], pos_cpu[ids_cpu[:count]]], dim=1)
+                    print(res)
                     res_list.append(res)
 
         t1 = time.time()
         t_epoch = t1 - t0
 
-        if visualize:
-            # visualizing the heatmap for world
-            fig = plt.figure()
-            subplt0 = fig.add_subplot(211, title="output")
-            subplt1 = fig.add_subplot(212, title="target")
-            subplt0.imshow(world_heatmap.cpu().detach().numpy().squeeze())
-            subplt1.imshow(world_gt['heatmap'].squeeze())
-            plt.savefig(os.path.join(self.logdir, f'world{epoch if epoch else ""}.jpg'))
-            plt.close(fig)
-            # visualizing the heatmap for per-view estimation
-            heatmap0_foot = imgs_heatmap[0].detach().cpu().numpy().squeeze()
-            img0 = self.denormalize(data[0, 0]).cpu().numpy().squeeze().transpose([1, 2, 0])
-            img0 = Image.fromarray((img0 * 255).astype('uint8'))
-            foot_cam_result = add_heatmap_to_image(heatmap0_foot, img0)
-            foot_cam_result.save(os.path.join(self.logdir, 'cam1_foot.jpg'))
+        # if visualize:
+        #     # visualizing the heatmap for world
+        #     fig = plt.figure()
+        #     subplt0 = fig.add_subplot(211, title="output")
+        #     subplt1 = fig.add_subplot(212, title="target")
+        #     subplt0.imshow(world_heatmap.cpu().detach().numpy().squeeze())
+        #     subplt1.imshow(world_gt['heatmap'].squeeze())
+        #     plt.savefig(os.path.join(self.logdir, f'world{epoch if epoch else ""}.jpg'))
+        #     plt.close(fig)
+        #     # visualizing the heatmap for per-view estimation
+        #     heatmap0_foot = imgs_heatmap[0].detach().cpu().numpy().squeeze()
+        #     img0 = self.denormalize(data[0, 0]).cpu().numpy().squeeze().transpose([1, 2, 0])
+        #     img0 = Image.fromarray((img0 * 255).astype('uint8'))
+        #     foot_cam_result = add_heatmap_to_image(heatmap0_foot, img0)
+        #     foot_cam_result.save(os.path.join(self.logdir, 'cam1_foot.jpg'))
 
         if res_fpath is not None:
             res_list = torch.cat(res_list, dim=0).numpy() if res_list else np.empty([0, 3])

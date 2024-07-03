@@ -94,12 +94,12 @@ class SetCriterion(nn.Module):
 
         idx = self._get_src_permutation_idx(indices)
         target_classes_o = torch.cat([t["labels"][0][J] for t, (_, J) in zip(targets, indices)])
-        print(target_classes_o)
+        # print(target_classes_o)
         target_classes_o = target_classes_o.long().to(src_logits.device)
         target_classes = torch.full(src_logits.shape[:1], self.num_classes,
                                     dtype=torch.int64, device=src_logits.device)
         target_classes[idx[1]] = target_classes_o
-        print('idx: ',idx)
+        # print('idx: ',idx)
         # print(max(target_classes))
         # print(target_classes_o)
 

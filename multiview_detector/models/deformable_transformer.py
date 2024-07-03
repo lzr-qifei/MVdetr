@@ -276,7 +276,7 @@ class DeformableTransformerDecoder(nn.Module):
 
         intermediate = []
         intermediate_reference_points = []
-        print('before repeat: ',reference_points.shape)
+        # print('before repeat: ',reference_points.shape)
         # reference_points = reference_points.unsqueeze(0).repeat([src.shape[0], 1, 1, 1, 1]).to(src.device)
         print('ref pts dec: ',reference_points.shape)
         for lid, layer in enumerate(self.layers):
@@ -287,7 +287,7 @@ class DeformableTransformerDecoder(nn.Module):
             #     assert reference_points.shape[-1] == 2
             #     reference_points_input = reference_points[:, :, None] * src_valid_ratios[:, None]
             reference_points_input = reference_points.unsqueeze(2).repeat([1,1,8,1,4,1])#b,l,nhead,1,npoints,xy
-            print(reference_points_input.shape)
+            # print(reference_points_input.shape)
             output = layer(output, query_pos, reference_points_input, src, src_spatial_shapes, src_level_start_index, src_padding_mask)
 
             # hack implementation for iterative bounding box refinement
@@ -340,7 +340,7 @@ class DeformableTransformerEncoder(nn.Module):
             reference_points = self.get_reference_points(spatial_shapes, valid_ratios, device=src.device)
         else:
             reference_points = self.reference_points.unsqueeze(0).repeat([src.shape[0], 1, 1, 1, 1]).to(src.device)
-            print('rpts: ',reference_points.shape)
+            # print('rpts: ',reference_points.shape)
         for _, layer in enumerate(self.layers):
             output = layer(output, pos, reference_points, spatial_shapes, level_start_index, padding_mask)
 
@@ -371,8 +371,8 @@ class DeformableTransformerEncoderLayer(nn.Module):
 
     def forward(self, src, pos, reference_points, spatial_shapes, level_start_index, padding_mask=None):
         # self attention
-        print('enc src shape: ',src.shape)
-        print(reference_points.shape)
+        # print('enc src shape: ',src.shape)
+        # print(reference_points.shape)
         src2 = self.self_attn(self.with_pos_embed(src, pos), reference_points, src, spatial_shapes, level_start_index,
                               padding_mask)
         src = src + self.dropout1(src2)
