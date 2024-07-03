@@ -51,8 +51,11 @@ def get_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k=100, 
 
 def get_world_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k=100, kernel_size=4):
     H, W = Rshape
+    # print(H,W)
     # heatmap = np.zeros([1, H, W], dtype=np.float32)
-    ct_ints = np.zeros([top_k, 2], dtype=np.int64)
+    top_k = len(x_s)
+    print('gt_cnt: ',top_k)
+    ct_ints = np.zeros([top_k, 2], dtype=np.float32)
     # reg_mask = np.zeros([top_k], dtype=np.bool)
     reg_mask = np.zeros([top_k], dtype=bool)
     idx = np.zeros([top_k], dtype=np.int64)
@@ -60,12 +63,17 @@ def get_world_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k
     offset = np.zeros([top_k, 2], dtype=np.float32)
     wh = np.zeros([top_k, 2], dtype=np.float32)
 
+    reduce_x = reduce*W
+    reduce_y = reduce*H
     for k in range(len(v_s)):
-        ct = np.array([x_s[k] / reduce, y_s[k] / reduce], dtype=np.float32)
+        # ct = np.array([x_s[k] / reduce, y_s[k] / reduce], dtype=np.float32)
+        ct = np.array([x_s[k] / reduce_x , y_s[k] / reduce_y], dtype=np.float32)
+        # print(ct)
         if 0 <= ct[0] < W and 0 <= ct[1] < H:
             ct_int = ct.astype(np.int32)
             # draw_umich_gaussian(heatmap[0], ct_int, kernel_size / reduce)
-            ct_ints[k] = ct_int
+            # ct_ints[k] = ct_int
+            ct_ints[k] = ct
             reg_mask[k] = 1
             idx[k] = ct_int[1] * W + ct_int[0]
             pid[k] = v_s[k]
@@ -74,6 +82,7 @@ def get_world_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k
                 wh[k] = [w_s[k] / reduce, h_s[k] / reduce]
             # plt.imshow(heatmap[0])
             # plt.show()
+    # print('ctints:',ct_ints)
     world_labels = np.ones(len(ct_ints))
     ret = {'world_pts': torch.from_numpy(ct_ints), 'reg_mask': torch.from_numpy(reg_mask), 'idx': torch.from_numpy(idx),
            'pid': torch.from_numpy(pid), 'offset': torch.from_numpy(offset),'labels':torch.from_numpy(world_labels)}

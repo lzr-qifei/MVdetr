@@ -166,7 +166,7 @@ class MVDeTr_w_dec(nn.Module):
 
         #bev heads
         num_classes = 1
-        self.num_queries = 100
+        self.num_queries = 200
         self.query_embed = nn.Embedding(self.num_queries, hidden_dim*2)
         self.class_embed = nn.Linear(hidden_dim, num_classes)
         self.center_embed = MLP(hidden_dim, hidden_dim, 2, 3)
@@ -287,6 +287,7 @@ class MVDeTr_w_dec(nn.Module):
             outputs_offset = torch.stack(outputs_offsets)
             out = {'pred_logits': outputs_class[-1], 'pred_ct_pts': outputs_coord[-1],
                    'pred_offsets':outputs_offset[-1]}
+            # print('out: ',out)
             return out
         # print('after DT: ',world_feat.shape)
         # world heads

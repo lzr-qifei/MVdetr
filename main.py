@@ -115,6 +115,7 @@ def main(args):
     # losses = ['labels','center','offset']
     losses = ['labels','center']
     optimizer = optim.Adam(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
+    # optimizer = optim.SGD(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
     scaler = GradScaler()
     matcher = HungarianMatcher()
     criterion = SetCriterion(1,matcher,weight_dict,losses)
@@ -147,7 +148,7 @@ def main(args):
             train_loss = trainer.train(epoch, train_loader, criterion,optimizer, scaler, scheduler)
             print('Testing...')
             # train_loss = 0.55
-            test_loss, moda = trainer.test(epoch, criterion,test_loader, res_fpath, visualize=True)
+            test_loss, moda = trainer.test(epoch, test_loader, criterion,res_fpath, visualize=True)
             train_loss = train_loss.cpu().detach()
             # test_loss = test_loss.cpu()
             # draw & save
@@ -156,7 +157,8 @@ def main(args):
             test_loss_s.append(test_loss)
             test_moda_s.append(moda)
             draw_curve(os.path.join(logdir, 'learning_curve.jpg'), x_epoch, train_loss_s, test_loss_s, test_moda_s)
-            torch.save(model.state_dict(), os.path.join(logdir, 'MultiviewDetector.pth'))
+            if epoch==5:
+                torch.save(model.state_dict(), os.path.join(logdir, 'MultiviewDetector.pth'))
     else:
         model.load_state_dict(torch.load(f'logs/{args.dataset}/{args.resume}/MultiviewDetector.pth'))
         model.eval()

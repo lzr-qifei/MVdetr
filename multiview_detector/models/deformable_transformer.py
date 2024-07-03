@@ -29,6 +29,7 @@ def _get_activation_fn(activation):
     raise RuntimeError(F"activation should be relu/gelu, not {activation}.")
 
 def create_pos_embedding(img_size, num_pos_feats=64, temperature=10000, normalize=True, scale=None):
+    print('pos_emb size: ',img_size)
     if scale is not None and normalize is False:
         raise ValueError("normalize should be True if scale is passed")
     if scale is None:
@@ -84,6 +85,7 @@ class DeformableTransformer(nn.Module):
         # self.reference_points = nn.Linear(d_model, 2)
 
         self.pos_embedding = create_pos_embedding(np.array(Rworld_shape) // stride, hidden_dim // 2)
+        # print('pos_emb size: ',np.array(Rworld_shape) // stride)
 
         self._reset_parameters()
 

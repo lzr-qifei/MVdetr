@@ -1,0 +1,3990 @@
+logs/multiviewx/aug_deform_trans_w_dec_lr0.0005_baseR0.1_neck128_out0_alpha1.0_id0_drop0.0_dropcam0.0_worldRK4_10_imgRK12_10_2024-07-03_19-07-07
+Settings:
+{'reID': False, 'semi_supervised': 0, 'id_ratio': 0, 'cls_thres': 0.6, 'alpha': 1.0, 'use_mse': False, 'arch': 'resnet18', 'dataset': 'multiviewx', 'num_workers': 4, 'batch_size': 1, 'dropout': 0.0, 'dropcam': 0.0, 'epochs': 10, 'lr': 0.0005, 'base_lr_ratio': 0.1, 'weight_decay': 0.0001, 'resume': None, 'visualize': False, 'seed': 2021, 'deterministic': False, 'augmentation': True, 'world_feat': 'deform_trans_w_dec', 'bottleneck_dim': 128, 'outfeat_dim': 0, 'world_reduce': 4, 'world_kernel_size': 10, 'img_reduce': 12, 'img_kernel_size': 10, 'data': '/root/autodl-tmp/MultiviewX'}
+rpts:  torch.Size([60000, 6, 4, 2])
+Training...
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.8294, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(44.8542, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(47.6091, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(43.1166, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(43.9573, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(42.6224, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(36.5401, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(44.9712, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(49.0605, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(49.5156, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(41.2781, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(44.1008, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(44.9592, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.9827, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(40.3096, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(40.2233, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(45.5714, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.4713, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.0764, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(47.0437, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(47.4507, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(44.5731, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.1770, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.6639, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.9475, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.0929, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.3897, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.2750, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.2937, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(49.5956, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.5541, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(43.8381, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(47.6701, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(42.1931, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(38.3931, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.2889, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(37.5041, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(44.2244, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(40.6576, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.9195, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(40.8416, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(46.3529, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 44])
+cost_pts shape:  torch.Size([200, 44])
+cost torch.Size([200, 44])
+sizes:  44
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([44, 2])
+{'loss_ce': tensor(49.9996, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(41.3633, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.3015, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(45.2470, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(38.0400, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.3209, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 43])
+cost_pts shape:  torch.Size([200, 43])
+cost torch.Size([200, 43])
+sizes:  43
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([43, 2])
+{'loss_ce': tensor(55.2822, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(44.6300, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(46.7111, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(47.5152, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(42.5055, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(45.2803, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.9232, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.2738, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.8196, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(44.2540, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(44.1061, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.1409, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(48.1347, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.2641, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(46.6744, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(40.8694, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 43])
+cost_pts shape:  torch.Size([200, 43])
+cost torch.Size([200, 43])
+sizes:  43
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([43, 2])
+{'loss_ce': tensor(48.3313, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 34])
+cost_pts shape:  torch.Size([200, 34])
+cost torch.Size([200, 34])
+sizes:  34
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([34, 2])
+{'loss_ce': tensor(36.7701, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.5836, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(46.3842, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.5691, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(41.0053, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.0213, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(41.7102, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(53.2486, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.0859, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(42.5426, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(49.0256, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.1343, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(48.0438, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(48.1688, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(43.5971, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(41.5375, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(47.6263, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.7220, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(38.4636, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(47.5568, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.7296, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.5154, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.9377, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(41.9783, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(44.4733, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.2110, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.6344, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(47.5376, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.1583, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(47.4167, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(46.0144, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.8525, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(39.7758, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(39.9405, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.8481, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+Train Epoch: 1, Batch:100, loss: 0.000000, Time: 53.6
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(44.9720, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(45.4231, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.0968, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.3735, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(45.1193, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(44.9246, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(46.9749, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.1508, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(45.4726, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(46.3263, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.8800, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.7008, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(50.3782, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.4188, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(45.8352, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(48.6386, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(41.0014, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.4864, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(44.3768, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(45.5804, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(44.3471, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 44])
+cost_pts shape:  torch.Size([200, 44])
+cost torch.Size([200, 44])
+sizes:  44
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([44, 2])
+{'loss_ce': tensor(52.3841, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(42.2921, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(45.0199, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.4683, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.9889, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(45.8846, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(38.8017, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(48.4370, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(41.1661, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.1916, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.9522, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.5033, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(46.4988, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.3697, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(39.6499, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(42.5966, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(41.7764, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.6200, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(39.2855, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(43.1165, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(42.4141, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(48.8048, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(45.1379, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(43.2590, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(45.8268, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(48.1426, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.9736, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(45.0790, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.9366, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 43])
+cost_pts shape:  torch.Size([200, 43])
+cost torch.Size([200, 43])
+sizes:  43
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([43, 2])
+{'loss_ce': tensor(48.3873, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(47.2088, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(36.1171, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(40.7137, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(47.3612, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(46.6228, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(47.1302, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.6541, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.6998, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.6609, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(46.1195, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 44])
+cost_pts shape:  torch.Size([200, 44])
+cost torch.Size([200, 44])
+sizes:  44
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([44, 2])
+{'loss_ce': tensor(47.4925, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(50.0408, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(42.1864, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.3926, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(41.2203, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(47.3007, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(43.7426, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.3159, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(44.6128, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(43.4538, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(46.3296, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.1617, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(41.9353, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(42.3154, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.9706, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(43.6245, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.0412, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(44.7715, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.1293, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.4286, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(41.8490, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.5114, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.5085, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(40.7844, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(44.7279, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 33])
+cost_pts shape:  torch.Size([200, 33])
+cost torch.Size([200, 33])
+sizes:  33
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([33, 2])
+{'loss_ce': tensor(39.1594, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.0471, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(41.1638, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.0651, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(43.0514, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.6220, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(47.8929, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(50.5847, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(45.3951, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.7380, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(45.6085, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.9307, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(42.9262, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(47.2484, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+Train Epoch: 1, Batch:200, loss: 0.000000, Time: 103.7
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(48.1415, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.8243, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(48.3338, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.6770, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(43.2716, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.3734, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(49.3551, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(41.0809, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(41.4824, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(40.4812, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.4755, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(44.4089, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 34])
+cost_pts shape:  torch.Size([200, 34])
+cost torch.Size([200, 34])
+sizes:  34
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([34, 2])
+{'loss_ce': tensor(38.3814, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(42.2897, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(41.7131, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(46.5750, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.1661, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(47.9051, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(47.2968, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(45.1572, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.8608, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.7048, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.8036, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.8311, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(47.9627, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(45.0109, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.7061, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(45.9110, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(39.9782, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.6947, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 44])
+cost_pts shape:  torch.Size([200, 44])
+cost torch.Size([200, 44])
+sizes:  44
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([44, 2])
+{'loss_ce': tensor(47.8727, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(42.0514, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(42.8422, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.9520, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(41.3664, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.4774, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(44.6262, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.0891, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.9517, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.3452, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(43.9116, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(41.0404, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(46.5135, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(40.1873, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(51.2042, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(45.4815, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.2930, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(48.6188, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(43.6973, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(44.7196, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(46.5395, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(45.1795, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(43.2336, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.1532, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.2846, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(37.7584, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.8767, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.8427, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.9809, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(42.4392, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(46.7291, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(41.5678, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(47.8273, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.5826, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.4759, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(48.1915, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.0173, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.4893, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(43.7396, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(39.9784, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.9409, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(39.3994, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(46.2253, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.1297, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(46.0113, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(40.7563, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(40.1076, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(40.7133, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(39.6827, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(45.9478, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(47.8091, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(48.3172, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(41.3707, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(46.3305, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.6352, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(40.3519, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 44])
+cost_pts shape:  torch.Size([200, 44])
+cost torch.Size([200, 44])
+sizes:  44
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([44, 2])
+{'loss_ce': tensor(47.9434, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.5930, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(45.3349, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.9297, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.6123, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(49.4143, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.1181, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(46.3318, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.0901, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(43.9066, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(49.6830, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(39.0340, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.3608, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.8205, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+Train Epoch: 1, Batch:300, loss: 0.000000, Time: 152.8
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(39.7058, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.7506, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 43])
+cost_pts shape:  torch.Size([200, 43])
+cost torch.Size([200, 43])
+sizes:  43
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([43, 2])
+{'loss_ce': tensor(49.3338, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.0345, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(48.3649, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(45.7051, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.0104, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.0002, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(44.3334, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(46.2042, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(46.6668, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.8251, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(46.2730, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(37.7317, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.4067, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(47.5566, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 43])
+cost_pts shape:  torch.Size([200, 43])
+cost torch.Size([200, 43])
+sizes:  43
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([43, 2])
+{'loss_ce': tensor(45.6588, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.8186, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.9358, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.9156, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(44.7624, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(48.1589, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 43])
+cost_pts shape:  torch.Size([200, 43])
+cost torch.Size([200, 43])
+sizes:  43
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([43, 2])
+{'loss_ce': tensor(52.1701, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(40.8638, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(43.9168, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.9407, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(47.0881, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(47.9532, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.8267, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(47.9306, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(46.5445, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 35])
+cost_pts shape:  torch.Size([200, 35])
+cost torch.Size([200, 35])
+sizes:  35
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([35, 2])
+{'loss_ce': tensor(40.5392, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.5485, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(41.0743, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(44.8482, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.5110, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(41.7041, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0006, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(42.5464, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.4799, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(44.9004, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(47.5217, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(45.7913, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(43.4633, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(43.8435, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(41.9584, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(41.8335, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 43])
+cost_pts shape:  torch.Size([200, 43])
+cost torch.Size([200, 43])
+sizes:  43
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([43, 2])
+{'loss_ce': tensor(47.9656, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(42.6604, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 40])
+cost_pts shape:  torch.Size([200, 40])
+cost torch.Size([200, 40])
+sizes:  40
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([40, 2])
+{'loss_ce': tensor(48.7589, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(46.4934, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(42.8388, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(40.6276, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 41])
+cost_pts shape:  torch.Size([200, 41])
+cost torch.Size([200, 41])
+sizes:  41
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([41, 2])
+{'loss_ce': tensor(43.5612, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(45.8470, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(47.5763, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 37])
+cost_pts shape:  torch.Size([200, 37])
+cost torch.Size([200, 37])
+sizes:  37
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([37, 2])
+{'loss_ce': tensor(45.1490, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 42])
+cost_pts shape:  torch.Size([200, 42])
+cost torch.Size([200, 42])
+sizes:  42
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([42, 2])
+{'loss_ce': tensor(48.8230, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0007, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 39])
+cost_pts shape:  torch.Size([200, 39])
+cost torch.Size([200, 39])
+sizes:  39
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([39, 2])
+{'loss_ce': tensor(45.3337, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  42
+gt_cnt:  38
+gt_cnt:  35
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  35
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  35
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  35
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  42
+gt_cnt:  41
+gt_cnt:  35
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  42
+gt_cnt:  35
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  35
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  43
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  42
+gt_cnt:  43
+gt_cnt:  37
+gt_cnt:  42
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  36
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  41
+gt_cnt:  35
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  36
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  36
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  34
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  36
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  42
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  42
+gt_cnt:  35
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  41
+gt_cnt:  43
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  42
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  34
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  35
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  44
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  44
+gt_cnt:  36
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  35
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  35
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  38
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  36
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  38
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  35
+gt_cnt:  40
+gt_cnt:  36
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  44
+gt_cnt:  35
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  43
+gt_cnt:  42
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  33
+gt_cnt:  36
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  44
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  36
+gt_cnt:  44
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  43
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  43
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  43
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  38
+torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+{'loss_ce': tensor(44.9078, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0008, device='cuda:0', grad_fn=<DivBackward0>)}
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 36])
+cost_pts shape:  torch.Size([200, 36])
+cost torch.Size([200, 36])
+sizes:  36
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([36, 2])
+{'loss_ce': tensor(41.8553, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0009, device='cuda:0', grad_fn=<DivBackward0>)}
+Train Epoch: 1, Batch:360, loss: 0.000000, Time: 183.1
+Testing...
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  39
+gt_cnt:  36
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  37
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 200, 128])
+ref pts dec:  torch.Size([1, 200, 2])
+cost_class shape:  torch.Size([200, 38])
+cost_pts shape:  torch.Size([200, 38])
+cost torch.Size([200, 38])
+sizes:  38
+outlabel_shape:  torch.Size([200, 2])
+tgt_pts_shape:  torch.Size([38, 2])
+loss: 0
+pos_all shape: torch.Size([200, 2])
+scores shape:  torch.Size([1, 100])

@@ -96,9 +96,13 @@ class SetCriterion(nn.Module):
         target_classes_o = torch.cat([t["labels"][0][J] for t, (_, J) in zip(targets, indices)])
         # print(target_classes_o)
         target_classes_o = target_classes_o.long().to(src_logits.device)
-        target_classes = torch.full(src_logits.shape[:1], self.num_classes,
+        target_classes = torch.full(src_logits.shape[:1], 0,
                                     dtype=torch.int64, device=src_logits.device)
+        # print('tgt_cls : ', target_classes)
         target_classes[idx[1]] = target_classes_o
+        # print('tgt_cls_after_idx : ', target_classes)
+        print('src_logit shape: ',src_logits.shape)
+        print('tgt_cls shape: ',target_classes.shape)
         # print('idx: ',idx)
         # print(max(target_classes))
         # print(target_classes_o)
@@ -133,21 +137,24 @@ class SetCriterion(nn.Module):
     #     return losses
 
     def loss_center(self,outputs, targets ,indices,log=True):
+        # print('indice shape: ',indices)
         targets = [targets]
         src_centers = outputs['pred_ct_pts']
         # print('pred_center_shape: ',src_centers.shape)
         idx = self._get_src_permutation_idx(indices)
+        src_centers_sorted = src_centers[idx[1]]
         target_centers_o = torch.cat([t["world_pts"][0][J] for t, (_, J) in zip(targets, indices)])
         print('tgt_pts_shape: ',target_centers_o.shape)
-        target_centers = torch.full(src_centers.shape[:2], self.num_classes,
-                            dtype=torch.int64, device=src_centers.device)
+        # target_centers = torch.full(src_centers.shape[:2], self.num_classes,
+        #                     dtype=torch.int64, device=src_centers.device)
         target_centers_o = target_centers_o.to(src_centers.device)
         # target_centers[idx[1]] = target_centers_o
         # loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], targets[0]['world_pts'])
-        loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], target_centers_o)
+        loss_center = self.l1loss(src_centers_sorted,targets[0]['reg_mask'], targets[0]['idx'], target_centers_o)
         losses = {'loss_center': loss_center}
         return losses
     def loss_offset(self,outputs, targets ,indices,log=True):
+        #TODO:存在bug，需要按照center的计算方式修正一下
         targets = [targets]
         src_offsets = outputs['pred_offsets']
         # print('pred_offset_shape: ',src_offsets.shape)
@@ -206,7 +213,7 @@ class SetCriterion(nn.Module):
 
         # Compute the average number of target boxes accross all nodes, for normalization purposes
         # num_points = sum(len(t["labels"]) for t in targets)
-        num_points = len(targets["labels"])
+        num_points = len(targets["labels"][0])
         num_points = torch.as_tensor([num_points], dtype=torch.float, device=next(iter(outputs.values())).device)
         if is_dist_avail_and_initialized():
             torch.distributed.all_reduce(num_points)
