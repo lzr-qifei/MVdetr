@@ -144,12 +144,13 @@ class SetCriterion(nn.Module):
         idx = self._get_src_permutation_idx(indices)
         src_centers_sorted = src_centers[idx[1]]
         target_centers_o = torch.cat([t["world_pts"][0][J] for t, (_, J) in zip(targets, indices)])
-        print('tgt_pts_shape: ',target_centers_o.shape)
+        # print('tgt_pts_shape: ',target_centers_o.shape)
         # target_centers = torch.full(src_centers.shape[:2], self.num_classes,
         #                     dtype=torch.int64, device=src_centers.device)
         target_centers_o = target_centers_o.to(src_centers.device)
         # target_centers[idx[1]] = target_centers_o
         # loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], targets[0]['world_pts'])
+        # print('mask: ',targets[0]['reg_mask'])
         loss_center = self.l1loss(src_centers_sorted,targets[0]['reg_mask'], targets[0]['idx'], target_centers_o)
         losses = {'loss_center': loss_center}
         return losses
@@ -160,7 +161,7 @@ class SetCriterion(nn.Module):
         # print('pred_offset_shape: ',src_offsets.shape)
         idx = self._get_src_permutation_idx(indices)
         target_offsets_o = torch.cat([t["offset"][0][J] for t, (_, J) in zip(targets, indices)])
-        print('tgt_ofst_shape: ',target_offsets_o.shape)
+        # print('tgt_ofst_shape: ',target_offsets_o.shape)
         target_offsets = torch.full(src_offsets.shape[:2], self.num_classes,
                             dtype=torch.int64, device=src_offsets.device)
         # target_offsets_o = target_offsets_o.to(src_offsets.device)

@@ -55,7 +55,7 @@ def create_pos_embedding(img_size, num_pos_feats=64, temperature=10000, normaliz
 
 class DeformableTransformer(nn.Module):
     def __init__(self, d_model=256, nhead=8,
-                 num_encoder_layers=6, num_decoder_layers=6, dim_feedforward=1024, dropout=0.1,
+                 num_encoder_layers=6, num_decoder_layers=6, dim_feedforward=1024, dropout=0.3,
                  activation="relu", return_intermediate_dec=False,
                  num_cam=6, dec_n_points=4,  enc_n_points=4,
                  Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None):
@@ -66,6 +66,7 @@ class DeformableTransformer(nn.Module):
         self.decoder_levels = 1
         self.nhead = nhead
         self.hidden_dim = hidden_dim
+        self.dec_n_points = dec_n_points
         # self.reference_points = reference_points
         self.downsample = nn.Sequential(nn.Conv2d(base_dim, hidden_dim, 3, stride, 1), nn.ReLU(), )
 
@@ -73,12 +74,13 @@ class DeformableTransformer(nn.Module):
                                                           dropout,
                                                           num_cam, nhead, enc_n_points)
         self.encoder = DeformableTransformerEncoder(encoder_layer, num_encoder_layers,reference_points)
-        self.merge_linear = nn.Sequential(nn.Conv2d(hidden_dim * num_cam, hidden_dim, 1), nn.ReLU())
+        # self.merge_linear = nn.Sequential(nn.Conv2d(hidden_dim * num_cam, hidden_dim, 1), nn.ReLU())
+        self.merge_linear = nn.Sequential(nn.Conv2d(hidden_dim * num_cam, hidden_dim, 1))
 
         decoder_layer = DeformableTransformerDecoderLayer(hidden_dim, dim_feedforward,
                                                           dropout, activation,
                                                           self.decoder_levels, nhead, dec_n_points)
-        self.decoder = DeformableTransformerDecoder(decoder_layer, num_decoder_layers, return_intermediate_dec)
+        self.decoder = DeformableTransformerDecoder(decoder_layer, num_decoder_layers, return_intermediate_dec,self.dec_n_points)
 
         self.level_embed = nn.Parameter(torch.Tensor(num_cam, hidden_dim))
         self.reference_points_dec = nn.Linear(hidden_dim, 2)
@@ -263,7 +265,7 @@ class DeformableTransformerDecoderLayer(nn.Module):
 
 
 class DeformableTransformerDecoder(nn.Module):
-    def __init__(self, decoder_layer, num_layers, return_intermediate=False):
+    def __init__(self, decoder_layer, num_layers, return_intermediate=False,dec_n_points=4):
         super().__init__()
         self.layers = _get_clones(decoder_layer, num_layers)
         self.num_layers = num_layers
@@ -271,7 +273,7 @@ class DeformableTransformerDecoder(nn.Module):
         # hack implementation for iterative bounding box refinement and two-stage Deformable DETR
         self.bbox_embed = None
         self.class_embed = None
-
+        self.dec_n_points = dec_n_points
     def forward(self, tgt, reference_points, src, src_spatial_shapes, src_level_start_index, src_valid_ratios,
                 query_pos=None, src_padding_mask=None):
         output = tgt
@@ -288,7 +290,7 @@ class DeformableTransformerDecoder(nn.Module):
             # else:
             #     assert reference_points.shape[-1] == 2
             #     reference_points_input = reference_points[:, :, None] * src_valid_ratios[:, None]
-            reference_points_input = reference_points.unsqueeze(2).repeat([1,1,8,1,4,1])#b,l,nhead,1,npoints,xy
+            reference_points_input = reference_points.unsqueeze(2).repeat([1,1,8,1,self.dec_n_points,1])#b,l,nhead,1,npoints,xy
             # print(reference_points_input.shape)
             output = layer(output, query_pos, reference_points_input, src, src_spatial_shapes, src_level_start_index, src_padding_mask)
 

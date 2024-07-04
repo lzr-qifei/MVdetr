@@ -93,6 +93,7 @@ def main(args):
                 dst_file = os.path.join(logdir, 'scripts', os.path.basename(script))
                 # shutil.copyfile(script, dst_file)
         sys.stdout = Logger(os.path.join(logdir, 'log.txt'), )
+        # Logger.write()
     else:
         logdir = f'logs/{args.dataset}/{args.resume}'
     print(logdir)
@@ -101,15 +102,16 @@ def main(args):
 
     # model
     model = MVDeTr_w_dec(train_set, args.arch, world_feat_arch=args.world_feat,
-                   bottleneck_dim=args.bottleneck_dim, outfeat_dim=args.outfeat_dim, droupout=args.dropout).cuda()
+                   bottleneck_dim=args.bottleneck_dim, outfeat_dim=args.outfeat_dim, dropout=args.dropout).cuda()
 
     param_dicts = [{"params": [p for n, p in model.named_parameters() if 'base' not in n and p.requires_grad], },
                    {"params": [p for n, p in model.named_parameters() if 'base' in n and p.requires_grad],
                     "lr": args.lr * args.base_lr_ratio, }, ]
     # optimizer = optim.SGD(param_dicts, lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
     weight_dict ={
-            'labels':torch.tensor(1,dtype=float,device='cuda:0'),
-            'center':torch.tensor(1,dtype=float,device='cuda:0'),
+            # 'labels':torch.tensor(1,dtype=float,device='cuda:0'),
+            'loss_ce':torch.tensor(0.2,dtype=float,device='cuda:0'),
+            'loss_center':torch.tensor(2,dtype=float,device='cuda:0'),
             'offset':torch.tensor(1,dtype=float,device='cuda:0')
     }
     # losses = ['labels','center','offset']
@@ -117,7 +119,7 @@ def main(args):
     optimizer = optim.Adam(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
     # optimizer = optim.SGD(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
     scaler = GradScaler()
-    matcher = HungarianMatcher()
+    matcher = HungarianMatcher(cost_class=0.2,cost_pts=2)
     criterion = SetCriterion(1,matcher,weight_dict,losses)
     criterion.to('cuda:0')
     # def warmup_lr_scheduler(epoch, warmup_epochs=2):
@@ -156,7 +158,7 @@ def main(args):
             train_loss_s.append(train_loss)
             test_loss_s.append(test_loss)
             test_moda_s.append(moda)
-            draw_curve(os.path.join(logdir, 'learning_curve.jpg'), x_epoch, train_loss_s, test_loss_s, test_moda_s)
+            # draw_curve(os.path.join(logdir, 'learning_curve.jpg'), x_epoch, train_loss_s, test_loss_s, test_moda_s)
             if epoch==5:
                 torch.save(model.state_dict(), os.path.join(logdir, 'MultiviewDetector.pth'))
     else:

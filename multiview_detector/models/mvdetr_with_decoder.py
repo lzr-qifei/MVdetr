@@ -89,7 +89,7 @@ class MLP(nn.Module):
 
 class MVDeTr_w_dec(nn.Module):
     def __init__(self, dataset, arch='resnet18', z=0, world_feat_arch='conv',
-                 bottleneck_dim=128, outfeat_dim=64, droupout=0.5):
+                 bottleneck_dim=128, outfeat_dim=64, dropout=0.5):
         super().__init__()
         self.Rimg_shape, self.Rworld_shape = dataset.Rimg_shape, dataset.Rworld_shape
         self.img_reduce = dataset.img_reduce
@@ -123,7 +123,7 @@ class MVDeTr_w_dec(nn.Module):
             raise Exception('architecture currently support [vgg11, resnet18]')
 
         if bottleneck_dim:
-            self.bottleneck = nn.Sequential(nn.Conv2d(base_dim, bottleneck_dim, 1), nn.Dropout2d(droupout))
+            self.bottleneck = nn.Sequential(nn.Conv2d(base_dim, bottleneck_dim, 1), nn.Dropout2d(dropout))
             base_dim = bottleneck_dim
         else:
             self.bottleneck = nn.Identity()
@@ -166,7 +166,7 @@ class MVDeTr_w_dec(nn.Module):
 
         #bev heads
         num_classes = 1
-        self.num_queries = 200
+        self.num_queries = 300
         self.query_embed = nn.Embedding(self.num_queries, hidden_dim*2)
         self.class_embed = nn.Linear(hidden_dim, num_classes)
         self.center_embed = MLP(hidden_dim, hidden_dim, 2, 3)
@@ -264,6 +264,7 @@ class MVDeTr_w_dec(nn.Module):
             outputs_coords = []
             outputs_offsets = []
             for lvl in range(hs.shape[0]):
+                print('hs shape: ',hs.shape)
                 if lvl == 0:
                     reference = init_reference_out
                 else:
@@ -278,7 +279,8 @@ class MVDeTr_w_dec(nn.Module):
                     assert reference.shape[-1] == 2
                     tmp[..., :2] += reference[0]
                     # tmp += reference
-                outputs_coord = tmp.sigmoid()
+                # outputs_coord = tmp.sigmoid()
+                outputs_coord = tmp
                 outputs_classes.append(outputs_class)
                 outputs_coords.append(outputs_coord)
                 outputs_offsets.append(offset)

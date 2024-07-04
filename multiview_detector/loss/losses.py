@@ -70,7 +70,7 @@ class RegL1Loss(nn.Module):
         # mask = mask.unsqueeze(2).expand_as(pred).float()
         # print('pred:',pred)
         # print('target: ',target)
-        loss = F.l1_loss(pred , target , reduction='mean')
+        loss = F.l1_loss(pred , target , reduction='sum')
         loss = loss / (mask.sum() + 1e-4)
         return loss
 

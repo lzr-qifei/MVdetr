@@ -39,6 +39,7 @@ class PerspectiveTrainer(BaseTrainer):
         
         criterion.train()
         # losses = 0
+        losses = torch.tensor(0,dtype=float,device='cuda:0',requires_grad=True)
         t0 = time.time()
         t_b = time.time()
         t_forward = 0
@@ -60,12 +61,17 @@ class PerspectiveTrainer(BaseTrainer):
             # q = loss_dict.cpu()
             # print(q)
             weight_dict = criterion.weight_dict
-            losses = torch.tensor(0,dtype=float,device='cuda:0',requires_grad=True)
-            for k in loss_dict.keys():
-                if k in weight_dict:
-                    tmp = loss_dict[k] * weight_dict[k]
-                    losses+=tmp
-            # losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
+            
+            # print('key: ',loss_dict.keys())
+            # for k in loss_dict.keys():
+            #     if k in weight_dict.keys():
+            #         # print(k)
+            #         tmp = loss_dict[k] * weight_dict[k]
+            #         # tmp = loss_dict[k]
+            #         losses+=tmp
+            
+            losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
+            print(losses)
 
             #TODO:写ct的loss
             # loss_w_hm = self.focal_loss(world_heatmap, world_gt['heatmap'])
@@ -156,7 +162,7 @@ class PerspectiveTrainer(BaseTrainer):
                 else:
                     positions = grid_xy[:, :, [1, 0]]
                 scores = out_logits.sigmoid()
-                topk_values, topk_indexes = torch.topk(scores.view(1, -1), 100, dim=1)
+                topk_values, topk_indexes = torch.topk(scores.view(1, -1), 50, dim=1)
                 topk_pts_idx = topk_indexes // out_logits.shape[-1]
                 labels = topk_indexes % out_logits.shape[-1]
                 scores = topk_values

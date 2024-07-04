@@ -1,1 +1,1 @@
-python ../main.py  -d multiviewx  --data /root/autodl-tmp/MultiviewX
+python ../main.py  -d multiviewx  --data /root/autodl-tmp/MultiviewX --world_reduce 4

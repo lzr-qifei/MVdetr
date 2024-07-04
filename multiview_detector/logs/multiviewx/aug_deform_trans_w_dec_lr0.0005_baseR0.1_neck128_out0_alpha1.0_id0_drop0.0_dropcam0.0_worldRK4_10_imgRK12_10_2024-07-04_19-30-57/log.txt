@@ -1,0 +1,3069 @@
+logs/multiviewx/aug_deform_trans_w_dec_lr0.0005_baseR0.1_neck128_out0_alpha1.0_id0_drop0.0_dropcam0.0_worldRK4_10_imgRK12_10_2024-07-04_19-30-57
+Settings:
+{'reID': False, 'semi_supervised': 0, 'id_ratio': 0, 'cls_thres': 0.6, 'alpha': 1.0, 'use_mse': False, 'arch': 'resnet18', 'dataset': 'multiviewx', 'num_workers': 4, 'batch_size': 1, 'dropout': 0.0, 'dropcam': 0.0, 'epochs': 10, 'lr': 0.0005, 'base_lr_ratio': 0.1, 'weight_decay': 0.0001, 'resume': None, 'visualize': False, 'seed': 2021, 'deterministic': False, 'augmentation': True, 'world_feat': 'deform_trans_w_dec', 'bottleneck_dim': 128, 'outfeat_dim': 0, 'world_reduce': 4, 'world_kernel_size': 10, 'img_reduce': 12, 'img_kernel_size': 10, 'data': '/root/autodl-tmp/MultiviewX'}
+rpts:  torch.Size([60000, 6, 4, 2])
+pos_emb size:  [ 80 125]
+Training...
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(8.3032, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0406, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(4.2328, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(9.0518, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0376, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(4.6012, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(8.2890, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0331, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(4.2108, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(6.6096, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0404, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.3857, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 35])
+cost torch.Size([300, 35])
+indices0 shape:  35
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([35, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(6.6372, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0437, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.4061, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(6.3362, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0437, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.2555, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(6.6210, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0440, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.3986, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(6.4489, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0355, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.2954, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(5.3810, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0376, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.7657, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(6.9047, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0409, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.5342, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(7.4076, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0430, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.7898, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 36])
+cost torch.Size([300, 36])
+indices0 shape:  36
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([36, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(6.1650, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0421, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.1668, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(6.7492, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0344, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.4435, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(6.5348, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0384, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.3443, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(5.7476, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0460, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.9657, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 43])
+cost torch.Size([300, 43])
+indices0 shape:  43
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([43, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True]])
+{'loss_ce': tensor(4.8312, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0417, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.4991, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(5.2204, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0388, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.6878, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(5.1663, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0429, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.6690, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(6.3977, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0417, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.2823, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(4.2770, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0359, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.2103, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(5.3661, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0455, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.7741, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(5.7392, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0339, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.9375, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(4.4976, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0385, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.3258, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 42])
+cost torch.Size([300, 42])
+indices0 shape:  42
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([42, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True]])
+{'loss_ce': tensor(3.4377, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0430, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.8048, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(3.0210, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0363, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.5831, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(3.4671, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0406, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.8147, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(4.6291, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0443, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.4031, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(4.0319, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0367, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.0894, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 35])
+cost torch.Size([300, 35])
+indices0 shape:  35
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([35, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(6.3940, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0451, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(3.2873, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(4.0532, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0440, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.1145, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(3.0541, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0331, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.5932, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(3.0301, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0348, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.5846, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(3.1760, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0406, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.6692, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(2.4547, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0388, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.3049, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(3.1409, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0424, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.6552, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(4.8985, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0405, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.5303, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(3.0058, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0385, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.5799, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 36])
+cost torch.Size([300, 36])
+indices0 shape:  36
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([36, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(3.8514, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0391, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.0039, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 43])
+cost torch.Size([300, 43])
+indices0 shape:  43
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([43, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True]])
+{'loss_ce': tensor(2.7166, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0426, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.4436, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(5.4620, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0397, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(2.8104, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(2.7994, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0375, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.4747, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 42])
+cost torch.Size([300, 42])
+indices0 shape:  42
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([42, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True]])
+{'loss_ce': tensor(2.2417, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0381, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.1970, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(3.1963, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0369, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.6719, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(2.8283, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0389, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.4919, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 43])
+cost torch.Size([300, 43])
+indices0 shape:  43
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([43, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True]])
+{'loss_ce': tensor(2.6639, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0373, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.4066, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 44])
+cost torch.Size([300, 44])
+indices0 shape:  44
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([44, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(1.7675, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0458, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.9753, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 36])
+cost torch.Size([300, 36])
+indices0 shape:  36
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([36, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(3.2794, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0438, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.7272, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 36])
+cost torch.Size([300, 36])
+indices0 shape:  36
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([36, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(2.0993, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0400, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.1296, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(1.3263, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0395, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.7421, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 35])
+cost torch.Size([300, 35])
+indices0 shape:  35
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([35, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(2.2799, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0387, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.2173, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(2.3868, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0429, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.2792, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 42])
+cost torch.Size([300, 42])
+indices0 shape:  42
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([42, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True]])
+{'loss_ce': tensor(1.5754, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0411, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.8699, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(2.5266, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0404, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.3440, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(2.5439, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0415, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.3549, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(1.8483, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0382, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.0006, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(2.2595, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0426, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.2150, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(1.4855, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0363, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.8154, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(1.4463, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0360, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.7951, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(1.7284, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0325, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.9293, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 36])
+cost torch.Size([300, 36])
+indices0 shape:  36
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([36, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(2.5427, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0404, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.3521, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(1.3773, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0381, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.7649, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(1.1082, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0381, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.6303, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.8405, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0384, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.4971, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(1.1632, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0344, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.6504, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(2.0410, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0363, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.0931, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(1.0566, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0344, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.5970, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(1.4584, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0398, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.8088, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.9267, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0420, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.5473, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 42])
+cost torch.Size([300, 42])
+indices0 shape:  42
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([42, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True]])
+{'loss_ce': tensor(0.6752, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0462, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.4300, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(0.7693, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0326, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.4498, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 43])
+cost torch.Size([300, 43])
+indices0 shape:  43
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([43, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True]])
+{'loss_ce': tensor(0.5065, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0434, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3401, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(0.7429, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0349, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.4413, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(1.5523, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0363, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.8488, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.5893, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0397, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3740, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.5722, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0355, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3571, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(0.6136, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0367, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3801, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 36])
+cost torch.Size([300, 36])
+indices0 shape:  36
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([36, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(0.6486, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0401, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.4045, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.6241, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0415, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3950, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.4440, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0387, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.2994, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(1.1064, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0361, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.6255, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(0.4823, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0389, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3189, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 35])
+cost torch.Size([300, 35])
+indices0 shape:  35
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([35, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(0.4977, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0355, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3198, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(0.4603, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0374, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3050, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(0.5371, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0396, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3477, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.4659, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0465, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3260, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 36])
+cost torch.Size([300, 36])
+indices0 shape:  36
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([36, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(0.5399, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0399, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3498, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(0.4172, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0317, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.2719, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(0.5037, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0392, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3302, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.5159, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0407, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3393, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.9707, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0353, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.5559, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(0.4801, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0402, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3204, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(0.7026, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0446, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.4404, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(0.4630, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0417, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3148, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 44])
+cost torch.Size([300, 44])
+indices0 shape:  44
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([44, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(0.5313, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0401, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3458, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(0.4470, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0441, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3118, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.5239, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0435, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3490, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.4755, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0453, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3284, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(0.5121, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0382, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3325, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.4322, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0442, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3046, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.4664, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0404, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3141, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+Train Epoch: 1, Batch:100, loss: 0.003141, Time: 39.5
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(0.4866, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0378, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3189, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.5186, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0478, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3548, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(0.4567, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0426, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3136, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 35])
+cost torch.Size([300, 35])
+indices0 shape:  35
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([35, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(0.5983, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0461, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3913, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.4545, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0474, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3221, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(0.4503, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0437, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3126, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.5044, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0455, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3432, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 42])
+cost torch.Size([300, 42])
+indices0 shape:  42
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([42, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True]])
+{'loss_ce': tensor(0.4542, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0381, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3032, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.5289, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0436, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3517, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.6148, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0368, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3810, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 42])
+cost torch.Size([300, 42])
+indices0 shape:  42
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([42, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True]])
+{'loss_ce': tensor(0.4360, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0477, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3133, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(0.4607, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0394, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3092, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(0.4393, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0411, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3018, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(0.4558, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0412, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3103, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.4652, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0410, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3145, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.4528, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0383, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3031, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.4547, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0369, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3012, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.4744, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0442, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3257, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 36])
+cost torch.Size([300, 36])
+indices0 shape:  36
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([36, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(0.4863, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0373, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3177, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(0.4673, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0398, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3132, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.4514, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0435, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3128, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(0.5473, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0355, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3446, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 42])
+cost torch.Size([300, 42])
+indices0 shape:  42
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([42, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True]])
+{'loss_ce': tensor(0.4555, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0430, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3136, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.6067, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0468, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3969, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 40])
+cost torch.Size([300, 40])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([40, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True]])
+{'loss_ce': tensor(0.6354, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0514, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.4205, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.4810, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0384, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3173, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.5068, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0422, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3379, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.4833, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0404, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3225, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.5108, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0424, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3403, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 37])
+cost torch.Size([300, 37])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([37, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True]])
+{'loss_ce': tensor(0.4684, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0398, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3138, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 42])
+cost torch.Size([300, 42])
+indices0 shape:  42
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([42, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True]])
+{'loss_ce': tensor(0.6043, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0430, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3882, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(0.5349, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0489, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3653, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(0.4779, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0411, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3211, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(0.4447, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0377, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.2977, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 36])
+cost torch.Size([300, 36])
+indices0 shape:  36
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([36, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(0.5209, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0355, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3315, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(0.4760, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0356, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3092, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.5880, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0464, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3869, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 38])
+cost torch.Size([300, 38])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([38, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True]])
+{'loss_ce': tensor(0.5925, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0359, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3680, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.4817, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0424, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3257, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.5008, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0458, device='cuda:0', grad_fn=<DivBackward0>)}
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  35
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  43
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  39
+gt_cnt:  36
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  34
+gt_cnt:  38
+tensor(0.3420, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 34])
+cost torch.Size([300, 34])
+indices0 shape:  34
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([34, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True]])
+{'loss_ce': tensor(0.4865, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0420, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3273, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 39])
+cost torch.Size([300, 39])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([39, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True]])
+{'loss_ce': tensor(0.4524, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0377, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3016, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+out_prob shape:  torch.Size([300, 1])
+pos_c_cls:  torch.Size([300, 1])
+tgt_ids:  tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+cost_class shape:  torch.Size([300, 1])
+cost_pts shape:  torch.Size([300, 41])
+cost torch.Size([300, 41])
+indices0 shape:  41
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+tgt_pts_shape:  torch.Size([41, 2])
+mask:  tensor([[True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True, True, True, True, True, True,
+         True, True, True, True, True]])
+{'loss_ce': tensor(0.5777, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0425, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(0.3738, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  42
+gt_cnt:  44
+gt_cnt:  35
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  35
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  44
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  38
