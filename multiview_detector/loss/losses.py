@@ -34,6 +34,8 @@ class FocalLoss(nn.Module):
         mask = mask.to(output.device)
         pos_inds = target.eq(1).float()
         neg_inds = target.lt(1).float()
+        print('pos inds: ',pos_inds)
+        print('neg inds: ',neg_inds)
 
         neg_weights = torch.pow(1 - target, 4)
 

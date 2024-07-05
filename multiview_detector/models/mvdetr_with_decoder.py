@@ -277,10 +277,14 @@ class MVDeTr_w_dec(nn.Module):
                     tmp += reference
                 else:
                     assert reference.shape[-1] == 2
+                    # pass 
+                    print('before ref add : ',tmp[0:4])
                     tmp[..., :2] += reference[0]
+                    print('after ref add : ',tmp[0:4])
                     # tmp += reference
-                # outputs_coord = tmp.sigmoid()
-                outputs_coord = tmp
+                outputs_coord = tmp.sigmoid()
+                # outputs_coord = tmp.relu()
+                # outputs_coord = tmp
                 outputs_classes.append(outputs_class)
                 outputs_coords.append(outputs_coord)
                 outputs_offsets.append(offset)

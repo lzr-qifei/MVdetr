@@ -195,6 +195,7 @@ class DeformableTransformer(nn.Module):
         print('query shape: ',query_embed.shape)
         tgt = tgt.unsqueeze(0).expand(bs, -1, -1)
         reference_points = self.reference_points_dec(query_embed).sigmoid()
+        # print('ref pts before dec: ',reference_points[0:4])
         init_reference_out = reference_points
 
         # decoder
