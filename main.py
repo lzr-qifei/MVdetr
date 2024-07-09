@@ -102,17 +102,18 @@ def main(args):
 
     # model
     model = MVDeTr_w_dec(train_set, args.arch, world_feat_arch=args.world_feat,
-                   bottleneck_dim=args.bottleneck_dim, outfeat_dim=args.outfeat_dim, dropout=args.dropout).cuda()
+                   bottleneck_dim=args.bottleneck_dim, outfeat_dim=args.outfeat_dim, dropout=args.dropout,two_stage=args.two_stage).cuda()
 
     param_dicts = [{"params": [p for n, p in model.named_parameters() if 'base' not in n and p.requires_grad], },
                    {"params": [p for n, p in model.named_parameters() if 'base' in n and p.requires_grad],
                     "lr": args.lr * args.base_lr_ratio, }, ]
     # optimizer = optim.SGD(param_dicts, lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
     weight_dict ={
-            # 'labels':torch.tensor(1,dtype=float,device='cuda:0'),
-            'loss_ce':torch.tensor(0.2,dtype=float,device='cuda:0'),
-            'loss_center':torch.tensor(2,dtype=float,device='cuda:0'),
-            'offset':torch.tensor(1,dtype=float,device='cuda:0')
+            'labels':torch.tensor(0.1,dtype=float,device='cuda:0'),
+            'center':torch.tensor(2,dtype=float,device='cuda:0'),
+            # 'loss_ce':torch.tensor(0.1,dtype=float,device='cuda:0'),
+            # 'loss_center':torch.tensor(2,dtype=float,device='cuda:0'),
+            # 'offset':torch.tensor(1,dtype=float,device='cuda:0')
     }
     # losses = ['labels','center','offset']
     losses = ['labels','center']
@@ -134,7 +135,7 @@ def main(args):
     # scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, [10, 15], 0.1)
     # scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, warmup_lr_scheduler)
 
-    trainer = PerspectiveTrainer(model, logdir, args.cls_thres, args.alpha, args.use_mse, args.id_ratio)
+    trainer = PerspectiveTrainer(model, logdir, args.cls_thres, args.alpha, args.use_mse, args.id_ratio,args.two_stage)
 
     # draw curve
     x_epoch = []
@@ -148,10 +149,11 @@ def main(args):
         for epoch in tqdm.tqdm(range(1, args.epochs + 1)):
             print('Training...')
             train_loss = trainer.train(epoch, train_loader, criterion,optimizer, scaler, scheduler)
+            train_loss = train_loss.cpu().detach()
             print('Testing...')
             # train_loss = 0.55
-            test_loss, moda = trainer.test(epoch, test_loader, criterion,res_fpath, visualize=True)
-            train_loss = train_loss.cpu().detach()
+            test_loss, moda = trainer.test(epoch, test_loader, criterion,res_fpath, visualize=False)
+            
             # test_loss = test_loss.cpu()
             # draw & save
             x_epoch.append(epoch)
@@ -202,6 +204,8 @@ if __name__ == '__main__':
     parser.add_argument('--img_reduce', type=int, default=12)
     parser.add_argument('--img_kernel_size', type=int, default=10)
     parser.add_argument('--data', type=str, default='./Data')
+
+    parser.add_argument('--two_stage', default=False,action='store_true')
 
     args = parser.parse_args()
 

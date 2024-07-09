@@ -89,7 +89,7 @@ class MLP(nn.Module):
 
 class MVDeTr_w_dec(nn.Module):
     def __init__(self, dataset, arch='resnet18', z=0, world_feat_arch='conv',
-                 bottleneck_dim=128, outfeat_dim=64, dropout=0.5):
+                 bottleneck_dim=128, outfeat_dim=64, dropout=0.5,two_stage=False):
         super().__init__()
         self.Rimg_shape, self.Rworld_shape = dataset.Rimg_shape, dataset.Rworld_shape
         self.img_reduce = dataset.img_reduce
@@ -148,8 +148,9 @@ class MVDeTr_w_dec(nn.Module):
         elif world_feat_arch == 'deform_trans_w_dec':
             n_points = 4
             reference_points = create_reference_map(dataset, n_points).repeat([dataset.num_cam, 1, 1, 1])
-            print('rpts: ',reference_points.shape)
-            self.world_feat = DeformableTransformer(num_cam=dataset.num_cam,Rworld_shape=dataset.Rworld_shape,base_dim=base_dim,reference_points=reference_points)
+            # print('rpts: ',reference_points.shape)
+            self.world_feat = DeformableTransformer(num_cam=dataset.num_cam,Rworld_shape=dataset.Rworld_shape,base_dim=base_dim,
+                                                    reference_points=reference_points,two_stage=two_stage)
             hidden_dim=self.world_feat.d_model
         else:
             raise Exception
@@ -242,6 +243,7 @@ class MVDeTr_w_dec(nn.Module):
         #                                      self.Rworld_shape, align_corners=False).view(B, N, C, H, W)
         world_feat = warp_perspective(imgs_feat, proj_mats.to(imgs.device),
                                              self.Rworld_shape, align_corners=False).view(B, N, C, H, W)
+        # print('feat: ',world_feat)
         if visualize:
             for cam in range(N):
                 visualize_img = array2heatmap(torch.norm(world_feat[0, cam].detach(), dim=0).cpu())
@@ -264,35 +266,37 @@ class MVDeTr_w_dec(nn.Module):
             outputs_coords = []
             outputs_offsets = []
             for lvl in range(hs.shape[0]):
-                print('hs shape: ',hs.shape)
+                # print('hs shape: ',hs.shape)
                 if lvl == 0:
                     reference = init_reference_out
                 else:
                     reference = inter_references_out[lvl - 1]
                 reference = inverse_sigmoid(reference)
                 outputs_class = self.class_embed[lvl](hs[lvl])
+                # print('clsout: ',outputs_class)
                 tmp = self.center_embed[lvl](hs[lvl])
-                offset = self.offset_embed[lvl](hs[lvl])
+                # offset = self.offset_embed[lvl](hs[lvl])
                 if reference.shape[-1] == 4:
                     tmp += reference
                 else:
                     assert reference.shape[-1] == 2
                     # pass 
-                    print('before ref add : ',tmp[0:4])
+                    # print('before ref add : ',tmp[0:4])
                     tmp[..., :2] += reference[0]
-                    print('after ref add : ',tmp[0:4])
+                    # print('after ref add : ',tmp[0:4])
                     # tmp += reference
                 outputs_coord = tmp.sigmoid()
                 # outputs_coord = tmp.relu()
                 # outputs_coord = tmp
                 outputs_classes.append(outputs_class)
                 outputs_coords.append(outputs_coord)
-                outputs_offsets.append(offset)
+                # outputs_offsets.append(offset)
             outputs_class = torch.stack(outputs_classes)
             outputs_coord = torch.stack(outputs_coords)
-            outputs_offset = torch.stack(outputs_offsets)
-            out = {'pred_logits': outputs_class[-1], 'pred_ct_pts': outputs_coord[-1],
-                   'pred_offsets':outputs_offset[-1]}
+            # outputs_offset = torch.stack(outputs_offsets)
+            # out = {'pred_logits': outputs_class[-1], 'pred_ct_pts': outputs_coord[-1],
+            #        'pred_offsets':outputs_offset[-1]}
+            out = {'pred_logits': outputs_class[-1], 'pred_ct_pts': outputs_coord[-1]}
             # print('out: ',out)
             return out
         # print('after DT: ',world_feat.shape)

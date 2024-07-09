@@ -75,6 +75,7 @@ def CLEAR_MOD_HUN(gt, det):
                 for mmm in range(1, len(u) + 1):
                     M[t - 1, u[mmm - 1]] = v[mmm - 1] + 1
         curdetected, = np.where(M[t - 1, :])
+        print(f"Frame {t}: Detected: {curdetected.shape[0]}")
 
         c[0][t - 1] = curdetected.shape[0]
         for ct in curdetected:
@@ -89,6 +90,7 @@ def CLEAR_MOD_HUN(gt, det):
             distances[t - 1, ct] = getDistance(gtX, gtY, stX, stY)
         fp[0][t - 1] = Nt - c[0][t - 1]
         m[0][t - 1] = g[0][t - 1] - c[0][t - 1]
+        print(f"Frame {t}: FP: {fp[0][t - 1]}, Misses: {m[0][t - 1]}")
 
     MODP = sum(1 - distances[distances < td] / td) / np.sum(c) * 100 if sum(
         1 - distances[distances < td] / td) / np.sum(c) * 100 > 0 else 0

@@ -20,7 +20,7 @@ class BaseTrainer(object):
 
 
 class PerspectiveTrainer(BaseTrainer):
-    def __init__(self, model, logdir, cls_thres=0.4, alpha=1.0, use_mse=False, id_ratio=0):
+    def __init__(self, model, logdir, cls_thres=0.4, alpha=1.0, use_mse=False, id_ratio=0,two_stage=False):
         super(BaseTrainer, self).__init__()
         self.model = model
         self.mse_loss = nn.MSELoss()
@@ -33,6 +33,7 @@ class PerspectiveTrainer(BaseTrainer):
         self.alpha = alpha
         self.use_mse = use_mse
         self.id_ratio = id_ratio
+        self.two_stage = two_stage
 
     def train(self, epoch, dataloader,criterion, optimizer, scaler, scheduler=None, log_interval=100):
         self.model.train()
@@ -98,6 +99,7 @@ class PerspectiveTrainer(BaseTrainer):
             # scaler.step(optimizer)
             # scaler.update()
             optimizer.zero_grad()
+            grad_total_norm = torch.nn.utils.clip_grad_norm_(self.model.parameters(), 0.1)
             losses.backward()
             optimizer.step()
 
@@ -137,6 +139,7 @@ class PerspectiveTrainer(BaseTrainer):
             with torch.no_grad():
                 # (world_heatmap, world_offset), (imgs_heatmap, imgs_offset, imgs_wh) = self.model(data, affine_mats)
                 outputs = self.model(data,affine_mats)
+                # print('logits: ',outputs['pred_logits'])
                 targets = world_gt
                 loss_dict = criterion(outputs,targets)
                 print(loss_dict)
@@ -161,23 +164,28 @@ class PerspectiveTrainer(BaseTrainer):
                     positions = grid_xy
                 else:
                     positions = grid_xy[:, :, [1, 0]]
+                # print('scores: ',out_logits[:10])
                 scores = out_logits.sigmoid()
-                topk_values, topk_indexes = torch.topk(scores.view(1, -1), 50, dim=1)
+                topk_values, topk_indexes = torch.topk(scores.view(1, -1), 200, dim=1)
                 topk_pts_idx = topk_indexes // out_logits.shape[-1]
                 labels = topk_indexes % out_logits.shape[-1]
                 scores = topk_values
+                print('top10 scores: ',scores[:10])
+                # print('labels: ',labels[:20])
                 for b in range(B):
-                    print('pos_all shape:',positions.shape)
-                    print('scores shape: ',scores.shape)
+                    # print('pos_all shape:',positions.shape)
+                    # print('scores shape: ',scores.shape)
                     # ids = scores[b].squeeze() > self.cls_thres
                     # pos, s = positions[b, ids], scores[b, ids, 0]
                     pos = positions[topk_pts_idx,:].squeeze()
                     pos_cpu = pos.cpu()
-                    pos_cpu[:,0] = pos_cpu[:,0]*4*250
-                    pos_cpu[:,1] = pos_cpu[:,1]*4*160
-                    print('pos shape:',pos.shape)
+                    # print(pos_cpu[:,0])
+                    pos_cpu[:,0] = pos_cpu[:,0]*1000
+                    # print(pos_cpu[:,0])
+                    pos_cpu[:,1] = pos_cpu[:,1]*640
+                    # print('pos shape:',pos.shape)
                     frame_idx = torch.ones([pos.shape[0], 1])* frame[b]
-                    print('frame_idx',frame_idx.shape)
+                    # print('frame_idx',frame_idx.shape)
                     res = torch.cat([frame_idx, pos_cpu], dim=1)
                     # ids, count = nms(pos, s, 20, np.inf)
                     # ids_cpu = ids.cpu()

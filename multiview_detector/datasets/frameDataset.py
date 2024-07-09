@@ -64,6 +64,7 @@ def get_world_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k
     wh = np.zeros([top_k, 2], dtype=np.float32)
 
     reduce_x = reduce*W
+    # print('reduce_x: ',reduce_x)
     reduce_y = reduce*H
     for k in range(len(v_s)):
         # ct = np.array([x_s[k] / reduce, y_s[k] / reduce], dtype=np.float32)
@@ -83,7 +84,8 @@ def get_world_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k
             # plt.imshow(heatmap[0])
             # plt.show()
     # print('ctints:',ct_ints)
-    world_labels = np.ones(len(ct_ints))
+    # world_labels = np.ones(len(ct_ints))
+    world_labels = np.zeros(len(ct_ints))
     ret = {'world_pts': torch.from_numpy(ct_ints), 'reg_mask': torch.from_numpy(reg_mask), 'idx': torch.from_numpy(idx),
            'pid': torch.from_numpy(pid), 'offset': torch.from_numpy(offset),'labels':torch.from_numpy(world_labels)}
     if w_s is not None and h_s is not None:
@@ -340,7 +342,7 @@ def test(test_projection=False):
                     else:
                         if x in range(dataset.worldgrid_shape[0]) and y in range(dataset.worldgrid_shape[1]):
                             world_grid_map[int(x), int(y)] += 1
-            print(world_grid_map.shape)
+            # print(world_grid_map.shape)
             world_grid_map = world_grid_map != 0
             # cv2.imwrite('/root/wgm.jpg',world_grid_map)
             plt.imshow(world_grid_map)

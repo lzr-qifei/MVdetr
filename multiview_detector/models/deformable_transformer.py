@@ -17,6 +17,7 @@ from torch import nn, Tensor
 from torch.nn.init import xavier_uniform_, constant_, uniform_, normal_
 import numpy as np
 from multiview_detector.models.ops.modules import MSDeformAttn
+from multiview_detector.models.ops.modules import MSDeformAttn_dec
 from multiview_detector.utils.transformer_utils import inverse_sigmoid
 def _get_activation_fn(activation):
     """Return an activation function given a string"""
@@ -29,7 +30,7 @@ def _get_activation_fn(activation):
     raise RuntimeError(F"activation should be relu/gelu, not {activation}.")
 
 def create_pos_embedding(img_size, num_pos_feats=64, temperature=10000, normalize=True, scale=None):
-    print('pos_emb size: ',img_size)
+    # print('pos_emb size: ',img_size)
     if scale is not None and normalize is False:
         raise ValueError("normalize should be True if scale is passed")
     if scale is None:
@@ -49,19 +50,20 @@ def create_pos_embedding(img_size, num_pos_feats=64, temperature=10000, normaliz
     pos_x = x_embed[:, :, :, None] / dim_t
     pos_y = y_embed[:, :, :, None] / dim_t
     pos_x = torch.stack((pos_x[:, :, :, 0::2].sin(), pos_x[:, :, :, 1::2].cos()), dim=4).flatten(3)
+    # print('pos_x: ',pos_x)
     pos_y = torch.stack((pos_y[:, :, :, 0::2].sin(), pos_y[:, :, :, 1::2].cos()), dim=4).flatten(3)
     pos = torch.cat((pos_y, pos_x), dim=3).permute(0, 3, 1, 2)
     return pos
 
 class DeformableTransformer(nn.Module):
     def __init__(self, d_model=256, nhead=8,
-                 num_encoder_layers=6, num_decoder_layers=6, dim_feedforward=1024, dropout=0.3,
+                 num_encoder_layers=6, num_decoder_layers=1, dim_feedforward=1024, dropout=0.3,
                  activation="relu", return_intermediate_dec=False,
-                 num_cam=6, dec_n_points=4,  enc_n_points=4,
-                 Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None):
+                 num_cam=6, dec_n_points=8,  enc_n_points=4,
+                 Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None,two_stage=False):
         
         super().__init__()
-        self.two_stage = False
+        self.two_stage = two_stage
         self.d_model = d_model
         self.decoder_levels = 1
         self.nhead = nhead
@@ -87,6 +89,7 @@ class DeformableTransformer(nn.Module):
         # self.reference_points = nn.Linear(d_model, 2)
 
         self.pos_embedding = create_pos_embedding(np.array(Rworld_shape) // stride, hidden_dim // 2)
+        self.two_stage_num_proposals = 200
         # print('pos_emb size: ',np.array(Rworld_shape) // stride)
 
         self._reset_parameters()
@@ -184,25 +187,44 @@ class DeformableTransformer(nn.Module):
         # 这里如果不融合，可以让query在不同的相机维度上查，把相机维度等同原有的scale维度
         merged_feat = self.merge_linear(memory.view(B, N, H, W, C).permute(0, 1, 4, 2, 3).contiguous().
                                         view(B, N * C, H, W))
-
+        # print('merge: ',merged_feat)
         # prepare input for decoder
-        print('after merge: ',merged_feat.shape)
+        # print('after merge: ',merged_feat.shape)
         bs, c,h,w= merged_feat.shape
-        merged_feat = merged_feat.view(bs,h*w,c)
-        dec_spatial_shapes = torch.as_tensor(np.array([[h, w]]), dtype=torch.long, device=x.device)
-        query_embed, tgt = torch.split(query_embed, c, dim=1)
-        query_embed = query_embed.unsqueeze(0).expand(bs, -1, -1)
-        print('query shape: ',query_embed.shape)
-        tgt = tgt.unsqueeze(0).expand(bs, -1, -1)
-        reference_points = self.reference_points_dec(query_embed).sigmoid()
-        # print('ref pts before dec: ',reference_points[0:4])
-        init_reference_out = reference_points
+        # merged_feat = merged_feat.view(bs,h*w,c)
+        merged_feat = merged_feat.permute(0,2,3,1).view(bs,h*w,c)
+        if not self.two_stage:
+            dec_spatial_shapes = torch.as_tensor(np.array([[h, w]]), dtype=torch.long, device=x.device)
+            # print('dec_spatial_shapes: ',dec_spatial_shapes)
+            query_embed, tgt = torch.split(query_embed, c, dim=1)
+            query_embed = query_embed.unsqueeze(0).expand(bs, -1, -1)
+            # print('query shape: ',query_embed.shape)
+            tgt = tgt.unsqueeze(0).expand(bs, -1, -1)
+            reference_points = self.reference_points_dec(query_embed).sigmoid()
+            # print('ref pts before dec: ',reference_points[0:4])
+            init_reference_out = reference_points
 
+        else:
+            output_memory, output_proposals = self.gen_encoder_output_proposals(memory, mask_flatten, spatial_shapes)
+            enc_outputs_class = self.decoder.class_embed[self.decoder.num_layers](output_memory)
+            enc_outputs_coord_unact = self.decoder.bbox_embed[self.decoder.num_layers](output_memory) + output_proposals
+
+            topk = self.two_stage_num_proposals
+            topk_proposals = torch.topk(enc_outputs_class[..., 0], topk, dim=1)[1]
+            topk_coords_unact = torch.gather(enc_outputs_coord_unact, 1, topk_proposals.unsqueeze(-1).repeat(1, 1, 4))
+            topk_coords_unact = topk_coords_unact.detach()
+            reference_points = topk_coords_unact.sigmoid()
+            init_reference_out = reference_points
+            pos_trans_out = self.pos_trans_norm(self.pos_trans(self.get_proposal_pos_embed(topk_coords_unact)))
+            query_embed, tgt = torch.split(pos_trans_out, c, dim=2)
+        
         # decoder
         hs, inter_references = self.decoder(tgt, reference_points, merged_feat,
                                             dec_spatial_shapes, level_start_index, valid_ratios_dec, query_embed)
-
+        # print('hs: ',hs[0])
         inter_references_out = inter_references
+        if self.two_stage:
+            return hs, init_reference_out, inter_references_out, enc_outputs_class, enc_outputs_coord_unact
         return hs, init_reference_out, inter_references_out
 #TODO: 1.确认传入的query_embed,2.输出后处理成center+置信度的形式，3.修改匹配、loss
 
@@ -213,7 +235,7 @@ class DeformableTransformerDecoderLayer(nn.Module):
         super().__init__()
 
         # cross attention
-        self.cross_attn = MSDeformAttn(d_model, n_levels, n_heads, n_points)
+        self.cross_attn = MSDeformAttn_dec(d_model, n_levels, n_heads, n_points)
         # if self.multiscale_decoder:
             # self.cross_attn = MSDeformAttn(d_model, n_levels, n_heads, n_points)
         # else:
@@ -248,17 +270,25 @@ class DeformableTransformerDecoderLayer(nn.Module):
         # self attention
         q = k = self.with_pos_embed(tgt, query_pos)
         tgt2 = self.self_attn(q.transpose(0, 1), k.transpose(0, 1), tgt.transpose(0, 1))[0].transpose(0, 1)
+        # print('tgt2: ',tgt2.shape)
         tgt = tgt + self.dropout2(tgt2)
         tgt = self.norm2(tgt)
+        
 
         # cross attention
-        
+        # print(reference_points)
+        a = self.with_pos_embed(tgt, query_pos)
+        # print('q shape: ',a.shape)
+        # print('src shape: ',src.shape)
         tgt2 = self.cross_attn(self.with_pos_embed(tgt, query_pos),
                                reference_points,
                                src, src_spatial_shapes, level_start_index, src_padding_mask)
+        # print('after ca: ',tgt2)
+        # print('dp: ',self.dropout1(tgt2))
         tgt = tgt + self.dropout1(tgt2)
+        # print('before norm: ',tgt)
         tgt = self.norm1(tgt)
-
+        # print('tgt: ',tgt)
         # ffn
         tgt = self.forward_ffn(tgt)
 
@@ -278,12 +308,15 @@ class DeformableTransformerDecoder(nn.Module):
     def forward(self, tgt, reference_points, src, src_spatial_shapes, src_level_start_index, src_valid_ratios,
                 query_pos=None, src_padding_mask=None):
         output = tgt
+        # print('tgt: ',tgt)
 
         intermediate = []
         intermediate_reference_points = []
         # print('before repeat: ',reference_points.shape)
+        reference_points_input = reference_points.unsqueeze(2).repeat([1,1,4,1])
         # reference_points = reference_points.unsqueeze(0).repeat([src.shape[0], 1, 1, 1, 1]).to(src.device)
-        print('ref pts dec: ',reference_points.shape)
+        # reference_points_input = reference_points
+        # print('ref pts dec: ',reference_points_input.shape)
         for lid, layer in enumerate(self.layers):
             # if reference_points.shape[-1] == 4:
             #     reference_points_input = reference_points[:, :, None] \
@@ -291,9 +324,11 @@ class DeformableTransformerDecoder(nn.Module):
             # else:
             #     assert reference_points.shape[-1] == 2
             #     reference_points_input = reference_points[:, :, None] * src_valid_ratios[:, None]
-            reference_points_input = reference_points.unsqueeze(2).repeat([1,1,8,1,self.dec_n_points,1])#b,l,nhead,1,npoints,xy
+            # print()
+            # reference_points_input = reference_points.unsqueeze(2).repeat([1,1,8,1,self.dec_n_points,1])#b,l,nhead,1,npoints,xy
             # print(reference_points_input.shape)
             output = layer(output, query_pos, reference_points_input, src, src_spatial_shapes, src_level_start_index, src_padding_mask)
+            # print('output: ',output[0])
 
             # hack implementation for iterative bounding box refinement
             if self.bbox_embed is not None:

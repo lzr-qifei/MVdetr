@@ -24,6 +24,7 @@ def sigmoid_focal_loss(inputs, targets, num_boxes, alpha: float = 0.25, gamma: f
         Loss tensor
     """
     prob = inputs.sigmoid()
+    # print('prob: ',prob[:10])
     ce_loss = F.binary_cross_entropy_with_logits(inputs, targets, reduction="none")
     p_t = prob * targets + (1 - prob) * (1 - targets)
     loss = ce_loss * ((1 - p_t) ** gamma)
@@ -88,7 +89,7 @@ class SetCriterion(nn.Module):
         """
         assert 'pred_logits' in outputs
         src_logits = outputs['pred_logits']
-        print('outlabel_shape: ',src_logits.shape)
+        # print('outlabel_shape: ',src_logits.shape)
         # targets = list(targets)
         targets = [targets]
 
@@ -100,12 +101,7 @@ class SetCriterion(nn.Module):
                                     dtype=torch.int64, device=src_logits.device)
         # print('tgt_cls : ', target_classes)
         target_classes[idx[1]] = target_classes_o
-        # print('tgt_cls_after_idx : ', target_classes)
-        print('src_logit shape: ',src_logits.shape)
-        print('tgt_cls shape: ',target_classes.shape)
-        # print('idx: ',idx)
-        # print(max(target_classes))
-        # print(target_classes_o)
+
 
         # target_classes_onehot = torch.zeros([src_logits.shape[0], src_logits.shape[1], src_logits.shape[2] + 1],
         #                                     dtype=src_logits.dtype, layout=src_logits.layout, device=src_logits.device)
@@ -115,7 +111,8 @@ class SetCriterion(nn.Module):
 
         target_classes_onehot = target_classes_onehot[:,:-1]
         loss_ce = sigmoid_focal_loss(src_logits, target_classes_onehot, num_boxes, alpha=self.focal_alpha, gamma=2) * src_logits.shape[1]
-        losses = {'loss_ce': loss_ce}
+        # losses = {'loss_ce': loss_ce}
+        losses = {'labels': loss_ce}
 
         # if log:
         #     # TODO this should probably be a separate loss, not hacked in this one here
@@ -135,7 +132,20 @@ class SetCriterion(nn.Module):
     #     card_err = F.l1_loss(card_pred.float(), tgt_lengths.float())
     #     losses = {'cardinality_error': card_err}
     #     return losses
-
+    def compare_pts(self,src,targets):
+        src = src.cpu().detach().numpy()
+        targets = targets.cpu().detach().numpy()
+        src_file = '/root/MVdetr/multiview_detector/results/src.txt'
+        tgt_file = '/root/MVdetr/multiview_detector/results/tgt.txt'
+        with open(src_file,'w') as f :
+            for i in range(src.shape[0]):
+                tmp = str(src[i,:])+'\n'
+                f.writelines(tmp)
+        with open(tgt_file,'w') as f :
+            for i in range(src.shape[0]):
+                tmp = str(targets[i,:])+'\n'
+                f.writelines(tmp)
+        return None
     def loss_center(self,outputs, targets ,indices,log=True):
         # print('indice shape: ',indices)
         targets = [targets]
@@ -152,7 +162,9 @@ class SetCriterion(nn.Module):
         # loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], targets[0]['world_pts'])
         # print('mask: ',targets[0]['reg_mask'])
         loss_center = self.l1loss(src_centers_sorted,targets[0]['reg_mask'], targets[0]['idx'], target_centers_o)
-        losses = {'loss_center': loss_center}
+        self.compare_pts(src_centers_sorted,target_centers_o)
+        # losses = {'loss_center': loss_center}
+        losses = {'center': loss_center}
         return losses
     def loss_offset(self,outputs, targets ,indices,log=True):
         #TODO:存在bug，需要按照center的计算方式修正一下
