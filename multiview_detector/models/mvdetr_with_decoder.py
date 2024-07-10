@@ -159,15 +159,15 @@ class MVDeTr_w_dec(nn.Module):
         hidden_dim = self.world_feat.hidden_dim
 
         # img heads
-        self.img_heatmap = output_head(base_dim, outfeat_dim, 1)
-        self.img_offset = output_head(base_dim, outfeat_dim, 2)
-        self.img_wh = output_head(base_dim, outfeat_dim, 2)
+        # self.img_heatmap = output_head(base_dim, outfeat_dim, 1)
+        # self.img_offset = output_head(base_dim, outfeat_dim, 2)
+        # self.img_wh = output_head(base_dim, outfeat_dim, 2)
         # self.img_id = output_head(base_dim, outfeat_dim, len(dataset.pid_dict))
         
 
         #bev heads
         num_classes = 1
-        self.num_queries = 300
+        self.num_queries = 100
         self.query_embed = nn.Embedding(self.num_queries, hidden_dim*2)
         self.class_embed = nn.Linear(hidden_dim, num_classes)
         self.center_embed = MLP(hidden_dim, hidden_dim, 2, 3)
@@ -185,16 +185,16 @@ class MVDeTr_w_dec(nn.Module):
         nn.init.constant_(self.offset_embed.layers[-1].bias.data, 0)
         self.offset_embed = nn.ModuleList([self.offset_embed for _ in range(num_pred)])
         # world heads
-        self.world_heatmap = output_head(base_dim, outfeat_dim, 1)
-        self.world_offset = output_head(base_dim, outfeat_dim, 2)
+        # self.world_heatmap = output_head(base_dim, outfeat_dim, 1)
+        # self.world_offset = output_head(base_dim, outfeat_dim, 2)
         # self.world_id = output_head(base_dim, outfeat_dim, len(dataset.pid_dict))
 
         # init
-        self.img_heatmap[-1].bias.data.fill_(-2.19)
-        fill_fc_weights(self.img_offset)
-        fill_fc_weights(self.img_wh)
-        self.world_heatmap[-1].bias.data.fill_(-2.19)
-        fill_fc_weights(self.world_offset)
+        # self.img_heatmap[-1].bias.data.fill_(-2.19)
+        # fill_fc_weights(self.img_offset)
+        # fill_fc_weights(self.img_wh)
+        # self.world_heatmap[-1].bias.data.fill_(-2.19)
+        # fill_fc_weights(self.world_offset)
         pass
 
     def forward(self, imgs, M,visualize=False ):#visualize=False

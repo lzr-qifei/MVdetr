@@ -59,7 +59,7 @@ class DeformableTransformer(nn.Module):
     def __init__(self, d_model=256, nhead=8,
                  num_encoder_layers=6, num_decoder_layers=1, dim_feedforward=1024, dropout=0.3,
                  activation="relu", return_intermediate_dec=False,
-                 num_cam=6, dec_n_points=8,  enc_n_points=4,
+                 num_cam=6, dec_n_points=4,  enc_n_points=4,
                  Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None,two_stage=False):
         
         super().__init__()
@@ -179,6 +179,7 @@ class DeformableTransformer(nn.Module):
         level_start_index = torch.cat((spatial_shapes.new_zeros((1,)), spatial_shapes.prod(1).cumsum(0)[:-1]))
         valid_ratios = torch.ones([B, N, 2], device=x.device)
         valid_ratios_dec = torch.ones([B,num_queries,2],device=x.device)
+        print('lvl_idx: ',level_start_index)
 
 
         # encoder
@@ -187,15 +188,17 @@ class DeformableTransformer(nn.Module):
         # 这里如果不融合，可以让query在不同的相机维度上查，把相机维度等同原有的scale维度
         merged_feat = self.merge_linear(memory.view(B, N, H, W, C).permute(0, 1, 4, 2, 3).contiguous().
                                         view(B, N * C, H, W))
+        
         # print('merge: ',merged_feat)
         # prepare input for decoder
-        # print('after merge: ',merged_feat.shape)
+        print('after merge: ',merged_feat.shape)
         bs, c,h,w= merged_feat.shape
         # merged_feat = merged_feat.view(bs,h*w,c)
         merged_feat = merged_feat.permute(0,2,3,1).view(bs,h*w,c)
         if not self.two_stage:
             dec_spatial_shapes = torch.as_tensor(np.array([[h, w]]), dtype=torch.long, device=x.device)
-            # print('dec_spatial_shapes: ',dec_spatial_shapes)
+            dec_level_start_index = torch.cat((dec_spatial_shapes.new_zeros((1,)), dec_spatial_shapes.prod(1).cumsum(0)[:-1]))
+            print('dec_spatial_shapes: ',dec_spatial_shapes)
             query_embed, tgt = torch.split(query_embed, c, dim=1)
             query_embed = query_embed.unsqueeze(0).expand(bs, -1, -1)
             # print('query shape: ',query_embed.shape)
@@ -220,7 +223,7 @@ class DeformableTransformer(nn.Module):
         
         # decoder
         hs, inter_references = self.decoder(tgt, reference_points, merged_feat,
-                                            dec_spatial_shapes, level_start_index, valid_ratios_dec, query_embed)
+                                            dec_spatial_shapes, dec_level_start_index, valid_ratios_dec, query_embed)
         # print('hs: ',hs[0])
         inter_references_out = inter_references
         if self.two_stage:
@@ -313,7 +316,8 @@ class DeformableTransformerDecoder(nn.Module):
         intermediate = []
         intermediate_reference_points = []
         # print('before repeat: ',reference_points.shape)
-        reference_points_input = reference_points.unsqueeze(2).repeat([1,1,4,1])
+        repeat_pts = int(self.dec_n_points/2)
+        reference_points_input = reference_points.unsqueeze(2).repeat([1,1,repeat_pts,1])
         # reference_points = reference_points.unsqueeze(0).repeat([src.shape[0], 1, 1, 1, 1]).to(src.device)
         # reference_points_input = reference_points
         # print('ref pts dec: ',reference_points_input.shape)

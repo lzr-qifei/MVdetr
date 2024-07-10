@@ -166,7 +166,7 @@ class PerspectiveTrainer(BaseTrainer):
                     positions = grid_xy[:, :, [1, 0]]
                 # print('scores: ',out_logits[:10])
                 scores = out_logits.sigmoid()
-                topk_values, topk_indexes = torch.topk(scores.view(1, -1), 200, dim=1)
+                topk_values, topk_indexes = torch.topk(scores.view(1, -1), 50, dim=1)
                 topk_pts_idx = topk_indexes // out_logits.shape[-1]
                 labels = topk_indexes % out_logits.shape[-1]
                 scores = topk_values

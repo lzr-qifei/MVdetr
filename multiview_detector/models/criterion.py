@@ -134,6 +134,7 @@ class SetCriterion(nn.Module):
     #     return losses
     def compare_pts(self,src,targets):
         src = src.cpu().detach().numpy()
+        # src = src*4
         targets = targets.cpu().detach().numpy()
         src_file = '/root/MVdetr/multiview_detector/results/src.txt'
         tgt_file = '/root/MVdetr/multiview_detector/results/tgt.txt'
@@ -162,7 +163,7 @@ class SetCriterion(nn.Module):
         # loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], targets[0]['world_pts'])
         # print('mask: ',targets[0]['reg_mask'])
         loss_center = self.l1loss(src_centers_sorted,targets[0]['reg_mask'], targets[0]['idx'], target_centers_o)
-        self.compare_pts(src_centers_sorted,target_centers_o)
+        # self.compare_pts(src_centers_sorted,target_centers_o)
         # losses = {'loss_center': loss_center}
         losses = {'center': loss_center}
         return losses

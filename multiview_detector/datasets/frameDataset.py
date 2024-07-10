@@ -84,8 +84,8 @@ def get_world_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k
             # plt.imshow(heatmap[0])
             # plt.show()
     # print('ctints:',ct_ints)
-    # world_labels = np.ones(len(ct_ints))
-    world_labels = np.zeros(len(ct_ints))
+    world_labels = np.ones(len(ct_ints))
+    # world_labels = np.zeros(len(ct_ints))
     ret = {'world_pts': torch.from_numpy(ct_ints), 'reg_mask': torch.from_numpy(reg_mask), 'idx': torch.from_numpy(idx),
            'pid': torch.from_numpy(pid), 'offset': torch.from_numpy(offset),'labels':torch.from_numpy(world_labels)}
     if w_s is not None and h_s is not None:

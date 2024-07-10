@@ -120,7 +120,8 @@ def main(args):
     optimizer = optim.Adam(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
     # optimizer = optim.SGD(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
     scaler = GradScaler()
-    matcher = HungarianMatcher(cost_class=0.2,cost_pts=2)
+    # matcher = HungarianMatcher(cost_class=0.2,cost_pts=2)
+    matcher = HungarianMatcher(cost_class=1,cost_pts=5)
     criterion = SetCriterion(1,matcher,weight_dict,losses)
     criterion.to('cuda:0')
     # def warmup_lr_scheduler(epoch, warmup_epochs=2):
