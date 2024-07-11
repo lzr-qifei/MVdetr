@@ -57,12 +57,13 @@ def create_pos_embedding(img_size, num_pos_feats=64, temperature=10000, normaliz
 
 class DeformableTransformer(nn.Module):
     def __init__(self, d_model=256, nhead=8,
-                 num_encoder_layers=6, num_decoder_layers=1, dim_feedforward=1024, dropout=0.3,
+                 num_encoder_layers=6, num_decoder_layers=1, dim_feedforward=1024, dropout=0.1,
                  activation="relu", return_intermediate_dec=False,
                  num_cam=6, dec_n_points=4,  enc_n_points=4,
-                 Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None,two_stage=False):
+                 Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None,two_stage=False,cur_epoch=0):
         
         super().__init__()
+        self.cur_epoch = cur_epoch
         self.two_stage = two_stage
         self.d_model = d_model
         self.decoder_levels = 1
@@ -101,6 +102,9 @@ class DeformableTransformer(nn.Module):
         for m in self.modules():
             if isinstance(m, MSDeformAttn):
                 m._reset_parameters()
+        if not self.two_stage:
+            xavier_uniform_(self.reference_points_dec.weight.data, gain=1.0)
+            constant_(self.reference_points_dec.bias.data, 0.)
         normal_(self.level_embed)
 
 
@@ -179,12 +183,20 @@ class DeformableTransformer(nn.Module):
         level_start_index = torch.cat((spatial_shapes.new_zeros((1,)), spatial_shapes.prod(1).cumsum(0)[:-1]))
         valid_ratios = torch.ones([B, N, 2], device=x.device)
         valid_ratios_dec = torch.ones([B,num_queries,2],device=x.device)
-        print('lvl_idx: ',level_start_index)
+        # print('lvl_idx: ',level_start_index)
 
 
         # encoder
         # memory = self.encoder(src_flatten, spatial_shapes, level_start_index, valid_ratios, lvl_pos_embed_flatten, mask_flatten)
         memory = self.encoder(src_flatten, spatial_shapes, level_start_index, valid_ratios, lvl_pos_embed_flatten)
+        if self.cur_epoch == 2:
+            for cam in range(N):
+                    import matplotlib.pyplot as plt
+                    world_feat = memory.view(B, N, H, W, C).permute(0, 1, 4, 2, 3).contiguous()
+                    visualize_img = array2heatmap(torch.norm(world_feat[0, cam].detach(), dim=0).cpu())
+                    visualize_img.save(f'/root/vis_results/worldfeat{cam + 1}.png')
+                    plt.imshow(visualize_img)
+                    plt.show()
         # 这里如果不融合，可以让query在不同的相机维度上查，把相机维度等同原有的scale维度
         merged_feat = self.merge_linear(memory.view(B, N, H, W, C).permute(0, 1, 4, 2, 3).contiguous().
                                         view(B, N * C, H, W))
@@ -430,3 +442,12 @@ class DeformableTransformerEncoderLayer(nn.Module):
 
 def _get_clones(module, N):
     return nn.ModuleList([copy.deepcopy(module) for _ in range(N)])
+def array2heatmap(heatmap):
+    import cv2
+    from PIL import Image
+    heatmap = heatmap - heatmap.min()
+    heatmap = heatmap / (heatmap.max() + 1e-8)
+    heatmap = np.uint8(255 * heatmap)
+    heatmap = cv2.applyColorMap(heatmap, cv2.COLORMAP_SUMMER)
+    heatmap = Image.fromarray(cv2.cvtColor(heatmap, cv2.COLOR_BGR2RGB))
+    return heatmap

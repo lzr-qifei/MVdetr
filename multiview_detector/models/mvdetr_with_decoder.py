@@ -167,7 +167,7 @@ class MVDeTr_w_dec(nn.Module):
 
         #bev heads
         num_classes = 1
-        self.num_queries = 100
+        self.num_queries = 300
         self.query_embed = nn.Embedding(self.num_queries, hidden_dim*2)
         self.class_embed = nn.Linear(hidden_dim, num_classes)
         self.center_embed = MLP(hidden_dim, hidden_dim, 2, 3)
@@ -281,9 +281,9 @@ class MVDeTr_w_dec(nn.Module):
                 else:
                     assert reference.shape[-1] == 2
                     # pass 
-                    # print('before ref add : ',tmp[0:4])
+                    # print('before ref add : ',tmp[0:2])
                     tmp[..., :2] += reference[0]
-                    # print('after ref add : ',tmp[0:4])
+                    # print('after ref add : ',tmp[0:2])
                     # tmp += reference
                 outputs_coord = tmp.sigmoid()
                 # outputs_coord = tmp.relu()

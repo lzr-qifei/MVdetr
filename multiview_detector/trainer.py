@@ -40,7 +40,7 @@ class PerspectiveTrainer(BaseTrainer):
         
         criterion.train()
         # losses = 0
-        losses = torch.tensor(0,dtype=float,device='cuda:0',requires_grad=True)
+        # losses = torch.tensor(0,dtype=float,device='cuda:0',requires_grad=True)
         t0 = time.time()
         t_b = time.time()
         t_forward = 0
@@ -57,7 +57,8 @@ class PerspectiveTrainer(BaseTrainer):
             # (world_heatmap, world_offset), (imgs_heatmap, imgs_offset, imgs_wh) = self.model(data, affine_mats)
             outputs = self.model(data,affine_mats)
             targets = world_gt
-            loss_dict = criterion(outputs,targets)
+            # loss_dict = criterion(outputs,targets)
+            loss_dict,_ = criterion(outputs,targets)
             print(loss_dict)
             # q = loss_dict.cpu()
             # print(q)
@@ -141,16 +142,15 @@ class PerspectiveTrainer(BaseTrainer):
                 outputs = self.model(data,affine_mats)
                 # print('logits: ',outputs['pred_logits'])
                 targets = world_gt
-                loss_dict = criterion(outputs,targets)
+                # loss_dict = criterion(outputs,targets)
+                loss_dict,indices = criterion(outputs,targets)
+                # topk_pts_idx = indices[0][0].unsqueeze(0)
                 print(loss_dict)
                 weight_dict = criterion.weight_dict
                 loss = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
-                print('loss:',loss)
-                # loss_w_hm = self.focal_loss(world_heatmap, world_gt['heatmap'])
-                # loss = loss_w_hm
-                # if self.use_mse:
-                #     loss = self.mse_loss(world_heatmap, world_gt['heatmap'].to(world_heatmap.device)) + \
-                #            self.alpha * self.mse_loss(imgs_heatmap, imgs_gt['heatmap'].to(imgs_heatmap.device))
+                # print('loss:',loss)
+
+
 
             losses += loss
 
@@ -168,16 +168,19 @@ class PerspectiveTrainer(BaseTrainer):
                 scores = out_logits.sigmoid()
                 topk_values, topk_indexes = torch.topk(scores.view(1, -1), 50, dim=1)
                 topk_pts_idx = topk_indexes // out_logits.shape[-1]
-                labels = topk_indexes % out_logits.shape[-1]
-                scores = topk_values
-                print('top10 scores: ',scores[:10])
+                # print('top idx: ',topk_indexes)
+                # labels = topk_indexes % out_logits.shape[-1]
+                # scores = topk_values
+                # print('top10 scores: ',scores[:10])
                 # print('labels: ',labels[:20])
                 for b in range(B):
                     # print('pos_all shape:',positions.shape)
                     # print('scores shape: ',scores.shape)
                     # ids = scores[b].squeeze() > self.cls_thres
                     # pos, s = positions[b, ids], scores[b, ids, 0]
+                    # print('pos shape: ',positions.shape)
                     pos = positions[topk_pts_idx,:].squeeze()
+                    # print('pos_s shape: ',pos.shape)
                     pos_cpu = pos.cpu()
                     # print(pos_cpu[:,0])
                     pos_cpu[:,0] = pos_cpu[:,0]*1000

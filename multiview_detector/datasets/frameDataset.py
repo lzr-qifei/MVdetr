@@ -67,7 +67,7 @@ def get_world_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k
     # print('reduce_x: ',reduce_x)
     reduce_y = reduce*H
     for k in range(len(v_s)):
-        # ct = np.array([x_s[k] / reduce, y_s[k] / reduce], dtype=np.float32)
+        # ct = np.array([x_s[k] , y_s[k]], dtype=np.float32)
         ct = np.array([x_s[k] / reduce_x , y_s[k] / reduce_y], dtype=np.float32)
         # print(ct)
         if 0 <= ct[0] < W and 0 <= ct[1] < H:

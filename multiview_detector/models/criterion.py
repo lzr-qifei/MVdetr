@@ -82,7 +82,8 @@ class SetCriterion(nn.Module):
         self.weight_dict = weight_dict
         self.losses = losses
         self.focal_alpha = focal_alpha
-        self.l1loss = RegL1Loss()
+        self.regloss = RegL1Loss()
+        # self.mseloss = nn.MSELoss()
     def loss_labels(self, outputs, targets, indices, num_boxes, log=True):
         """Classification loss (NLL)
         targets dicts must contain the key "labels" containing a tensor of dim [nb_target_boxes]
@@ -140,11 +141,13 @@ class SetCriterion(nn.Module):
         tgt_file = '/root/MVdetr/multiview_detector/results/tgt.txt'
         with open(src_file,'w') as f :
             for i in range(src.shape[0]):
-                tmp = str(src[i,:])+'\n'
+                tmp = ' '.join(map(str, src[i,:]))+'\n'
+                # tmp = str(src[i,:].item())+'\n'
                 f.writelines(tmp)
         with open(tgt_file,'w') as f :
             for i in range(src.shape[0]):
-                tmp = str(targets[i,:])+'\n'
+                # tmp = str(targets[i,:])+'\n'
+                tmp = ' '.join(map(str, targets[i,:]))+'\n'
                 f.writelines(tmp)
         return None
     def loss_center(self,outputs, targets ,indices,log=True):
@@ -162,7 +165,8 @@ class SetCriterion(nn.Module):
         # target_centers[idx[1]] = target_centers_o
         # loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], targets[0]['world_pts'])
         # print('mask: ',targets[0]['reg_mask'])
-        loss_center = self.l1loss(src_centers_sorted,targets[0]['reg_mask'], targets[0]['idx'], target_centers_o)
+        loss_center = self.regloss(src_centers_sorted,targets[0]['reg_mask'], targets[0]['idx'], target_centers_o,'mse')
+        # loss_center = self.mseloss(src_centers,)
         # self.compare_pts(src_centers_sorted,target_centers_o)
         # losses = {'loss_center': loss_center}
         losses = {'center': loss_center}
@@ -224,6 +228,7 @@ class SetCriterion(nn.Module):
         # Retrieve the matching between the outputs of the last layer and the targets
         indices = self.matcher(outputs_without_aux, targets)
         # print('indices shape: ',indices.shape)
+        # print('indices: ',indices)
 
         # Compute the average number of target boxes accross all nodes, for normalization purposes
         # num_points = sum(len(t["labels"]) for t in targets)
@@ -273,4 +278,4 @@ class SetCriterion(nn.Module):
                 l_dict = {k + f'_enc': v for k, v in l_dict.items()}
                 losses.update(l_dict)
 
-        return losses
+        return losses,indices

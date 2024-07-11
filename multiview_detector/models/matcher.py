@@ -104,7 +104,11 @@ class HungarianMatcher(nn.Module):
 
             # Compute the L1 cost between boxes
             # cost_bbox = torch.cdist(out_bbox, tgt_bbox, p=1)
-            cost_pts = torch.cdist(out_pts,tgt_pts[0],p=2)
+            out_pts = out_pts.unsqueeze(0)
+            cost_pts = torch.cdist(out_pts,tgt_pts,p=2)
+            # print('cost_pts : ',cost_pts)
+            cost_pts = cost_pts.squeeze()
+            # cost_pts = torch.cdist(out_pts,tgt_pts[0],p=2)
             # print('cost_pts shape: ',cost_pts.shape)
             # print('cost_pts: ',cost_pts)
             # Compute the giou cost betwen boxes

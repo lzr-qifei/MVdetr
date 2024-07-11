@@ -75,6 +75,8 @@ def main(args):
 
     train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers,
                               pin_memory=True, worker_init_fn=seed_worker)
+    # test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,
+    #                          pin_memory=True, worker_init_fn=seed_worker)
     test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,
                              pin_memory=True, worker_init_fn=seed_worker)
 
@@ -109,8 +111,8 @@ def main(args):
                     "lr": args.lr * args.base_lr_ratio, }, ]
     # optimizer = optim.SGD(param_dicts, lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
     weight_dict ={
-            'labels':torch.tensor(0.1,dtype=float,device='cuda:0'),
-            'center':torch.tensor(2,dtype=float,device='cuda:0'),
+            'labels':torch.tensor(2,dtype=float,device='cuda:0'),
+            'center':torch.tensor(1,dtype=float,device='cuda:0'),
             # 'loss_ce':torch.tensor(0.1,dtype=float,device='cuda:0'),
             # 'loss_center':torch.tensor(2,dtype=float,device='cuda:0'),
             # 'offset':torch.tensor(1,dtype=float,device='cuda:0')
@@ -121,7 +123,7 @@ def main(args):
     # optimizer = optim.SGD(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
     scaler = GradScaler()
     # matcher = HungarianMatcher(cost_class=0.2,cost_pts=2)
-    matcher = HungarianMatcher(cost_class=1,cost_pts=5)
+    matcher = HungarianMatcher(cost_class=1,cost_pts=2)
     criterion = SetCriterion(1,matcher,weight_dict,losses)
     criterion.to('cuda:0')
     # def warmup_lr_scheduler(epoch, warmup_epochs=2):
@@ -165,7 +167,7 @@ def main(args):
             if epoch==5:
                 torch.save(model.state_dict(), os.path.join(logdir, 'MultiviewDetector.pth'))
     else:
-        model.load_state_dict(torch.load(f'logs/{args.dataset}/{args.resume}/MultiviewDetector.pth'))
+        model.load_state_dict(torch.load(f'{args.resume}'))
         model.eval()
     print('Test loaded model...')
     trainer.test(None, test_loader,criterion, res_fpath, visualize=True)
