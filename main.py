@@ -112,7 +112,7 @@ def main(args):
     # optimizer = optim.SGD(param_dicts, lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
     weight_dict ={
             'labels':torch.tensor(2,dtype=float,device='cuda:0'),
-            'center':torch.tensor(1,dtype=float,device='cuda:0'),
+            'center':torch.tensor(50.0,dtype=float,device='cuda:0'),
             # 'loss_ce':torch.tensor(0.1,dtype=float,device='cuda:0'),
             # 'loss_center':torch.tensor(2,dtype=float,device='cuda:0'),
             # 'offset':torch.tensor(1,dtype=float,device='cuda:0')
@@ -123,7 +123,7 @@ def main(args):
     # optimizer = optim.SGD(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
     scaler = GradScaler()
     # matcher = HungarianMatcher(cost_class=0.2,cost_pts=2)
-    matcher = HungarianMatcher(cost_class=1,cost_pts=2)
+    matcher = HungarianMatcher(cost_class=2.0,cost_pts=50.0)
     criterion = SetCriterion(1,matcher,weight_dict,losses)
     criterion.to('cuda:0')
     # def warmup_lr_scheduler(epoch, warmup_epochs=2):
@@ -164,8 +164,8 @@ def main(args):
             test_loss_s.append(test_loss)
             test_moda_s.append(moda)
             # draw_curve(os.path.join(logdir, 'learning_curve.jpg'), x_epoch, train_loss_s, test_loss_s, test_moda_s)
-            if epoch==5:
-                torch.save(model.state_dict(), os.path.join(logdir, 'MultiviewDetector.pth'))
+            if epoch%5==0:
+                torch.save(model.state_dict(), os.path.join(logdir, 'MultiviewDetector_{}.pth'.format(epoch)))
     else:
         model.load_state_dict(torch.load(f'{args.resume}'))
         model.eval()

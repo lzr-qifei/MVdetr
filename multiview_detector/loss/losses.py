@@ -57,7 +57,7 @@ class RegL1Loss(nn.Module):
     def __init__(self):
         super(RegL1Loss, self).__init__()
 
-    def forward(self, output, mask, ind, target,type):
+    def forward(self, output, mask, ind, target):
         # print(output.device,mask.device,ind.device,target.device)
         if target.device=='cpu':
             mask, ind, target = mask.to(output.device), ind.to(output.device), target.to(output.device)
@@ -69,18 +69,18 @@ class RegL1Loss(nn.Module):
         # output = output.unsqueeze(0)
         # pred = _transpose_and_gather_feat(output, ind)
         pred = output
-        pred[:,0]*=250
-        pred[:,1]*=160
-        target[:,0]*=250
-        target[:,1]*=160
+        # pred[:,0]*=250
+        # pred[:,1]*=160
+        # target[:,0]*=250
+        # target[:,1]*=160
         # mask = mask.unsqueeze(2).expand_as(pred).float()
         # print('pred:',pred.shape)
         # print('target: ',target.shape)
         # loss = F.l1_loss(pred , target , reduction='sum')
-        if type =='mse':
-            loss = F.mse_loss(pred,target,reduction='mean')
-        else:
-            loss = F.l1_loss(pred , target , reduction='sum')
+        # if type =='mse':
+        #     loss = F.mse_loss(pred,target,reduction='mean')
+        # else:
+        loss = F.l1_loss(pred , target , reduction='mean')
         # loss = loss / (mask.sum() + 1e-4)
         return loss
 

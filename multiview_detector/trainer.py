@@ -2,7 +2,7 @@ import time
 import os
 import numpy as np
 import torch
-from torch import nn
+from torch import nn, topk
 from torch.cuda.amp import autocast
 import matplotlib.pyplot as plt
 from PIL import Image
@@ -59,7 +59,9 @@ class PerspectiveTrainer(BaseTrainer):
             targets = world_gt
             # loss_dict = criterion(outputs,targets)
             loss_dict,_ = criterion(outputs,targets)
-            print(loss_dict)
+            log="[{}/{}] - ".format(batch_idx, len(dataloader))
+            for k,v in loss_dict.items():
+                log+="ori_loss_{}: {:.4f}, ".format(k,v)
             # q = loss_dict.cpu()
             # print(q)
             weight_dict = criterion.weight_dict
@@ -71,9 +73,16 @@ class PerspectiveTrainer(BaseTrainer):
             #         tmp = loss_dict[k] * weight_dict[k]
             #         # tmp = loss_dict[k]
             #         losses+=tmp
-            
-            losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
-            print(losses)
+            for k in loss_dict.keys():
+                if k in weight_dict:
+                    loss_dict[k]=loss_dict[k] * weight_dict[k]
+            for k,v in loss_dict.items():
+                log+="weighted_loss_{}: {:.4f}, ".format(k,v)
+            # loss_dict={loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict}
+            losses = sum(loss_dict[k] for k in loss_dict.keys())
+            log+="total_loss: {:.4f}".format(losses)
+            if batch_idx%10==0:
+                print(log)
 
             #TODO:写ct的loss
             # loss_w_hm = self.focal_loss(world_heatmap, world_gt['heatmap'])
@@ -145,7 +154,7 @@ class PerspectiveTrainer(BaseTrainer):
                 # loss_dict = criterion(outputs,targets)
                 loss_dict,indices = criterion(outputs,targets)
                 # topk_pts_idx = indices[0][0].unsqueeze(0)
-                print(loss_dict)
+                # print(loss_dict)
                 weight_dict = criterion.weight_dict
                 loss = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
                 # print('loss:',loss)
@@ -166,9 +175,13 @@ class PerspectiveTrainer(BaseTrainer):
                     positions = grid_xy[:, :, [1, 0]]
                 # print('scores: ',out_logits[:10])
                 scores = out_logits.sigmoid()
+                # print("scores:",scores.shape)
                 topk_values, topk_indexes = torch.topk(scores.view(1, -1), 50, dim=1)
                 topk_pts_idx = topk_indexes // out_logits.shape[-1]
+                # print("topk_pts_idx:",topk_pts_idx.shape)
                 # print('top idx: ',topk_indexes)
+                topk_indexes=topk_indexes[0]
+                # print("topk_pts_idx:",topk_pts_idx.shape)
                 # labels = topk_indexes % out_logits.shape[-1]
                 # scores = topk_values
                 # print('top10 scores: ',scores[:10])
@@ -179,6 +192,8 @@ class PerspectiveTrainer(BaseTrainer):
                     # ids = scores[b].squeeze() > self.cls_thres
                     # pos, s = positions[b, ids], scores[b, ids, 0]
                     # print('pos shape: ',positions.shape)
+                    # topk_scores=scores[topk_pts_idx,:][0]
+                    # print(topk_scores)
                     pos = positions[topk_pts_idx,:].squeeze()
                     # print('pos_s shape: ',pos.shape)
                     pos_cpu = pos.cpu()

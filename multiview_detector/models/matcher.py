@@ -105,7 +105,7 @@ class HungarianMatcher(nn.Module):
             # Compute the L1 cost between boxes
             # cost_bbox = torch.cdist(out_bbox, tgt_bbox, p=1)
             out_pts = out_pts.unsqueeze(0)
-            cost_pts = torch.cdist(out_pts,tgt_pts,p=2)
+            cost_pts = torch.cdist(out_pts,tgt_pts,p=1)
             # print('cost_pts : ',cost_pts)
             cost_pts = cost_pts.squeeze()
             # cost_pts = torch.cdist(out_pts,tgt_pts[0],p=2)
@@ -129,7 +129,7 @@ class HungarianMatcher(nn.Module):
             # indices = [linear_sum_assignment(c[i]) for i, c in enumerate(C)]
             indices = [linear_sum_assignment(C)]
             # print('indices: ',indices)
-            print('indices0 shape: ',len(indices[0][0]))
+            # print('indices0 shape: ',len(indices[0][0]))
             return [(torch.as_tensor(i, dtype=torch.int64), torch.as_tensor(j, dtype=torch.int64)) for i, j in indices]
 
 

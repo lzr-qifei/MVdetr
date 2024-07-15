@@ -95,6 +95,7 @@ class SetCriterion(nn.Module):
         targets = [targets]
 
         idx = self._get_src_permutation_idx(indices)
+        # print("idx:",idx)
         target_classes_o = torch.cat([t["labels"][0][J] for t, (_, J) in zip(targets, indices)])
         # print(target_classes_o)
         target_classes_o = target_classes_o.long().to(src_logits.device)
@@ -109,8 +110,12 @@ class SetCriterion(nn.Module):
         target_classes_onehot = torch.zeros([src_logits.shape[0], src_logits.shape[1]+1],
                                     dtype=src_logits.dtype, layout=src_logits.layout, device=src_logits.device)
         target_classes_onehot.scatter_(1, target_classes.unsqueeze(-1), 1)
-
-        target_classes_onehot = target_classes_onehot[:,:-1]
+        # print("target_classes_onehot:",target_classes_onehot)
+        # target_classes_onehot = target_classes_onehot[:,:-1]
+        target_classes_onehot = target_classes_onehot[:,1:]
+        # print("src_logits:",src_logits)
+        # print("target_classes_onehot:",target_classes_onehot)
+        # print("targets:",targets['labels'])
         loss_ce = sigmoid_focal_loss(src_logits, target_classes_onehot, num_boxes, alpha=self.focal_alpha, gamma=2) * src_logits.shape[1]
         # losses = {'loss_ce': loss_ce}
         losses = {'labels': loss_ce}
@@ -165,7 +170,7 @@ class SetCriterion(nn.Module):
         # target_centers[idx[1]] = target_centers_o
         # loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], targets[0]['world_pts'])
         # print('mask: ',targets[0]['reg_mask'])
-        loss_center = self.regloss(src_centers_sorted,targets[0]['reg_mask'], targets[0]['idx'], target_centers_o,'mse')
+        loss_center = self.regloss(src_centers_sorted,targets[0]['reg_mask'], targets[0]['idx'], target_centers_o)
         # loss_center = self.mseloss(src_centers,)
         # self.compare_pts(src_centers_sorted,target_centers_o)
         # losses = {'loss_center': loss_center}
