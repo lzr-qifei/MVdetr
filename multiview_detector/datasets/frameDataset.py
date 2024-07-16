@@ -146,6 +146,7 @@ class frameDataset(VisionDataset):
                 if keep:
                     for pedestrian in all_pedestrians:
                         grid_x, grid_y = self.base.get_worldgrid_from_pos(pedestrian['positionID']).squeeze()
+                        # print('xy: ',grid_x,grid_y)
                         if pedestrian['personID'] not in self.pid_dict:
                             self.pid_dict[pedestrian['personID']] = len(self.pid_dict)
                         num_all += 1

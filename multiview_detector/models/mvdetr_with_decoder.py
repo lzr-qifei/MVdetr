@@ -116,7 +116,9 @@ class MVDeTr_w_dec(nn.Module):
             self.base[-4] = nn.Identity()
             base_dim = 512
         elif arch == 'resnet18':
-            self.base = nn.Sequential(*list(resnet18(pretrained=True,
+            # self.base = nn.Sequential(*list(resnet18(pretrained=True,
+            #                                          replace_stride_with_dilation=[False, True, True]).children())[:-2])
+            self.base = nn.Sequential(*list(resnet18(pretrained=False,
                                                      replace_stride_with_dilation=[False, True, True]).children())[:-2])
             base_dim = 512
         else:

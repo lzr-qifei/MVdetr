@@ -57,7 +57,7 @@ def create_pos_embedding(img_size, num_pos_feats=64, temperature=10000, normaliz
 
 class DeformableTransformer(nn.Module):
     def __init__(self, d_model=256, nhead=8,
-                 num_encoder_layers=6, num_decoder_layers=1, dim_feedforward=1024, dropout=0.1,
+                 num_encoder_layers=3, num_decoder_layers=1, dim_feedforward=1024, dropout=0.1,
                  activation="relu", return_intermediate_dec=False,
                  num_cam=6, dec_n_points=4,  enc_n_points=4,
                  Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None,two_stage=False,cur_epoch=0):

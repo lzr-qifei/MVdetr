@@ -47,6 +47,7 @@ class PerspectiveTrainer(BaseTrainer):
         t_backward = 0
         # device = 'cuda:0'
         for batch_idx, (data, world_gt, imgs_gt, affine_mats, frame) in enumerate(dataloader):
+            # print('w_gt_shape',world_gt['world_pts'].shape)
             B, N = imgs_gt['heatmap'].shape[:2]
             data = data.cuda()
             for key in imgs_gt.keys():
