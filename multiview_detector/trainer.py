@@ -135,7 +135,7 @@ class PerspectiveTrainer(BaseTrainer):
             losses_cpu =losses.cpu() 
         return losses_cpu / len(dataloader)
 
-    def test(self, epoch, dataloader, criterion,res_fpath=None, visualize=False):
+    def test(self, epoch, dataloader, criterion,res_fpath=None, visualize=False,det_thres = 0.55):
         self.model.eval()
         # criterion.eval()
         losses = 0
@@ -177,24 +177,22 @@ class PerspectiveTrainer(BaseTrainer):
                 # print('scores: ',out_logits[:10])
                 scores = out_logits.sigmoid()
                 # print("scores:",scores.shape)
-                topk_values, topk_indexes = torch.topk(scores.view(1, -1), 50, dim=1)
-                topk_pts_idx = topk_indexes // out_logits.shape[-1]
-                # print("topk_pts_idx:",topk_pts_idx.shape)
-                # print('top idx: ',topk_indexes)
-                topk_indexes=topk_indexes[0]
-                # print("topk_pts_idx:",topk_pts_idx.shape)
-                # labels = topk_indexes % out_logits.shape[-1]
-                # scores = topk_values
-                # print('top10 scores: ',scores[:10])
-                # print('labels: ',labels[:20])
+                top50_values, topk_indexes = torch.topk(scores.view(1, -1), 50, dim=1)
+                # top30_values,_= torch.topk(scores.view(1, -1), 30, dim=1)
+                # print('top30 score: ',top30_values)
+                # topk_pts_idx = topk_indexes // out_logits.shape[-1]
+                # print(top50_values)
+                topk_values = [t for t in top50_values[0] if t > det_thres]
+                print(len(topk_values))
+                if len(topk_values)<35:
+                    max_idx = 35
+                else:
+                    max_idx = len(topk_values)
+                # topk_indexes=topk_indexes[0][0:max_idx+1]
+                topk_pts_idx=topk_indexes[0][0:max_idx+1]
+
                 for b in range(B):
-                    # print('pos_all shape:',positions.shape)
-                    # print('scores shape: ',scores.shape)
-                    # ids = scores[b].squeeze() > self.cls_thres
-                    # pos, s = positions[b, ids], scores[b, ids, 0]
-                    # print('pos shape: ',positions.shape)
-                    # topk_scores=scores[topk_pts_idx,:][0]
-                    # print(topk_scores)
+
                     pos = positions[topk_pts_idx,:].squeeze()
                     # print('pos_s shape: ',pos.shape)
                     pos_cpu = pos.cpu()

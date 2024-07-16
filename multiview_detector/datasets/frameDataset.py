@@ -54,7 +54,7 @@ def get_world_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k
     # print(H,W)
     # heatmap = np.zeros([1, H, W], dtype=np.float32)
     top_k = len(x_s)
-    print('gt_cnt: ',top_k)
+    # print('gt_cnt: ',top_k)
     ct_ints = np.zeros([top_k, 2], dtype=np.float32)
     # reg_mask = np.zeros([top_k], dtype=np.bool)
     reg_mask = np.zeros([top_k], dtype=bool)
