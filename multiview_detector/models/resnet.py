@@ -208,16 +208,20 @@ class ResNet(nn.Module):
         return x
 
 
-def _resnet(arch, block, layers, pretrained, progress, **kwargs):
+def _resnet(arch, block, layers, pretrained, progress,download ,local_pth,**kwargs):
     model = ResNet(block, layers, **kwargs)
-    if pretrained:
-        state_dict = load_state_dict_from_url(model_urls[arch],
-                                              progress=progress)
-        model.load_state_dict(state_dict)
+    if pretrained :
+        if download :
+            state_dict = load_state_dict_from_url(model_urls[arch],
+                                                progress=progress)
+            model.load_state_dict(state_dict)
+        else:
+            state_dict = torch.load(local_pth)
+            model.load_state_dict(state_dict)
     return model
 
 
-def resnet18(pretrained=False, progress=True, **kwargs):
+def resnet18(pretrained=False, progress=True,download=True,local_pth=None, **kwargs):
     r"""ResNet-18 model from
     `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_
 
@@ -225,7 +229,7 @@ def resnet18(pretrained=False, progress=True, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
         progress (bool): If True, displays a progress bar of the download to stderr
     """
-    return _resnet('resnet18', BasicBlock, [2, 2, 2, 2], pretrained, progress,
+    return _resnet('resnet18', BasicBlock, [2, 2, 2, 2], pretrained, progress,download,local_pth,
                    **kwargs)
 
 
@@ -241,7 +245,7 @@ def resnet34(pretrained=False, progress=True, **kwargs):
                    **kwargs)
 
 
-def resnet50(pretrained=False, progress=True, **kwargs):
+def resnet50(pretrained=False, progress=True,download=True,local_pth=None, **kwargs):
     r"""ResNet-50 model from
     `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_
 
@@ -249,7 +253,7 @@ def resnet50(pretrained=False, progress=True, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
         progress (bool): If True, displays a progress bar of the download to stderr
     """
-    return _resnet('resnet50', Bottleneck, [3, 4, 6, 3], pretrained, progress,
+    return _resnet('resnet50', Bottleneck, [3, 4, 6, 3], pretrained, progress,download,local_pth,
                    **kwargs)
 
 

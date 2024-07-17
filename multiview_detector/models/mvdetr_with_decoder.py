@@ -89,7 +89,7 @@ class MLP(nn.Module):
 
 class MVDeTr_w_dec(nn.Module):
     def __init__(self, dataset, arch='resnet18', z=0, world_feat_arch='conv',
-                 bottleneck_dim=128, outfeat_dim=64, dropout=0.5,two_stage=False,num_queries=300):
+                 bottleneck_dim=128, outfeat_dim=64, dropout=0.5,two_stage=False,num_queries=300,local_pth = None):
         super().__init__()
         self.Rimg_shape, self.Rworld_shape = dataset.Rimg_shape, dataset.Rworld_shape
         self.img_reduce = dataset.img_reduce
@@ -122,7 +122,7 @@ class MVDeTr_w_dec(nn.Module):
             #                                          replace_stride_with_dilation=[False, True, True]).children())[:-2])
             base_dim = 512
         elif arch == 'resnet50':
-            self.base = nn.Sequential(*list(resnet50(pretrained=True,
+            self.base = nn.Sequential(*list(resnet50(pretrained=True,download = False,local_pth = local_pth,
                                                      replace_stride_with_dilation=[False, True, True]).children())[:-2])
             base_dim = 2048
         elif arch =='resnet34':

@@ -107,7 +107,7 @@ def main(args):
     # model
     model = MVDeTr_w_dec(train_set, args.arch, world_feat_arch=args.world_feat,
                    bottleneck_dim=args.bottleneck_dim, outfeat_dim=args.outfeat_dim, dropout=args.dropout,
-                   two_stage=args.two_stage,num_queries=args.num_q).cuda(device=device)
+                   two_stage=args.two_stage,num_queries=args.num_q,local_pth = args.pth).cuda(device=device)
 
     param_dicts = [{"params": [p for n, p in model.named_parameters() if 'base' not in n and p.requires_grad], },
                    {"params": [p for n, p in model.named_parameters() if 'base' in n and p.requires_grad],
@@ -219,6 +219,7 @@ if __name__ == '__main__':
     parser.add_argument('--train_ratio',type=float,default=0.9,help='perception of train set, \
                             0.9 means 90 percent of dataset would be used as train set')
     parser.add_argument('--device',type=int,default=0)
+    parser.add_argument('--pth',type=str,default=None)
     args = parser.parse_args()
 
     main(args)
