@@ -26,6 +26,7 @@ from multiview_detector.models.matcher import HungarianMatcher
 ssl._create_default_https_context = ssl._create_unverified_context
 
 def main(args):
+    device = torch.cuda.set_device(args.device)
     # check if in debug mode
     gettrace = getattr(sys, 'gettrace', None)
     if gettrace():
@@ -63,7 +64,7 @@ def main(args):
     train_set = frameDataset(base, train=True, world_reduce=args.world_reduce,
                              img_reduce=args.img_reduce, world_kernel_size=args.world_kernel_size,
                              img_kernel_size=args.img_kernel_size, semi_supervised=args.semi_supervised,
-                             dropout=args.dropcam, augmentation=args.augmentation)
+                             dropout=args.dropcam, augmentation=args.augmentation,train_ratio=args.train_ratio)
     test_set = frameDataset(base, train=False, world_reduce=args.world_reduce,
                             img_reduce=args.img_reduce, world_kernel_size=args.world_kernel_size,
                             img_kernel_size=args.img_kernel_size)
@@ -82,11 +83,12 @@ def main(args):
 
     # logging
     if args.resume is None:
-        logdir = f'logs/{args.dataset}/{"debug_" if is_debug else ""}{"SS_" if args.semi_supervised else ""}' \
-                 f'{"aug_" if args.augmentation else ""}{args.world_feat}_lr{args.lr}_baseR{args.base_lr_ratio}_' \
-                 f'neck{args.bottleneck_dim}_out{args.outfeat_dim}_' \
-                 f'alpha{args.alpha}_id{args.id_ratio}_drop{args.dropout}_dropcam{args.dropcam}_' \
-                 f'worldRK{args.world_reduce}_{args.world_kernel_size}_imgRK{args.img_reduce}_{args.img_kernel_size}_' \
+        logdir = f'logs/{args.dataset}/{"debug_" if is_debug else ""}'\
+                 f'backbone{args.arch}_'\
+                 f'{args.world_feat}_lr{args.lr}_baseR{args.base_lr_ratio}_' \
+                 f'out{args.outfeat_dim}_' \
+                 f'drop{args.dropout}_dropcam{args.dropcam}_' \
+                 f'worldRK{args.world_reduce}_{args.world_kernel_size}_' \
                  f'{datetime.datetime.today():%Y-%m-%d_%H-%M-%S}'
         os.makedirs(logdir, exist_ok=True)
         # copy_tree('./multiview_detector', logdir + '/scripts/multiview_detector')
@@ -104,7 +106,8 @@ def main(args):
 
     # model
     model = MVDeTr_w_dec(train_set, args.arch, world_feat_arch=args.world_feat,
-                   bottleneck_dim=args.bottleneck_dim, outfeat_dim=args.outfeat_dim, dropout=args.dropout,two_stage=args.two_stage).cuda()
+                   bottleneck_dim=args.bottleneck_dim, outfeat_dim=args.outfeat_dim, dropout=args.dropout,
+                   two_stage=args.two_stage,num_queries=args.num_q).cuda(device=device)
 
     param_dicts = [{"params": [p for n, p in model.named_parameters() if 'base' not in n and p.requires_grad], },
                    {"params": [p for n, p in model.named_parameters() if 'base' in n and p.requires_grad],
@@ -125,7 +128,8 @@ def main(args):
     # matcher = HungarianMatcher(cost_class=0.2,cost_pts=2)
     matcher = HungarianMatcher(cost_class=2.0,cost_pts=50.0)
     criterion = SetCriterion(1,matcher,weight_dict,losses)
-    criterion.to('cuda:0')
+    # criterion.to('cuda:0')
+    criterion.to(device=device)
     # def warmup_lr_scheduler(epoch, warmup_epochs=2):
     #     if epoch < warmup_epochs:
     #         return epoch / warmup_epochs
@@ -151,7 +155,7 @@ def main(args):
     if args.resume is None:
         for epoch in tqdm.tqdm(range(1, args.epochs + 1)):
             print('Training...')
-            train_loss = trainer.train(epoch, train_loader, criterion,optimizer, scaler, scheduler)
+            train_loss = trainer.train(epoch, train_loader, criterion,optimizer, scaler, device, scheduler)
             train_loss = train_loss.cpu().detach()
             print('Testing...')
             # train_loss = 0.55
@@ -164,7 +168,7 @@ def main(args):
             test_loss_s.append(test_loss)
             test_moda_s.append(moda)
             # draw_curve(os.path.join(logdir, 'learning_curve.jpg'), x_epoch, train_loss_s, test_loss_s, test_moda_s)
-            if epoch%5==0:
+            if epoch % args.save ==0:
                 torch.save(model.state_dict(), os.path.join(logdir, 'MultiviewDetector_{}.pth'.format(epoch)))
     else:
         model.load_state_dict(torch.load(f'{args.resume}'))
@@ -182,7 +186,7 @@ if __name__ == '__main__':
     parser.add_argument('--cls_thres', type=float, default=0.6)
     parser.add_argument('--alpha', type=float, default=1.0, help='ratio for per view loss')
     parser.add_argument('--use_mse', type=str2bool, default=False)
-    parser.add_argument('--arch', type=str, default='resnet18', choices=['vgg11', 'resnet18', 'mobilenet'])
+    parser.add_argument('--arch', type=str, default='resnet18', choices=['vgg11', 'resnet18', 'mobilenet','resnet50','resnet34'])
     parser.add_argument('-d', '--dataset', type=str, default='wildtrack', choices=['wildtrack', 'multiviewx'])
     parser.add_argument('-j', '--num_workers', type=int, default=4)
     parser.add_argument('-b', '--batch_size', type=int, default=1, help='input batch size for training')
@@ -210,6 +214,11 @@ if __name__ == '__main__':
 
     parser.add_argument('--two_stage', default=False,action='store_true')
 
+    parser.add_argument('--save',type=int,default=5,help='x, every x epochs save ckpt')
+    parser.add_argument('--num_q',type=int,default=300,help='num_queries')
+    parser.add_argument('--train_ratio',type=float,default=0.9,help='perception of train set, \
+                            0.9 means 90 percent of dataset would be used as train set')
+    parser.add_argument('--device',type=int,default=0)
     args = parser.parse_args()
 
     main(args)

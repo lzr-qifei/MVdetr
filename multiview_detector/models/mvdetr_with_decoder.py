@@ -6,7 +6,7 @@ from torchvision.models import vgg11
 import torchvision.transforms as T
 import kornia
 import math
-from multiview_detector.models.resnet import resnet18
+from multiview_detector.models.resnet import resnet18,resnet50,resnet34
 from multiview_detector.utils.image_utils import img_color_denormalize, array2heatmap
 from multiview_detector.utils.projection import get_worldcoord_from_imgcoord_mat, project_2d_points
 # from multiview_detector.models.conv_world_feat import ConvWorldFeat, DeformConvWorldFeat
@@ -89,7 +89,7 @@ class MLP(nn.Module):
 
 class MVDeTr_w_dec(nn.Module):
     def __init__(self, dataset, arch='resnet18', z=0, world_feat_arch='conv',
-                 bottleneck_dim=128, outfeat_dim=64, dropout=0.5,two_stage=False):
+                 bottleneck_dim=128, outfeat_dim=64, dropout=0.5,two_stage=False,num_queries=300):
         super().__init__()
         self.Rimg_shape, self.Rworld_shape = dataset.Rimg_shape, dataset.Rworld_shape
         self.img_reduce = dataset.img_reduce
@@ -116,9 +116,17 @@ class MVDeTr_w_dec(nn.Module):
             self.base[-4] = nn.Identity()
             base_dim = 512
         elif arch == 'resnet18':
-            # self.base = nn.Sequential(*list(resnet18(pretrained=True,
+            self.base = nn.Sequential(*list(resnet18(pretrained=True,
+                                                     replace_stride_with_dilation=[False, True, True]).children())[:-2])
+            # self.base = nn.Sequential(*list(resnet18(pretrained=False,
             #                                          replace_stride_with_dilation=[False, True, True]).children())[:-2])
-            self.base = nn.Sequential(*list(resnet18(pretrained=False,
+            base_dim = 512
+        elif arch == 'resnet50':
+            self.base = nn.Sequential(*list(resnet50(pretrained=True,
+                                                     replace_stride_with_dilation=[False, True, True]).children())[:-2])
+            base_dim = 2048
+        elif arch =='resnet34':
+            self.base = nn.Sequential(*list(resnet34(pretrained=True,
                                                      replace_stride_with_dilation=[False, True, True]).children())[:-2])
             base_dim = 512
         else:
@@ -169,7 +177,7 @@ class MVDeTr_w_dec(nn.Module):
 
         #bev heads
         num_classes = 1
-        self.num_queries = 300
+        self.num_queries = num_queries
         self.query_embed = nn.Embedding(self.num_queries, hidden_dim*2)
         self.class_embed = nn.Linear(hidden_dim, num_classes)
         self.center_embed = MLP(hidden_dim, hidden_dim, 2, 3)
@@ -200,6 +208,8 @@ class MVDeTr_w_dec(nn.Module):
         pass
 
     def forward(self, imgs, M,visualize=False ):#visualize=False
+        # resnet50(pretrained=True,
+        #                     replace_stride_with_dilation=[False, True, True]).children()
         B, N, C, H, W = imgs.shape
         imgs = imgs.view(B * N, C, H, W)
 
@@ -224,9 +234,11 @@ class MVDeTr_w_dec(nn.Module):
         #         visualize_img = T.ToPILImage()(denorm(proj_imgs.detach())[0, cam])
         #         plt.imshow(visualize_img)
         #         plt.show()
-
+        # print('data: ',imgs.shape)
         imgs_feat = self.base(imgs)
+        # print('after backbone: ',imgs_feat.shape)
         imgs_feat = self.bottleneck(imgs_feat)
+        # print('after neck: ',imgs_feat.shape)
         if visualize:
             for cam in range(N):
                 visualize_img = array2heatmap(torch.norm(imgs_feat[cam * B].detach(), dim=0).cpu())

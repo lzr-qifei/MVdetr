@@ -35,7 +35,7 @@ class PerspectiveTrainer(BaseTrainer):
         self.id_ratio = id_ratio
         self.two_stage = two_stage
 
-    def train(self, epoch, dataloader,criterion, optimizer, scaler, scheduler=None, log_interval=100):
+    def train(self, epoch, dataloader,criterion, optimizer, scaler,device, scheduler=None, log_interval=100):
         self.model.train()
         
         criterion.train()
@@ -49,7 +49,7 @@ class PerspectiveTrainer(BaseTrainer):
         for batch_idx, (data, world_gt, imgs_gt, affine_mats, frame) in enumerate(dataloader):
             # print('w_gt_shape',world_gt['world_pts'].shape)
             B, N = imgs_gt['heatmap'].shape[:2]
-            data = data.cuda()
+            data = data.cuda(device=device)
             for key in imgs_gt.keys():
                 imgs_gt[key] = imgs_gt[key].view([B * N] + list(imgs_gt[key].shape)[2:])##(B,N,...)---->(B*N,...)##
                 
