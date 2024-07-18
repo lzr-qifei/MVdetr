@@ -1,1 +1,5 @@
-python ../main.py  -d multiviewx  --data /root/autodl-tmp/MultiviewX --world_reduce 2 --resume /root/MVdetr/multiview_detector/logs/multiviewx/aug_deform_trans_w_dec_lr0.0005_baseR0.1_neck128_out0_alpha1.0_id0_drop0.0_dropcam0.0_worldRK2_10_imgRK12_10_2024-07-16_14-28-24/MultiviewDetector_100.pth
+srun -p ec529f6c-0264-4219-98c7-52d0c710f715 --workspace-id f7545db2-737e-46cc-a8c8-2a266efc6616 \
+ -N 1 -f pt -d StandAlone -r N5IP.nn.I90.1 -j data_prepare  \
+bash -c 'export NCCL_IB_GID_INDEX=5 && export NCCL_P2P_DISABLE=1 && export OMP_NUM_THREADS=1 && source activate /home/mnt/lizirui/envs/TrackTacular \
+ && python /home/mnt/lizirui/MVDeTr-main/main.py  -d multiviewx  --data /home/mnt/lizirui/data/MultiviewX --world_reduce 2 \
+--resume /home/mnt/lizirui/checkpoint/MultiviewDetector_95.pth --out_path /home/mnt/lizirui/MVDeTr-main/multiview_detector/results/test.txt '

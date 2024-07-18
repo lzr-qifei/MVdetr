@@ -82,7 +82,7 @@ def main(args):
                              pin_memory=True, worker_init_fn=seed_worker)
 
     # logging
-    if args.resume is None:
+    if args.resume is None and not args.sensecore:
         logdir = f'logs/{args.dataset}/{"debug_" if is_debug else ""}'\
                  f'backbone{args.arch}_'\
                  f'{args.world_feat}_lr{args.lr}_baseR{args.base_lr_ratio}_' \
@@ -98,6 +98,22 @@ def main(args):
                 # shutil.copyfile(script, dst_file)
         sys.stdout = Logger(os.path.join(logdir, 'log.txt'), )
         # Logger.write()
+    elif args.resume is None and args.sensecore:
+        logdir = f'/home/mnt/lizirui/MVDeTr-main/multiview_detector/'\
+            f'logs/{args.dataset}/{"debug_" if is_debug else ""}'\
+            f'backbone{args.arch}_'\
+            f'{args.world_feat}_lr{args.lr}_baseR{args.base_lr_ratio}_' \
+            f'out{args.outfeat_dim}_' \
+            f'drop{args.dropout}_dropcam{args.dropcam}_' \
+            f'worldRK{args.world_reduce}_{args.world_kernel_size}_' \
+            f'{datetime.datetime.today():%Y-%m-%d_%H-%M-%S}'
+        os.makedirs(logdir, exist_ok=True)
+        # copy_tree('./multiview_detector', logdir + '/scripts/multiview_detector')
+        for script in os.listdir('.'):
+            if script.split('.')[-1] == 'py':
+                dst_file = os.path.join(logdir, 'scripts', os.path.basename(script))
+                # shutil.copyfile(script, dst_file)
+        sys.stdout = Logger(os.path.join(logdir, 'log.txt'), )
     else:
         logdir = f'logs/{args.dataset}/{args.resume}'
     print(logdir)
@@ -151,7 +167,7 @@ def main(args):
     test_moda_s = []
 
     # learn
-    res_fpath = os.path.join('/root/MVdetr/multiview_detector/results', 'test.txt')
+    res_fpath = args.out_path
     if args.resume is None:
         for epoch in tqdm.tqdm(range(1, args.epochs + 1)):
             print('Training...')
@@ -159,7 +175,7 @@ def main(args):
             train_loss = train_loss.cpu().detach()
             print('Testing...')
             # train_loss = 0.55
-            test_loss, moda = trainer.test(epoch, test_loader, criterion,res_fpath, visualize=False)
+            test_loss, moda = trainer.test(epoch, test_loader, criterion,res_fpath, visualize=False,det_thres = args.det_thres)
             
             # test_loss = test_loss.cpu()
             # draw & save
@@ -174,7 +190,7 @@ def main(args):
         model.load_state_dict(torch.load(f'{args.resume}'))
         model.eval()
     print('Test loaded model...')
-    trainer.test(None, test_loader,criterion, res_fpath, visualize=True)
+    trainer.test(None, test_loader,criterion, res_fpath, visualize=True,det_thres = args.det_thres)
 
 
 if __name__ == '__main__':
@@ -220,6 +236,9 @@ if __name__ == '__main__':
                             0.9 means 90 percent of dataset would be used as train set')
     parser.add_argument('--device',type=int,default=0)
     parser.add_argument('--pth',type=str,default=None)
+    parser.add_argument('--out_path',type=str,default='./results/test.txt')
+    parser.add_argument('--det_thres',type=float,default=0.65)
+    parser.add_argument('--sensecore', action='store_true')
     args = parser.parse_args()
 
     main(args)

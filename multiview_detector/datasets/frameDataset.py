@@ -177,7 +177,7 @@ class frameDataset(VisionDataset):
         self.gt_fpath = os.path.join(self.root, 'gt.txt')
         if not os.path.exists(self.gt_fpath) or force_download:
             self.prepare_gt()
-
+        # self.prepare_gt_with_id()
         pass
 
     def get_world_imgs_trans(self, z=0):
@@ -221,6 +221,31 @@ class frameDataset(VisionDataset):
         og_gt = np.stack(og_gt, axis=0)
         os.makedirs(os.path.dirname(self.gt_fpath), exist_ok=True)
         np.savetxt(self.gt_fpath, og_gt, '%d')
+
+    def prepare_gt_with_id(self):
+        og_gt = []
+        for fname in sorted(os.listdir(os.path.join(self.root, 'annotations_positions'))):
+            frame = int(fname.split('.')[0])
+            with open(os.path.join(self.root, 'annotations_positions', fname)) as json_file:
+                all_pedestrians = json.load(json_file)
+            for single_pedestrian in all_pedestrians:
+                def is_in_cam(cam):
+                    return not (single_pedestrian['views'][cam]['xmin'] == -1 and
+                                single_pedestrian['views'][cam]['xmax'] == -1 and
+                                single_pedestrian['views'][cam]['ymin'] == -1 and
+                                single_pedestrian['views'][cam]['ymax'] == -1)
+
+                in_cam_range = sum(is_in_cam(cam) for cam in range(self.num_cam))
+                if not in_cam_range:
+                    continue
+                grid_x, grid_y = self.base.get_worldgrid_from_pos(single_pedestrian['positionID']).squeeze()
+                id = int(single_pedestrian['personID'])
+                og_gt.append(np.array([frame, grid_x, grid_y,id]))
+        og_gt = np.stack(og_gt, axis=0)
+        os.makedirs(os.path.dirname(self.gt_fpath), exist_ok=True)
+        path = self.gt_fpath.split('.txt')[0]+'_id'+'.txt'
+        np.savetxt(path, og_gt, '%d')
+
 
     def __getitem__(self, index, visualize=False):
         def plt_visualize():
