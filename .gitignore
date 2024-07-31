@@ -27,7 +27,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 *.pth
-multiviewx/*/*
+multiview_detector/logs/multiviewx/*/*
 vis_results/*
 # PyInstaller
 #  Usually these files are written by a python script from a template
