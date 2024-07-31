@@ -1,0 +1,23 @@
+logs/multiviewx/aug_deform_trans_w_dec_lr0.0001_baseR0.1_neck128_out0_alpha1.0_id0_drop0.0_dropcam0.0_worldRK4_10_imgRK12_10_2024-07-11_11-30-56
+Settings:
+{'reID': False, 'semi_supervised': 0, 'id_ratio': 0, 'cls_thres': 0.6, 'alpha': 1.0, 'use_mse': False, 'arch': 'resnet18', 'dataset': 'multiviewx', 'num_workers': 4, 'batch_size': 1, 'dropout': 0.0, 'dropcam': 0.0, 'epochs': 100, 'lr': 0.0001, 'base_lr_ratio': 0.1, 'weight_decay': 0.0001, 'resume': None, 'visualize': False, 'seed': 2021, 'deterministic': False, 'augmentation': True, 'world_feat': 'deform_trans_w_dec', 'bottleneck_dim': 128, 'outfeat_dim': 0, 'world_reduce': 4, 'world_kernel_size': 10, 'img_reduce': 12, 'img_kernel_size': 10, 'data': '/root/autodl-tmp/MultiviewX', 'two_stage': False}
+Training...
+Testing...
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  39
+gt_cnt:  36
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+top idx:  tensor([[659, 464, 656, 870, 805, 680, 733, 357, 614, 496, 697,  86, 175, 570,
+         137, 121, 300, 233, 953, 320, 146, 290, 289, 100, 394, 710, 499, 628,
+         491, 849, 249, 259, 655, 940, 725,  77, 829, 648, 327, 602, 148, 708,
+         494, 867, 182, 787, 932, 909, 804, 406]], device='cuda:0')
+top10 scores:  tensor([[0.0478, 0.0462, 0.0420, 0.0415, 0.0388, 0.0380, 0.0376, 0.0372, 0.0364,
+         0.0363, 0.0354, 0.0344, 0.0343, 0.0342, 0.0340, 0.0337, 0.0335, 0.0326,
+         0.0323, 0.0322, 0.0322, 0.0319, 0.0318, 0.0318, 0.0316, 0.0316, 0.0314,
+         0.0313, 0.0308, 0.0305, 0.0303, 0.0302, 0.0302, 0.0300, 0.0296, 0.0296,
+         0.0296, 0.0296, 0.0294, 0.0293, 0.0293, 0.0291, 0.0290, 0.0290, 0.0290,
+         0.0289, 0.0289, 0.0289, 0.0285, 0.0285]], device='cuda:0')

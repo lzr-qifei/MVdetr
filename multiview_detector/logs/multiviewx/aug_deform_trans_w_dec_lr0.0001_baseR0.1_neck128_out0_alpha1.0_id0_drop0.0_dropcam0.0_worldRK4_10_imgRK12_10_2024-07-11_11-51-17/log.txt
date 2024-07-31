@@ -1,0 +1,897 @@
+logs/multiviewx/aug_deform_trans_w_dec_lr0.0001_baseR0.1_neck128_out0_alpha1.0_id0_drop0.0_dropcam0.0_worldRK4_10_imgRK12_10_2024-07-11_11-51-17
+Settings:
+{'reID': False, 'semi_supervised': 0, 'id_ratio': 0, 'cls_thres': 0.6, 'alpha': 1.0, 'use_mse': False, 'arch': 'resnet18', 'dataset': 'multiviewx', 'num_workers': 4, 'batch_size': 1, 'dropout': 0.0, 'dropcam': 0.0, 'epochs': 100, 'lr': 0.0001, 'base_lr_ratio': 0.1, 'weight_decay': 0.0001, 'resume': None, 'visualize': False, 'seed': 2021, 'deterministic': False, 'augmentation': True, 'world_feat': 'deform_trans_w_dec', 'bottleneck_dim': 128, 'outfeat_dim': 0, 'world_reduce': 4, 'world_kernel_size': 10, 'img_reduce': 12, 'img_kernel_size': 10, 'data': '/root/autodl-tmp/MultiviewX', 'two_stage': False}
+Training...
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  41
+gt_cnt:  43
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1, 20,  4,
+        18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13, 21,
+        29,  9, 27,  5, 38]))]
+{'labels': tensor(0.1918, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(497.3100, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(497.6936, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 45, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3, 29,
+        23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10, 35,
+        13,  6,  4,  9, 25, 38, 40]))]
+{'labels': tensor(0.1633, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(579.9392, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(580.2657, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1887, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(439.4905, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(439.8679, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1681, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(458.0908, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(458.4271, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+Train Epoch: 1, Batch:4, loss: 114.606768, Time: 6.4
+Testing...
+gt_cnt:  42
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  43
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1, 20,  4,
+        18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13, 21,
+        29,  9, 27,  5, 38]))]
+{'labels': tensor(0.1728, device='cuda:0'), 'center': tensor(496.5362, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 40, 25, 21, 38, 22, 49, 14, 32, 23, 18, 30, 20, 28, 35,  2,
+         31, 10,  1, 43, 39, 34,  7,  8, 17, 11, 19,  3,  6, 26, 16,  0, 29, 48,
+         36, 33, 41, 45,  4, 15, 47,  9, 27, 13, 44, 12, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 45, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3, 29,
+        23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10, 35,
+        13,  6,  4,  9, 25, 38, 40]))]
+{'labels': tensor(0.1258, device='cuda:0'), 'center': tensor(579.2835, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 38, 49, 18, 22, 19, 32, 30, 21, 40, 25,  1, 31, 23, 14,  8,
+          7,  2, 35,  0, 39, 34, 28,  6, 17, 20, 43, 10,  3, 29, 16,  4, 48, 33,
+         26, 45, 11, 15, 36, 41, 12, 13, 27,  9, 44, 47, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1515, device='cuda:0'), 'center': tensor(457.8932, device='cuda:0')}
+top idx:  tensor([[24, 42,  5, 38, 18, 40, 25, 22, 32, 14, 20, 19, 49, 21, 43, 39, 23,  8,
+          7, 30, 35, 28, 17, 34,  2, 41,  6,  0,  1, 36, 31,  3, 16, 44, 48, 26,
+         10, 45, 29, 33, 11,  4, 15,  9, 12, 13, 27, 37, 47, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1717, device='cuda:0'), 'center': tensor(439.1216, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 38, 49, 22, 40, 30, 25, 18, 21, 39, 23,  7, 14, 20, 43, 31,
+          8, 19, 32, 17,  1, 28, 35,  6, 34,  3,  2, 48, 33, 10,  4, 11,  0, 26,
+         44, 36, 16, 29, 41, 45,  9, 27, 12, 15, 13, 47, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+Frame 1: Detected: 8
+Frame 1: FP: 42.0, Misses: 33.0
+Frame 2: Detected: 5
+Frame 2: FP: 45.0, Misses: 38.0
+Frame 3: Detected: 1
+Frame 3: FP: 49.0, Misses: 41.0
+Frame 4: Detected: 3
+Frame 4: FP: 47.0, Misses: 38.0
+moda: 0.0%, modp: 36.8%, prec: 8.5%, recall: 10.2%
+Test, loss: 493.519565, Time: 2.604
+Training...
+gt_cnt:  43
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  42
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1674, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(457.9036, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(458.2383, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1913, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(438.9520, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(439.3347, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 45, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3, 29,
+        23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10, 35,
+        13,  6,  4,  9, 25, 38, 40]))]
+{'labels': tensor(0.1428, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(578.8745, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(579.1601, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 23, 24,
+        25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
+        44, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1,  4, 20,
+        29, 18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13,
+        21,  9, 27,  5, 38]))]
+{'labels': tensor(0.1826, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(496.5789, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(496.9440, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+Train Epoch: 2, Batch:4, loss: 124.235991, Time: 2.8
+Testing...
+gt_cnt:  42
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  43
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1, 20,  4,
+        18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13, 21,
+        29,  9, 27,  5, 38]))]
+{'labels': tensor(0.1541, device='cuda:0'), 'center': tensor(495.7660, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 40, 49, 22, 14, 38, 21, 30, 32, 25, 20,  8, 35, 18, 23,  2,
+         43, 28,  3,  1,  6,  7, 17, 34, 39, 31,  0, 16, 11, 19, 48, 10, 33,  4,
+         41, 26, 45, 36, 29,  9, 12, 13, 47, 15, 44, 27, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 45, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3, 29,
+        23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10, 35,
+        13,  6,  4,  9, 25, 38, 40]))]
+{'labels': tensor(0.1126, device='cuda:0'), 'center': tensor(578.3621, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 18, 22, 21, 49, 38, 19, 30, 40, 25, 23, 20, 32, 14, 35, 43,
+          1, 17,  2,  8,  7,  0,  6, 39, 29, 31, 10, 16, 26, 28, 34, 11,  4,  3,
+         41, 33, 13, 48, 12, 36, 47, 45, 15, 27, 44,  9, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1364, device='cuda:0'), 'center': tensor(457.0504, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 22, 38, 40, 25, 49, 21, 20, 23, 18, 14, 32, 30,  8, 19, 39,
+          7, 43, 31, 28,  6, 26, 17,  1,  0, 41,  3, 35,  2, 34, 10, 11, 16, 48,
+         29, 12, 45, 15, 44, 36,  4,  9, 33, 13, 27, 47, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1526, device='cuda:0'), 'center': tensor(438.3049, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 22, 38, 23, 18, 21, 49, 25, 30, 40, 17, 32, 31,  8, 19, 43,
+          1,  2, 20, 14,  6,  7, 39,  0, 48, 35, 28, 33, 11, 34,  3, 16, 26,  4,
+         10, 41, 29, 15, 36, 44, 45, 12,  9, 27, 13, 47, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+Frame 1: Detected: 8
+Frame 1: FP: 42.0, Misses: 33.0
+Frame 2: Detected: 5
+Frame 2: FP: 45.0, Misses: 38.0
+Frame 3: Detected: 1
+Frame 3: FP: 49.0, Misses: 41.0
+Frame 4: Detected: 3
+Frame 4: FP: 47.0, Misses: 38.0
+moda: 0.0%, modp: 36.5%, prec: 8.5%, recall: 10.2%
+Test, loss: 492.648745, Time: 2.319
+Training...
+gt_cnt:  43
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  42
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([20,  0, 19, 28, 25, 15,  4, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1885, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(437.7387, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(438.1158, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1, 20,  4,
+        18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13, 21,
+        29,  9, 27,  5, 38]))]
+{'labels': tensor(0.1726, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(495.5745, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(495.9197, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1473, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(456.5990, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(456.8936, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 45, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3, 29,
+        23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10, 35,
+        13,  6,  4,  9, 25, 38, 40]))]
+{'labels': tensor(0.1305, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(577.5818, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(577.8428, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+Train Epoch: 3, Batch:4, loss: 144.460698, Time: 2.8
+Testing...
+gt_cnt:  43
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  42
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1, 20,  4,
+        18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13, 21,
+        29,  9, 27,  5, 38]))]
+{'labels': tensor(0.1421, device='cuda:0'), 'center': tensor(494.7919, device='cuda:0')}
+top idx:  tensor([[24, 42,  5, 40, 25, 38, 22, 49, 14, 23, 21, 18, 30, 19, 20, 32,  8, 43,
+         35,  2, 28,  7,  1, 31,  6, 41, 39, 34,  3, 17,  0, 16, 48, 11, 10, 26,
+         33, 13, 12, 15, 36,  9,  4, 29, 45, 47, 44, 27, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21,
+        23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+        42, 43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27,  4, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3,
+        29, 23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10,
+        35, 13,  6,  9, 25, 38, 40]))]
+{'labels': tensor(0.1061, device='cuda:0'), 'center': tensor(568.9000, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 38, 18, 49, 22, 19, 40, 14, 32, 30, 23, 25, 21, 17, 39,  8,
+         20, 43, 35,  7,  1, 31,  2,  6,  0, 34, 16,  4, 48, 33, 15,  3, 28, 12,
+         26, 29, 13, 11, 41,  9, 10, 36, 27, 44, 45, 47, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1245, device='cuda:0'), 'center': tensor(456.0314, device='cuda:0')}
+top idx:  tensor([[24,  5, 38, 42, 22, 25, 30, 21, 49, 23, 19, 18, 39,  8, 20, 14, 32, 31,
+          7, 40, 26,  1, 43,  6, 17, 28,  2, 41, 35,  0, 11, 16,  3, 34, 48, 10,
+         29, 44, 33,  4,  9, 45, 12, 15, 36, 13, 27, 47, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1422, device='cuda:0'), 'center': tensor(437.3311, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 38, 49, 21, 18, 23, 22, 40, 19, 31, 25, 20,  7,  8,  6, 43,
+         39, 35, 32, 30, 28,  2, 17, 14,  1, 48,  0,  3, 26, 34, 33, 16, 41, 12,
+          4, 29, 10, 11, 15,  9, 44, 27, 13, 45, 36, 47, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+Frame 1: Detected: 8
+Frame 1: FP: 42.0, Misses: 33.0
+Frame 2: Detected: 5
+Frame 2: FP: 45.0, Misses: 38.0
+Frame 3: Detected: 1
+Frame 3: FP: 49.0, Misses: 41.0
+Frame 4: Detected: 3
+Frame 4: FP: 47.0, Misses: 38.0
+moda: 0.0%, modp: 36.6%, prec: 8.5%, recall: 10.2%
+Test, loss: 489.520995, Time: 2.231
+Training...
+gt_cnt:  42
+gt_cnt:  43
+gt_cnt:  41
+gt_cnt:  41
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1577, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(456.0436, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(456.3589, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 45, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3, 29,
+        23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10, 35,
+        13,  6,  4,  9, 25, 38, 40]))]
+{'labels': tensor(0.1236, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(576.9520, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(577.1993, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1606, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(436.8259, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(437.1472, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 23, 24,
+        25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
+        44, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1,  4, 20,
+        29, 18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13,
+        21,  9, 27,  5, 38]))]
+{'labels': tensor(0.1574, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(494.5304, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(494.8452, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+Train Epoch: 4, Batch:4, loss: 123.711311, Time: 2.8
+Testing...
+gt_cnt:  42
+gt_cnt:  41
+gt_cnt:  43
+gt_cnt:  41
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 23, 24,
+        25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
+        44, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1,  4, 20,
+        29, 18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13,
+        21,  9, 27,  5, 38]))]
+{'labels': tensor(0.1352, device='cuda:0'), 'center': tensor(494.0849, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 40, 38, 32, 14, 49, 35, 30, 25, 22, 21, 18, 20, 43, 23, 31,
+          2, 17,  8,  1, 16,  7, 39, 19, 28,  6,  0, 34,  3, 11, 41, 26, 33, 48,
+         13, 12,  4, 15, 10, 29,  9, 44, 47, 36, 27, 45, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21,
+        23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+        42, 43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27,  4, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3,
+        29, 23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10,
+        35, 13,  6,  9, 25, 38, 40]))]
+{'labels': tensor(0.0982, device='cuda:0'), 'center': tensor(567.4160, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 49, 38, 40, 18, 22, 14, 25, 35, 23,  8, 30, 32, 39,  7, 19,
+         21,  6, 43, 20, 28, 17,  2,  1, 26, 31,  0, 16, 48, 41, 34,  3,  4, 33,
+         11, 12, 15, 29, 13,  9, 10, 44, 47, 36, 27, 45, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1157, device='cuda:0'), 'center': tensor(454.6991, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 22, 38, 49, 40, 30, 21, 23,  8, 19, 18,  7, 14, 20, 31, 32,
+         39, 25, 28, 17, 43,  6,  2, 35,  1, 26,  0,  3, 11, 34, 16, 41,  4,  9,
+         48, 29, 10, 33, 15, 12, 44, 13, 27, 45, 47, 36, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1289, device='cuda:0'), 'center': tensor(436.0621, device='cuda:0')}
+top idx:  tensor([[24,  5, 38, 42, 49, 22, 21,  8, 18, 14, 30, 20, 23,  7,  2,  6, 19, 25,
+         39, 40, 31, 35, 32, 43, 17,  3,  1, 28,  0, 48,  4, 34, 26, 33, 16, 41,
+         11, 15,  9, 12, 44, 45, 29, 13, 36, 10, 27, 47, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+Frame 1: Detected: 8
+Frame 1: FP: 42.0, Misses: 33.0
+Frame 2: Detected: 5
+Frame 2: FP: 45.0, Misses: 38.0
+Frame 3: Detected: 1
+Frame 3: FP: 49.0, Misses: 41.0
+Frame 4: Detected: 3
+Frame 4: FP: 47.0, Misses: 38.0
+moda: 0.0%, modp: 36.6%, prec: 8.5%, recall: 10.2%
+Test, loss: 488.304530, Time: 2.359
+Training...
+gt_cnt:  41
+gt_cnt:  43
+gt_cnt:  42
+gt_cnt:  41
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1436, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(454.7496, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(455.0367, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21,
+        23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+        42, 43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27,  4, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3,
+        29, 23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10,
+        35, 13,  6,  9, 25, 38, 40]))]
+{'labels': tensor(0.1210, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(567.0449, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(567.2869, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 23, 24,
+        25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
+        44, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1,  4, 20,
+        29, 18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13,
+        21,  9, 27,  5, 38]))]
+{'labels': tensor(0.1653, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(493.4876, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(493.8183, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1622, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(434.9438, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(435.2681, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+Train Epoch: 5, Batch:4, loss: 108.817024, Time: 2.8
+Testing...
+gt_cnt:  43
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  41
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 23, 24,
+        25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
+        44, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1,  4, 20,
+        29, 18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13,
+        21,  9, 27,  5, 38]))]
+{'labels': tensor(0.1283, device='cuda:0'), 'center': tensor(492.4162, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 38, 40, 49, 14, 31, 22, 18, 32, 30, 21, 25, 35, 43,  1,  8,
+         19, 20,  2,  6, 23, 17,  7, 41,  0, 28, 39, 16, 26, 34, 11, 48,  3, 12,
+         33, 13,  4, 15,  9, 10, 44, 29, 47, 36, 27, 45, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21,
+        23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+        42, 43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27,  4, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3,
+        29, 23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10,
+        35, 13,  6,  9, 25, 38, 40]))]
+{'labels': tensor(0.0962, device='cuda:0'), 'center': tensor(565.4518, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 14, 22, 49, 38, 40, 18, 21, 32, 30, 35, 43, 19,  1, 20, 25,
+         17,  7,  6, 23,  8,  0, 31,  2, 39, 28, 11, 16, 34, 33, 26, 48, 41, 15,
+          3, 12, 10, 29, 13,  4,  9, 47, 44, 27, 36, 45, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1105, device='cuda:0'), 'center': tensor(452.9552, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 38, 19, 22, 18, 40, 14, 23, 49, 32,  8,  7, 30, 35, 39, 20,
+         25, 31, 43, 21,  6,  0, 28, 17,  1, 16, 26, 41,  2, 48, 33, 34, 11,  3,
+         15,  9, 29,  4, 12, 13, 44, 27, 10, 47, 45, 36, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1223, device='cuda:0'), 'center': tensor(434.4369, device='cuda:0')}
+top idx:  tensor([[ 5, 24, 42, 22, 40, 38, 49, 30, 18, 23, 32,  6,  8, 35, 21, 14, 19, 31,
+         17, 20,  1, 39,  7,  2, 43,  0, 25, 28, 48,  3, 33, 16, 41, 34, 26,  4,
+         12,  9, 11, 15, 13, 27, 29, 10, 44, 36, 47, 45, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+Frame 1: Detected: 8
+Frame 1: FP: 42.0, Misses: 33.0
+Frame 2: Detected: 5
+Frame 2: FP: 45.0, Misses: 38.0
+Frame 3: Detected: 1
+Frame 3: FP: 49.0, Misses: 41.0
+Frame 4: Detected: 3
+Frame 4: FP: 47.0, Misses: 38.0
+moda: 0.0%, modp: 36.9%, prec: 8.5%, recall: 10.2%
+Test, loss: 486.543667, Time: 2.357
+Training...
+gt_cnt:  43
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  42
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1510, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(434.5741, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(434.8761, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1, 20,  4,
+        18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13, 21,
+        29,  9, 27,  5, 38]))]
+{'labels': tensor(0.1458, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(491.6664, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(491.9581, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21,
+        23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+        42, 43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27,  4, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3,
+        29, 23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10,
+        35, 13,  6,  9, 25, 38, 40]))]
+{'labels': tensor(0.1075, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(564.6299, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(564.8448, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1537, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(451.4644, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(451.7718, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+Train Epoch: 6, Batch:4, loss: 112.942942, Time: 2.7
+Testing...
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  43
+gt_cnt:  42
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1, 20,  4,
+        18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13, 21,
+        29,  9, 27,  5, 38]))]
+{'labels': tensor(0.1215, device='cuda:0'), 'center': tensor(489.7346, device='cuda:0')}
+top idx:  tensor([[24, 42,  5, 38, 40, 14, 35, 32, 22, 49, 43, 23, 18, 25, 17, 39,  1, 21,
+          2,  8, 30,  6, 20,  7, 31,  0, 26, 28, 16, 19, 41, 34, 33, 11, 48,  3,
+         44, 12, 13, 15,  4, 10, 29,  9, 27, 45, 47, 36, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21,
+        23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+        42, 43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27,  4, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3,
+        29, 23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10,
+        35, 13,  6,  9, 25, 38, 40]))]
+{'labels': tensor(0.0919, device='cuda:0'), 'center': tensor(562.8536, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 18, 38, 14, 22, 49, 19, 35, 40, 32, 30,  6, 25,  1, 21, 31,
+         17,  7, 43,  8, 23, 39,  0, 20, 28, 16, 26,  2, 48, 34, 29, 33, 15, 11,
+         41,  4, 12, 13,  9,  3, 27, 44, 47, 10, 45, 36, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1076, device='cuda:0'), 'center': tensor(450.6922, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 18, 38, 40, 19, 22, 14, 25, 30, 21, 20, 49,  8,  6,  7, 31,
+         43, 32, 23, 41, 28, 39,  1, 35,  2, 26,  0, 17, 16,  3, 48, 11, 44, 34,
+         33,  4, 15,  9, 12, 13, 29, 27, 45, 47, 10, 36, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1203, device='cuda:0'), 'center': tensor(432.2812, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 18, 38, 22, 49, 40, 21, 30, 32, 19, 14,  6, 17, 23, 35,  2,
+          1, 25,  8,  7, 43, 31, 28,  0, 39, 20, 48, 33, 26, 34, 16,  3, 11, 41,
+          4, 15,  9, 12, 44, 29, 27, 13, 10, 47, 45, 36, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+Frame 1: Detected: 8
+Frame 1: FP: 42.0, Misses: 33.0
+Frame 2: Detected: 5
+Frame 2: FP: 45.0, Misses: 38.0
+Frame 3: Detected: 1
+Frame 3: FP: 49.0, Misses: 41.0
+Frame 4: Detected: 3
+Frame 4: FP: 47.0, Misses: 38.0
+moda: 0.0%, modp: 37.0%, prec: 8.5%, recall: 10.2%
+Test, loss: 484.111124, Time: 2.386
+Training...
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  43
+gt_cnt:  42
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1548, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(432.5325, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(432.8420, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1, 20,  4,
+        18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13, 21,
+        29,  9, 27,  5, 38]))]
+{'labels': tensor(0.1541, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(489.3392, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(489.6474, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 45, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3, 29,
+        23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10, 35,
+        13,  6,  4,  9, 25, 38, 40]))]
+{'labels': tensor(0.1086, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(569.9594, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(570.1767, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1398, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(449.0097, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(449.2893, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+Train Epoch: 7, Batch:4, loss: 112.322315, Time: 2.8
+Testing...
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  43
+gt_cnt:  41
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1, 20,  4,
+        18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13, 21,
+        29,  9, 27,  5, 38]))]
+{'labels': tensor(0.1260, device='cuda:0'), 'center': tensor(486.9270, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 38, 40, 22, 14, 32, 25, 30, 35, 31,  0, 49, 21,  1,  8, 23,
+         43, 18,  6, 20,  2, 17,  7, 28, 16, 39, 11, 19, 41, 34, 33,  3, 48, 26,
+         13, 44, 12, 15,  4, 29,  9, 10, 47, 27, 45, 36, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21,
+        23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+        42, 43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27,  4, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3,
+        29, 23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10,
+        35, 13,  6,  9, 25, 38, 40]))]
+{'labels': tensor(0.0956, device='cuda:0'), 'center': tensor(559.5054, device='cuda:0')}
+top idx:  tensor([[42,  5, 24, 38, 22, 18, 49, 40, 32, 30, 19, 14, 20,  1, 43,  8,  6, 35,
+         17, 31, 23, 21, 25,  7,  0, 39,  2, 28, 26, 16, 34, 48, 29, 11, 15, 41,
+         33,  4, 13, 12,  9,  3, 47, 44, 27, 10, 45, 36, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1121, device='cuda:0'), 'center': tensor(447.7317, device='cuda:0')}
+top idx:  tensor([[24, 42,  5, 38, 40, 22, 49, 18, 14, 30, 28,  6, 32,  7, 25, 21, 20, 35,
+         19,  8,  1, 26, 23, 31, 43, 39,  0, 17,  2, 41, 16, 34, 33, 44, 11,  3,
+         48, 15, 29,  9,  4, 27, 13, 12, 45, 10, 47, 36, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([ 4, 20,  0, 19, 28, 25, 15, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1257, device='cuda:0'), 'center': tensor(429.5558, device='cuda:0')}
+top idx:  tensor([[24,  5, 42, 38, 49, 22, 18, 32,  8, 21,  1, 30,  2, 40, 14, 35, 23, 17,
+          6, 19,  0, 28, 25, 43, 31,  7, 20, 48, 39, 16, 33, 11, 26, 34,  3, 41,
+          4, 29,  9, 15, 12, 44, 13, 27, 47, 10, 45, 36, 37, 46]],
+       device='cuda:0')
+pos shape:  torch.Size([50, 2])
+pos_s shape:  torch.Size([50, 2])
+Frame 1: Detected: 8
+Frame 1: FP: 42.0, Misses: 33.0
+Frame 2: Detected: 5
+Frame 2: FP: 45.0, Misses: 38.0
+Frame 3: Detected: 1
+Frame 3: FP: 49.0, Misses: 41.0
+Frame 4: Detected: 3
+Frame 4: FP: 47.0, Misses: 38.0
+moda: 0.0%, modp: 37.2%, prec: 8.5%, recall: 10.2%
+Test, loss: 481.159715, Time: 2.302
+Training...
+gt_cnt:  42
+gt_cnt:  43
+gt_cnt:  41
+gt_cnt:  41
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 17, 19, 21, 23,
+        24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+        43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 29, 17, 15,  4, 38, 40,  5, 31,  9, 12, 27, 26, 16, 28,
+        23,  7, 18, 33, 32, 11, 36,  8, 41,  3, 35, 30, 24,  1,  2, 22, 10, 34,
+        13,  6, 21, 25, 37, 39]))]
+{'labels': tensor(0.1397, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(447.9645, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(448.2438, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+indices:  [(tensor([ 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 14, 16, 17, 19, 21,
+        23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+        42, 43, 44, 46, 47, 48, 49]), tensor([14, 20,  0, 19, 30, 17, 27,  4, 39, 41,  5, 32, 12, 21, 33, 28, 26,  3,
+        29, 23,  7, 18, 16,  2, 11, 37,  8, 42, 34, 36, 31, 24,  1, 15, 22, 10,
+        35, 13,  6,  9, 25, 38, 40]))]
+{'labels': tensor(0.1317, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(558.8653, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(559.1287, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 12, 13, 17, 19, 20, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([20,  0, 19, 28, 25, 15,  4, 37, 12,  5, 30,  9, 27, 26, 13, 35, 23, 14,
+        18, 38, 31, 11,  1,  8, 40,  3, 34, 29, 24, 39,  2, 22, 10, 33, 32,  6,
+         7, 21, 17, 36, 16]))]
+{'labels': tensor(0.1741, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(427.8615, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(428.2097, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+indices:  [(tensor([ 1,  2,  3,  4,  6,  7,  8,  9, 10, 11, 13, 15, 16, 17, 19, 21, 24, 25,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+        45, 46, 47, 48, 49]), tensor([37,  0,  3, 23, 17, 25, 14, 22, 39,  6, 12,  7, 28, 32, 26,  1, 20,  4,
+        18, 16,  2, 11, 36,  8, 40, 33, 35, 31, 24, 30, 15, 19, 10, 34, 13, 21,
+        29,  9, 27,  5, 38]))]
+{'labels': tensor(0.1660, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(485.1167, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(485.4487, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+Train Epoch: 8, Batch:4, loss: 121.362186, Time: 2.8
+Testing...
