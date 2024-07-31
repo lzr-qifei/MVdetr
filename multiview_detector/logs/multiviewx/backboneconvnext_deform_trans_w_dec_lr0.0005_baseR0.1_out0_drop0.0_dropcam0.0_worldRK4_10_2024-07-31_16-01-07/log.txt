@@ -1,0 +1,172 @@
+logs/multiviewx/backboneconvnext_deform_trans_w_dec_lr0.0005_baseR0.1_out0_drop0.0_dropcam0.0_worldRK4_10_2024-07-31_16-01-07
+Settings:
+{'reID': False, 'semi_supervised': 0, 'id_ratio': 0, 'cls_thres': 0.6, 'alpha': 1.0, 'use_mse': False, 'arch': 'convnext', 'dataset': 'multiviewx', 'num_workers': 4, 'batch_size': 1, 'dropout': 0.0, 'dropcam': 0.0, 'epochs': 100, 'lr': 0.0005, 'base_lr_ratio': 0.1, 'weight_decay': 0.0001, 'resume': None, 'visualize': False, 'seed': 2021, 'deterministic': False, 'augmentation': True, 'world_feat': 'deform_trans_w_dec', 'bottleneck_dim': 128, 'outfeat_dim': 0, 'world_reduce': 4, 'world_kernel_size': 10, 'img_reduce': 14, 'img_kernel_size': 10, 'data': '/root/autodl-tmp/MultiviewX', 'two_stage': False, 'save': 5, 'num_q': 300, 'train_ratio': 0.9, 'device': 0, 'pth': None, 'out_path': './results/test.txt', 'det_thres': 0.65, 'sensecore': False, 'vis_path': '/root/MVdetr/multiview_detector/vis_results/'}
+Training...
+[0/360] - ori_loss_labels: 1.0954, ori_loss_center: 0.0174, weighted_loss_labels: 2.1907, weighted_loss_center: 0.8696, total_loss: 3.0603
+[10/360] - ori_loss_labels: 0.4265, ori_loss_center: 0.0202, weighted_loss_labels: 0.8530, weighted_loss_center: 1.0079, total_loss: 1.8609
+[20/360] - ori_loss_labels: 0.3000, ori_loss_center: 0.0189, weighted_loss_labels: 0.5999, weighted_loss_center: 0.9444, total_loss: 1.5443
+[30/360] - ori_loss_labels: 0.3169, ori_loss_center: 0.0169, weighted_loss_labels: 0.6337, weighted_loss_center: 0.8461, total_loss: 1.4799
+[40/360] - ori_loss_labels: 0.2936, ori_loss_center: 0.0214, weighted_loss_labels: 0.5872, weighted_loss_center: 1.0691, total_loss: 1.6564
+[50/360] - ori_loss_labels: 0.3045, ori_loss_center: 0.0193, weighted_loss_labels: 0.6090, weighted_loss_center: 0.9649, total_loss: 1.5739
+[60/360] - ori_loss_labels: 0.3007, ori_loss_center: 0.0177, weighted_loss_labels: 0.6014, weighted_loss_center: 0.8850, total_loss: 1.4864
+[70/360] - ori_loss_labels: 0.2880, ori_loss_center: 0.0186, weighted_loss_labels: 0.5761, weighted_loss_center: 0.9291, total_loss: 1.5052
+[80/360] - ori_loss_labels: 0.2839, ori_loss_center: 0.0164, weighted_loss_labels: 0.5678, weighted_loss_center: 0.8197, total_loss: 1.3875
+[90/360] - ori_loss_labels: 0.2946, ori_loss_center: 0.0192, weighted_loss_labels: 0.5891, weighted_loss_center: 0.9601, total_loss: 1.5492
+Train Epoch: 1, Batch:100, loss: 0.015427, Time: 56.5
+[100/360] - ori_loss_labels: 0.2898, ori_loss_center: 0.0193, weighted_loss_labels: 0.5797, weighted_loss_center: 0.9666, total_loss: 1.5462
+[110/360] - ori_loss_labels: 0.2919, ori_loss_center: 0.0211, weighted_loss_labels: 0.5838, weighted_loss_center: 1.0565, total_loss: 1.6403
+[120/360] - ori_loss_labels: 0.2827, ori_loss_center: 0.0160, weighted_loss_labels: 0.5653, weighted_loss_center: 0.8023, total_loss: 1.3676
+[130/360] - ori_loss_labels: 0.2802, ori_loss_center: 0.0199, weighted_loss_labels: 0.5605, weighted_loss_center: 0.9964, total_loss: 1.5569
+[140/360] - ori_loss_labels: 0.2903, ori_loss_center: 0.0154, weighted_loss_labels: 0.5806, weighted_loss_center: 0.7714, total_loss: 1.3520
+[150/360] - ori_loss_labels: 0.2903, ori_loss_center: 0.0169, weighted_loss_labels: 0.5805, weighted_loss_center: 0.8471, total_loss: 1.4276
+[160/360] - ori_loss_labels: 0.2869, ori_loss_center: 0.0205, weighted_loss_labels: 0.5738, weighted_loss_center: 1.0260, total_loss: 1.5999
+[170/360] - ori_loss_labels: 0.3011, ori_loss_center: 0.0175, weighted_loss_labels: 0.6023, weighted_loss_center: 0.8771, total_loss: 1.4794
+[180/360] - ori_loss_labels: 0.2860, ori_loss_center: 0.0175, weighted_loss_labels: 0.5720, weighted_loss_center: 0.8741, total_loss: 1.4462
+[190/360] - ori_loss_labels: 0.2842, ori_loss_center: 0.0167, weighted_loss_labels: 0.5684, weighted_loss_center: 0.8348, total_loss: 1.4032
+Train Epoch: 1, Batch:200, loss: 0.007845, Time: 105.4
+[200/360] - ori_loss_labels: 0.2824, ori_loss_center: 0.0154, weighted_loss_labels: 0.5647, weighted_loss_center: 0.7719, total_loss: 1.3366
+[210/360] - ori_loss_labels: 0.2871, ori_loss_center: 0.0165, weighted_loss_labels: 0.5742, weighted_loss_center: 0.8244, total_loss: 1.3986
+[220/360] - ori_loss_labels: 0.2888, ori_loss_center: 0.0166, weighted_loss_labels: 0.5776, weighted_loss_center: 0.8307, total_loss: 1.4082
+[230/360] - ori_loss_labels: 0.2846, ori_loss_center: 0.0198, weighted_loss_labels: 0.5692, weighted_loss_center: 0.9875, total_loss: 1.5567
+[240/360] - ori_loss_labels: 0.2813, ori_loss_center: 0.0177, weighted_loss_labels: 0.5626, weighted_loss_center: 0.8845, total_loss: 1.4471
+[250/360] - ori_loss_labels: 0.2713, ori_loss_center: 0.0181, weighted_loss_labels: 0.5426, weighted_loss_center: 0.9069, total_loss: 1.4494
+[260/360] - ori_loss_labels: 0.2902, ori_loss_center: 0.0173, weighted_loss_labels: 0.5803, weighted_loss_center: 0.8650, total_loss: 1.4453
+[270/360] - ori_loss_labels: 0.2782, ori_loss_center: 0.0191, weighted_loss_labels: 0.5564, weighted_loss_center: 0.9554, total_loss: 1.5118
+[280/360] - ori_loss_labels: 0.2756, ori_loss_center: 0.0176, weighted_loss_labels: 0.5513, weighted_loss_center: 0.8797, total_loss: 1.4309
+[290/360] - ori_loss_labels: 0.3033, ori_loss_center: 0.0165, weighted_loss_labels: 0.6066, weighted_loss_center: 0.8227, total_loss: 1.4294
+Train Epoch: 1, Batch:300, loss: 0.004347, Time: 154.2
+[300/360] - ori_loss_labels: 0.2764, ori_loss_center: 0.0177, weighted_loss_labels: 0.5528, weighted_loss_center: 0.8827, total_loss: 1.4356
+[310/360] - ori_loss_labels: 0.2881, ori_loss_center: 0.0178, weighted_loss_labels: 0.5762, weighted_loss_center: 0.8919, total_loss: 1.4681
+[320/360] - ori_loss_labels: 0.2769, ori_loss_center: 0.0172, weighted_loss_labels: 0.5538, weighted_loss_center: 0.8600, total_loss: 1.4138
+[330/360] - ori_loss_labels: 0.2802, ori_loss_center: 0.0169, weighted_loss_labels: 0.5603, weighted_loss_center: 0.8457, total_loss: 1.4061
+[340/360] - ori_loss_labels: 0.2831, ori_loss_center: 0.0172, weighted_loss_labels: 0.5662, weighted_loss_center: 0.8618, total_loss: 1.4280
+[350/360] - ori_loss_labels: 0.2909, ori_loss_center: 0.0171, weighted_loss_labels: 0.5819, weighted_loss_center: 0.8540, total_loss: 1.4359
+Train Epoch: 1, Batch:360, loss: 0.003830, Time: 183.2
+Testing...
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+Frame 1: Detected: 6
+Frame 1: FP: 30.0, Misses: 32.0
+Frame 2: Detected: 6
+Frame 2: FP: 30.0, Misses: 33.0
+Frame 3: Detected: 4
+Frame 3: FP: 32.0, Misses: 35.0
+Frame 4: Detected: 3
+Frame 4: FP: 33.0, Misses: 36.0
+Frame 5: Detected: 1
+Frame 5: FP: 35.0, Misses: 36.0
+Frame 6: Detected: 5
+Frame 6: FP: 31.0, Misses: 32.0
+Frame 7: Detected: 3
+Frame 7: FP: 33.0, Misses: 33.0
+Frame 8: Detected: 2
+Frame 8: FP: 34.0, Misses: 33.0
+Frame 9: Detected: 3
+Frame 9: FP: 33.0, Misses: 35.0
+Frame 10: Detected: 3
+Frame 10: FP: 33.0, Misses: 35.0
+Frame 11: Detected: 3
+Frame 11: FP: 33.0, Misses: 35.0
+Frame 12: Detected: 7
+Frame 12: FP: 29.0, Misses: 30.0
+Frame 13: Detected: 4
+Frame 13: FP: 32.0, Misses: 35.0
+Frame 14: Detected: 6
+Frame 14: FP: 30.0, Misses: 33.0
+Frame 15: Detected: 6
+Frame 15: FP: 30.0, Misses: 33.0
+Frame 16: Detected: 5
+Frame 16: FP: 31.0, Misses: 35.0
+Frame 17: Detected: 5
+Frame 17: FP: 31.0, Misses: 34.0
+Frame 18: Detected: 5
+Frame 18: FP: 31.0, Misses: 34.0
+Frame 19: Detected: 2
+Frame 19: FP: 34.0, Misses: 36.0
+Frame 20: Detected: 3
+Frame 20: FP: 33.0, Misses: 37.0
+Frame 21: Detected: 2
+Frame 21: FP: 34.0, Misses: 37.0
+Frame 22: Detected: 3
+Frame 22: FP: 33.0, Misses: 34.0
+Frame 23: Detected: 7
+Frame 23: FP: 29.0, Misses: 29.0
+Frame 24: Detected: 6
+Frame 24: FP: 30.0, Misses: 29.0
+Frame 25: Detected: 4
+Frame 25: FP: 32.0, Misses: 32.0
+Frame 26: Detected: 4
+Frame 26: FP: 32.0, Misses: 32.0
+Frame 27: Detected: 1
+Frame 27: FP: 35.0, Misses: 36.0
+Frame 28: Detected: 2
+Frame 28: FP: 34.0, Misses: 35.0
+Frame 29: Detected: 4
+Frame 29: FP: 32.0, Misses: 33.0
+Frame 30: Detected: 1
+Frame 30: FP: 35.0, Misses: 35.0
+Frame 31: Detected: 4
+Frame 31: FP: 32.0, Misses: 30.0
+Frame 32: Detected: 4
+Frame 32: FP: 32.0, Misses: 32.0
+Frame 33: Detected: 6
+Frame 33: FP: 30.0, Misses: 30.0
+Frame 34: Detected: 4
+Frame 34: FP: 32.0, Misses: 33.0
+Frame 35: Detected: 4
+Frame 35: FP: 32.0, Misses: 32.0
+Frame 36: Detected: 6
+Frame 36: FP: 30.0, Misses: 30.0
+Frame 37: Detected: 4
+Frame 37: FP: 32.0, Misses: 30.0
+Frame 38: Detected: 2
+Frame 38: FP: 34.0, Misses: 34.0
+Frame 39: Detected: 3
+Frame 39: FP: 33.0, Misses: 36.0
+Frame 40: Detected: 6
+Frame 40: FP: 30.0, Misses: 34.0
+moda: 0.0%, modp: 35.5%, prec: 11.0%, recall: 10.6%
+Test, loss: 1.442003, Time: 14.865
+Training...
+[0/360] - ori_loss_labels: 0.2880, ori_loss_center: 0.0172, weighted_loss_labels: 0.5759, weighted_loss_center: 0.8575, total_loss: 1.4334
+[10/360] - ori_loss_labels: 0.2781, ori_loss_center: 0.0164, weighted_loss_labels: 0.5562, weighted_loss_center: 0.8213, total_loss: 1.3775
+[20/360] - ori_loss_labels: 0.2794, ori_loss_center: 0.0149, weighted_loss_labels: 0.5588, weighted_loss_center: 0.7448, total_loss: 1.3036
+[30/360] - ori_loss_labels: 0.2895, ori_loss_center: 0.0161, weighted_loss_labels: 0.5790, weighted_loss_center: 0.8044, total_loss: 1.3833
