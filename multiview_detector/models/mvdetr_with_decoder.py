@@ -17,6 +17,7 @@ from kornia.geometry.transform import warp_perspective
 from multiview_detector.models.deformable_transformer import DeformableTransformer
 from multiview_detector.utils.transformer_utils import inverse_sigmoid
 import torch.nn.functional as F
+from multiview_detector.models.convnext import ConvNeXt,build_convnext
 def fill_fc_weights(layers):
     for m in layers.modules():
         if isinstance(m, nn.Conv2d):
@@ -92,6 +93,7 @@ class MVDeTr_w_dec(nn.Module):
     def __init__(self, args,dataset, arch='resnet18', z=0, world_feat_arch='conv',
                  bottleneck_dim=128, outfeat_dim=64, dropout=0.5,two_stage=False,num_queries=300,local_pth = None):
         super().__init__()
+        self.arch = arch
         self.args = args
         self.Rimg_shape, self.Rworld_shape = dataset.Rimg_shape, dataset.Rworld_shape
         self.img_reduce = dataset.img_reduce
@@ -131,6 +133,10 @@ class MVDeTr_w_dec(nn.Module):
             self.base = nn.Sequential(*list(resnet34(pretrained=True,
                                                      replace_stride_with_dilation=[False, True, True]).children())[:-2])
             base_dim = 512
+        elif arch =='convnext':
+            self.base = nn.Sequential(*list(build_convnext().children()))
+            base_dim = 512
+            
         else:
             raise Exception('architecture currently support [vgg11, resnet18]')
 
@@ -239,7 +245,10 @@ class MVDeTr_w_dec(nn.Module):
         #         plt.imshow(visualize_img)
         #         plt.show()
         # print('data: ',imgs.shape)
-        imgs_feat = self.base(imgs)
+        if self.arch == 'convnext':
+            imgs_feat = self.base(imgs)[-2]
+        else:
+            imgs_feat = self.base(imgs)
         # print('after backbone: ',imgs_feat.shape)
         imgs_feat = self.bottleneck(imgs_feat)
         # print('after neck: ',imgs_feat.shape)

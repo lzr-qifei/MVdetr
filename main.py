@@ -202,7 +202,7 @@ if __name__ == '__main__':
     parser.add_argument('--cls_thres', type=float, default=0.6)
     parser.add_argument('--alpha', type=float, default=1.0, help='ratio for per view loss')
     parser.add_argument('--use_mse', type=str2bool, default=False)
-    parser.add_argument('--arch', type=str, default='resnet18', choices=['vgg11', 'resnet18', 'mobilenet','resnet50','resnet34'])
+    parser.add_argument('--arch', type=str, default='resnet18')
     parser.add_argument('-d', '--dataset', type=str, default='wildtrack', choices=['wildtrack', 'multiviewx'])
     parser.add_argument('-j', '--num_workers', type=int, default=4)
     parser.add_argument('-b', '--batch_size', type=int, default=1, help='input batch size for training')
