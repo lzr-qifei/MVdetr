@@ -1,0 +1,413 @@
+logs/multiviewx/aug_deform_trans_w_dec_lr0.0005_baseR0.1_neck128_out0_alpha1.0_id0_drop0.0_dropcam0.0_worldRK2_10_imgRK12_10_2024-07-16_13-52-16
+Settings:
+{'reID': False, 'semi_supervised': 0, 'id_ratio': 0, 'cls_thres': 0.6, 'alpha': 1.0, 'use_mse': False, 'arch': 'resnet18', 'dataset': 'multiviewx', 'num_workers': 4, 'batch_size': 1, 'dropout': 0.0, 'dropcam': 0.0, 'epochs': 100, 'lr': 0.0005, 'base_lr_ratio': 0.1, 'weight_decay': 0.0001, 'resume': None, 'visualize': False, 'seed': 2021, 'deterministic': False, 'augmentation': True, 'world_feat': 'deform_trans_w_dec', 'bottleneck_dim': 128, 'outfeat_dim': 0, 'world_reduce': 2, 'world_kernel_size': 10, 'img_reduce': 12, 'img_kernel_size': 10, 'data': '/root/autodl-tmp/MultiviewX', 'two_stage': False}
+Training...
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  42
+gt_cnt:  37
+gt_cnt:  44
+gt_cnt:  40
+gt_cnt:  34
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  35
+gt_cnt:  35
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  37
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  35
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  42
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  43
+gt_cnt:  42
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  35
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  43
+gt_cnt:  38
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  35
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  41
+gt_cnt:  43
+gt_cnt:  41
+gt_cnt:  36
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  42
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  38
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  36
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  35
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  36
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  44
+gt_cnt:  37
+gt_cnt:  43
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  36
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  35
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  36
+gt_cnt:  35
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  43
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  38
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  35
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  35
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  44
+gt_cnt:  38
+gt_cnt:  35
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  42
+gt_cnt:  41
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  42
+gt_cnt:  41
+gt_cnt:  36
+gt_cnt:  41
+gt_cnt:  33
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  42
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  35
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  38
+gt_cnt:  38
+gt_cnt:  42
+gt_cnt:  38
+gt_cnt:  41
+gt_cnt:  38
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  34
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  43
+gt_cnt:  40
+gt_cnt:  35
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  43
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  44
+gt_cnt:  44
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  36
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  42
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  42
+gt_cnt:  38
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  41
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  35
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  42
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  36
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  41
+[0/360] - ori_loss_labels: 0.8623, ori_loss_center: 0.0166, weighted_loss_labels: 1.7246, weighted_loss_center: 0.8307, total_loss: 2.5553
+[10/360] - ori_loss_labels: 0.3578, ori_loss_center: 0.0148, weighted_loss_labels: 0.7156, weighted_loss_center: 0.7407, total_loss: 1.4563
+[20/360] - ori_loss_labels: 0.2775, ori_loss_center: 0.0182, weighted_loss_labels: 0.5551, weighted_loss_center: 0.9091, total_loss: 1.4642
+[30/360] - ori_loss_labels: 0.2857, ori_loss_center: 0.0213, weighted_loss_labels: 0.5714, weighted_loss_center: 1.0667, total_loss: 1.6381
+[40/360] - ori_loss_labels: 0.2926, ori_loss_center: 0.0177, weighted_loss_labels: 0.5852, weighted_loss_center: 0.8833, total_loss: 1.4684
+[50/360] - ori_loss_labels: 0.2813, ori_loss_center: 0.0209, weighted_loss_labels: 0.5625, weighted_loss_center: 1.0473, total_loss: 1.6099
+[60/360] - ori_loss_labels: 0.2700, ori_loss_center: 0.0206, weighted_loss_labels: 0.5399, weighted_loss_center: 1.0322, total_loss: 1.5721
+[70/360] - ori_loss_labels: 0.2664, ori_loss_center: 0.0205, weighted_loss_labels: 0.5328, weighted_loss_center: 1.0227, total_loss: 1.5556
+[80/360] - ori_loss_labels: 0.2728, ori_loss_center: 0.0210, weighted_loss_labels: 0.5456, weighted_loss_center: 1.0518, total_loss: 1.5975
+[90/360] - ori_loss_labels: 0.2731, ori_loss_center: 0.0176, weighted_loss_labels: 0.5463, weighted_loss_center: 0.8794, total_loss: 1.4257
+Train Epoch: 1, Batch:100, loss: 0.013401, Time: 41.9
+[100/360] - ori_loss_labels: 0.2686, ori_loss_center: 0.0180, weighted_loss_labels: 0.5373, weighted_loss_center: 0.9019, total_loss: 1.4391
+[110/360] - ori_loss_labels: 0.2858, ori_loss_center: 0.0202, weighted_loss_labels: 0.5716, weighted_loss_center: 1.0075, total_loss: 1.5792
+[120/360] - ori_loss_labels: 0.2545, ori_loss_center: 0.0198, weighted_loss_labels: 0.5091, weighted_loss_center: 0.9883, total_loss: 1.4974
+[130/360] - ori_loss_labels: 0.2575, ori_loss_center: 0.0156, weighted_loss_labels: 0.5149, weighted_loss_center: 0.7788, total_loss: 1.2937
+[140/360] - ori_loss_labels: 0.2542, ori_loss_center: 0.0161, weighted_loss_labels: 0.5084, weighted_loss_center: 0.8063, total_loss: 1.3147
+[150/360] - ori_loss_labels: 0.2568, ori_loss_center: 0.0157, weighted_loss_labels: 0.5135, weighted_loss_center: 0.7858, total_loss: 1.2993
+[160/360] - ori_loss_labels: 0.2588, ori_loss_center: 0.0181, weighted_loss_labels: 0.5175, weighted_loss_center: 0.9054, total_loss: 1.4229
+[170/360] - ori_loss_labels: 0.2340, ori_loss_center: 0.0174, weighted_loss_labels: 0.4680, weighted_loss_center: 0.8705, total_loss: 1.3385
+[180/360] - ori_loss_labels: 0.2470, ori_loss_center: 0.0193, weighted_loss_labels: 0.4940, weighted_loss_center: 0.9644, total_loss: 1.4584
+[190/360] - ori_loss_labels: 0.2302, ori_loss_center: 0.0177, weighted_loss_labels: 0.4605, weighted_loss_center: 0.8836, total_loss: 1.3441
+Train Epoch: 1, Batch:200, loss: 0.006290, Time: 78.2
+[200/360] - ori_loss_labels: 0.2308, ori_loss_center: 0.0175, weighted_loss_labels: 0.4617, weighted_loss_center: 0.8754, total_loss: 1.3371
+[210/360] - ori_loss_labels: 0.2147, ori_loss_center: 0.0202, weighted_loss_labels: 0.4294, weighted_loss_center: 1.0105, total_loss: 1.4399
+[220/360] - ori_loss_labels: 0.2176, ori_loss_center: 0.0201, weighted_loss_labels: 0.4352, weighted_loss_center: 1.0030, total_loss: 1.4382
+[230/360] - ori_loss_labels: 0.2149, ori_loss_center: 0.0163, weighted_loss_labels: 0.4299, weighted_loss_center: 0.8129, total_loss: 1.2427
+[240/360] - ori_loss_labels: 0.2124, ori_loss_center: 0.0182, weighted_loss_labels: 0.4249, weighted_loss_center: 0.9118, total_loss: 1.3367
+[250/360] - ori_loss_labels: 0.2066, ori_loss_center: 0.0172, weighted_loss_labels: 0.4133, weighted_loss_center: 0.8617, total_loss: 1.2750
+[260/360] - ori_loss_labels: 0.2091, ori_loss_center: 0.0177, weighted_loss_labels: 0.4182, weighted_loss_center: 0.8866, total_loss: 1.3048
+[270/360] - ori_loss_labels: 0.1941, ori_loss_center: 0.0178, weighted_loss_labels: 0.3882, weighted_loss_center: 0.8881, total_loss: 1.2763
+[280/360] - ori_loss_labels: 0.2161, ori_loss_center: 0.0182, weighted_loss_labels: 0.4322, weighted_loss_center: 0.9092, total_loss: 1.3414
+[290/360] - ori_loss_labels: 0.1720, ori_loss_center: 0.0180, weighted_loss_labels: 0.3440, weighted_loss_center: 0.9005, total_loss: 1.2445
+Train Epoch: 1, Batch:300, loss: 0.004296, Time: 114.5
+[300/360] - ori_loss_labels: 0.2146, ori_loss_center: 0.0156, weighted_loss_labels: 0.4292, weighted_loss_center: 0.7799, total_loss: 1.2090
+[310/360] - ori_loss_labels: 0.2419, ori_loss_center: 0.0164, weighted_loss_labels: 0.4837, weighted_loss_center: 0.8212, total_loss: 1.3049
+[320/360] - ori_loss_labels: 0.1844, ori_loss_center: 0.0177, weighted_loss_labels: 0.3687, weighted_loss_center: 0.8843, total_loss: 1.2530
+[330/360] - ori_loss_labels: 0.2105, ori_loss_center: 0.0142, weighted_loss_labels: 0.4210, weighted_loss_center: 0.7112, total_loss: 1.1321
+[340/360] - ori_loss_labels: 0.2057, ori_loss_center: 0.0173, weighted_loss_labels: 0.4113, weighted_loss_center: 0.8640, total_loss: 1.2753
+[350/360] - ori_loss_labels: 0.2156, ori_loss_center: 0.0155, weighted_loss_labels: 0.4313, weighted_loss_center: 0.7746, total_loss: 1.2059
+Train Epoch: 1, Batch:360, loss: 0.003450, Time: 136.3
+Testing...
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  36

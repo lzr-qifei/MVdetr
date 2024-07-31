@@ -1,0 +1,148 @@
+logs/multiviewx/aug_deform_trans_w_dec_lr0.0005_baseR0.1_neck128_out0_alpha1.0_id0_drop0.0_dropcam0.0_worldRK4_10_imgRK12_10_2024-07-04_19-52-51
+Settings:
+{'reID': False, 'semi_supervised': 0, 'id_ratio': 0, 'cls_thres': 0.6, 'alpha': 1.0, 'use_mse': False, 'arch': 'resnet18', 'dataset': 'multiviewx', 'num_workers': 4, 'batch_size': 1, 'dropout': 0.0, 'dropcam': 0.0, 'epochs': 10, 'lr': 0.0005, 'base_lr_ratio': 0.1, 'weight_decay': 0.0001, 'resume': None, 'visualize': False, 'seed': 2021, 'deterministic': False, 'augmentation': True, 'world_feat': 'deform_trans_w_dec', 'bottleneck_dim': 128, 'outfeat_dim': 0, 'world_reduce': 4, 'world_kernel_size': 10, 'img_reduce': 12, 'img_kernel_size': 10, 'data': '/root/autodl-tmp/MultiviewX'}
+rpts:  torch.Size([60000, 6, 4, 2])
+pos_emb size:  [ 80 125]
+Training...
+gt_cnt:  38
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  35
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  35
+gt_cnt:  42
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(6.8237, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0361, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.4369, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  35
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(8.2243, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0388, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.7224, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(7.3602, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0399, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.5518, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(6.1749, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0370, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.3089, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(6.2550, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0370, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.3249, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(5.7209, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0333, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.2107, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  38
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(6.1470, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0359, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.3012, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(5.6481, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0413, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.2123, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(5.6956, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0359, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.2109, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  39
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(4.7383, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0366, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.0209, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  40
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(4.8027, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0385, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.0375, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  35
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(5.2621, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0383, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.1290, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  35
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(6.3994, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0353, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.3504, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+query shape:  torch.Size([1, 300, 128])
+ref pts dec:  torch.Size([1, 300, 2])
+indices0 shape:  37
+outlabel_shape:  torch.Size([300, 1])
+src_logit shape:  torch.Size([300, 1])
+tgt_cls shape:  torch.Size([300])
+{'loss_ce': tensor(7.6022, device='cuda:0', grad_fn=<MulBackward0>), 'loss_center': tensor(0.0325, device='cuda:0', grad_fn=<DivBackward0>)}
+tensor(1.5854, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)

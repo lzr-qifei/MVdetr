@@ -1,0 +1,361 @@
+logs/multiviewx/aug_deform_trans_w_dec_lr0.0001_baseR0.1_neck128_out0_alpha1.0_id0_drop0.0_dropcam0.0_worldRK4_10_imgRK12_10_2024-07-11_11-40-09
+Settings:
+{'reID': False, 'semi_supervised': 0, 'id_ratio': 0, 'cls_thres': 0.6, 'alpha': 1.0, 'use_mse': False, 'arch': 'resnet18', 'dataset': 'multiviewx', 'num_workers': 4, 'batch_size': 1, 'dropout': 0.0, 'dropcam': 0.0, 'epochs': 100, 'lr': 0.0001, 'base_lr_ratio': 0.1, 'weight_decay': 0.0001, 'resume': None, 'visualize': False, 'seed': 2021, 'deterministic': False, 'augmentation': True, 'world_feat': 'deform_trans_w_dec', 'bottleneck_dim': 128, 'outfeat_dim': 0, 'world_reduce': 4, 'world_kernel_size': 10, 'img_reduce': 12, 'img_kernel_size': 10, 'data': '/root/autodl-tmp/MultiviewX', 'two_stage': False}
+Training...
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(7.1492, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(154.8684, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(169.1669, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(7.0796, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(231.6925, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(245.8517, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  36
+{'labels': tensor(7.6721, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(177.2660, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(192.6103, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(7.2446, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(190.9579, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(205.4472, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(6.7366, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(293.9884, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(307.4616, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(7.1305, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(238.5819, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(252.8428, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  40
+{'labels': tensor(6.3839, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(261.3709, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(274.1388, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  40
+{'labels': tensor(6.2124, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(210.6318, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(223.0567, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(6.7901, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(233.6009, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(247.1811, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(6.7491, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(202.9421, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(216.4404, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(6.2497, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(216.4434, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(228.9428, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  40
+{'labels': tensor(5.8969, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(246.1633, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(257.9571, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  38
+{'labels': tensor(6.1622, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(283.0668, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(295.3911, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  38
+{'labels': tensor(6.1316, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(281.2931, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(293.5564, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  38
+{'labels': tensor(6.0870, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(234.9021, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(247.0760, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(5.8357, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(152.7331, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(164.4044, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(6.0443, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(191.7752, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(203.8637, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  40
+{'labels': tensor(5.5966, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(209.4780, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(220.6713, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  36
+{'labels': tensor(6.1029, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(136.5797, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(148.7854, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  40
+{'labels': tensor(5.4306, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(168.6374, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(179.4987, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  35
+{'labels': tensor(6.2912, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(290.7481, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(303.3304, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(5.7740, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(279.8209, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(291.3689, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  35
+{'labels': tensor(5.9698, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(274.5677, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(286.5073, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  35
+{'labels': tensor(5.9340, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(163.5414, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(175.4095, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  43
+{'labels': tensor(4.7509, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(163.8742, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(173.3760, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(5.0929, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(342.2621, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(352.4479, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(5.0813, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(125.0708, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(135.2334, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(5.3887, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(167.1480, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(177.9253, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  36
+{'labels': tensor(5.4569, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(292.3977, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(303.3116, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(5.0176, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(206.0668, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(216.1019, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(5.2845, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(130.3535, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(140.9226, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(5.1494, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(226.4968, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(236.7956, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(4.8153, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(263.4769, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(273.1076, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(4.7300, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(226.5314, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(235.9915, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+{'labels': tensor(4.4977, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(276.3087, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(285.3042, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(4.7546, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(363.2027, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(372.7119, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  38
+{'labels': tensor(4.7664, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(279.5398, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(289.0726, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  35
+{'labels': tensor(5.2328, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(184.7126, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(195.1782, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  42
+{'labels': tensor(4.1564, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(160.5794, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(168.8921, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(4.8716, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(201.8449, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(211.5881, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  36
+{'labels': tensor(4.8755, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(191.8136, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(201.5645, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(4.6999, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(198.1155, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(207.5153, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  40
+{'labels': tensor(4.2742, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(155.1559, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(163.7043, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  40
+{'labels': tensor(4.2006, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(225.2794, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(233.6807, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(4.5211, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(229.8033, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(238.8454, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  40
+{'labels': tensor(4.1461, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(187.5953, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(195.8875, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(4.2230, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(135.9652, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(144.4113, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  40
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  35
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  38
+gt_cnt:  38
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  35
+gt_cnt:  37
+gt_cnt:  37
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  40
+gt_cnt:  40
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  36
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  35
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  42
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  39
+gt_cnt:  39
+gt_cnt:  37
+gt_cnt:  38
+gt_cnt:  37
+gt_cnt:  35
+gt_cnt:  43
+gt_cnt:  36
+gt_cnt:  39
+gt_cnt:  38
+gt_cnt:  36
+gt_cnt:  37
+gt_cnt:  41
+gt_cnt:  39
+gt_cnt:  40
+gt_cnt:  41
+{'labels': tensor(4.1702, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(118.7595, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(127.1000, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+{'labels': tensor(3.9732, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(141.8824, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(149.8289, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  38
+{'labels': tensor(4.3037, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(208.5274, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(217.1347, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(4.1643, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(206.6790, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(215.0077, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  37
+{'labels': tensor(4.3578, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(171.4125, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(180.1281, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(4.0288, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(171.3413, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(179.3989, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  38
+{'labels': tensor(4.1899, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(183.8548, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(192.2346, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+{'labels': tensor(3.7729, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(135.7755, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(143.3214, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  41
+{'labels': tensor(3.7732, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(172.2211, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(179.7675, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  40
+{'labels': tensor(3.8239, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(218.1113, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(225.7591, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(3.8983, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(134.4849, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(142.2814, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
+after merge:  torch.Size([1, 128, 80, 125])
+dec_spatial_shapes:  tensor([[ 80, 125]], device='cuda:0')
+indices0 shape:  39
+{'labels': tensor(3.9271, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(158.4908, device='cuda:0', grad_fn=<MseLossBackward0>)}
+tensor(166.3449, device='cuda:0', dtype=torch.float64, grad_fn=<AddBackward0>)
