@@ -71,6 +71,7 @@ def create_reference_map(dataset, n_points=4, downsample=2, visualize=False):
 
     ref_maps[:, :, :, 0] /= W
     ref_maps[:, :, :, 1] /= H
+    # print('ref_map shape: ',ref_maps.shape)
     return ref_maps
 
 class MLP(nn.Module):
@@ -88,9 +89,10 @@ class MLP(nn.Module):
         return x
 
 class MVDeTr_w_dec(nn.Module):
-    def __init__(self, dataset, arch='resnet18', z=0, world_feat_arch='conv',
+    def __init__(self, args,dataset, arch='resnet18', z=0, world_feat_arch='conv',
                  bottleneck_dim=128, outfeat_dim=64, dropout=0.5,two_stage=False,num_queries=300,local_pth = None):
         super().__init__()
+        self.args = args
         self.Rimg_shape, self.Rworld_shape = dataset.Rimg_shape, dataset.Rworld_shape
         self.img_reduce = dataset.img_reduce
 
@@ -151,6 +153,7 @@ class MVDeTr_w_dec(nn.Module):
         elif world_feat_arch == 'deform_trans':
             n_points = 4
             reference_points = create_reference_map(dataset, n_points).repeat([dataset.num_cam, 1, 1, 1])
+            
             self.world_feat = DeformTransWorldFeat(dataset.num_cam, dataset.Rworld_shape, base_dim,
                                                    n_points=n_points, stride=2, reference_points=reference_points)
         elif world_feat_arch == 'aio':
@@ -159,6 +162,7 @@ class MVDeTr_w_dec(nn.Module):
             n_points = 4
             reference_points = create_reference_map(dataset, n_points).repeat([dataset.num_cam, 1, 1, 1])
             # print('rpts: ',reference_points.shape)
+            # print('enc ref: ',reference_points.shape)
             self.world_feat = DeformableTransformer(num_cam=dataset.num_cam,Rworld_shape=dataset.Rworld_shape,base_dim=base_dim,
                                                     reference_points=reference_points,two_stage=two_stage)
             hidden_dim=self.world_feat.d_model
@@ -242,7 +246,9 @@ class MVDeTr_w_dec(nn.Module):
         if visualize:
             for cam in range(N):
                 visualize_img = array2heatmap(torch.norm(imgs_feat[cam * B].detach(), dim=0).cpu())
-                visualize_img.save(f'/home/mnt/lizirui/vis_result/mvdetr/augimgfeat{cam + 1}.png')
+                # visualize_img.save(f'/home/mnt/lizirui/vis_result/mvdetr/augimgfeat{cam + 1}.png')
+                visualize_img.save(f'{self.args.vis_path}{cam + 1}.png')
+                # print('Hi, im showing')
                 # plt.imshow(visualize_img)
                 # plt.show()
 
@@ -260,8 +266,10 @@ class MVDeTr_w_dec(nn.Module):
         # print('feat: ',world_feat)
         if visualize:
             for cam in range(N):
+                # print('feat: ',world_feat.shape)
                 visualize_img = array2heatmap(torch.norm(world_feat[0, cam].detach(), dim=0).cpu())
-                visualize_img.save(f'/home/mnt/lizirui/vis_result/mvdetr/projfeat{cam + 1}.png')
+                # visualize_img.save(f'/home/mnt/lizirui/vis_result/mvdetr/projfeat{cam + 1}.png')
+                visualize_img.save(f'{self.args.vis_path}projfeat{cam + 1}.png')
                 # plt.imshow(visualize_img)
                 # plt.show()
         # print('before DT: ',world_feat.shape)
@@ -311,6 +319,12 @@ class MVDeTr_w_dec(nn.Module):
             # out = {'pred_logits': outputs_class[-1], 'pred_ct_pts': outputs_coord[-1],
             #        'pred_offsets':outputs_offset[-1]}
             out = {'pred_logits': outputs_class[-1], 'pred_ct_pts': outputs_coord[-1]}
+            if visualize:
+                for cam in range(N):
+                    # print('hs: ',hs.shape)
+                    visualize_img = array2heatmap(torch.norm(world_feat[0, cam].detach(), dim=0).cpu())
+                    # visualize_img.save(f'/home/mnt/lizirui/vis_result/mvdetr/projfeat{cam + 1}.png')
+                    visualize_img.save(f'{self.args.vis_path}world_with_points{cam + 1}.png')
             # print('out: ',out)
             return out
         # print('after DT: ',world_feat.shape)

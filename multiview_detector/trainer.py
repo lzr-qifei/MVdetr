@@ -149,7 +149,7 @@ class PerspectiveTrainer(BaseTrainer):
             # with autocast():
             with torch.no_grad():
                 # (world_heatmap, world_offset), (imgs_heatmap, imgs_offset, imgs_wh) = self.model(data, affine_mats)
-                outputs = self.model(data,affine_mats)
+                outputs = self.model(data,affine_mats,visualize=True)
                 # print('logits: ',outputs['pred_logits'])
                 targets = world_gt
                 # loss_dict = criterion(outputs,targets)

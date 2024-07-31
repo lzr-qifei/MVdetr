@@ -65,7 +65,11 @@ def main(args):
                              img_reduce=args.img_reduce, world_kernel_size=args.world_kernel_size,
                              img_kernel_size=args.img_kernel_size, semi_supervised=args.semi_supervised,
                              dropout=args.dropcam, augmentation=args.augmentation,train_ratio=args.train_ratio)
-    test_set = frameDataset(base, train=False, world_reduce=args.world_reduce,
+    # test_set = frameDataset(base, train=False, world_reduce=args.world_reduce,
+    #                         img_reduce=args.img_reduce, world_kernel_size=args.world_kernel_size,
+    #                         img_kernel_size=args.img_kernel_size)
+    from multiview_detector.datasets.SingleFrameDataset import SingleFrameDataset
+    test_set = SingleFrameDataset(base, train=False, world_reduce=args.world_reduce,
                             img_reduce=args.img_reduce, world_kernel_size=args.world_kernel_size,
                             img_kernel_size=args.img_kernel_size)
 
@@ -105,7 +109,7 @@ def main(args):
     print(vars(args))
 
     # model
-    model = MVDeTr_w_dec(train_set, args.arch, world_feat_arch=args.world_feat,
+    model = MVDeTr_w_dec(args,train_set, args.arch, world_feat_arch=args.world_feat,
                    bottleneck_dim=args.bottleneck_dim, outfeat_dim=args.outfeat_dim, dropout=args.dropout,
                    two_stage=args.two_stage,num_queries=args.num_q,local_pth = args.pth).cuda(device=device)
 
@@ -221,6 +225,7 @@ if __name__ == '__main__':
     parser.add_argument('--device',type=int,default=0)
     parser.add_argument('--pth',type=str,default=None)
     parser.add_argument('--out_path',type=str,default='./results/test.txt')
+    parser.add_argument('--vis_path', type=str,default='/root/MVdetr/multiview_detector/vis_results/')
     args = parser.parse_args()
 
     main(args)

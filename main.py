@@ -121,7 +121,7 @@ def main(args):
     print(vars(args))
 
     # model
-    model = MVDeTr_w_dec(train_set, args.arch, world_feat_arch=args.world_feat,
+    model = MVDeTr_w_dec(args,train_set, args.arch, world_feat_arch=args.world_feat,
                    bottleneck_dim=args.bottleneck_dim, outfeat_dim=args.outfeat_dim, dropout=args.dropout,
                    two_stage=args.two_stage,num_queries=args.num_q,local_pth = args.pth).cuda(device=device)
 
@@ -239,6 +239,7 @@ if __name__ == '__main__':
     parser.add_argument('--out_path',type=str,default='./results/test.txt')
     parser.add_argument('--det_thres',type=float,default=0.65)
     parser.add_argument('--sensecore', action='store_true')
+    parser.add_argument('--vis_path', type=str,default='/root/MVdetr/multiview_detector/vis_results/')
     args = parser.parse_args()
 
     main(args)

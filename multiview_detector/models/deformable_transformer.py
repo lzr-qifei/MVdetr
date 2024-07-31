@@ -191,14 +191,14 @@ class DeformableTransformer(nn.Module):
         # encoder
         # memory = self.encoder(src_flatten, spatial_shapes, level_start_index, valid_ratios, lvl_pos_embed_flatten, mask_flatten)
         memory = self.encoder(src_flatten, spatial_shapes, level_start_index, valid_ratios, lvl_pos_embed_flatten)
-        if self.cur_epoch == 2:
-            for cam in range(N):
-                    import matplotlib.pyplot as plt
-                    world_feat = memory.view(B, N, H, W, C).permute(0, 1, 4, 2, 3).contiguous()
-                    visualize_img = array2heatmap(torch.norm(world_feat[0, cam].detach(), dim=0).cpu())
-                    visualize_img.save(f'/root/vis_results/worldfeat{cam + 1}.png')
-                    plt.imshow(visualize_img)
-                    plt.show()
+        # if self.cur_epoch == 2:
+        # for cam in range(N):
+        #         # import matplotlib.pyplot as plt
+        #         world_feat = memory.view(B, N, H, W, C).permute(0, 1, 4, 2, 3).contiguous()
+        #         visualize_img = array2heatmap(torch.norm(world_feat[0, cam].detach(), dim=0).cpu())
+        #         visualize_img.save(f'/root/MVdetr/multiview_detector/vis_results/worldfeat{cam + 1}.png')
+                    # plt.imshow(visualize_img)
+                    # plt.show()
         # 这里如果不融合，可以让query在不同的相机维度上查，把相机维度等同原有的scale维度
         # merged_feat = self.merge_linear(memory.view(B, N, H, W, C).permute(0, 1, 4, 2, 3).contiguous().
         #                                 view(B, N * C, H, W))
@@ -219,7 +219,8 @@ class DeformableTransformer(nn.Module):
             # print('query shape: ',query_embed.shape)
             tgt = tgt.unsqueeze(0).expand(bs, -1, -1)
             reference_points = self.reference_points_dec(query_embed).sigmoid()
-            # print('ref pts before dec: ',reference_points[0:4])
+
+            # print('ref pts before dec: ',reference_points.shape)
             init_reference_out = reference_points
 
         else:
