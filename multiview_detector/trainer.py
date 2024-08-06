@@ -13,6 +13,7 @@ from multiview_detector.utils.nms import nms
 from multiview_detector.utils.meters import AverageMeter
 from multiview_detector.utils.image_utils import add_heatmap_to_image, img_color_denormalize
 
+## Multiview-DETR trainer
 
 class BaseTrainer(object):
     def __init__(self):

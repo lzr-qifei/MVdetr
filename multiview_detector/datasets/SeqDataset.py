@@ -19,7 +19,18 @@ import matplotlib.pyplot as plt
 from kornia.geometry.transform import warp_perspective
 from torch.utils.data import DataLoader
 import random
-
+from math import floor
+from random import randint
+def build_mv_dataset(config):
+    from datasets.MultiviewX import MultiviewX
+    from datasets.Wildtrack import Wildtrack
+    data_path = os.path.join(config['DATA_ROOT'],config['DATASET'][0])
+    if 'Wildtrack' in config['DATASET']:
+        base = Wildtrack(data_path)
+    elif 'MultiviewX' in config['DATASET']:
+        # base = MultiviewX(os.path.expanduser('./Data/MultiviewX'))
+        base = MultiviewX(data_path)
+    return SeqDataset(base,config)
 
 def get_gt(Rshape, x_s, y_s, w_s=None, h_s=None, v_s=None, reduce=4, top_k=100, kernel_size=4):
     H, W = Rshape
@@ -321,29 +332,67 @@ class frameDataset(VisionDataset):
         return len(self.world_gt.keys())
 from torch.utils.data import Dataset
 class SeqDataset(Dataset):
-    def __init__(self,base,args,config:dict,is_train:bool):
-        self.framedata = frameDataset(base, train=is_train, world_reduce=args.world_reduce,
-                             img_reduce=args.img_reduce, world_kernel_size=args.world_kernel_size,
-                             img_kernel_size=args.img_kernel_size, semi_supervised=args.semi_supervised,
-                             dropout=args.dropcam, augmentation=args.augmentation,train_ratio=args.train_ratio)
+    def __init__(self,base,config:dict):
+
+        self.dataset_name = config['DATASET'][0]
         self.data_root = config['DATA_ROOT']
-        self.dataset = self.get_dataset_structure(dataset=config['DATASET'])
-        self.dataloader = DataLoader(self.framedata, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers,
-                              pin_memory=True, worker_init_fn=seed_worker)
+        self.dataset = self.get_dataset_structure(dataset=config['DATASET'][0])
+        self.infos = self.get_dataset_infos()
+        
+        self.img_shape = base.img_shape # H,W;
+        self.img_reduce = config['IMG_REDUCE']
+        self.transform = T.Compose([T.ToTensor(), T.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
+                                    T.Resize((np.array(self.img_shape) * 8 // self.img_reduce).tolist())])
+
+        self.sample_steps = config["SAMPLE_STEPS"]
+        self.sample_lengths = config["SAMPLE_LENGTHS"]
+        self.sample_modes = config["SAMPLE_MODES"]
+        self.sample_intervals = config["SAMPLE_INTERVALS"]
+        self.sample_frames_begin = []
+        # self.train = is_train
+        self.length = config['LENGTH_PER_SEQUENCE']
+        self.sample_frames_begin = []*self.length
         # self.infos = sel
+    
+    def __len__(self):
+        # return len(self.sample_frames_begin)
+        return self.length
+
+    def __getitem__(self, item):
+        dataset, seq, begin = self.sample_frames_begin[item]
+        # print(dataset)
+        split = ' '
+        frames_idx = self.sample_frames_idx(dataset=dataset, split=split, seq=seq, begin=begin)
+        # dataset = self.dataset_name
+        images, affine_mats,infos = self.get_multi_frames(dataset=dataset, split=split, seq=seq, frames=frames_idx)
+
+        return {
+            # "images": stacked_images,
+            "images": images,
+            "infos": infos,
+            "affine_mats": affine_mats
+        }
+    
     def get_dataset_structure(self, dataset: str):
         dataset_dir = os.path.join(self.data_root, dataset)
         structure = {"dataset": dataset}
         if dataset =='MultiviewX':
             split = 'Image_subsets'
             split_dir = os.path.join(dataset_dir,split)
-            cam_names = os.listdir(split_dir)
+            self.cam_names = os.listdir(split_dir)
+            seqs = range(36)
             structure['cams'] = {
                 cam : {
                     'image_path':os.path.join(split_dir,cam),
                     'gt_path':os.path.join(self.data_root,'gt_id.txt')
                 }
-                for cam in cam_names
+                for cam in self.cam_names
+            }
+            structure['seqs'] = {
+                seq :{
+                    "max_frame" : 10
+                }
+                for seq in seqs
             }
         return structure
     def get_dataset_infos(self):
@@ -351,72 +400,189 @@ class SeqDataset(Dataset):
         dataset = self.dataset
         cams = dataset['cams']
         dataset_name = dataset["dataset"]
-        for batch_idx, (data, world_gt, imgs_gt, affine_mats, frame) in enumerate(self.dataloader):
-            pass
-
-def test(test_projection=False):
-    from torch.utils.data import DataLoader
-    from multiview_detector.datasets.Wildtrack import Wildtrack
-    from multiview_detector.datasets.MultiviewX import MultiviewX
-
-    # dataset = frameDataset(Wildtrack(os.path.expanduser('~/Data/Wildtrack')), train=True, augmentation=False)
-    dataset = frameDataset(MultiviewX(os.path.expanduser('/root/autodl-tmp/MultiviewX')), train=True)
-    # dataset = frameDataset(Wildtrack(os.path.expanduser('~/Data/Wildtrack')), train=True, semi_supervised=.1)
-    # dataset = frameDataset(MultiviewX(os.path.expanduser('~/Data/MultiviewX')), train=True, semi_supervised=.1)
-    # dataset = frameDataset(Wildtrack(os.path.expanduser('~/Data/Wildtrack')), train=True, semi_supervised=0.5)
-    # dataset = frameDataset(MultiviewX(os.path.expanduser('~/Data/MultiviewX')), train=True, semi_supervised=0.5)
-    min_dist = np.inf
-    for world_gt in dataset.world_gt.values():
-        x, y = world_gt[0][:, 0], world_gt[0][:, 1]
-        if x.size and y.size:
-            xy_dists = ((x - x[:, None]) ** 2 + (y - y[:, None]) ** 2) ** 0.5
-            np.fill_diagonal(xy_dists, np.inf)
-            min_dist = min(min_dist, np.min(xy_dists))
-            pass
-    dataloader = DataLoader(dataset, 2, True, num_workers=0)
-    # imgs, world_gt, imgs_gt, M, frame = next(iter(dataloader))
-    t0 = time.time()
-    imgs, world_gt, imgs_gt, M, frame = dataset.__getitem__(0, visualize=False)
-    print(time.time() - t0)
-    # print('w_gt',world_gt)
-    # print('id_len: ',len(world_gt['world_pids']))
-    # print('labels_len: ',len(world_gt['world_pts']))
-
-    pass
-    if test_projection:
-        import matplotlib.pyplot as plt
-        import cv2
-        from multiview_detector.utils.projection import get_worldcoord_from_imagecoord
-        world_grid_maps = []
-        xx, yy = np.meshgrid(np.arange(0, 1920, 20), np.arange(0, 1080, 20))
-        H, W = xx.shape
-        image_coords = np.stack([xx, yy], axis=2).reshape([-1, 2])
-        for cam in range(dataset.num_cam):
-            world_coords = get_worldcoord_from_imagecoord(image_coords.transpose(),
-                                                          dataset.base.intrinsic_matrices[cam],
-                                                          dataset.base.extrinsic_matrices[cam])
-            world_grids = dataset.base.get_worldgrid_from_worldcoord(world_coords).transpose().reshape([H, W, 2])
-            world_grid_map = np.zeros(dataset.worldgrid_shape)
-            for i in range(H):
-                for j in range(W):
-                    x, y = world_grids[i, j]
-                    if dataset.base.indexing == 'xy':
-                        if x in range(dataset.worldgrid_shape[1]) and y in range(dataset.worldgrid_shape[0]):
-                            world_grid_map[int(y), int(x)] += 1
+        # for batch_idx, (data, world_gt, imgs_gt, affine_mats, frame) in enumerate(self.dataloader):
+        # if self.train:
+        #     split = 'train'
+        # else:
+        #     split = 'test'
+        gt_path = os.path.join(self.data_root,dataset_name,'train','gt_id.txt')
+        if gt_path is not None:
+            for f in range(360):
+                seq = f // 10
+                infos[dataset_name][seq][f]["gts"] = []
+            with open(gt_path, "r") as gt_file:
+                lines = gt_file.readlines()
+                print(len(lines))
+                for line in lines:
+                    # line = line[:-1]
+                    if dataset_name == "MultiviewX" :
+                        # [frame, id, x, y, w, h, 1, 1, 1]
+                        # f, x, y, id = line.split(" ")
+                        # a = line.strip().strip('[]').split(' ')
+                        # print(a)
+                        f, x, y, id =  line.strip().strip('[]').split(' ')
+                        seq = int(f) // 10
+                        label = 1
+                    elif dataset_name == "MOT17" or dataset_name == "MOT17_SPLIT":
+                        pass
                     else:
-                        if x in range(dataset.worldgrid_shape[0]) and y in range(dataset.worldgrid_shape[1]):
-                            world_grid_map[int(x), int(y)] += 1
-            # print(world_grid_map.shape)
-            world_grid_map = world_grid_map != 0
-            # cv2.imwrite('/root/wgm.jpg',world_grid_map)
-            plt.imshow(world_grid_map)
-            plt.show()
-            world_grid_maps.append(world_grid_map)
+                        raise NotImplementedError(f"Can't analysis the gts of dataset '{dataset_name}'.")
+                    # format, and write into infos
+                    f, id, label = map(int, (f, id, label))
+                    x, y = map(float, (x, y))
+                    # assert v != 0.0, f"Visibility of object '{i}' in frame '{f}' is 0.0."
+                    infos[dataset_name][seq][f]["gts"].append([
+                        f, id, label, x, y
+                    ])
+                    pass
+            # pass
+        return infos
+    
+    def sample_frames_idx(self, dataset: str, split: str, seq: str, begin: int) :
+        if self.sample_mode == "random_interval":
+            if dataset in ["CrowdHuman"]:       # static images, repeat is all right:
+                return [begin] * self.sample_length
+            elif self.sample_length == 1:       # only train detection:
+                return [begin]
+            else:                               # real video, do something to sample:
+                remain_frames = int(max(self.infos[dataset][seq].keys())) - begin
+                max_interval = floor(remain_frames / (self.sample_length - 1))
+                interval = min(randint(1, self.sample_interval), max_interval)      # legal interval
+                frames_idx = [begin + interval * _ for _ in range(self.sample_length)]
+                if not all([len(self.infos[dataset][seq][_]["gts"]) for _ in frames_idx]):
+                    # In the sampling sequence, there is at least a frame's gt is empty, not friendly for training,
+                    # make sure all frames have gt:
+                    frames_idx = [begin + _ for _ in range(self.sample_length)]
+        else:
+            raise NotImplementedError(f"Do not support sample mode '{self.sample_mode}'.")
+        return frames_idx
+    
+    # def get_multi_frames(self, dataset: str, length):
+        # t = 0
+        # images = []
+        # infos = []
+        # dataloader_iterator1 = iter(self.dataloader)
+        # for t in range(self.length):
+        #     try:
+        #         data, world_gt, imgs_gt, affine_mats, frame = next(dataloader_iterator1)
+        #         image = data
+        #         info = dict()
+        #         info["dataset"] = dataset
+        #         info["frame"] = frame
+        #         info["affine_mats"] = affine_mats
+        #         # pts, ids, labels = list(), list(), list()
+        #         info["pts"] = world_gt["world_pts"]
+        #         info["labels"] = world_gt["labels"]
+        #         images.append(image)
+        #         infos.append(info)
+        #         t+=1
+        #     except StopIteration:
+        #         dataloader_iterator1 = iter(self.dataloader)
+        # for batch_idx, (data, world_gt, imgs_gt, affine_mats, frame) in enumerate(self.dataloader):
+        #     if t < length:
+        #         image = data
+        #         info = dict()
+        #         info["dataset"] = dataset
+        #         info["frame"] = frame
+        #         info["affine_mats"] = affine_mats
+        #         # pts, ids, labels = list(), list(), list()
+        #         info["pts"] = world_gt["world_pts"]
+        #         info["labels"] = world_gt["labels"]
+        #         images.append(image)
+        #         infos.append(info)
+        #         t+=1
+        #     else:
+        #         images = torch.stack(images)
+        # return images,infos
+    def get_multi_frames(self, dataset: str, split: str, seq: str, frames):
+        return zip(*[self.get_single_frame(dataset=dataset, split=split, seq=seq, frame=frame) for frame in frames])
+    
+    def get_single_frame(self, dataset: str, split: str, seq: str, frame: int):
+        images = []
+        affine_mats = []
+
+        if dataset=='MultiviewX':
+            
+            for cam in self.cam_names:
+                fid = f"{frame:04}"
+                # path = os.path.join(self.dataset['cams'][cam]['image_path'],fid,'.png')
+                # print(path)
+                image = np.array(Image.open(os.path.join(self.dataset['cams'][cam]['image_path'],fid+'.png')).convert('RGB'))
+                image = self.transform(image)
+                images.append(image)
+                M = np.eye(3)
+                affine_mats.append(torch.from_numpy(M).float())
+            imgs = torch.stack(images)
+            affine_mats = torch.stack(affine_mats)
+        elif dataset =='WildTrack':
+            #TODO:补充WildTrack的数据结构
             pass
-        plt.imshow(np.sum(np.stack(world_grid_maps), axis=0))
-        plt.show()
-        pass
+        info = dict()
+        info["dataset"] = dataset
+        seq = int(seq)
+        info["seq"] = seq
+        info["frame"] = frame
+        info["ori_width"], info["ori_height"] = self.img_shape
+        pts, ids, labels = list(), list(), list()
+        for _,id,label,x,y in self.infos[dataset][seq][frame]["gts"]:
+            pts.append([x,y])
+            ids.append(id)
+            labels.append(label)
+        assert len(pts) == len(labels) == len(ids)
+        info["pts"] = torch.as_tensor(pts,dtype=torch.float)
+        info["ids"] = torch.as_tensor(ids,dtype=torch.long)
+        info["labels"] = torch.as_tensor(labels, dtype=torch.long)
+
+        return imgs,affine_mats,info
+
+        # image = Image.open(self.infos[dataset][split][seq][frame]["image_path"])
+        # info = dict()
+        # # Details about current image:
+        # info["image_path"] = self.infos[dataset][split][seq][frame]["image_path"]
+        # info["dataset"] = dataset
+        # info["split"] = split
+        # info["seq"] = seq
+        # info["frame"] = frame
+        # info["ori_width"], info["ori_height"] = image.size
+        # # GTs for current image:
+        # boxes, ids, labels, areas = list(), list(), list(), list()
+        # for _, i, label, _, x, y, w, h in self.infos[dataset][split][seq][frame]["gts"]:
+        #     boxes.append([x, y, w, h])
+        #     areas.append(w * h)
+        #     ids.append(i)
+        #     labels.append(label)
+        # assert len(boxes) == len(areas) == len(ids) == len(labels), f"GT for [{dataset}][{split}][{seq}][{frame}], " \
+        #                                                             f"different attributes have different length."
+        # assert len(boxes) > 0, f"GT for [{dataset}][{split}][{seq}][{frame}] is empty."
+        # info["boxes"] = torch.as_tensor(boxes, dtype=torch.float)   # in format [x, y, w, h]
+        # info["areas"] = torch.as_tensor(areas, dtype=torch.float)
+        # info["ids"] = torch.as_tensor(ids, dtype=torch.long)
+        # info["labels"] = torch.as_tensor(labels, dtype=torch.long)
+        # # Change boxes' format into [x1, y1, x2, y2]
+        # info["boxes"][:, 2:] += info["boxes"][:, :2]
+
+        # return image, info
+
+    def set_epoch(self,epoch:int):
+        self.sample_frames_begin = []
+        for _ in range(len(self.sample_steps)):
+            if epoch >= self.sample_steps[_]:
+                self.sample_mode = self.sample_modes[_]
+                self.sample_length = self.sample_lengths[_]
+                self.sample_interval = self.sample_intervals[_]
+                break
+        
+        for seq in self.dataset["seqs"]:
+            f_min = 0
+            f_max = 10
+            for f in range(f_min, f_max - (self.sample_length - 1) + 1):
+                if all([len(self.infos[self.dataset["dataset"]][seq][f + _]["gts"]) > 0
+                        for _ in range(self.sample_length)]):
+                    self.sample_frames_begin.append(
+                        (self.dataset["dataset"],seq,f)
+                    )
+        return
 
 
-if __name__ == '__main__':
-    test(True)
+
+
