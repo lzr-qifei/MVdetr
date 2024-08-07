@@ -60,6 +60,9 @@ def parse_option():
     return args
 from datasets import build_dataset, build_sampler, build_dataloader
 from torch.utils.data import DataLoader
+from multiview_detector.models.mvdetr_with_decoder import MVDeTr_w_dec
+from utils.nested_tensor import nested_tensor_index_select
+from einops import rearrange
 def main(config: dict):
     
     dataset_train = build_dataset(config=config)
@@ -71,8 +74,30 @@ def main(config: dict):
             batch_size=config["BATCH_SIZE"],
             num_workers=config["NUM_WORKERS"]
         )
-    for idx,data in enumerate(dataloader):
-        print(data["infos"][0])
+    model = MVDeTr_w_dec(args=None,dataset=dataset_train).cuda()
+    for idx,batch in enumerate(dataloader):
+        print('single mat: ',batch["mats"][0][0].shape)
+        print('mats: ',len(batch["mats"][0]))
+
+        frames = batch["nested_tensors"]
+        B, T = len(batch["images"]), len(batch["images"][0])
+        random_frame_idxs = torch.randperm(T)
+        length_detr_train_frames = 2
+        detr_train_frame_idxs = random_frame_idxs[:length_detr_train_frames]
+        detr_train_frames = nested_tensor_index_select(frames, dim=1, index=detr_train_frame_idxs)
+        detr_train_frames.tensors = rearrange(detr_train_frames.tensors, "b t n c h w -> (b t) n c h w")
+        # print('rearrange: ',detr_train_frames.tensors.shape)
+        # print('mask: ',detr_train_frames.mask.shape)
+        detr_train_frames.mask = rearrange(detr_train_frames.mask, "b t n h w -> (b t) n h w")
+        detr_train_frames = detr_train_frames.to(device='cuda:0')
+        affinemats = batch["mats"][0][0].unsqueeze(0).repeat(B*length_detr_train_frames,1,1,1)
+        print('affinemats: ',affinemats.shape)
+        detr_train_outputs = model(detr_train_frames.tensors,affinemats)
+        
+        # print(data["infos"][0])
+        # print(data["images"][0].shape)
+        # print(batch["nested_tensors"].tensors.shape)
+        # print(batch["mats"][0][0].shape)
     # dataset_val = build_dataset(config=config,is_train=False)
     # dataloader_train = build_dataloader(
     #         dataset=dataset_train,

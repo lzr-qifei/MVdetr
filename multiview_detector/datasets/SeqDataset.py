@@ -333,14 +333,18 @@ class frameDataset(VisionDataset):
 from torch.utils.data import Dataset
 class SeqDataset(Dataset):
     def __init__(self,base,config:dict):
-
+        self.base = base
         self.dataset_name = config['DATASET'][0]
+        if self.dataset_name == 'MultiviewX':
+            self.num_cam = 6
         self.data_root = config['DATA_ROOT']
         self.dataset = self.get_dataset_structure(dataset=config['DATASET'][0])
         self.infos = self.get_dataset_infos()
         
         self.img_shape = base.img_shape # H,W;
         self.img_reduce = config['IMG_REDUCE']
+        self.world_reduce = config['WORLD_REDUCE']
+        self.worldgrid_shape = base.worldgrid_shape
         self.transform = T.Compose([T.ToTensor(), T.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
                                     T.Resize((np.array(self.img_shape) * 8 // self.img_reduce).tolist())])
 
@@ -353,6 +357,8 @@ class SeqDataset(Dataset):
         self.length = config['LENGTH_PER_SEQUENCE']
         self.sample_frames_begin = []*self.length
         # self.infos = sel
+        self.Rworld_shape = list(map(lambda x: x // self.world_reduce, self.worldgrid_shape))
+        self.Rimg_shape = np.ceil(np.array(self.img_shape) / self.img_reduce).astype(int).tolist()
     
     def __len__(self):
         # return len(self.sample_frames_begin)

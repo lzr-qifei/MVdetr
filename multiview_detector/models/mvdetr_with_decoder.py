@@ -90,8 +90,8 @@ class MLP(nn.Module):
         return x
 
 class MVDeTr_w_dec(nn.Module):
-    def __init__(self, args,dataset, arch='resnet18', z=0, world_feat_arch='conv',
-                 bottleneck_dim=128, outfeat_dim=64, dropout=0.5,two_stage=False,num_queries=300,local_pth = None):
+    def __init__(self, args,dataset, arch='resnet18', z=0, world_feat_arch='deform_trans_w_dec',
+                 bottleneck_dim=128, outfeat_dim=64, dropout=0.1,two_stage=False,num_queries=300,local_pth = None):
         super().__init__()
         self.arch = arch
         self.args = args
@@ -244,14 +244,14 @@ class MVDeTr_w_dec(nn.Module):
         #         visualize_img = T.ToPILImage()(denorm(proj_imgs.detach())[0, cam])
         #         plt.imshow(visualize_img)
         #         plt.show()
-        # print('data: ',imgs.shape)
+        print('data: ',imgs.shape)
         if self.arch == 'convnext':
             imgs_feat = self.base(imgs)[-2]
         else:
             imgs_feat = self.base(imgs)
-        # print('after backbone: ',imgs_feat.shape)
+        print('after backbone: ',imgs_feat.shape)
         imgs_feat = self.bottleneck(imgs_feat)
-        # print('after neck: ',imgs_feat.shape)
+        print('after neck: ',imgs_feat.shape)
         if visualize:
             for cam in range(N):
                 visualize_img = array2heatmap(torch.norm(imgs_feat[cam * B].detach(), dim=0).cpu())
@@ -293,6 +293,9 @@ class MVDeTr_w_dec(nn.Module):
         else:
             query_embeds = self.query_embed.weight
             hs, init_reference_out, inter_references_out=self.world_feat(world_feat,query_embeds,self.num_queries)
+            print('hs: ',hs.shape)
+            print('init_references_out: ',init_reference_out.shape)
+            print('inter_references_out: ',inter_references_out.shape)
             outputs_classes = []
             outputs_coords = []
             outputs_offsets = []
@@ -303,9 +306,11 @@ class MVDeTr_w_dec(nn.Module):
                 else:
                     reference = inter_references_out[lvl - 1]
                 reference = inverse_sigmoid(reference)
-                outputs_class = self.class_embed[lvl](hs[lvl])
+                # outputs_class = self.class_embed[lvl](hs[lvl])
+                outputs_class = self.class_embed[0](hs[lvl])
+                tmp = self.center_embed[0](hs[lvl])
                 # print('clsout: ',outputs_class)
-                tmp = self.center_embed[lvl](hs[lvl])
+                # tmp = self.center_embed[lvl](hs[lvl])
                 # offset = self.offset_embed[lvl](hs[lvl])
                 if reference.shape[-1] == 4:
                     tmp += reference

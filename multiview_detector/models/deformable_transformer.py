@@ -60,7 +60,7 @@ class DeformableTransformer(nn.Module):
                  num_encoder_layers=3, num_decoder_layers=3, dim_feedforward=1024, dropout=0.1,
                  activation="relu", return_intermediate_dec=False,
                  num_cam=6, dec_n_points=4,  enc_n_points=4,
-                 Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None,two_stage=False,cur_epoch=0):
+                 Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None,two_stage=False,cur_epoch=0,detr_train_frames=2):
         
         super().__init__()
         self.cur_epoch = cur_epoch
@@ -85,7 +85,7 @@ class DeformableTransformer(nn.Module):
                                                           self.decoder_levels, nhead, dec_n_points)
         self.decoder = DeformableTransformerDecoder(decoder_layer, num_decoder_layers, return_intermediate_dec,self.dec_n_points)
 
-        self.level_embed = nn.Parameter(torch.Tensor(num_cam, hidden_dim))
+        self.level_embed = nn.Parameter(torch.Tensor(detr_train_frames,num_cam, hidden_dim))
         self.reference_points_dec = nn.Linear(hidden_dim, 2)
         # self.reference_points = nn.Linear(d_model, 2)
 
