@@ -96,7 +96,7 @@ class SetCriterion(nn.Module):
 
         idx = self._get_src_permutation_idx(indices)
         # print("idx:",idx)
-        target_classes_o = torch.cat([t["labels"][0][J] for t, (_, J) in zip(targets, indices)])
+        target_classes_o = torch.cat([t["labels"][J] for t, (_, J) in zip(targets, indices)])
         # print(target_classes_o)
         target_classes_o = target_classes_o.long().to(src_logits.device)
         target_classes = torch.full(src_logits.shape[:1], 0,
@@ -162,7 +162,7 @@ class SetCriterion(nn.Module):
         # print('pred_center_shape: ',src_centers.shape)
         idx = self._get_src_permutation_idx(indices)
         src_centers_sorted = src_centers[idx[1]]
-        target_centers_o = torch.cat([t["world_pts"][0][J] for t, (_, J) in zip(targets, indices)])
+        target_centers_o = torch.cat([t["pts"][J] for t, (_, J) in zip(targets, indices)])
         # print('tgt_pts_shape: ',target_centers_o.shape)
         # target_centers = torch.full(src_centers.shape[:2], self.num_classes,
         #                     dtype=torch.int64, device=src_centers.device)
@@ -170,7 +170,7 @@ class SetCriterion(nn.Module):
         # target_centers[idx[1]] = target_centers_o
         # loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], targets[0]['world_pts'])
         # print('mask: ',targets[0]['reg_mask'])
-        loss_center = self.regloss(src_centers_sorted,targets[0]['reg_mask'], targets[0]['idx'], target_centers_o)
+        loss_center = self.regloss(src_centers_sorted,None, None, target_centers_o)
         # loss_center = self.mseloss(src_centers,)
         # self.compare_pts(src_centers_sorted,target_centers_o)
         # losses = {'loss_center': loss_center}
@@ -237,7 +237,8 @@ class SetCriterion(nn.Module):
 
         # Compute the average number of target boxes accross all nodes, for normalization purposes
         # num_points = sum(len(t["labels"]) for t in targets)
-        num_points = len(targets["labels"][0])
+        # print(targets[0]["labels"])
+        num_points = len(targets["labels"])
         num_points = torch.as_tensor([num_points], dtype=torch.float, device=next(iter(outputs.values())).device)
         if is_dist_avail_and_initialized():
             torch.distributed.all_reduce(num_points)

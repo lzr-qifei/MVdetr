@@ -221,7 +221,9 @@ class MVDeTr_w_dec(nn.Module):
         # resnet50(pretrained=True,
         #                     replace_stride_with_dilation=[False, True, True]).children()
         B, N, C, H, W = imgs.shape
+        imgs_forward = imgs.squeeze()
         imgs = imgs.view(B * N, C, H, W)
+        
 
         inverse_affine_mats = torch.inverse(M.view([B * N, 3, 3]))
         # image and world feature maps from xy indexing, change them into world indexing / xy indexing (img)
@@ -248,6 +250,16 @@ class MVDeTr_w_dec(nn.Module):
         if self.arch == 'convnext':
             imgs_feat = self.base(imgs)[-2]
         else:
+            
+            # self.num_cam = 6
+            # imgs_list = []
+            # for i in range(self.num_cam):
+            #     imgs_feat = imgs_forward[i,:,:,:].unsqueeze(0)
+            #     print('data i: ',imgs_feat.shape)
+            #     imgs_feat = self.base(imgs_feat)
+            #     imgs_list.append(imgs_feat)
+            # imgs_feat = torch.stack(imgs_list).squeeze()
+            # print('data: ',imgs.shape)
             imgs_feat = self.base(imgs)
         print('after backbone: ',imgs_feat.shape)
         imgs_feat = self.bottleneck(imgs_feat)
@@ -293,9 +305,9 @@ class MVDeTr_w_dec(nn.Module):
         else:
             query_embeds = self.query_embed.weight
             hs, init_reference_out, inter_references_out=self.world_feat(world_feat,query_embeds,self.num_queries)
-            print('hs: ',hs.shape)
-            print('init_references_out: ',init_reference_out.shape)
-            print('inter_references_out: ',inter_references_out.shape)
+            # print('hs: ',hs.shape)
+            # print('init_references_out: ',init_reference_out.shape)
+            # print('inter_references_out: ',inter_references_out.shape)
             outputs_classes = []
             outputs_coords = []
             outputs_offsets = []

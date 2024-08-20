@@ -60,9 +60,11 @@ class RegL1Loss(nn.Module):
     def forward(self, output, mask, ind, target):
         # print(output.device,mask.device,ind.device,target.device)
         if target.device=='cpu':
-            mask, ind, target = mask.to(output.device), ind.to(output.device), target.to(output.device)
+            # mask, ind, target = mask.to(output.device), ind.to(output.device), target.to(output.device)
+            target = target.to(output.device)
         else:
-            mask, ind= mask.to(output.device), ind.to(output.device)
+            # mask, ind= mask.to(output.device), ind.to(output.device)
+            pass
         # print(output.device,mask.device,ind.device,target.device)
         # print('mask: ',mask)
         # output = output.unsqueeze(0)

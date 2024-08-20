@@ -14,20 +14,20 @@ GIT_VERSION:              # you should input the git version here, if you are us
 # Datasets:
 DATASET: [MultiviewX]    # for joint training, there may be multiple datasets, like: [CrowdHuman, MOT17]
 TRAIN_RATIO: 0.9
-LENGTH_PER_SEQUENCE: 5
+LENGTH_PER_SEQUENCE: 3
 # DATASET_SPLITS: [train]   # and corresponding splits, like: [train, val]
 DATA_ROOT: /root/autodl-tmp/   # datasets root
 # Sampling settings:
 SAMPLE_STEPS: [0]
-SAMPLE_LENGTHS: [5]
+SAMPLE_LENGTHS: [8]
 SAMPLE_MODES: [random_interval]
 SAMPLE_INTERVALS: [1]
 
 #Reduce settings:
-WORLD_REDUCE: 4
+WORLD_REDUCE: 2
 BOTTLENECK_DIM: 128
 WORLD_KERNEL_SIZE: 10
-IMG_REDUCE: 16
+IMG_REDUCE: 12
 IMG_KERNEL_SIZE: 10
 SEMI_SUPERVISED: 0
 DROPCAM: 0.0

@@ -1,1 +1,1 @@
-python ../main.py  -d multiviewx  --data /root/autodl-tmp/MultiviewX --world_reduce 4 --arch convnext --img_reduce 14
+python ../main.py  -d multiviewx  --data /root/autodl-tmp/MultiviewX --world_reduce 2 --arch resnet18 --img_reduce 12

@@ -286,7 +286,7 @@ def infos_to_detr_targets(infos: dict, device):
     for info in infos:
         for _ in range(len(info)):
             targets.append({
-                "boxes": info[_]["boxes"].to(device),
+                "pts": info[_]["pts"].to(device),
                 "labels": info[_]["labels"].to(device)
             })
     return targets

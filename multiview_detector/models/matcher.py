@@ -64,6 +64,7 @@ class HungarianMatcher(nn.Module):
         """
         with torch.no_grad():
             targets = [targets]
+            # print(targets)
             # bs, num_queries = outputs["pred_logits"].shape[:2]
             num_queries,_ = outputs["pred_logits"].shape[:2]
             # We flatten to compute the cost matrices in a batch
@@ -82,9 +83,9 @@ class HungarianMatcher(nn.Module):
             # print('tgtid: ',tgt_ids.shape)
             tgt_ids = tgt_ids.long()
             # tgt_bbox = torch.cat([v["boxes"] for v in targets])
-            tgt_pts = torch.cat([v["world_pts"] for v in targets])
-            tgt_pts = tgt_pts.float()
-            # print('tgt_pt:',tgt_pts.shape)
+            tgt_pts = torch.cat([v["pts"] for v in targets])
+            tgt_pts = tgt_pts.float().cpu()
+            # print('tgt_pt:',tgt_pts)
 
             # Compute the classification cost.
             alpha = 0.25

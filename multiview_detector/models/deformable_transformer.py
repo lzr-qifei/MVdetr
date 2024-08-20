@@ -60,7 +60,7 @@ class DeformableTransformer(nn.Module):
                  num_encoder_layers=3, num_decoder_layers=3, dim_feedforward=1024, dropout=0.1,
                  activation="relu", return_intermediate_dec=False,
                  num_cam=6, dec_n_points=4,  enc_n_points=4,
-                 Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None,two_stage=False,cur_epoch=0,detr_train_frames=2):
+                 Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None,two_stage=False,cur_epoch=0,detr_train_frames=1):
         
         super().__init__()
         self.cur_epoch = cur_epoch

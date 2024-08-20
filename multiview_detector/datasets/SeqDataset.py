@@ -340,6 +340,7 @@ class SeqDataset(Dataset):
         self.data_root = config['DATA_ROOT']
         self.dataset = self.get_dataset_structure(dataset=config['DATASET'][0])
         self.infos = self.get_dataset_infos()
+        print('check: ',self.infos['MultiviewX'][18][1])
         
         self.img_shape = base.img_shape # H,W;
         self.img_reduce = config['IMG_REDUCE']
@@ -355,14 +356,14 @@ class SeqDataset(Dataset):
         self.sample_frames_begin = []
         # self.train = is_train
         self.length = config['LENGTH_PER_SEQUENCE']
-        self.sample_frames_begin = []*self.length
+        self.sample_frames_begin = []
         # self.infos = sel
         self.Rworld_shape = list(map(lambda x: x // self.world_reduce, self.worldgrid_shape))
         self.Rimg_shape = np.ceil(np.array(self.img_shape) / self.img_reduce).astype(int).tolist()
     
     def __len__(self):
-        # return len(self.sample_frames_begin)
-        return self.length
+        return len(self.sample_frames_begin)
+        # return self.length
 
     def __getitem__(self, item):
         dataset, seq, begin = self.sample_frames_begin[item]
@@ -402,7 +403,7 @@ class SeqDataset(Dataset):
             }
         return structure
     def get_dataset_infos(self):
-        infos = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: defaultdict(dict))))
+        infos = defaultdict((lambda: defaultdict(lambda: defaultdict(dict))))
         dataset = self.dataset
         cams = dataset['cams']
         dataset_name = dataset["dataset"]
@@ -415,10 +416,16 @@ class SeqDataset(Dataset):
         if gt_path is not None:
             for f in range(360):
                 seq = f // 10
-                infos[dataset_name][seq][f]["gts"] = []
+                # f_idx = abs(f-(seq*10))
+                infos[dataset_name][seq][f-(seq*10)]["gts"] = list()
+
+            # print('check: ',infos[dataset_name][18][1])
+
+            # print(infos[dataset_name][23][2])
+            
             with open(gt_path, "r") as gt_file:
                 lines = gt_file.readlines()
-                print(len(lines))
+                # print(len(lines))
                 for line in lines:
                     # line = line[:-1]
                     if dataset_name == "MultiviewX" :
@@ -437,11 +444,16 @@ class SeqDataset(Dataset):
                     f, id, label = map(int, (f, id, label))
                     x, y = map(float, (x, y))
                     # assert v != 0.0, f"Visibility of object '{i}' in frame '{f}' is 0.0."
-                    infos[dataset_name][seq][f]["gts"].append([
+                    infos[dataset_name][seq][f-(seq*10)]["gts"].append([
                         f, id, label, x, y
                     ])
-                    pass
-            # pass
+                    # if int(f) == 5: 
+                    #     print(infos[dataset_name][seq][f]["gts"])
+                    # if infos[dataset_name][seq][f] == {}:
+                    #     print(f'f={f}')
+
+                # print('check: ',infos[dataset_name][18][1])
+
         return infos
     
     def sample_frames_idx(self, dataset: str, split: str, seq: str, begin: int) :
@@ -455,51 +467,22 @@ class SeqDataset(Dataset):
                 max_interval = floor(remain_frames / (self.sample_length - 1))
                 interval = min(randint(1, self.sample_interval), max_interval)      # legal interval
                 frames_idx = [begin + interval * _ for _ in range(self.sample_length)]
-                if not all([len(self.infos[dataset][seq][_]["gts"]) for _ in frames_idx]):
+
+                # if not all([len(self.infos[dataset][seq][_]["gts"]) for _ in frames_idx]):
                     # In the sampling sequence, there is at least a frame's gt is empty, not friendly for training,
                     # make sure all frames have gt:
-                    frames_idx = [begin + _ for _ in range(self.sample_length)]
+                for f in frames_idx:
+                    if 'gts' in self.infos[dataset][seq][f].keys():
+                        frames_idx = [begin + _ for _ in range(self.sample_length)]
+                        # print(f'success seq:{seq},f:{f}')
+                    else:
+                        print(f'seq:{seq},f:{f}')
+                        print(self.infos[dataset][seq][f])
         else:
             raise NotImplementedError(f"Do not support sample mode '{self.sample_mode}'.")
         return frames_idx
     
-    # def get_multi_frames(self, dataset: str, length):
-        # t = 0
-        # images = []
-        # infos = []
-        # dataloader_iterator1 = iter(self.dataloader)
-        # for t in range(self.length):
-        #     try:
-        #         data, world_gt, imgs_gt, affine_mats, frame = next(dataloader_iterator1)
-        #         image = data
-        #         info = dict()
-        #         info["dataset"] = dataset
-        #         info["frame"] = frame
-        #         info["affine_mats"] = affine_mats
-        #         # pts, ids, labels = list(), list(), list()
-        #         info["pts"] = world_gt["world_pts"]
-        #         info["labels"] = world_gt["labels"]
-        #         images.append(image)
-        #         infos.append(info)
-        #         t+=1
-        #     except StopIteration:
-        #         dataloader_iterator1 = iter(self.dataloader)
-        # for batch_idx, (data, world_gt, imgs_gt, affine_mats, frame) in enumerate(self.dataloader):
-        #     if t < length:
-        #         image = data
-        #         info = dict()
-        #         info["dataset"] = dataset
-        #         info["frame"] = frame
-        #         info["affine_mats"] = affine_mats
-        #         # pts, ids, labels = list(), list(), list()
-        #         info["pts"] = world_gt["world_pts"]
-        #         info["labels"] = world_gt["labels"]
-        #         images.append(image)
-        #         infos.append(info)
-        #         t+=1
-        #     else:
-        #         images = torch.stack(images)
-        # return images,infos
+
     def get_multi_frames(self, dataset: str, split: str, seq: str, frames):
         return zip(*[self.get_single_frame(dataset=dataset, split=split, seq=seq, frame=frame) for frame in frames])
     
@@ -530,15 +513,22 @@ class SeqDataset(Dataset):
         info["frame"] = frame
         info["ori_width"], info["ori_height"] = self.img_shape
         pts, ids, labels = list(), list(), list()
-        for _,id,label,x,y in self.infos[dataset][seq][frame]["gts"]:
-            pts.append([x,y])
-            ids.append(id)
-            labels.append(label)
+        
+        try:
+            for _,id,label,x,y in self.infos[dataset][seq][frame]["gts"]:
+                pts.append([x,y])
+                # print(pts)
+                ids.append(id)
+                labels.append(label)
+        except:
+            print(f'seq: {seq},f:{frame}')
         assert len(pts) == len(labels) == len(ids)
         info["pts"] = torch.as_tensor(pts,dtype=torch.float)
         info["ids"] = torch.as_tensor(ids,dtype=torch.long)
         info["labels"] = torch.as_tensor(labels, dtype=torch.long)
+        # all([len(self.infos[dataset][seq][_]["gts"]))
 
+        # print(info)
         return imgs,affine_mats,info
 
         # image = Image.open(self.infos[dataset][split][seq][frame]["image_path"])
@@ -580,13 +570,14 @@ class SeqDataset(Dataset):
         
         for seq in self.dataset["seqs"]:
             f_min = 0
-            f_max = 10
+            f_max = 9
             for f in range(f_min, f_max - (self.sample_length - 1) + 1):
-                if all([len(self.infos[self.dataset["dataset"]][seq][f + _]["gts"]) > 0
-                        for _ in range(self.sample_length)]):
-                    self.sample_frames_begin.append(
-                        (self.dataset["dataset"],seq,f)
-                    )
+                # if all([len(self.infos[self.dataset["dataset"]][seq][f + _]["gts"]) > 0
+                #         for _ in range(self.sample_length)]):
+                self.sample_frames_begin.append(
+                    (self.dataset["dataset"],seq,f)
+                )
+        # print(f'len: {len(self.sample_frames_begin)}')
         return
 
 
