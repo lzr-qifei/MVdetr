@@ -173,7 +173,7 @@ def combine_detr_outputs(detr_outputs1, detr_outputs2):
         return detr_outputs1
     combined_outputs = dict()
     combined_outputs["pred_logits"] = torch.cat([detr_outputs1["pred_logits"], detr_outputs2["pred_logits"]], dim=0)
-    combined_outputs["pred_boxes"] = torch.cat([detr_outputs1["pred_boxes"], detr_outputs2["pred_boxes"]], dim=0)
+    combined_outputs["pred_pts"] = torch.cat([detr_outputs1["pred_pts"], detr_outputs2["pred_pts"]], dim=0)
     combined_outputs["outputs"] = torch.cat([detr_outputs1["outputs"], detr_outputs2["outputs"]], dim=0)
     combined_outputs["aux_outputs"] = [
         {

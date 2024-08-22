@@ -8,6 +8,8 @@ NUM_WORKERS: 4
 DEVICE: cuda
 AVAILABLE_GPUS: "0"
 
+# log settings:
+LOG_DIR: /root/MVdetr/multiview_detector/logs
 # Git version:
 GIT_VERSION:              # you should input the git version here, if you are using wandb to log your experiments.
 
@@ -15,6 +17,7 @@ GIT_VERSION:              # you should input the git version here, if you are us
 DATASET: [MultiviewX]    # for joint training, there may be multiple datasets, like: [CrowdHuman, MOT17]
 TRAIN_RATIO: 0.9
 LENGTH_PER_SEQUENCE: 3
+LENGTH_DETR_TRAIN: 4
 # DATASET_SPLITS: [train]   # and corresponding splits, like: [train, val]
 DATA_ROOT: /root/autodl-tmp/   # datasets root
 # Sampling settings:

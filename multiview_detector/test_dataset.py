@@ -2,7 +2,7 @@ import os
 import argparse
 import torch.distributed
 
-from utils.utils import yaml_to_dict, is_main_process, distributed_rank, set_seed,infos_to_detr_targets
+from utils.utils import yaml_to_dict, is_main_process, distributed_rank, set_seed,infos_to_detr_targets,batch_iterator
 from log_engine.logger import Logger, parser_to_dict
 from configs.utils import update_config, load_super_config
 
@@ -68,8 +68,12 @@ from multiview_detector.models.criterion import SetCriterion
 from multiview_detector.models.matcher import HungarianMatcher
 from torch.cuda.amp import GradScaler
 from torch import optim
+from torch import nn
 def main(config: dict):
-    
+    train_states = {
+        "start_epoch": 0,
+        "global_iter": 0
+    }
     dataset_train = build_dataset(config=config)
     # dataset_train.set_epoch(0)
 
@@ -78,6 +82,7 @@ def main(config: dict):
     losses = ['labels','center']
     lr = config['LR']
     weight_decay = config['WEIGHT_DECAY']
+    length_detr_train_frames = config['LENGTH_DETR_TRAIN']
 
     param_dicts = [{"params": [p for n, p in model.named_parameters() if 'base' not in n and p.requires_grad], },
                    {"params": [p for n, p in model.named_parameters() if 'base' in n and p.requires_grad],
@@ -96,6 +101,8 @@ def main(config: dict):
     # matcher = HungarianMatcher(cost_class=0.2,cost_pts=2)
     matcher = HungarianMatcher(cost_class=2.0,cost_pts=50.0)
     criterion = SetCriterion(1,matcher,weight_dict,losses)
+    logger = Logger(config['LOG_DIR'])
+    clip_max_norm=config["CLIP_MAX_NORM"]
     for epoch in range(2):
         dataset_train.set_epoch(epoch)
         sampler_train = build_sampler(dataset=dataset_train, shuffle=True)
@@ -105,69 +112,72 @@ def main(config: dict):
             batch_size=config["BATCH_SIZE"],
             num_workers=config["NUM_WORKERS"]
         )
-        for idx,batch in enumerate(dataloader):
-            print('single mat: ',batch["mats"][0][0].shape)
-            print('mats: ',len(batch["mats"][0]))
-
-            frames = batch["nested_tensors"]
-            infos = batch["infos"]
-            # print(f'infos: {infos}')
-            detr_targets = infos_to_detr_targets(infos=infos, device=device)
-            B, T = len(batch["images"]), len(batch["images"][0])
-            random_frame_idxs = torch.randperm(T)
-            length_detr_train_frames = 4
-            detr_train_frame_idxs = random_frame_idxs[:length_detr_train_frames]
-            detr_train_frames = nested_tensor_index_select(frames, dim=1, index=detr_train_frame_idxs)
-            detr_train_frames.tensors = rearrange(detr_train_frames.tensors, "b t n c h w -> (b t) n c h w")
-            # print('rearrange: ',detr_train_frames.tensors.shape)
-            # print('mask: ',detr_train_frames.mask.shape)
-            detr_train_frames.mask = rearrange(detr_train_frames.mask, "b t n h w -> (b t) n h w")
-            for i in range(length_detr_train_frames):
-                cur_train_frame = detr_train_frames.tensors[i,:,:,:].unsqueeze(0).to(device=device)
-                affinemats = batch["mats"][0][0].unsqueeze(0)
-                detr_train_outputs = model(cur_train_frame,affinemats)
-                targets = detr_targets[i]
-                # print(targets)
-                loss_dict,_ = criterion(detr_train_outputs,targets)
-                losses = sum(loss_dict[k] for k in loss_dict.keys())
-                losses.backward()
-                print(f'idx:{idx},loss:{losses}')
-            optimizer.step()
-            optimizer.zero_grad()
-
-        # detr_train_frames = detr_train_frames.to(device='cuda:0')
-        # affinemats = batch["mats"][0][0].unsqueeze(0).repeat(B*length_detr_train_frames,1,1,1)
-        # print('affinemats: ',affinemats.shape)
-        # detr_train_outputs = model(detr_train_frames.tensors,affinemats)
-
-        
-        # print(data["infos"][0])
-        # print(data["images"][0].shape)
-        # print(batch["nested_tensors"].tensors.shape)
-        # print(batch["mats"][0][0].shape)
-    # dataset_val = build_dataset(config=config,is_train=False)
-    # dataloader_train = build_dataloader(
-    #         dataset=dataset_train,
-    #         sampler=sampler_train,
-    #         batch_size=config["BATCH_SIZE"],
-    #         num_workers=config["NUM_WORKERS"]
-    #     )
-    
-    # dataloader1 = DataLoader(
-    #         self.framedata,
-    #         batch_size=config['BATCH_SIZE'],
-    #         shuffle=True,
-    #         num_workers=config['NUM_WORKERS'],
-    #         pin_memory=True,
-    #         worker_init_fn=seed_worker
-    #     )
-    # dataloader_iterator1 = iter(dataloader1)
-    # for i, batch in enumerate(dataloader_train):
-    #     print(batch.keys())
+        train_one_epoch(config,model,logger,dataloader,id_criterion,criterion
+                        optimizer,epoch,
+                        states,clip_max_norm,length_detr_train_frames,)
 
 
 
 
+
+
+def train_one_epoch(config:dict, model,logger,dataloader:DataLoader,id_criterion:nn.Module,detr_criterion,
+                    optimizer: torch.optim, epoch: int,
+                    states:dict,clip_max_norm:float,length_detr_train_frames:int):
+    for idx,batch in enumerate(dataloader):
+        print('single mat: ',batch["mats"][0][0].shape)
+        print('mats: ',len(batch["mats"][0]))
+
+        frames = batch["nested_tensors"]
+        infos = batch["infos"]
+        # print(f'infos: {infos}')
+        detr_targets = infos_to_detr_targets(infos=infos, device=device)
+        B, T = len(batch["images"]), len(batch["images"][0])
+        random_frame_idxs = torch.randperm(T)
+        # length_detr_train_frames = 4
+        detr_train_frame_idxs = random_frame_idxs[:length_detr_train_frames]
+        detr_no_grad_frame_idxs = random_frame_idxs[length_detr_train_frames:]
+
+        detr_train_frames = nested_tensor_index_select(frames, dim=1, index=detr_train_frame_idxs)
+        detr_no_grad_frames = nested_tensor_index_select(frames, dim=1, index=detr_no_grad_frame_idxs)
+
+        detr_train_frames.tensors = rearrange(detr_train_frames.tensors, "b t n c h w -> (b t) n c h w")
+        detr_train_frames.mask = rearrange(detr_train_frames.mask, "b t n h w -> (b t) n h w")
+        detr_no_grad_frames.tensors = rearrange(detr_no_grad_frames.tensors, "b t n c h w -> (b t) n c h w")
+        detr_no_grad_frames.mask = rearrange(detr_no_grad_frames.mask, "b t n h w -> (b t) n h w")
+        detr_no_grad_frames = detr_no_grad_frames.to(device)
+        #Without Train:
+        if T > length_detr_train_frames:
+            with torch.no_grad():
+                if length_detr_train_frames > 0 and len(detr_no_grad_frames) > length_detr_train_frames * 4:
+                    # To reduce CUDA memory usage:
+                    detr_no_grad_outputs = None
+                    # detr_no_grad_adapter_outputs = None
+                    for batch_frames in batch_iterator(length_detr_train_frames * 4, detr_no_grad_frames):
+                        batch_frames = batch_frames[0]
+                        _ = model(frames=batch_frames)
+                        if detr_no_grad_outputs is None:
+                            detr_no_grad_outputs = _
+                        else:
+                            detr_no_grad_outputs = combine_detr_outputs(detr_no_grad_outputs, _)
+                else:
+                    detr_no_grad_outputs = model(frames=detr_no_grad_frames)
+        else:
+            detr_no_grad_outputs = None
+
+        for i in range(length_detr_train_frames):
+            cur_train_frame = detr_train_frames.tensors[i,:,:,:].unsqueeze(0).to(device=device)
+            affinemats = batch["mats"][0][0].unsqueeze(0)
+            detr_train_outputs = model(cur_train_frame,affinemats)
+            targets = detr_targets[i]
+            # print(targets)
+            loss_dict,_ = detr_criterion(detr_train_outputs,targets)
+            losses = sum(loss_dict[k] for k in loss_dict.keys())
+            losses.backward()
+            print(f'idx:{idx},loss:{losses}')
+        optimizer.step()
+        optimizer.zero_grad()
+    return 
 
 
 if __name__ == '__main__':

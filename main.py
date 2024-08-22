@@ -13,7 +13,10 @@ import torch
 from torch.cuda.amp import GradScaler
 from torch import optim
 from torch.utils.data import DataLoader
-from multiview_detector.datasets import *
+from multiview_detector.datasets import Wildtrack,MultiviewX,frameDataset
+from multiview_detector.datasets.Wildtrack import Wildtrack
+from multiview_detector.datasets.MultiviewX import MultiviewX
+from multiview_detector.datasets.frameDataset import frameDataset
 # from multiview_detector.models.mvdetr import MVDeTr
 from multiview_detector.models.mvdetr_with_decoder import MVDeTr_w_dec
 from multiview_detector.utils.logger import Logger
