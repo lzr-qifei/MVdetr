@@ -345,6 +345,7 @@ class MVDeTr_w_dec(nn.Module):
             # out = {'pred_logits': outputs_class[-1], 'pred_ct_pts': outputs_coord[-1],
             #        'pred_offsets':outputs_offset[-1]}
             out = {'pred_logits': outputs_class[-1], 'pred_ct_pts': outputs_coord[-1]}
+            out["outputs"] = hs[-1]
             if visualize:
                 for cam in range(N):
                     # print('hs: ',hs.shape)

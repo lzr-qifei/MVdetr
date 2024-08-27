@@ -51,7 +51,7 @@ class Logger:
     """
     Log information.
     """
-    def __init__(self, logdir: str, use_tensorboard: bool = True, use_wandb: bool = True, only_main: bool = True,
+    def __init__(self, logdir: str, use_tensorboard: bool = True, use_wandb: bool = False, only_main: bool = True,
                  config: dict = None):
         """
         Create a log.

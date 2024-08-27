@@ -4,9 +4,12 @@ import torch.nn as nn
 from scipy.optimize import linear_sum_assignment
 
 from torch.utils.checkpoint import checkpoint
-from .seq_decoder import SeqDecoder
-from .deformable_detr.deformable_detr import build as build_deformable_detr
-from .dab_deformable_detr.dab_deformable_detr import build_dab_deformable_detr
+from datasets import build_dataset
+from multiview_detector.models.mvdetr_with_decoder import MVDeTr_w_dec
+from multiview_detector.models.seq_decoder import SeqDecoder
+# from multiview_detector.models.seq_decoder import SeqDecoder
+# from .deformable_detr.deformable_detr import build as build_deformable_detr
+# from .dab_deformable_detr.dab_deformable_detr import build_dab_deformable_detr
 from structures.instances import Instances
 from structures.args import Args
 from utils.utils import batch_iterator, combine_detr_outputs
@@ -21,87 +24,89 @@ class MVPTR(nn.Module):
         self.num_id_vocabulary = config["NUM_ID_VOCABULARY"]    # how many id words
         self.training_num_id = config["NUM_ID_VOCABULARY"] if "TRAINING_NUM_ID" not in config else config["TRAINING_NUM_ID"]
         self.num_classes = config["NUM_CLASSES"]
-        self.max_temporal_length = config["MAX_TEMPORAL_LENGTH"] if "MAX_TEMPORAL_LENGTH" in config \
-            else config["MAX_TEMPORAL_PE_LENGTH"]
+        # self.max_temporal_length = config["MAX_TEMPORAL_LENGTH"] if "MAX_TEMPORAL_LENGTH" in config \
+        #     else config["MAX_TEMPORAL_PE_LENGTH"]
 
         # DETR Framework:
-        self.detr_framework = config["DETR_FRAMEWORK"]
         # Backbone:
-        self.backbone_type = config["BACKBONE"]
-        self.lr_backbone = config["LR"] * config["LR_BACKBONE_SCALE"]
-        self.backbone_dilation = config["DILATION"]
-        # DETR settings:
-        self.detr_num_queries = config["DETR_NUM_QUERIES"]
-        self.detr_num_feature_levels = config["DETR_NUM_FEATURE_LEVELS"]
-        self.detr_aux_loss = config["DETR_AUX_LOSS"]
-        self.detr_with_box_refine = config["DETR_WITH_BOX_REFINE"]
-        self.detr_two_stage = config["DETR_TWO_STAGE"]
-        self.detr_masks = config["DETR_MASKS"]
-        self.detr_hidden_dim = config["DETR_HIDDEN_DIM"]
-        self.detr_position_embedding = config["DETR_PE"]
-        self.detr_nheads = config["DETR_NUM_HEADS"]
-        self.detr_enc_layers = config["DETR_ENC_LAYERS"]
-        self.detr_dec_layers = config["DETR_DEC_LAYERS"]
-        self.detr_dropout = config["DETR_DROPOUT"]
-        self.detr_dim_feedforward = config["DETR_DIM_FEEDFORWARD"]
-        self.detr_dec_n_points = config["DETR_DEC_N_POINTS"]
-        self.detr_enc_n_points = config["DETR_ENC_N_POINTS"]
-        self.detr_cls_loss_coef = config["DETR_CLS_LOSS_COEF"]
-        self.detr_bbox_loss_coef = config["DETR_BBOX_LOSS_COEF"]
-        self.detr_giou_loss_coef = config["DETR_GIOU_LOSS_COEF"]
-        self.detr_set_cost_class = config["DETR_CLS_LOSS_COEF"] if "DETR_SET_COST_CLASS" not in config else config["DETR_SET_COST_CLASS"]
-        self.detr_set_cost_bbox = config["DETR_BBOX_LOSS_COEF"] if "DETR_SET_COST_BBOX" not in config else config["DETR_SET_COST_BBOX"]
-        self.detr_set_cost_giou = config["DETR_GIOU_LOSS_COEF"] if "DETR_SET_COST_GIOU" not in config else config["DETR_SET_COST_GIOU"]
-        self.detr_focal_alpha = config["DETR_FOCAL_ALPHA"]
+        # self.backbone_type = config["BACKBONE"]
+        # self.lr_backbone = config["LR"] * config["LR_BACKBONE_SCALE"]
+        # # DETR settings:
+        # self.detr_num_queries = config["DETR_NUM_QUERIES"]
+        # self.detr_num_feature_levels = config["DETR_NUM_FEATURE_LEVELS"]
+        # self.detr_aux_loss = config["DETR_AUX_LOSS"]
+        # self.detr_with_box_refine = config["DETR_WITH_BOX_REFINE"]
+        # self.detr_two_stage = config["DETR_TWO_STAGE"]
+        # self.detr_masks = config["DETR_MASKS"]
+        # self.detr_hidden_dim = config["DETR_HIDDEN_DIM"]
+        # self.detr_position_embedding = config["DETR_PE"]
+        # self.detr_nheads = config["DETR_NUM_HEADS"]
+        # self.detr_enc_layers = config["DETR_ENC_LAYERS"]
+        # self.detr_dec_layers = config["DETR_DEC_LAYERS"]
+        # self.detr_dropout = config["DETR_DROPOUT"]
+        # self.detr_dim_feedforward = config["DETR_DIM_FEEDFORWARD"]
+        # self.detr_dec_n_points = config["DETR_DEC_N_POINTS"]
+        # self.detr_enc_n_points = config["DETR_ENC_N_POINTS"]
+        # self.detr_cls_loss_coef = config["DETR_CLS_LOSS_COEF"]
+        # self.detr_bbox_loss_coef = config["DETR_BBOX_LOSS_COEF"]
+        # self.detr_giou_loss_coef = config["DETR_GIOU_LOSS_COEF"]
+        # self.detr_set_cost_class = config["DETR_CLS_LOSS_COEF"] if "DETR_SET_COST_CLASS" not in config else config["DETR_SET_COST_CLASS"]
+        # self.detr_set_cost_bbox = config["DETR_BBOX_LOSS_COEF"] if "DETR_SET_COST_BBOX" not in config else config["DETR_SET_COST_BBOX"]
+        # self.detr_set_cost_giou = config["DETR_GIOU_LOSS_COEF"] if "DETR_SET_COST_GIOU" not in config else config["DETR_SET_COST_GIOU"]
+        # self.detr_focal_alpha = config["DETR_FOCAL_ALPHA"]
         self.device = config["DEVICE"]
 
-        self.only_detr = config["TRAIN_STAGE"] == "only_detr"
+        # self.only_detr = config["TRAIN_STAGE"] == "only_detr"
 
-        # Prepare args for detr
-        detr_args = Args()
-        detr_args.num_classes = self.num_classes
-        detr_args.device = self.device
-        detr_args.num_queries = self.detr_num_queries
-        detr_args.num_feature_levels = self.detr_num_feature_levels
-        detr_args.aux_loss = self.detr_aux_loss
-        detr_args.with_box_refine = self.detr_with_box_refine
-        detr_args.two_stage = self.detr_two_stage
-        detr_args.hidden_dim = self.detr_hidden_dim
-        detr_args.backbone = self.backbone_type
-        detr_args.lr_backbone = self.lr_backbone
-        detr_args.dilation = self.backbone_dilation
-        detr_args.masks = self.detr_masks
-        detr_args.position_embedding = self.detr_position_embedding
-        detr_args.nheads = self.detr_nheads
-        detr_args.enc_layers = self.detr_enc_layers
-        detr_args.dec_layers = self.detr_dec_layers
-        detr_args.dim_feedforward = self.detr_dim_feedforward
-        detr_args.dropout = self.detr_dropout
-        detr_args.dec_n_points = self.detr_dec_n_points
-        detr_args.enc_n_points = self.detr_enc_n_points
-        detr_args.cls_loss_coef = self.detr_cls_loss_coef
-        detr_args.bbox_loss_coef = self.detr_bbox_loss_coef
-        detr_args.giou_loss_coef = self.detr_giou_loss_coef
-        detr_args.focal_alpha = self.detr_focal_alpha
-        # Three hack implementation:
-        detr_args.set_cost_class = self.detr_set_cost_class
-        detr_args.set_cost_bbox = self.detr_set_cost_bbox
-        detr_args.set_cost_giou = self.detr_set_cost_giou
-        if self.detr_framework == "Deformable-DETR":
-            # DETR model and criterion:
-            self.detr, self.detr_criterion, _ = build_deformable_detr(detr_args)
-        elif self.detr_framework == "DAB-Deformable-DETR":
-            detr_args.num_patterns = 0
-            detr_args.random_refpoints_xy = False
-            self.detr, self.detr_criterion, _ = build_dab_deformable_detr(detr_args)
-            # TODO: We will upload the DAB-DETR code soon.
-        else:
-            raise RuntimeError(f"Unknown DETR framework: {self.detr_framework}.")
+        # # Prepare args for detr
+        # detr_args = Args()
+        # detr_args.num_classes = self.num_classes
+        # detr_args.device = self.device
+        # detr_args.num_queries = self.detr_num_queries
+        # detr_args.num_feature_levels = self.detr_num_feature_levels
+        # detr_args.aux_loss = self.detr_aux_loss
+        # detr_args.with_box_refine = self.detr_with_box_refine
+        # detr_args.two_stage = self.detr_two_stage
+        # detr_args.hidden_dim = self.detr_hidden_dim
+        # detr_args.backbone = self.backbone_type
+        # detr_args.lr_backbone = self.lr_backbone
+        # detr_args.dilation = self.backbone_dilation
+        # detr_args.masks = self.detr_masks
+        # detr_args.position_embedding = self.detr_position_embedding
+        # detr_args.nheads = self.detr_nheads
+        # detr_args.enc_layers = self.detr_enc_layers
+        # detr_args.dec_layers = self.detr_dec_layers
+        # detr_args.dim_feedforward = self.detr_dim_feedforward
+        # detr_args.dropout = self.detr_dropout
+        # detr_args.dec_n_points = self.detr_dec_n_points
+        # detr_args.enc_n_points = self.detr_enc_n_points
+        # detr_args.cls_loss_coef = self.detr_cls_loss_coef
+        # detr_args.bbox_loss_coef = self.detr_bbox_loss_coef
+        # detr_args.giou_loss_coef = self.detr_giou_loss_coef
+        # detr_args.focal_alpha = self.detr_focal_alpha
+        # # Three hack implementation:
+        # detr_args.set_cost_class = self.detr_set_cost_class
+        # detr_args.set_cost_bbox = self.detr_set_cost_bbox
+        # detr_args.set_cost_giou = self.detr_set_cost_giou
+        # if self.detr_framework == "Deformable-DETR":
+        #     # DETR model and criterion:
+        #     self.detr, self.detr_criterion, _ = build_deformable_detr(detr_args)
+        # elif self.detr_framework == "DAB-Deformable-DETR":
+        #     detr_args.num_patterns = 0
+        #     detr_args.random_refpoints_xy = False
+        #     self.detr, self.detr_criterion, _ = build_dab_deformable_detr(detr_args)
+        #     # TODO: We will upload the DAB-DETR code soon.
+        # else:
+        #     raise RuntimeError(f"Unknown DETR framework: {self.detr_framework}.")
+
+        dataset_train = build_dataset(config=config)
+        self.detr = MVDeTr_w_dec(args=None,dataset=dataset_train).cuda()
         # ID Label Criterion:
         self.id_criterion = nn.CrossEntropyLoss()
         self.id_loss_weight = config["ID_LOSS_WEIGHT"]
 
         # Seq Decoder:
+        self.only_detr = False
         if self.only_detr is False:
             self.seq_decoder = SeqDecoder(
                 detr_hidden_dim=config["DETR_HIDDEN_DIM"],
@@ -380,7 +385,7 @@ class MVPTR(nn.Module):
         # print('id labels: ',id_labels)
         return
 
-    def forward(self, frames, detr_checkpoint_frames: Optional[int] = None, targets=None, max_pad=None):
+    def forward(self, frames, affine_mats, detr_checkpoint_frames: Optional[int] = None, targets=None, max_pad=None):
         if detr_checkpoint_frames is not None:
             # Checkpoint will only be used in the training stage.
             detr_outputs = None
@@ -400,7 +405,7 @@ class MVPTR(nn.Module):
                     detr_outputs = combine_detr_outputs(detr_outputs, _)
         else:
             if targets is None:
-                detr_outputs = self.detr(frames)
+                detr_outputs = self.detr(frames,affine_mats)
                 # print('detr_out_shape: ',detr_outputs.shape)
             else:
                 detr_outputs = self.detr(frames, targets, max_pad)

@@ -18,6 +18,8 @@ DATASET: [MultiviewX]    # for joint training, there may be multiple datasets, l
 TRAIN_RATIO: 0.9
 LENGTH_PER_SEQUENCE: 3
 LENGTH_DETR_TRAIN: 4
+NUM_ID_VOCABULARY: 50
+NUM_CLASSES: 1
 # DATASET_SPLITS: [train]   # and corresponding splits, like: [train, val]
 DATA_ROOT: /root/autodl-tmp/   # datasets root
 # Sampling settings:
@@ -42,6 +44,8 @@ TRAIN_STAGE: joint
 SEED: 42
 USE_DISTRIBUTED: False
 DETR_NUM_TRAIN_FRAMES: 4
+# ID criterion
+ID_LOSS_WEIGHT: 1
 # Below two parameters are for memory optimized DETR training:
 DETR_CHECKPOINT_FRAMES: 5
 SEQ_DECODER_CHECKPOINT: False
@@ -67,3 +71,10 @@ RESUME_MODEL:
 RESUME_OPTIMIZER: True
 RESUME_SCHEDULER: True
 RESUME_STATES: True
+
+#MODEL settings:
+SEQ_HIDDEN_DIM: 128
+ID_DECODER_LAYERS: 6
+MAX_TEMPORAL_LENGTH: 10
+#DETR settings:
+DETR_HIDDEN_DIM: 128

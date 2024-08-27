@@ -2,7 +2,7 @@ import os
 import argparse
 import torch.distributed
 
-from utils.utils import yaml_to_dict, is_main_process, distributed_rank, set_seed,infos_to_detr_targets,batch_iterator
+from utils.utils import yaml_to_dict, is_main_process, distributed_rank, set_seed,infos_to_detr_targets,batch_iterator,combine_detr_outputs,resize_detr_outputs
 from log_engine.logger import Logger, parser_to_dict
 from configs.utils import update_config, load_super_config
 
@@ -65,7 +65,8 @@ from multiview_detector.models.mvdetr_with_decoder import MVDeTr_w_dec
 from utils.nested_tensor import nested_tensor_index_select
 from einops import rearrange
 from multiview_detector.models.criterion import SetCriterion
-from multiview_detector.models.matcher import HungarianMatcher
+from multiview_detector.models.matcher import HungarianMatcher,HungarianMatcher_batch
+from multiview_detector.models.tracker import MVPTR
 from torch.cuda.amp import GradScaler
 from torch import optim
 from torch import nn
@@ -77,12 +78,14 @@ def main(config: dict):
     dataset_train = build_dataset(config=config)
     # dataset_train.set_epoch(0)
 
-    model = MVDeTr_w_dec(args=None,dataset=dataset_train).cuda()
+    # model = MVDeTr_w_dec(args=None,dataset=dataset_train).cuda()
+    model = MVPTR(config)
     device = 'cuda:0'
     losses = ['labels','center']
     lr = config['LR']
     weight_decay = config['WEIGHT_DECAY']
     length_detr_train_frames = config['LENGTH_DETR_TRAIN']
+    device = config['DEVICE']
 
     param_dicts = [{"params": [p for n, p in model.named_parameters() if 'base' not in n and p.requires_grad], },
                    {"params": [p for n, p in model.named_parameters() if 'base' in n and p.requires_grad],
@@ -98,11 +101,13 @@ def main(config: dict):
     optimizer = optim.Adam(param_dicts, lr=lr, weight_decay=weight_decay)
     # optimizer = optim.SGD(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
     scaler = GradScaler()
-    # matcher = HungarianMatcher(cost_class=0.2,cost_pts=2)
-    matcher = HungarianMatcher(cost_class=2.0,cost_pts=50.0)
-    criterion = SetCriterion(1,matcher,weight_dict,losses)
+    matcher = HungarianMatcher(cost_class=0.2,cost_pts=2)
+    matcher_batch = HungarianMatcher_batch(cost_class=2.0,cost_pts=50.0)
+    criterion = SetCriterion(config['NUM_CLASSES'],matcher,matcher_batch,weight_dict,losses)
     logger = Logger(config['LOG_DIR'])
     clip_max_norm=config["CLIP_MAX_NORM"]
+    id_criterion = None
+    states = None
     for epoch in range(2):
         dataset_train.set_epoch(epoch)
         sampler_train = build_sampler(dataset=dataset_train, shuffle=True)
@@ -112,7 +117,8 @@ def main(config: dict):
             batch_size=config["BATCH_SIZE"],
             num_workers=config["NUM_WORKERS"]
         )
-        train_one_epoch(config,model,logger,dataloader,id_criterion,criterion
+        
+        train_one_epoch(config,model,logger,dataloader,id_criterion,criterion,
                         optimizer,epoch,
                         states,clip_max_norm,length_detr_train_frames,)
 
@@ -125,14 +131,19 @@ def train_one_epoch(config:dict, model,logger,dataloader:DataLoader,id_criterion
                     optimizer: torch.optim, epoch: int,
                     states:dict,clip_max_norm:float,length_detr_train_frames:int):
     for idx,batch in enumerate(dataloader):
-        print('single mat: ',batch["mats"][0][0].shape)
-        print('mats: ',len(batch["mats"][0]))
-
+        # print('single mat: ',batch["mats"][0][0].shape)
+        # print('mats: ',len(batch["mats"][0]))
+        B, T = len(batch["images"]), len(batch["images"][0])
+        device = config['DEVICE']
         frames = batch["nested_tensors"]
         infos = batch["infos"]
+        affinemats = batch["mats"][0][0].unsqueeze(0)
+
+        # affinemats_infer = batch["mats"][0][:T-length_detr_train_frames]
+        # affinemats_infer = torch.stack(affinemats_infer,dim=0)
         # print(f'infos: {infos}')
         detr_targets = infos_to_detr_targets(infos=infos, device=device)
-        B, T = len(batch["images"]), len(batch["images"][0])
+        
         random_frame_idxs = torch.randperm(T)
         # length_detr_train_frames = 4
         detr_train_frame_idxs = random_frame_idxs[:length_detr_train_frames]
@@ -146,6 +157,8 @@ def train_one_epoch(config:dict, model,logger,dataloader:DataLoader,id_criterion
         detr_no_grad_frames.tensors = rearrange(detr_no_grad_frames.tensors, "b t n c h w -> (b t) n c h w")
         detr_no_grad_frames.mask = rearrange(detr_no_grad_frames.mask, "b t n h w -> (b t) n h w")
         detr_no_grad_frames = detr_no_grad_frames.to(device)
+        detr_no_grad_outputs = None
+        detr_train_outputs = None
         #Without Train:
         if T > length_detr_train_frames:
             with torch.no_grad():
@@ -161,24 +174,63 @@ def train_one_epoch(config:dict, model,logger,dataloader:DataLoader,id_criterion
                         else:
                             detr_no_grad_outputs = combine_detr_outputs(detr_no_grad_outputs, _)
                 else:
-                    detr_no_grad_outputs = model(frames=detr_no_grad_frames)
+                    for i in range(T-length_detr_train_frames):
+                        cur_infer_frame = detr_no_grad_frames.tensors[i,:,:,:].unsqueeze(0).to(device=device)
+                        detr_infer_outputs = model(cur_infer_frame,affinemats)
+                        # detr_infer_out_list.append(detr_infer_outputs)
+                        detr_infer_outputs = resize_detr_outputs(detr_infer_outputs)
+                        detr_no_grad_outputs = combine_detr_outputs(detr_infer_outputs,detr_no_grad_outputs)
+                    # detr_no_grad_outputs = torch.stack(detr_infer_out_list)
+                        # detr_no_grad_outputs = model(detr_no_grad_frames.tensors,affinemats)
         else:
             detr_no_grad_outputs = None
 
         for i in range(length_detr_train_frames):
             cur_train_frame = detr_train_frames.tensors[i,:,:,:].unsqueeze(0).to(device=device)
-            affinemats = batch["mats"][0][0].unsqueeze(0)
-            detr_train_outputs = model(cur_train_frame,affinemats)
-            targets = detr_targets[i]
-            # print(targets)
-            loss_dict,_ = detr_criterion(detr_train_outputs,targets)
-            losses = sum(loss_dict[k] for k in loss_dict.keys())
+            
+            cur_train_outputs = model(cur_train_frame,affinemats)
+            
+            detr_train_loss_dict,_ = detr_criterion(cur_train_outputs,detr_targets[i])
+            losses = sum(detr_train_loss_dict[k] for k in detr_train_loss_dict.keys())
             losses.backward()
+            cur_train_outputs = resize_detr_outputs(cur_train_outputs)
+            detr_train_outputs = combine_detr_outputs(detr_train_outputs,cur_train_outputs)
+        # targets = torch.stack(detr_targets)
+            # print(targets)
+        detr_outputs = combine_detr_outputs(detr_train_outputs, detr_no_grad_outputs)
+
+        detr_loss_dict,match_idxs = detr_criterion(detr_outputs,detr_targets)
+        if config["TRAIN_STAGE"] == "only_detr":    # only train detr part:
+            id_loss = None
+        else:
+            match_instances = generate_match_instances(
+                match_idxs=match_idxs, infos=infos, detr_outputs=detr_outputs
+            )
+            model.add_random_id_words_to_instances(instances=match_instances[0])
+
+            ##单独对id_loss进行反传
+            # losses = sum(loss_dict[k] for k in loss_dict.keys())
+            # losses.backward()
             print(f'idx:{idx},loss:{losses}')
         optimizer.step()
         optimizer.zero_grad()
     return 
-
+from structures.instances import Instances
+def generate_match_instances(match_idxs, infos, detr_outputs):
+    match_instances = []
+    B, T = len(infos), len(infos[0])
+    for b in range(B):
+        match_instances.append([])
+        for t in range(T):
+            flat_idx = b * T + t
+            output_idxs, info_idxs = match_idxs[flat_idx]
+            instances = Instances(image_size=(0, 0))
+            instances.ids = infos[b][t]["ids"][info_idxs]
+            instances.gt_pts = infos[b][t]["pts"][info_idxs]
+            instances.pred_ct_pts = detr_outputs["pred_ct_pts"][flat_idx][output_idxs]
+            instances.outputs = detr_outputs["outputs"][flat_idx][output_idxs]
+            match_instances[b].append(instances)
+    return match_instances
 
 if __name__ == '__main__':
     opt = parse_option()                    # runtime options, a subset of .yaml config file (dict).

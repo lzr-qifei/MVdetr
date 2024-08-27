@@ -71,10 +71,6 @@ class RegL1Loss(nn.Module):
         # output = output.unsqueeze(0)
         # pred = _transpose_and_gather_feat(output, ind)
         pred = output
-        # pred[:,0]*=250
-        # pred[:,1]*=160
-        # target[:,0]*=250
-        # target[:,1]*=160
         # mask = mask.unsqueeze(2).expand_as(pred).float()
         # print('pred:',pred.shape)
         # print('target: ',target.shape)

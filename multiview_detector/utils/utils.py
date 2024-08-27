@@ -165,6 +165,12 @@ def accuracy(output, target, topk=(1,)):
         res.append(correct_k.mul_(100.0 / batch_size))
     return res
 
+def resize_detr_outputs(detr_outputs):
+    resized_outputs = dict()
+    resized_outputs["pred_logits"] = detr_outputs["pred_logits"].unsqueeze(0)
+    resized_outputs["pred_ct_pts"] = detr_outputs["pred_ct_pts"].unsqueeze(0)
+    resized_outputs["outputs"] = detr_outputs["outputs"].unsqueeze(0)
+    return resized_outputs
 
 def combine_detr_outputs(detr_outputs1, detr_outputs2):
     if detr_outputs1 is None:
@@ -173,23 +179,23 @@ def combine_detr_outputs(detr_outputs1, detr_outputs2):
         return detr_outputs1
     combined_outputs = dict()
     combined_outputs["pred_logits"] = torch.cat([detr_outputs1["pred_logits"], detr_outputs2["pred_logits"]], dim=0)
-    combined_outputs["pred_pts"] = torch.cat([detr_outputs1["pred_pts"], detr_outputs2["pred_pts"]], dim=0)
+    combined_outputs["pred_ct_pts"] = torch.cat([detr_outputs1["pred_ct_pts"], detr_outputs2["pred_ct_pts"]], dim=0)
     combined_outputs["outputs"] = torch.cat([detr_outputs1["outputs"], detr_outputs2["outputs"]], dim=0)
-    combined_outputs["aux_outputs"] = [
-        {
-            "pred_logits": torch.cat([
-                detr_outputs1["aux_outputs"][_]["pred_logits"],
-                detr_outputs2["aux_outputs"][_]["pred_logits"]],
-                dim=0
-            ),
-            "pred_boxes": torch.cat([
-                detr_outputs1["aux_outputs"][_]["pred_boxes"],
-                detr_outputs2["aux_outputs"][_]["pred_boxes"]],
-                dim=0
-            ),
-        }
-        for _ in range(len(detr_outputs1["aux_outputs"]))
-    ]
+    # combined_outputs["aux_outputs"] = [
+    #     {
+    #         "pred_logits": torch.cat([
+    #             detr_outputs1["aux_outputs"][_]["pred_logits"],
+    #             detr_outputs2["aux_outputs"][_]["pred_logits"]],
+    #             dim=0
+    #         ),
+    #         "pred_boxes": torch.cat([
+    #             detr_outputs1["aux_outputs"][_]["pred_boxes"],
+    #             detr_outputs2["aux_outputs"][_]["pred_boxes"]],
+    #             dim=0
+    #         ),
+    #     }
+    #     for _ in range(len(detr_outputs1["aux_outputs"]))
+    # ]
     if "dn_meta" in detr_outputs1:  # for DINO?
         combined_outputs["dn_meta"] = {}
         combined_outputs["dn_meta"]["pad_size"] = detr_outputs1["dn_meta"]["pad_size"]
@@ -225,7 +231,7 @@ def combine_detr_outputs(detr_outputs1, detr_outputs2):
             "pred_logits": torch.cat(
                 [detr_outputs1["interm_outputs"]["pred_logits"], detr_outputs2["interm_outputs"]["pred_logits"]], dim=0
             ),
-            "pred_boxes": torch.cat(
+            "pred_pts": torch.cat(
                 [detr_outputs1["interm_outputs"]["pred_boxes"], detr_outputs2["interm_outputs"]["pred_boxes"]], dim=0
             )
         }
@@ -233,7 +239,7 @@ def combine_detr_outputs(detr_outputs1, detr_outputs2):
             "pred_logits": torch.cat(
                 [detr_outputs1["interm_outputs_for_matching_pre"]["pred_logits"], detr_outputs2["interm_outputs_for_matching_pre"]["pred_logits"]], dim=0
             ),
-            "pred_boxes": torch.cat(
+            "pred_pts": torch.cat(
                 [detr_outputs1["interm_outputs_for_matching_pre"]["pred_boxes"], detr_outputs2["interm_outputs_for_matching_pre"]["pred_boxes"]], dim=0
             )
         }
@@ -299,8 +305,27 @@ def batch_iterator(batch_size: int, *args) -> Generator[List[Any], None, None]:
     n_batches = len(args[0]) // batch_size + int(len(args[0]) % batch_size != 0)
     for b in range(n_batches):
         yield [arg[b * batch_size: (b + 1) * batch_size] for arg in args]
+from torch import nn
+def get_activation_layer(activation: str):
+    """
+    返回一个激活函数层，例如 nn.ReLU。
 
+    Args:
+        activation:
 
+    Returns:
+    """
+    if activation == "ReLU":
+        return nn.ReLU(True)
+    elif activation == "GELU":
+        return nn.GELU()
+    elif activation == "SiLU":
+        return nn.SiLU(True)
+    else:
+        raise ValueError(f"Do not support activation layer: {activation}")
+import copy
+def get_clones(module, n):
+    return nn.ModuleList([copy.deepcopy(module) for i in range(n)])
 if __name__ == '__main__':
     config = yaml_to_dict("../configs/resnet18_mnist.yaml")
 

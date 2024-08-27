@@ -67,7 +67,7 @@ class SetCriterion(nn.Module):
         1) we compute hungarian assignment between ground truth boxes and the outputs of the model
         2) we supervise each pair of matched ground-truth / prediction (supervise class and box)
     """
-    def __init__(self, num_classes, matcher, weight_dict, losses, focal_alpha=0.25):
+    def __init__(self, num_classes, matcher,matcher_batch, weight_dict, losses, focal_alpha=0.25):
         """ Create the criterion.
         Parameters:
             num_classes: number of object categories, omitting the special no-object category
@@ -79,6 +79,7 @@ class SetCriterion(nn.Module):
         super().__init__()
         self.num_classes = num_classes
         self.matcher = matcher
+        self.matcher_batch = matcher_batch
         self.weight_dict = weight_dict
         self.losses = losses
         self.focal_alpha = focal_alpha
@@ -92,7 +93,8 @@ class SetCriterion(nn.Module):
         src_logits = outputs['pred_logits']
         # print('outlabel_shape: ',src_logits.shape)
         # targets = list(targets)
-        targets = [targets]
+        if type(targets) != list:
+            targets = [targets]
 
         idx = self._get_src_permutation_idx(indices)
         # print("idx:",idx)
@@ -157,7 +159,8 @@ class SetCriterion(nn.Module):
         return None
     def loss_center(self,outputs, targets ,indices,log=True):
         # print('indice shape: ',indices)
-        targets = [targets]
+        if type(targets) != list:
+            targets = [targets]
         src_centers = outputs['pred_ct_pts']
         # print('pred_center_shape: ',src_centers.shape)
         idx = self._get_src_permutation_idx(indices)
@@ -191,7 +194,52 @@ class SetCriterion(nn.Module):
         loss_offset = self.l1loss(src_offsets,targets[0]['reg_mask'], targets[0]['idx'], target_offsets_o)
         losses = {'loss_offset': loss_offset}
         return losses
+    def loss_labels_batch(self, outputs, targets, indices, num_boxes, log=True):
+        """Classification loss (NLL)
+        targets dicts must contain the key "labels" containing a tensor of dim [nb_target_boxes]
+        """
+        assert 'pred_logits' in outputs
+        src_logits = outputs['pred_logits']
 
+        idx = self._get_src_permutation_idx(indices)
+        target_classes_o = torch.cat([t["labels"][J] for t, (_, J) in zip(targets, indices)])
+        target_classes = torch.full(src_logits.shape[:2], self.num_classes,
+                                    dtype=torch.int64, device=src_logits.device)
+        target_classes[idx] = target_classes_o
+
+        target_classes_onehot = torch.zeros([src_logits.shape[0], src_logits.shape[1], src_logits.shape[2] + 1],
+                                            dtype=src_logits.dtype, layout=src_logits.layout, device=src_logits.device)
+        target_classes_onehot.scatter_(2, target_classes.unsqueeze(-1), 1)
+
+        target_classes_onehot = target_classes_onehot[:,:,:-1]
+        loss_ce = sigmoid_focal_loss(src_logits, target_classes_onehot, num_boxes, alpha=self.focal_alpha, gamma=2) * src_logits.shape[1]
+        losses = {'loss_ce': loss_ce}
+
+        if log:
+            # TODO this should probably be a separate loss, not hacked in this one here
+            losses['class_error'] = 100 - accuracy(src_logits[idx], target_classes_o)[0]
+        return losses
+
+    def loss_center_batch(self,outputs, targets ,indices,log=True):
+        src_centers = outputs['pred_ct_pts']
+        # print('pred_center_shape: ',src_centers.shape)
+        idx = self._get_src_permutation_idx(indices)
+        src_centers_sorted = src_centers[idx]
+        target_centers_o = torch.cat([t["pts"][J] for t, (_, J) in zip(targets, indices)])
+        # print('tgt_pts_shape: ',target_centers_o.shape)
+        # target_centers = torch.full(src_centers.shape[:2], self.num_classes,
+        #                     dtype=torch.int64, device=src_centers.device)
+        target_centers_o = target_centers_o.to(src_centers.device)
+        # target_centers[idx[1]] = target_centers_o
+        # loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], targets[0]['world_pts'])
+        # print('mask: ',targets[0]['reg_mask'])
+        # loss_center = self.regloss(src_centers_sorted,None, None, target_centers_o)
+        loss_center = F.l1_loss(src_centers_sorted,target_centers_o)
+        # loss_center = self.mseloss(src_centers,)
+        # self.compare_pts(src_centers_sorted,target_centers_o)
+        # losses = {'loss_center': loss_center}
+        losses = {'center': loss_center}
+        return losses
         
 
     def _get_src_permutation_idx(self, indices):
@@ -215,8 +263,22 @@ class SetCriterion(nn.Module):
         # }
         loss_map = {
             'labels':self.loss_labels,
-            'center':self.loss_center,
-            'offset':self.loss_offset
+            'center':self.loss_center
+            # 'offset':self.loss_offset
+        }
+        assert loss in loss_map, f'do you really want to compute {loss} loss?'
+        return loss_map[loss](outputs, targets, indices, num_boxes, **kwargs)
+    def get_loss_batch(self, loss, outputs, targets, indices, num_boxes, **kwargs):
+        # loss_map = {
+        #     'labels': self.loss_labels,
+        #     'cardinality': self.loss_cardinality,
+        #     'boxes': self.loss_boxes,
+        #     'masks': self.loss_masks
+        # }
+        loss_map = {
+            'labels':self.loss_labels_batch,
+            'center':self.loss_center_batch
+            # 'offset':self.loss_offset
         }
         assert loss in loss_map, f'do you really want to compute {loss} loss?'
         return loss_map[loss](outputs, targets, indices, num_boxes, **kwargs)
@@ -231,24 +293,40 @@ class SetCriterion(nn.Module):
         outputs_without_aux = {k: v for k, v in outputs.items() if k != 'aux_outputs' and k != 'enc_outputs'}
 
         # Retrieve the matching between the outputs of the last layer and the targets
-        indices = self.matcher(outputs_without_aux, targets)
+        if type(targets) != list:
+            indices = self.matcher(outputs_without_aux, targets)
+            num_points = len(targets["labels"])
+            num_points = torch.as_tensor([num_points], dtype=torch.float, device=next(iter(outputs.values())).device)
+            if is_dist_avail_and_initialized():
+                torch.distributed.all_reduce(num_points)
+            num_points = torch.clamp(num_points / get_world_size(), min=1).item()
+
+            # Compute all the requested losses
+            losses = {}
+            for loss in self.losses:
+                kwargs = {}
+                losses.update(self.get_loss(loss, outputs, targets, indices, num_points, **kwargs))
+        else:
+            indices = self.matcher_batch(outputs_without_aux, targets)
+            num_points = len(targets[0]["labels"]) * len(targets)
+            num_points = torch.as_tensor([num_points], dtype=torch.float, device=next(iter(outputs.values())).device)
+            if is_dist_avail_and_initialized():
+                torch.distributed.all_reduce(num_points)
+            num_points = torch.clamp(num_points / get_world_size(), min=1).item()
+
+            # Compute all the requested losses
+            losses = {}
+            for loss in self.losses:
+                kwargs = {}
+                losses.update(self.get_loss_batch(loss, outputs, targets, indices, num_points, **kwargs))
         # print('indices shape: ',indices.shape)
         # print('indices: ',indices)
 
         # Compute the average number of target boxes accross all nodes, for normalization purposes
         # num_points = sum(len(t["labels"]) for t in targets)
         # print(targets[0]["labels"])
-        num_points = len(targets["labels"])
-        num_points = torch.as_tensor([num_points], dtype=torch.float, device=next(iter(outputs.values())).device)
-        if is_dist_avail_and_initialized():
-            torch.distributed.all_reduce(num_points)
-        num_points = torch.clamp(num_points / get_world_size(), min=1).item()
+        
 
-        # Compute all the requested losses
-        losses = {}
-        for loss in self.losses:
-            kwargs = {}
-            losses.update(self.get_loss(loss, outputs, targets, indices, num_points, **kwargs))
 
         # In case of auxiliary losses, we repeat this process with the output of each intermediate layer.
         if 'aux_outputs' in outputs:
