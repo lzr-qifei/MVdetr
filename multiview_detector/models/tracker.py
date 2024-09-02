@@ -99,14 +99,18 @@ class MVPTR(nn.Module):
         # else:
         #     raise RuntimeError(f"Unknown DETR framework: {self.detr_framework}.")
 
-        dataset_train = build_dataset(config=config)
+        dataset_train = build_dataset(config=config,train=True)
         self.detr = MVDeTr_w_dec(args=None,dataset=dataset_train).cuda()
         # ID Label Criterion:
         self.id_criterion = nn.CrossEntropyLoss()
         self.id_loss_weight = config["ID_LOSS_WEIGHT"]
 
         # Seq Decoder:
-        self.only_detr = False
+        # self.only_detr = False
+        if config['TRAIN_STAGE'] == 'only_detr':
+            self.only_detr = True
+        else:
+            self.only_detr = False
         if self.only_detr is False:
             self.seq_decoder = SeqDecoder(
                 detr_hidden_dim=config["DETR_HIDDEN_DIM"],

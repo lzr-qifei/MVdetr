@@ -174,6 +174,7 @@ class SetCriterion(nn.Module):
         # loss_center = self.l1loss(src_centers,targets[0]['reg_mask'], targets[0]['idx'], targets[0]['world_pts'])
         # print('mask: ',targets[0]['reg_mask'])
         loss_center = self.regloss(src_centers_sorted,None, None, target_centers_o)
+        # print('target pt: ',target_centers_o)
         # loss_center = self.mseloss(src_centers,)
         # self.compare_pts(src_centers_sorted,target_centers_o)
         # losses = {'loss_center': loss_center}
@@ -363,3 +364,24 @@ class SetCriterion(nn.Module):
                 losses.update(l_dict)
 
         return losses,indices
+import einops
+class IDCriterion(nn.Module):
+    def __init__(self, weight: float, gpu_average: bool):
+        super().__init__()
+        self.weight = weight
+        self.gpu_average = gpu_average if gpu_average is not None else None
+        self.ce_loss = nn.CrossEntropyLoss(reduction="none")
+
+    def forward(self, outputs, targets):
+        assert len(outputs) == 1, f"ID Criterion is only supported bs=1, but get bs={len(outputs)}"
+        outputs = einops.rearrange(outputs, "b n c -> (b n) c")
+        targets = einops.rearrange(targets, "b n c -> (b n) c")
+        ce_loss = self.ce_loss(outputs, targets).sum()
+        # Average:
+        num_ids = len(outputs)
+        num_ids = torch.as_tensor([num_ids], dtype=torch.float, device=outputs.device)
+        # if self.gpu_average:
+        #     if is_distributed():
+        #         torch.distributed.all_reduce(num_ids)
+        #     num_ids = torch.clamp(num_ids / distributed_world_size(), min=1).item()
+        return ce_loss / num_ids

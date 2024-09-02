@@ -11,8 +11,8 @@ def is_distributed():
         return False
     return True
 
-def build_dataset(config: dict):
-    return build_mv_dataset(config)
+def build_dataset(config: dict,train: bool):
+    return build_mv_dataset(config,train)
 
 
 def build_sampler(dataset, shuffle: bool):
@@ -27,7 +27,7 @@ def build_dataloader(dataset, sampler, batch_size: int, num_workers: int):
     return DataLoader(
         dataset=dataset,
         batch_size=batch_size,
-        sampler=sampler,
+        # sampler=sampler,
         num_workers=num_workers,
         pin_memory=True,
         collate_fn=collate_fn

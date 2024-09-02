@@ -38,6 +38,8 @@ class IDDecoder(nn.Module):
         self.ffn_dim = 2 * self.dim_feedforward
 
         # ID Word Embedding:
+        # self.word_to_embed = nn.Linear(in_features=self.num_id_vocabulary + 1, out_features=self.hidden_dim, bias=False).to(device)
+        # self.embed_to_word = nn.Linear(in_features=self.hidden_dim, out_features=self.num_id_vocabulary + 1, bias=False).to(device)
         self.word_to_embed = nn.Linear(in_features=self.num_id_vocabulary + 1, out_features=self.hidden_dim, bias=False)
         self.embed_to_word = nn.Linear(in_features=self.hidden_dim, out_features=self.num_id_vocabulary + 1, bias=False)
 

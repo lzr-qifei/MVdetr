@@ -91,7 +91,7 @@ class MLP(nn.Module):
 
 class MVDeTr_w_dec(nn.Module):
     def __init__(self, args,dataset, arch='resnet18', z=0, world_feat_arch='deform_trans_w_dec',
-                 bottleneck_dim=128, outfeat_dim=64, dropout=0.1,two_stage=False,num_queries=300,local_pth = None):
+                 bottleneck_dim=128, outfeat_dim=64, dropout=0.0,two_stage=False,num_queries=300,local_pth = None):
         super().__init__()
         self.arch = arch
         self.args = args
@@ -246,7 +246,7 @@ class MVDeTr_w_dec(nn.Module):
         #         visualize_img = T.ToPILImage()(denorm(proj_imgs.detach())[0, cam])
         #         plt.imshow(visualize_img)
         #         plt.show()
-        print('data: ',imgs.shape)
+        # print('data: ',imgs.shape)
         if self.arch == 'convnext':
             imgs_feat = self.base(imgs)[-2]
         else:
@@ -261,9 +261,9 @@ class MVDeTr_w_dec(nn.Module):
             # imgs_feat = torch.stack(imgs_list).squeeze()
             # print('data: ',imgs.shape)
             imgs_feat = self.base(imgs)
-        print('after backbone: ',imgs_feat.shape)
+        # print('after backbone: ',imgs_feat.shape)
         imgs_feat = self.bottleneck(imgs_feat)
-        print('after neck: ',imgs_feat.shape)
+        # print('after neck: ',imgs_feat.shape)
         if visualize:
             for cam in range(N):
                 visualize_img = array2heatmap(torch.norm(imgs_feat[cam * B].detach(), dim=0).cpu())

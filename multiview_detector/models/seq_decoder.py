@@ -103,7 +103,7 @@ class SeqDecoder(nn.Module):
             device=self.device,
             num_id_vocabulary=self.num_id_vocabulary,
             max_temporal_length=self.max_temporal_length,
-        )
+        ).to(self.device)
 
         return
 
@@ -205,12 +205,14 @@ class SeqDecoder(nn.Module):
         # All information is stored in a corresponding T-len list.
         all_ids = [_.id_words for _ in track_seq] if self.training else [_.ids for _ in track_seq]
         all_features = [_.outputs for _ in track_seq]
-        all_boxes = [_.gt_boxes.detach().to(all_features[0].device) for _ in track_seq] if self.training \
-            else [_.boxes.detach() for _ in track_seq]
+        # all_boxes = [_.gt_boxes.detach().to(all_features[0].device) for _ in track_seq] if self.training \
+        #     else [_.boxes.detach() for _ in track_seq]
+        all_pts = [_.gt_pts.detach().to(all_features[0].device) for _ in track_seq] if self.training \
+            else [_.pts.detach() for _ in track_seq]
         T = len(all_ids)
-        print('all id: ',T)
+        # print('all id: ',T)
         feature_dim = all_features[0].shape[-1]
-        box_dim = all_boxes[0].shape[-1]
+        pt_dim = all_pts[0].shape[-1]
         device = all_features[0].device
 
         # Statistics of IDs that appear in the track_seq:
@@ -225,7 +227,7 @@ class SeqDecoder(nn.Module):
 
         # Prepare the historical trajectory fields,
         # which should be in (N, T-1) shape.
-        trajectory_ids_list, trajectory_features_list, trajectory_boxes_list, trajectory_times_list = [], [], [], []
+        trajectory_ids_list, trajectory_features_list, trajectory_pts_list, trajectory_times_list = [], [], [], []
         trajectory_masks_list = []
         idxs_temp = {}
         # Generate the historical trajectory fields:
@@ -240,35 +242,35 @@ class SeqDecoder(nn.Module):
             # Init fields:
             t_ids = -torch.ones((N, ), dtype=torch.long, device=device)
             t_features = torch.zeros((N, feature_dim), dtype=torch.float, device=device)
-            t_boxes = torch.zeros((N, box_dim), dtype=torch.float, device=device)
+            t_pts = torch.zeros((N, pt_dim), dtype=torch.float, device=device)
             # Fill fields:
             t_ids[t_idxs] = all_ids[t].to(device)
             # print('t_ids shape: ',t_ids.shape)
             t_features[t_idxs] = all_features[t]
-            t_boxes[t_idxs] = all_boxes[t]
+            t_pts[t_idxs] = all_pts[t]
             # Append to the list:
             trajectory_ids_list.append(t_ids)
             trajectory_features_list.append(t_features)
-            trajectory_boxes_list.append(t_boxes)
+            trajectory_pts_list.append(t_pts)
             trajectory_times_list.append(t_times)
             trajectory_masks_list.append(t_token_mask)
         # Stack the historical trajectory fields into tensors,
         # shape=(N, T-1, ...)
         trajectory_features = torch.stack(trajectory_features_list, dim=1)
-        trajectory_boxes = torch.stack(trajectory_boxes_list, dim=1)
+        trajectory_pts = torch.stack(trajectory_pts_list, dim=1)
         trajectory_times = torch.stack(trajectory_times_list, dim=1)
         trajectory_ids = torch.stack(trajectory_ids_list, dim=1)
         trajectory_masks = torch.stack(trajectory_masks_list, dim=1)
 
         # print('trajectory_features: ',trajectory_features.shape)
         # print('trajectory_boxes: ',trajectory_boxes.shape)
-        print('trajectory_ids: ',trajectory_ids.shape)
+        # print('trajectory_ids: ',trajectory_ids.shape)
         # print('trajectory_ids: ',trajectory_ids)
         # print('trajectory_times: ',trajectory_times)
         # Prepare the current detection fields,
         # they have nearly the same attributes as historical trajectories.
         # We denote they as "unknown" because they need to be decoded.
-        unknown_features_list, unknown_boxes_list, unknown_ids_list, unknown_times_list = [], [], [], []
+        unknown_features_list, unknown_pts_list, unknown_ids_list, unknown_times_list = [], [], [], []
         unknown_masks_list = []
         unknown_id_gts_list: list | None = [] if self.training else None
 
@@ -281,7 +283,7 @@ class SeqDecoder(nn.Module):
                 t_token_mask = torch.ones((N,), dtype=torch.bool, device=device)
                 t_ids = -torch.ones((N,), dtype=torch.long, device=device)
                 t_features = torch.zeros((N, feature_dim), dtype=torch.float, device=device)
-                t_boxes = torch.zeros((N, box_dim), dtype=torch.float, device=device)
+                t_pts = torch.zeros((N, pt_dim), dtype=torch.float, device=device)
                 t_times = t * torch.ones((N,), dtype=torch.long, device=device)
                 t_id_gts = -torch.ones((N,), dtype=torch.long, device=device)
                 # Fill fields:
@@ -294,14 +296,14 @@ class SeqDecoder(nn.Module):
                 t_token_mask[t_idxs] = False
                 t_ids[t_idxs] = torch.tensor([self.num_id_vocabulary] * N_t, dtype=torch.long, device=device)
                 t_features[t_idxs] = all_features[t]
-                t_boxes[t_idxs] = all_boxes[t]
+                t_pts[t_idxs] = all_pts[t]
                 t_id_gts[t_idxs] = track_seq[t].id_labels.to(device)
                 # Append to the list:
                 unknown_id_gts_list.append(t_id_gts)
                 unknown_masks_list.append(t_token_mask)
                 unknown_times_list.append(t_times)
                 unknown_ids_list.append(t_ids)
-                unknown_boxes_list.append(t_boxes)
+                unknown_pts_list.append(t_pts)
                 unknown_features_list.append(t_features)
                 # print('unknown_id_gts_list: ',unknown_id_gts_list.shape)
         else:
@@ -311,12 +313,12 @@ class SeqDecoder(nn.Module):
             N_ = len(all_features[-1])
             unknown_features_list.append(all_features[-1])
             unknown_ids_list.append(all_ids[-1].to(device))
-            unknown_boxes_list.append(all_boxes[-1])
+            unknown_pts_list.append(all_pts[-1])
             unknown_times_list.append(torch.tensor([T-1] * N_, dtype=torch.long, device=device))
             unknown_masks_list.append(torch.zeros((N_, ), dtype=torch.bool, device=device))
         # Stack the current detection fields into tensors,
         unknown_features = torch.stack(unknown_features_list, dim=1)
-        unknown_boxes = torch.stack(unknown_boxes_list, dim=1)
+        unknown_pts = torch.stack(unknown_pts_list, dim=1)
         unknown_ids = torch.stack(unknown_ids_list, dim=1)
         unknown_times = torch.stack(unknown_times_list, dim=1)
         unknown_masks = torch.stack(unknown_masks_list, dim=1)
@@ -381,7 +383,7 @@ class SeqDecoder(nn.Module):
                         # Switch the trajectory features, boxes and masks:
                         shuffle_switch_idxs = switch_idxs[torch.randperm(len(switch_idxs)).to(device)]
                         trajectory_features[switch_idxs, t, :] = trajectory_features[shuffle_switch_idxs, t, :]
-                        trajectory_boxes[switch_idxs, t, :] = trajectory_boxes[shuffle_switch_idxs, t, :]
+                        trajectory_pts[switch_idxs, t, :] = trajectory_pts[shuffle_switch_idxs, t, :]
                         trajectory_masks[switch_idxs, t] = trajectory_masks[shuffle_switch_idxs, t]
                     else:
                         continue    # no object to switch
@@ -389,7 +391,7 @@ class SeqDecoder(nn.Module):
         return [{
             "trajectory": {
                 "features": trajectory_features,
-                "boxes": trajectory_boxes,
+                "pts": trajectory_pts,
                 "ids": trajectory_ids,
                 "times": trajectory_times,
                 "masks": trajectory_masks,
@@ -397,7 +399,7 @@ class SeqDecoder(nn.Module):
             },
             "unknown": {
                 "features": unknown_features,
-                "boxes": unknown_boxes,
+                "pts": unknown_pts,
                 "ids": unknown_ids,
                 "times": unknown_times,
                 "masks": unknown_masks,
@@ -418,6 +420,7 @@ class SeqDecoder(nn.Module):
         unknown_features = format_seq["unknown"]["features"]
 
         # Use a simple adapter:
+        self.trajectory_feature_adapter.to(self.device)
         trajectory_feature_embeds = self.trajectory_feature_adapter(trajectory_feature_embeds)
 
         # Trajectory Augmentation, only use FFN for now:

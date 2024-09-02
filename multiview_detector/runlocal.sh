@@ -1,1 +1,1 @@
-python ../main.py  -d multiviewx  --data /root/autodl-tmp/MultiviewX --world_reduce 2 --arch resnet18 --img_reduce 12
+python test_dataset.py  -d multiviewx  --config /root/MVdetr/multiview_detector/configs/test_dataset_detr_only.yaml

@@ -10,21 +10,24 @@ AVAILABLE_GPUS: "0"
 
 # log settings:
 LOG_DIR: /root/MVdetr/multiview_detector/logs
+OUT_DIR: /root/MVdetr/multiview_detector/results/test.txt
 # Git version:
 GIT_VERSION:              # you should input the git version here, if you are using wandb to log your experiments.
 
 # Datasets:
 DATASET: [MultiviewX]    # for joint training, there may be multiple datasets, like: [CrowdHuman, MOT17]
 TRAIN_RATIO: 0.9
-LENGTH_PER_SEQUENCE: 3
-LENGTH_DETR_TRAIN: 4
+LENGTH_PER_SEQUENCE: 1
+LENGTH_DETR_TRAIN: 9
 NUM_ID_VOCABULARY: 50
 NUM_CLASSES: 1
 # DATASET_SPLITS: [train]   # and corresponding splits, like: [train, val]
 DATA_ROOT: /root/autodl-tmp/   # datasets root
+DETR_GT: /root/autodl-tmp/MultiviewX/gt.txt
+AUG: True
 # Sampling settings:
 SAMPLE_STEPS: [0]
-SAMPLE_LENGTHS: [8]
+SAMPLE_LENGTHS: [10]
 SAMPLE_MODES: [random_interval]
 SAMPLE_INTERVALS: [1]
 
@@ -40,10 +43,14 @@ AUGMENTATION: True
 
 
 # Training Setting:
-TRAIN_STAGE: joint
+TRAIN_STAGE: only_detr
 SEED: 42
 USE_DISTRIBUTED: False
 DETR_NUM_TRAIN_FRAMES: 4
+ACCUMULATE_STEPS: 1
+SAVE_CHECKPOINT_PER_EPOCH: 10
+RESUME: 
+
 # ID criterion
 ID_LOSS_WEIGHT: 1
 # Below two parameters are for memory optimized DETR training:
@@ -54,7 +61,7 @@ TRAJ_DROP_RATIO: 0.5
 TRAJ_SWITCH_RATIO: 0.3
 # Training Scheduler:
 EPOCHS: 14
-LR: 1.0e-4
+LR: 1.0e-5
 LR_BACKBONE_NAMES: [backbone.0]
 LR_BACKBONE_SCALE: 0.1
 LR_LINEAR_PROJ_NAMES: [reference_points, sampling_offsets]

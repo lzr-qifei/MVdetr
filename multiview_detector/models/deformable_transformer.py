@@ -57,7 +57,7 @@ def create_pos_embedding(img_size, num_pos_feats=64, temperature=10000, normaliz
 
 class DeformableTransformer(nn.Module):
     def __init__(self, d_model=256, nhead=8,
-                 num_encoder_layers=3, num_decoder_layers=3, dim_feedforward=1024, dropout=0.1,
+                 num_encoder_layers=4, num_decoder_layers=1, dim_feedforward=1024, dropout=0.1,
                  activation="relu", return_intermediate_dec=False,
                  num_cam=6, dec_n_points=4,  enc_n_points=4,
                  Rworld_shape = None, base_dim=None, hidden_dim=128,stride=2,reference_points=None,two_stage=False,cur_epoch=0,detr_train_frames=1):
@@ -85,7 +85,8 @@ class DeformableTransformer(nn.Module):
                                                           self.decoder_levels, nhead, dec_n_points)
         self.decoder = DeformableTransformerDecoder(decoder_layer, num_decoder_layers, return_intermediate_dec,self.dec_n_points)
 
-        self.level_embed = nn.Parameter(torch.Tensor(detr_train_frames,num_cam, hidden_dim))
+        # self.level_embed = nn.Parameter(torch.Tensor(detr_train_frames,num_cam, hidden_dim))
+        self.level_embed = nn.Parameter(torch.Tensor(num_cam, hidden_dim))
         self.reference_points_dec = nn.Linear(hidden_dim, 2)
         # self.reference_points = nn.Linear(d_model, 2)
 
@@ -332,7 +333,7 @@ class DeformableTransformerDecoder(nn.Module):
         intermediate = []
         intermediate_reference_points = []
         # print('before repeat: ',reference_points.shape)
-        repeat_pts = int(self.dec_n_points)
+        # repeat_pts = int(self.dec_n_points)
         repeat_pts = 6
         reference_points_input = reference_points.unsqueeze(2).repeat([1,1,repeat_pts,1])
         # reference_points = reference_points.unsqueeze(0).repeat([src.shape[0], 1, 1, 1, 1]).to(src.device)
