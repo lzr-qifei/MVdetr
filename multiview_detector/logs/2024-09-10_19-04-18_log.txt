@@ -1,0 +1,88 @@
+
+YAML content:
+ACCUMULATE_STEPS: 2
+AUG: true
+AUGMENTATION: true
+AVAILABLE_GPUS: '0'
+BASE_LR_RATIO: 0.1
+BATCH_SIZE: 1
+BOTTLENECK_DIM: 128
+CLIP_MAX_NORM: 0.1
+DATASET:
+- MultiviewX
+DATA_ROOT: /root/autodl-tmp/
+DETR_CHECKPOINT_FRAMES: 5
+DETR_GT: /root/autodl-tmp/MultiviewX/gt.txt
+DETR_HIDDEN_DIM: 128
+DETR_NUM_TRAIN_FRAMES: 4
+DEVICE: cuda
+DROPCAM: 0.0
+EPOCHS: 14
+GIT_VERSION: null
+ID_DECODER_LAYERS: 6
+ID_LOSS_WEIGHT: 1
+IMG_KERNEL_SIZE: 10
+IMG_REDUCE: 12
+LENGTH_DETR_TRAIN: 10
+LENGTH_PER_SEQUENCE: 1
+LOG_DIR: /root/MVdetr/multiview_detector/logs
+LR: 0.0005
+LR_BACKBONE_NAMES:
+- backbone.0
+LR_BACKBONE_SCALE: 0.1
+LR_LINEAR_PROJ_NAMES:
+- reference_points
+- sampling_offsets
+LR_LINEAR_PROJ_SCALE: 0.05
+LR_WARMUP_EPOCHS: 1
+MAX_TEMPORAL_LENGTH: 10
+MODE: null
+NUM_CLASSES: 1
+NUM_CPU_PER_GPU: null
+NUM_ID_VOCABULARY: 50
+NUM_WORKERS: 4
+OUT_DIR: /root/MVdetr/multiview_detector/results/test.txt
+RESUME: null
+RESUME_MODEL: null
+RESUME_OPTIMIZER: true
+RESUME_SCHEDULER: true
+RESUME_STATES: true
+SAMPLE_INTERVALS:
+- 1
+SAMPLE_LENGTHS:
+- 10
+SAMPLE_MODES:
+- random_interval
+SAMPLE_STEPS:
+- 0
+SAVE_CHECKPOINT_PER_EPOCH: 10
+SCHEDULER_GAMMA: 0.1
+SCHEDULER_MILESTONES:
+- 8
+- 12
+SCHEDULER_TYPE: MultiStep
+SEED: 42
+SEMI_SUPERVISED: 0
+SEQ_DECODER_CHECKPOINT: false
+SEQ_HIDDEN_DIM: 128
+SUPER_CONFIG_PATH: null
+TRAIN_RATIO: 0.9
+TRAIN_STAGE: only_detr
+TRAJ_DROP_RATIO: 0.5
+TRAJ_SWITCH_RATIO: 0.3
+USE_DISTRIBUTED: false
+WEIGHT_DECAY: 0.0001
+WORLD_KERNEL_SIZE: 10
+WORLD_REDUCE: 2
+
+epoch:0-training
+{'labels': tensor(0.7764, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0187, device='cuda:0', grad_fn=<MeanBackward0>)}
+idx:0,loss:3.7626583129167557
+{'labels': tensor(0.3922, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0175, device='cuda:0', grad_fn=<MeanBackward0>)}
+idx:1,loss:2.4828235805034637
+{'labels': tensor(0.3105, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0170, device='cuda:0', grad_fn=<MeanBackward0>)}
+idx:2,loss:2.2456908226013184
+{'labels': tensor(0.2889, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0160, device='cuda:0', grad_fn=<MeanBackward0>)}
+idx:3,loss:2.3748914152383804
+{'labels': tensor(0.3091, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0193, device='cuda:0', grad_fn=<MeanBackward0>)}
+idx:4,loss:2.239608196541667

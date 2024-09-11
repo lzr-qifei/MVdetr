@@ -30,5 +30,5 @@ def build_dataloader(dataset, sampler, batch_size: int, num_workers: int):
         # sampler=sampler,
         num_workers=num_workers,
         pin_memory=True,
-        collate_fn=collate_fn
+        # collate_fn=collate_fn
     )

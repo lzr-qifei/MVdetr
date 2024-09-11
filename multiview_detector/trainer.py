@@ -51,12 +51,17 @@ class PerspectiveTrainer(BaseTrainer):
             # print('w_gt_shape',world_gt['world_pts'].shape)
             B, N = imgs_gt['heatmap'].shape[:2]
             data = data.cuda(device=device)
+            wanted = torch.tensor(0)
             for key in imgs_gt.keys():
                 imgs_gt[key] = imgs_gt[key].view([B * N] + list(imgs_gt[key].shape)[2:])##(B,N,...)---->(B*N,...)##
-                
+            # if frame ==wanted:
+            #     break
+            # else:
+            #     continue
             # with autocast():
             # supervised
             # (world_heatmap, world_offset), (imgs_heatmap, imgs_offset, imgs_wh) = self.model(data, affine_mats)
+            # print('mats: ',affine_mats)
             outputs = self.model(data,affine_mats)
             targets = world_gt
             # loss_dict = criterion(outputs,targets)
@@ -110,10 +115,13 @@ class PerspectiveTrainer(BaseTrainer):
             # scaler.scale(losses).backward()
             # scaler.step(optimizer)
             # scaler.update()
-            optimizer.zero_grad()
+            
             grad_total_norm = torch.nn.utils.clip_grad_norm_(self.model.parameters(), 0.1)
             losses.backward()
-            optimizer.step()
+            if ((batch_idx+1) % 5) == 0:
+                
+                optimizer.step()
+                optimizer.zero_grad()
 
             # losses_total += losses.item()
 

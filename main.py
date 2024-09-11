@@ -24,8 +24,8 @@ from multiview_detector.utils.draw_curve import draw_curve
 from multiview_detector.utils.str2bool import str2bool
 from multiview_detector.trainer import PerspectiveTrainer
 import ssl
-from multiview_detector.models.criterion import SetCriterion
-from multiview_detector.models.matcher import HungarianMatcher
+from multiview_detector.models.criterion import SetCriterion,DETRCriterion
+from multiview_detector.models.matcher import HungarianMatcher,DETRMatcher
 ssl._create_default_https_context = ssl._create_unverified_context
 
 def main(args):
@@ -131,6 +131,7 @@ def main(args):
     param_dicts = [{"params": [p for n, p in model.named_parameters() if 'base' not in n and p.requires_grad], },
                    {"params": [p for n, p in model.named_parameters() if 'base' in n and p.requires_grad],
                     "lr": args.lr * args.base_lr_ratio, }, ]
+    # print(len(param_dicts[0]['params']),len(param_dicts[1]['params']))
     # optimizer = optim.SGD(param_dicts, lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
     weight_dict ={
             'labels':torch.tensor(2,dtype=float,device='cuda:0'),
@@ -145,8 +146,10 @@ def main(args):
     # optimizer = optim.SGD(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
     scaler = GradScaler()
     # matcher = HungarianMatcher(cost_class=0.2,cost_pts=2)
-    matcher = HungarianMatcher(cost_class=2.0,cost_pts=50.0)
-    criterion = SetCriterion(1,matcher,weight_dict,losses)
+    matcher = DETRMatcher(cost_class=2.0,cost_pts=50.0)
+    # criterion = SetCriterion(1,matcher,None,weight_dict,losses)
+
+    criterion = DETRCriterion(1,matcher,weight_dict,losses)
     # criterion.to('cuda:0')
     criterion.to(device=device)
     # def warmup_lr_scheduler(epoch, warmup_epochs=2):

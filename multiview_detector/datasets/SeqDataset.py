@@ -14,7 +14,7 @@ import torch
 import torch.nn.functional as F
 import torchvision.transforms as T
 from multiview_detector.utils.projection import *
-from multiview_detector.utils.image_utils import draw_umich_gaussian, random_affine
+from multiview_detector.utils.image_utils import draw_umich_gaussian, random_affine_seq
 import matplotlib.pyplot as plt
 from kornia.geometry.transform import warp_perspective
 from torch.utils.data import DataLoader
@@ -136,9 +136,12 @@ class SeqDataset(Dataset):
         self.sample_lengths = config["SAMPLE_LENGTHS"]
         self.sample_modes = config["SAMPLE_MODES"]
         self.sample_intervals = config["SAMPLE_INTERVALS"]
-        self.sample_frames_begin = []
+        self.sample_length = None
+        self.sample_mode = None
+        self.sample_interval = None
+        # self.sample_frames_begin = []
         # self.train = is_train
-        self.length = config['LENGTH_PER_SEQUENCE']
+        # self.length = config['LENGTH_PER_SEQUENCE']
         self.sample_frames_begin = []
         # self.infos = sel
         self.Rworld_shape = list(map(lambda x: x // self.world_reduce, self.worldgrid_shape))
@@ -152,15 +155,20 @@ class SeqDataset(Dataset):
         dataset, seq, begin = self.sample_frames_begin[item]
         # print(dataset)
         split = ' '
+        img_list = []
         frames_idx = self.sample_frames_idx(dataset=dataset, split=split, seq=seq, begin=begin)
         # dataset = self.dataset_name
+        for i in frames_idx:
+            img,aff,infsss = self.get_single_frame(dataset=dataset, split=split, seq=seq, frame=i)
+            img_list.append(img)
         images, affine_mats,infos = self.get_multi_frames(dataset=dataset, split=split, seq=seq, frames=frames_idx)
 
         return {
             # "images": stacked_images,
             "images": images,
             "infos": infos,
-            "affine_mats": affine_mats
+            "affine_mats": affine_mats,
+            "img_list": img_list
         }
     
     def get_dataset_structure(self, dataset: str):
@@ -225,10 +233,6 @@ class SeqDataset(Dataset):
             for line in lines:
                 # line = line[:-1]
                 if dataset_name == "MultiviewX" :
-                    # [frame, id, x, y, w, h, 1, 1, 1]
-                    # f, x, y, id = line.split(" ")
-                    # a = line.strip().strip('[]').split(' ')
-                    # print(a)
                     f, x, y, id =  line.strip().strip('[]').split(' ')
                     seq = int(f) // 10
                     label = 1
@@ -300,13 +304,14 @@ class SeqDataset(Dataset):
             # print(f'r_h: {world_reduce_H}')
             # print(f'r_w: {world_reduce_W}')
             for cam in self.cam_names:
-                fid = f"{frame:04}"
+                f = seq*10+frame
+                fid = f"{f:04}"
                 # path = os.path.join(self.dataset['cams'][cam]['image_path'],fid,'.png')
                 # print(path)
                 image = np.array(Image.open(os.path.join(self.dataset['cams'][cam]['image_path'],fid+'.png')).convert('RGB'))
-                
+                # print((os.path.join(self.dataset['cams'][cam]['image_path'],fid+'.png')))
                 if self.aug:
-                    image, M = random_affine(image,)
+                    image, M = random_affine_seq(image)
                     image = self.transform(image)
                     images.append(image)
                 else:

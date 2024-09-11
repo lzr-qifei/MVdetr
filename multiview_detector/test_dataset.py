@@ -9,6 +9,7 @@ from configs.utils import update_config, load_super_config
 from torch.utils.data import RandomSampler, SequentialSampler
 import time
 import numpy as np
+import random
 from evaluation.evaluate import evaluate
 # from train_engine import train
 # from eval_engine import evaluate
@@ -84,8 +85,8 @@ def main(config: dict):
     dataset_test = build_dataset(config=config,train=False)
     # dataset_train.set_epoch(0)
 
-    # model = MVDeTr_w_dec(args=None,dataset=dataset_train).cuda()
-    model = MVPTR(config)
+    model = MVDeTr_w_dec(args=None,dataset=dataset_train).cuda()
+    # model = MVPTR(config)
     device = 'cuda:0'
     losses = ['labels','center']
     lr = config['LR']
@@ -95,8 +96,8 @@ def main(config: dict):
 
     param_dicts = [{"params": [p for n, p in model.named_parameters() if 'base' not in n and p.requires_grad], },
                    {"params": [p for n, p in model.named_parameters() if 'base' in n and p.requires_grad],
-                    "lr": lr , }, ]
-    # optimizer = optim.SGD(param_dicts, lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
+                    "lr": lr*config['BASE_LR_RATIO'], }, ]
+    # optimizer = optim.SGD(param_dicts, lr=lr, momentum=0.9, weight_decay=weight_decay)
     weight_dict ={
             'labels':torch.tensor(2,dtype=float,device='cuda:0'),
             'center':torch.tensor(50.0,dtype=float,device='cuda:0'),
@@ -105,6 +106,7 @@ def main(config: dict):
             # 'offset':torch.tensor(1,dtype=float,device='cuda:0')
     }
     optimizer = optim.Adam(param_dicts, lr=lr, weight_decay=weight_decay)
+    # print(len(param_dicts[0]['params']),len(param_dicts[1]['params']))
     # optimizer = optim.SGD(param_dicts, lr=args.lr, weight_decay=args.weight_decay)
     scaler = GradScaler()
     matcher = HungarianMatcher(cost_class=2,cost_pts=50)
@@ -134,11 +136,15 @@ def main(config: dict):
             batch_size=config["BATCH_SIZE"],
             num_workers=config["NUM_WORKERS"]
             )   
+            # evaluate_one_epoch(config,model,dataset_test,only_detr)
+            print(f'epoch:{epoch}')
+            # for i in range(10):
             train_one_epoch(config,model,logger,dataloader,id_criterion,criterion,
-                            optimizer,epoch,
-                            states,clip_max_norm,length_detr_train_frames,metrics)
+                        optimizer,epoch,
+                        states,clip_max_norm,length_detr_train_frames,metrics)
             if (epoch+1) % config["SAVE_CHECKPOINT_PER_EPOCH"] ==0:
                     torch.save(model.state_dict(), os.path.join(config['LOG_DIR'], 'MultiviewDetector_{}.pth'.format(epoch)))
+            print(f'epoch:{epoch}')
             evaluate_one_epoch(config,model,dataset_test,only_detr)
         else:
             model.load_state_dict(torch.load(config['RESUME']))
@@ -154,6 +160,7 @@ def train_one_epoch(config:dict, model,logger,dataloader:DataLoader,id_criterion
                     optimizer: torch.optim, epoch: int,
                     states:dict,clip_max_norm:float,length_detr_train_frames:int,metrics):
     model.train()
+    detr_criterion.train()
     optimizer.zero_grad()
     # detr_params = []
     # other_params = []
@@ -174,6 +181,7 @@ def train_one_epoch(config:dict, model,logger,dataloader:DataLoader,id_criterion
         frames = batch["nested_tensors"]
         # frames = batch['images']
         infos = batch["infos"]
+        
         # affinemats = batch["mats"][0][0].unsqueeze(0)
 
         # affinemats_infer = batch["mats"][0][:T-length_detr_train_frames]
@@ -225,6 +233,8 @@ def train_one_epoch(config:dict, model,logger,dataloader:DataLoader,id_criterion
             detr_no_grad_outputs = None
 
         for i in range(length_detr_train_frames):
+        # i = random.randint(0,T-1)
+            # print(infos[0][i]['seq'])
             affinemats = batch["mats"][0][i].unsqueeze(0)
             cur_train_frame = detr_train_frames.tensors[i].unsqueeze(0).to(device=device)
             
@@ -234,9 +244,10 @@ def train_one_epoch(config:dict, model,logger,dataloader:DataLoader,id_criterion
             if i == 5:
                 print(detr_train_loss_dict)
             losses = sum(detr_train_loss_dict[k]* weight_dict[k] for k in detr_train_loss_dict.keys())
-            optimizer.zero_grad()
+            
             losses.backward()
             optimizer.step()
+            optimizer.zero_grad()
             
             cur_train_outputs = resize_detr_outputs(cur_train_outputs)
             detr_train_outputs = combine_detr_outputs(detr_train_outputs,cur_train_outputs)
@@ -299,7 +310,7 @@ def evaluate_one_epoch(config: dict,model: nn.Module,dataset,only_detr: bool = F
     model.eval()
     device = config["DEVICE"]
     res_fpath = config['OUT_DIR']
-    det_thres = 0.65
+    det_thres = 0.55
     gt_fpath = config['DETR_GT']
     with torch.no_grad():
         if only_detr :

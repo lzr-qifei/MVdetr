@@ -118,6 +118,7 @@ class frameDataset(VisionDataset):
 
         if train:
             frame_range = range(0, int(self.num_frame * train_ratio))
+            # frame_range = range(0,1)
         else:
             frame_range = range(int(self.num_frame * train_ratio), self.num_frame)
 
@@ -270,6 +271,7 @@ class frameDataset(VisionDataset):
         imgs, imgs_gt, affine_mats, masks = [], [], [], []
         for cam in range(self.num_cam):
             img = np.array(Image.open(self.img_fpaths[cam][frame]).convert('RGB'))
+            tmp_path = self.img_fpaths[cam][frame]
             img_bboxs, img_pids = self.imgs_gt[frame][cam]
             if self.augmentation:
                 img, img_bboxs, img_pids, M = random_affine(img, img_bboxs, img_pids)
