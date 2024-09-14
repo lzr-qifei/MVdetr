@@ -25,7 +25,10 @@ def sigmoid_focal_loss(inputs, targets, num_boxes, alpha: float = 0.25, gamma: f
     """
     prob = inputs.sigmoid()
     # print('prob: ',prob[:10])
-    ce_loss = F.binary_cross_entropy_with_logits(inputs, targets, reduction="none")
+    try:
+        ce_loss = F.binary_cross_entropy_with_logits(inputs, targets, reduction="none")
+    except:
+        ce_loss = F.binary_cross_entropy_with_logits(inputs.squeeze(), targets, reduction="none")
     p_t = prob * targets + (1 - prob) * (1 - targets)
     loss = ce_loss * ((1 - p_t) ** gamma)
 
@@ -203,7 +206,7 @@ class SetCriterion(nn.Module):
         src_logits = outputs['pred_logits']
 
         idx = self._get_src_permutation_idx(indices)
-        target_classes_o = torch.cat([t["labels"][J] for t, (_, J) in zip(targets, indices)])
+        target_classes_o = torch.cat([t["labels"][0][J] for t, (_, J) in zip(targets, indices)])
         target_classes = torch.full(src_logits.shape[:2], self.num_classes,
                                     dtype=torch.int64, device=src_logits.device)
         target_classes[idx] = target_classes_o
@@ -226,7 +229,7 @@ class SetCriterion(nn.Module):
         # print('pred_center_shape: ',src_centers.shape)
         idx = self._get_src_permutation_idx(indices)
         src_centers_sorted = src_centers[idx]
-        target_centers_o = torch.cat([t["pts"][J] for t, (_, J) in zip(targets, indices)])
+        target_centers_o = torch.cat([t["pts"][0][J] for t, (_, J) in zip(targets, indices)])
         # print('tgt_pts_shape: ',target_centers_o.shape)
         # target_centers = torch.full(src_centers.shape[:2], self.num_classes,
         #                     dtype=torch.int64, device=src_centers.device)

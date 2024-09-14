@@ -179,14 +179,13 @@ class HungarianMatcher_batch(nn.Module):
                 len(index_i) = len(index_j) = min(num_queries, num_target_boxes)
         """
         with torch.no_grad():
+            total_indices = []
             bs,num_queries = outputs["pred_logits"].shape[:2]
             # queries_per_frame = int(num_queries // bs)
             # for t in targets:
             # prob = outputs["pred_logits"]
             # We flatten to compute the cost matrices in a batch
             out_prob = outputs["pred_logits"].flatten(0, 1).sigmoid()
-            # out_prob = outputs["pred_logits"].sigmoid()
-            # print('out_prob shape: ',out_prob.shape)
             out_pts = outputs['pred_ct_pts'].flatten(0, 1)
             # out_bbox = outputs["pred_boxes"].flatten(0, 1)  
             # out_pts = outputs['pred_ct_pts'].flatten(0,1)# [batch_size * num_queries, 2]
@@ -195,11 +194,11 @@ class HungarianMatcher_batch(nn.Module):
             # test_cls = out_prob
 
             # Also concat the target labels and boxes
-            tgt_ids = torch.cat([v["labels"] for v in targets])
+            tgt_ids = torch.cat([v["labels"] for v in targets],dim=-1).squeeze()
             # print('tgtid: ',tgt_ids.shape)
             tgt_ids = tgt_ids.long()
             # tgt_bbox = torch.cat([v["boxes"] for v in targets])
-            tgt_pts = torch.cat([v["pts"] for v in targets])
+            tgt_pts = torch.cat([v["pts"] for v in targets],dim=-2).squeeze()
             tgt_pts = tgt_pts.float()
             # print('tgt_pt:',tgt_pts)
 
@@ -244,7 +243,7 @@ class HungarianMatcher_batch(nn.Module):
             # print('sizes: ',sizes)
             
             # indices = [linear_sum_assignment(c[i]) for i, c in enumerate(C)]
-            sizes = [len(v["pts"]) for v in targets]
+            sizes = [len(v["pts"][0]) for v in targets]
             indices = [linear_sum_assignment(c[i]) for i, c in enumerate(C.split(sizes, -1))]
             # for i, c in enumerate(C.split(sizes, -1)):
             #     print(' ')
@@ -252,7 +251,9 @@ class HungarianMatcher_batch(nn.Module):
             # indices = [linear_sum_assignment(C)]
             # print('indices: ',indices)
             # print('indices0 shape: ',len(indices[0][0]))
+            # total_indices.append((torch.as_tensor(i, dtype=torch.int64), torch.as_tensor(j, dtype=torch.int64)) for i, j in indices)
             return [(torch.as_tensor(i, dtype=torch.int64), torch.as_tensor(j, dtype=torch.int64)) for i, j in indices]
+            # return total_indices
 
 class DETRMatcher(nn.Module):
     """This class computes an assignment between the targets and the predictions of the network

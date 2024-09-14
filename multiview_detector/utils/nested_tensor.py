@@ -78,4 +78,7 @@ def nested_tensor_index_select(nested_tensor: NestedTensor, dim: int, index: tor
     selected_tensors = torch.index_select(input=tensors, dim=dim, index=index).contiguous()
     selected_mask = torch.index_select(input=mask, dim=dim, index=index).contiguous()
     return NestedTensor(tensors=selected_tensors, mask=selected_mask)
-
+def tensor_index_select(tensor_list:list,dim:int,index:torch.tensor):
+    tensors = torch.stack(tensor_list)
+    selected_tensors = torch.index_select(input=tensors, dim=dim, index=index).contiguous()
+    return selected_tensors

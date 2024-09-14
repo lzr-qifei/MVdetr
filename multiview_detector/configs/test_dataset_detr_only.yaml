@@ -10,7 +10,7 @@ AVAILABLE_GPUS: "0"
 
 # log settings:
 LOG_DIR: /root/MVdetr/multiview_detector/logs
-OUT_DIR: /root/MVdetr/multiview_detector/results/test.txt
+OUT_DIR: /root/MVdetr/multiview_detector/results/
 # Git version:
 GIT_VERSION:              # you should input the git version here, if you are using wandb to log your experiments.
 
@@ -54,7 +54,7 @@ RESUME:
 # ID criterion
 ID_LOSS_WEIGHT: 1
 # Below two parameters are for memory optimized DETR training:
-DETR_CHECKPOINT_FRAMES: 5
+DETR_CHECKPOINT_FRAMES: 1
 SEQ_DECODER_CHECKPOINT: False
 # Training Augmentation:
 TRAJ_DROP_RATIO: 0.5

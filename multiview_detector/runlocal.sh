@@ -1,1 +1,1 @@
-python test_detector.py  --config /root/MVdetr/multiview_detector/configs/test_dataset_detr_only.yaml
+python test_dataset.py  --config /root/MVdetr/multiview_detector/configs/test_dataset_detr.yaml

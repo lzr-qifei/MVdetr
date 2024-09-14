@@ -249,15 +249,15 @@ def combine_detr_outputs(detr_outputs1, detr_outputs2):
 def detr_outputs_index_select(detr_outputs, index, dim: int = 0):
     selected_detr_outputs = dict()
     selected_detr_outputs["pred_logits"] = torch.index_select(detr_outputs["pred_logits"], index=index, dim=dim).contiguous()
-    selected_detr_outputs["pred_boxes"] = torch.index_select(detr_outputs["pred_boxes"], index=index, dim=dim).contiguous()
+    selected_detr_outputs["pred_ct_pts"] = torch.index_select(detr_outputs["pred_ct_pts"], index=index, dim=dim).contiguous()
     selected_detr_outputs["outputs"] = torch.index_select(detr_outputs["outputs"], index=index, dim=dim).contiguous()
-    selected_detr_outputs["aux_outputs"] = [
-        {
-            "pred_logits": torch.index_select(detr_outputs["aux_outputs"][_]["pred_logits"], index=index, dim=dim).contiguous(),
-            "pred_boxes": torch.index_select(detr_outputs["aux_outputs"][_]["pred_boxes"], index=index, dim=dim).contiguous(),
-        }
-        for _ in range(len(detr_outputs["aux_outputs"]))
-    ]
+    # selected_detr_outputs["aux_outputs"] = [
+    #     {
+    #         "pred_logits": torch.index_select(detr_outputs["aux_outputs"][_]["pred_logits"], index=index, dim=dim).contiguous(),
+    #         "pred_pts": torch.index_select(detr_outputs["aux_outputs"][_]["pred_boxes"], index=index, dim=dim).contiguous(),
+    #     }
+    #     for _ in range(len(detr_outputs["aux_outputs"]))
+    # ]
     if "dn_meta" in detr_outputs:
         selected_detr_outputs["dn_meta"] = {
             "pad_size": detr_outputs["dn_meta"]["pad_size"],

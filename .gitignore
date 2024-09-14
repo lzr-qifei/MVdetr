@@ -38,6 +38,7 @@ multiview_detector/vis_results/*
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+multiview_detector/logs/*.txt
 
 # Unit test / coverage reports
 htmlcov/

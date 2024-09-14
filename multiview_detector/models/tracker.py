@@ -100,7 +100,7 @@ class MVPTR(nn.Module):
         #     raise RuntimeError(f"Unknown DETR framework: {self.detr_framework}.")
 
         dataset_train = build_dataset(config=config,train=True)
-        self.detr = MVDeTr_w_dec(args=None,dataset=dataset_train).cuda()
+        self.detr = MVDeTr_w_dec(args=None,dataset=dataset_train)
         # ID Label Criterion:
         self.id_criterion = nn.CrossEntropyLoss()
         self.id_loss_weight = config["ID_LOSS_WEIGHT"]
@@ -111,20 +111,20 @@ class MVPTR(nn.Module):
             self.only_detr = True
         else:
             self.only_detr = False
-        if self.only_detr is False:
-            self.seq_decoder = SeqDecoder(
-                detr_hidden_dim=config["DETR_HIDDEN_DIM"],
-                hidden_dim=256 if "SEQ_HIDDEN_DIM" not in config else config["SEQ_HIDDEN_DIM"],
-                dim_feedforward=512 if "SEQ_DIM_FEEDFORWARD" not in config else config["SEQ_DIM_FEEDFORWARD"],
-                num_heads=8 if "SEQ_NUM_HEADS" not in config else config["SEQ_NUM_HEADS"],
-                dropout=0.0,
-                n_id_decoder_layers=config["ID_DECODER_LAYERS"],
-                num_id_vocabulary=self.num_id_vocabulary,
-                training_num_id=config["NUM_ID_VOCABULARY"] if "TRAINING_NUM_ID" not in config else config["TRAINING_NUM_ID"],
-                device=self.device,
-                max_temporal_length=config["MAX_TEMPORAL_LENGTH"],
-                multi_times_id_decoder=config["MULTI_TIMES_ID_DECODER"] if "MULTI_TIMES_ID_DECODER" in config else 0,
-            )
+        # if self.only_detr is False:
+        self.seq_decoder = SeqDecoder(
+            detr_hidden_dim=config["DETR_HIDDEN_DIM"],
+            hidden_dim=256 if "SEQ_HIDDEN_DIM" not in config else config["SEQ_HIDDEN_DIM"],
+            dim_feedforward=512 if "SEQ_DIM_FEEDFORWARD" not in config else config["SEQ_DIM_FEEDFORWARD"],
+            num_heads=8 if "SEQ_NUM_HEADS" not in config else config["SEQ_NUM_HEADS"],
+            dropout=0.0,
+            n_id_decoder_layers=config["ID_DECODER_LAYERS"],
+            num_id_vocabulary=self.num_id_vocabulary,
+            training_num_id=config["NUM_ID_VOCABULARY"] if "TRAINING_NUM_ID" not in config else config["TRAINING_NUM_ID"],
+            device=self.device,
+            max_temporal_length=config["MAX_TEMPORAL_LENGTH"],
+            multi_times_id_decoder=config["MULTI_TIMES_ID_DECODER"] if "MULTI_TIMES_ID_DECODER" in config else 0,
+        )
 
     def get_id_word_from_tgt(self, tgt):
         return self.embed_to_word(tgt[:, :, 256:])
