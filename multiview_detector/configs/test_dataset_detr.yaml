@@ -19,7 +19,7 @@ DATASET: [MultiviewX]    # for joint training, there may be multiple datasets, l
 TRAIN_RATIO: 0.9
 LENGTH_PER_SEQUENCE: 1
 LENGTH_DETR_TRAIN: 1
-NUM_ID_VOCABULARY: 50
+NUM_ID_VOCABULARY: 500
 NUM_CLASSES: 1
 # DATASET_SPLITS: [train]   # and corresponding splits, like: [train, val]
 DATA_ROOT: /root/autodl-tmp/   # datasets root
@@ -44,14 +44,14 @@ AUGMENTATION: True
 
 
 # Training Setting:
-TRAIN_STAGE: full
-TRAINING: Train
+TRAIN_STAGE: only_detr
+TRAINING: False
 SEED: 42
 USE_DISTRIBUTED: False
-DETR_NUM_TRAIN_FRAMES: 4
+DETR_NUM_TRAIN_FRAMES: 2
 ACCUMULATE_STEPS: 2
 SAVE_CHECKPOINT_PER_EPOCH: 5
-RESUME: /root/MVdetr/multiview_detector/logs/MultiviewDetector_4.pth
+RESUME: /root/MVdetr/multiview_detector/logs/2024-10-22_18-13-26/MultiviewDetector_19.pth
 
 # ID criterion
 ID_LOSS_WEIGHT: 1
@@ -89,4 +89,4 @@ MAX_TEMPORAL_LENGTH: 10
 ID_THRESH: 0.1
 #DETR settings:
 DETR_HIDDEN_DIM: 128
-DET_THRESH: 0.5
+DET_THRESH: 0.4

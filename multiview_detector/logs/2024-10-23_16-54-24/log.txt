@@ -1,0 +1,162 @@
+
+YAML content:
+ACCUMULATE_STEPS: 4
+AUG: true
+AUGMENTATION: true
+AVAILABLE_GPUS: '0'
+BASE_LR_RATIO: 0.1
+BATCH_SIZE: 1
+BOTTLENECK_DIM: 128
+CLIP_MAX_NORM: 0.1
+DATASET:
+- MultiviewX
+DATA_ROOT: /root/autodl-tmp/
+DETR_CHECKPOINT_FRAMES: 5
+DETR_GT: /root/autodl-tmp/MultiviewX/gt.txt
+DETR_HIDDEN_DIM: 128
+DETR_NUM_TRAIN_FRAMES: 2
+DET_THRESH: 0.3
+DEVICE: cuda
+DROPCAM: 0.0
+EPOCHS: 14
+GIT_VERSION: null
+ID_DECODER_LAYERS: 6
+ID_LOSS_WEIGHT: 1
+ID_THRESH: 0.1
+IMG_KERNEL_SIZE: 10
+IMG_REDUCE: 12
+LENGTH_DETR_TRAIN: 1
+LENGTH_PER_SEQUENCE: 1
+LOG_DIR: /root/MVdetr/multiview_detector/logs
+LR: 0.0005
+LR_BACKBONE_NAMES:
+- backbone.0
+LR_BACKBONE_SCALE: 0.1
+LR_LINEAR_PROJ_NAMES:
+- reference_points
+- sampling_offsets
+LR_LINEAR_PROJ_SCALE: 0.05
+LR_WARMUP_EPOCHS: 1
+MAX_TEMPORAL_LENGTH: 10
+MODE: null
+MOT_GT: /root/MVdetr/multiview_detector/results/tracker/gt
+NUM_CLASSES: 1
+NUM_CPU_PER_GPU: null
+NUM_ID_VOCABULARY: 500
+NUM_WORKERS: 4
+OUT_DIR: /root/MVdetr/multiview_detector/results/
+RESUME: /root/MVdetr/multiview_detector/logs/2024-10-22_18-13-26/MultiviewDetector_44.pth
+RESUME_MODEL: null
+RESUME_OPTIMIZER: true
+RESUME_SCHEDULER: true
+RESUME_STATES: true
+SAMPLE_INTERVALS:
+- 1
+SAMPLE_LENGTHS:
+- 10
+SAMPLE_MODES:
+- random_interval
+SAMPLE_STEPS:
+- 0
+SAVE_CHECKPOINT_PER_EPOCH: 5
+SCHEDULER_GAMMA: 0.1
+SCHEDULER_MILESTONES:
+- 8
+- 12
+SCHEDULER_TYPE: MultiStep
+SEED: 42
+SEMI_SUPERVISED: 0
+SEQ_DECODER_CHECKPOINT: false
+SEQ_HIDDEN_DIM: 128
+SUPER_CONFIG_PATH: null
+TRAINING: false
+TRAIN_RATIO: 0.9
+TRAIN_STAGE: only_detr
+TRAJ_DROP_RATIO: 0.5
+TRAJ_SWITCH_RATIO: 0.3
+USE_DISTRIBUTED: false
+WEIGHT_DECAY: 0.0001
+WORLD_KERNEL_SIZE: 10
+WORLD_REDUCE: 2
+
+Frame 1: Detected: 30
+Frame 1: FP: 8.0, Misses: 8.0
+Frame 2: Detected: 37
+Frame 2: FP: 6.0, Misses: 2.0
+Frame 3: Detected: 37
+Frame 3: FP: 13.0, Misses: 2.0
+Frame 4: Detected: 35
+Frame 4: FP: 15.0, Misses: 4.0
+Frame 5: Detected: 37
+Frame 5: FP: 12.0, Misses: 0.0
+Frame 6: Detected: 36
+Frame 6: FP: 9.0, Misses: 1.0
+Frame 7: Detected: 36
+Frame 7: FP: 10.0, Misses: 0.0
+Frame 8: Detected: 35
+Frame 8: FP: 8.0, Misses: 0.0
+Frame 9: Detected: 38
+Frame 9: FP: 12.0, Misses: 0.0
+Frame 10: Detected: 37
+Frame 10: FP: 8.0, Misses: 1.0
+Frame 11: Detected: 35
+Frame 11: FP: 6.0, Misses: 3.0
+Frame 12: Detected: 37
+Frame 12: FP: 12.0, Misses: 0.0
+Frame 13: Detected: 37
+Frame 13: FP: 8.0, Misses: 2.0
+Frame 14: Detected: 37
+Frame 14: FP: 4.0, Misses: 2.0
+Frame 15: Detected: 35
+Frame 15: FP: 9.0, Misses: 4.0
+Frame 16: Detected: 36
+Frame 16: FP: 10.0, Misses: 4.0
+Frame 17: Detected: 38
+Frame 17: FP: 7.0, Misses: 1.0
+Frame 18: Detected: 37
+Frame 18: FP: 13.0, Misses: 2.0
+Frame 19: Detected: 35
+Frame 19: FP: 10.0, Misses: 3.0
+Frame 20: Detected: 37
+Frame 20: FP: 8.0, Misses: 3.0
+Frame 21: Detected: 36
+Frame 21: FP: 8.0, Misses: 3.0
+Frame 22: Detected: 32
+Frame 22: FP: 9.0, Misses: 5.0
+Frame 23: Detected: 33
+Frame 23: FP: 10.0, Misses: 3.0
+Frame 24: Detected: 34
+Frame 24: FP: 12.0, Misses: 1.0
+Frame 25: Detected: 31
+Frame 25: FP: 9.0, Misses: 5.0
+Frame 26: Detected: 35
+Frame 26: FP: 9.0, Misses: 1.0
+Frame 27: Detected: 34
+Frame 27: FP: 5.0, Misses: 3.0
+Frame 28: Detected: 35
+Frame 28: FP: 4.0, Misses: 2.0
+Frame 29: Detected: 34
+Frame 29: FP: 8.0, Misses: 3.0
+Frame 30: Detected: 35
+Frame 30: FP: 8.0, Misses: 1.0
+Frame 31: Detected: 28
+Frame 31: FP: 10.0, Misses: 6.0
+Frame 32: Detected: 32
+Frame 32: FP: 8.0, Misses: 4.0
+Frame 33: Detected: 34
+Frame 33: FP: 10.0, Misses: 2.0
+Frame 34: Detected: 35
+Frame 34: FP: 7.0, Misses: 2.0
+Frame 35: Detected: 35
+Frame 35: FP: 11.0, Misses: 1.0
+Frame 36: Detected: 34
+Frame 36: FP: 5.0, Misses: 2.0
+Frame 37: Detected: 31
+Frame 37: FP: 8.0, Misses: 3.0
+Frame 38: Detected: 35
+Frame 38: FP: 14.0, Misses: 1.0
+Frame 39: Detected: 37
+Frame 39: FP: 12.0, Misses: 2.0
+Frame 40: Detected: 37
+Frame 40: FP: 10.0, Misses: 3.0
+moda: 69.2%, modp: 86.7%, prec: 79.3%, recall: 93.6%

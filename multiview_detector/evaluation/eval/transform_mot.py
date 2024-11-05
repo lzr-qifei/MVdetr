@@ -26,3 +26,6 @@ def transform_results_to_motform(input_file,output_file):
     # 转换文件
     transform_file(input_file, output_file)
 
+input_file = '/root/MVdetr/multiview_detector/tracker/OC_SORT/results/pred_40_track_result.txt'
+output_file = '/root/MVdetr/multiview_detector/tracker/OC_SORT/results/mota_pred.txt'
+transform_results_to_motform(input_file,output_file)

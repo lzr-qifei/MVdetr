@@ -1,0 +1,594 @@
+
+YAML content:
+ACCUMULATE_STEPS: 4
+AUG: true
+AUGMENTATION: true
+AVAILABLE_GPUS: '0'
+BASE_LR_RATIO: 0.1
+BATCH_SIZE: 1
+BOTTLENECK_DIM: 128
+CLIP_MAX_NORM: 0.1
+DATASET:
+- MultiviewX
+DATA_ROOT: /root/autodl-tmp/
+DETR_CHECKPOINT_FRAMES: 5
+DETR_GT: /root/autodl-tmp/MultiviewX/gt.txt
+DETR_HIDDEN_DIM: 128
+DETR_NUM_TRAIN_FRAMES: 4
+DET_THRESH: 0.5
+DEVICE: cuda
+DROPCAM: 0.0
+EPOCHS: 14
+GIT_VERSION: null
+ID_DECODER_LAYERS: 6
+ID_LOSS_WEIGHT: 1
+ID_THRESH: 0.1
+IMG_KERNEL_SIZE: 10
+IMG_REDUCE: 12
+LENGTH_DETR_TRAIN: 1
+LENGTH_PER_SEQUENCE: 1
+LOG_DIR: /root/MVdetr/multiview_detector/logs
+LR: 0.0005
+LR_BACKBONE_NAMES:
+- backbone.0
+LR_BACKBONE_SCALE: 0.1
+LR_LINEAR_PROJ_NAMES:
+- reference_points
+- sampling_offsets
+LR_LINEAR_PROJ_SCALE: 0.05
+LR_WARMUP_EPOCHS: 1
+MAX_TEMPORAL_LENGTH: 10
+MODE: null
+MOT_GT: /root/MVdetr/multiview_detector/results/tracker/gt
+NUM_CLASSES: 1
+NUM_CPU_PER_GPU: null
+NUM_ID_VOCABULARY: 50
+NUM_WORKERS: 4
+OUT_DIR: /root/MVdetr/multiview_detector/results/
+RESUME: null
+RESUME_MODEL: null
+RESUME_OPTIMIZER: true
+RESUME_SCHEDULER: true
+RESUME_STATES: true
+SAMPLE_INTERVALS:
+- 1
+SAMPLE_LENGTHS:
+- 10
+SAMPLE_MODES:
+- random_interval
+SAMPLE_STEPS:
+- 0
+SAVE_CHECKPOINT_PER_EPOCH: 5
+SCHEDULER_GAMMA: 0.1
+SCHEDULER_MILESTONES:
+- 8
+- 12
+SCHEDULER_TYPE: MultiStep
+SEED: 42
+SEMI_SUPERVISED: 0
+SEQ_DECODER_CHECKPOINT: false
+SEQ_HIDDEN_DIM: 128
+SUPER_CONFIG_PATH: null
+TRAINING: true
+TRAIN_RATIO: 0.9
+TRAIN_STAGE: only_detr
+TRAJ_DROP_RATIO: 0.5
+TRAJ_SWITCH_RATIO: 0.3
+USE_DISTRIBUTED: false
+WEIGHT_DECAY: 0.0001
+WORLD_KERNEL_SIZE: 10
+WORLD_REDUCE: 2
+
+epoch:0-training
+batch:0,f:9,loss:{'labels': tensor(0.4126, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0163, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:1,f:9,loss:{'labels': tensor(0.3540, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0187, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:2,f:9,loss:{'labels': tensor(0.2989, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0163, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:3,f:9,loss:{'labels': tensor(0.2957, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0186, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:4,f:9,loss:{'labels': tensor(0.2904, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0135, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:5,f:9,loss:{'labels': tensor(0.3004, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0152, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:6,f:9,loss:{'labels': tensor(0.2913, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0151, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:7,f:9,loss:{'labels': tensor(0.2916, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0165, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:8,f:9,loss:{'labels': tensor(0.2942, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0140, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:9,f:9,loss:{'labels': tensor(0.2872, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0180, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:10,f:9,loss:{'labels': tensor(0.2866, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0162, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:11,f:9,loss:{'labels': tensor(0.2835, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0150, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:12,f:9,loss:{'labels': tensor(0.2966, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0155, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:13,f:9,loss:{'labels': tensor(0.2842, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0147, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:14,f:9,loss:{'labels': tensor(0.2726, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0151, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:15,f:9,loss:{'labels': tensor(0.2843, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0150, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:16,f:9,loss:{'labels': tensor(0.2759, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0147, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:17,f:9,loss:{'labels': tensor(0.3004, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0157, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:18,f:9,loss:{'labels': tensor(0.2746, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0148, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:19,f:9,loss:{'labels': tensor(0.2809, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0154, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:20,f:9,loss:{'labels': tensor(0.2794, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0157, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:21,f:9,loss:{'labels': tensor(0.2792, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0144, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:22,f:9,loss:{'labels': tensor(0.2954, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0139, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:23,f:9,loss:{'labels': tensor(0.2796, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0144, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:24,f:9,loss:{'labels': tensor(0.2904, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0141, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:25,f:9,loss:{'labels': tensor(0.2915, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0125, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:26,f:9,loss:{'labels': tensor(0.2804, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0146, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:27,f:9,loss:{'labels': tensor(0.2810, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0130, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:28,f:9,loss:{'labels': tensor(0.2871, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0142, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:29,f:9,loss:{'labels': tensor(0.2776, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0163, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:30,f:9,loss:{'labels': tensor(0.2676, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0154, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:31,f:9,loss:{'labels': tensor(0.2806, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0127, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:32,f:9,loss:{'labels': tensor(0.2917, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0144, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:33,f:9,loss:{'labels': tensor(0.2855, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0150, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:34,f:9,loss:{'labels': tensor(0.2854, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0157, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:35,f:9,loss:{'labels': tensor(0.2823, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0147, device='cuda:0', grad_fn=<MeanBackward0>)}
+epoch:0
+Frame 1: Detected: 4
+Frame 1: FP: 32.0, Misses: 34.0
+Frame 2: Detected: 5
+Frame 2: FP: 31.0, Misses: 34.0
+Frame 3: Detected: 5
+Frame 3: FP: 31.0, Misses: 34.0
+Frame 4: Detected: 5
+Frame 4: FP: 31.0, Misses: 34.0
+Frame 5: Detected: 3
+Frame 5: FP: 33.0, Misses: 34.0
+Frame 6: Detected: 2
+Frame 6: FP: 34.0, Misses: 35.0
+Frame 7: Detected: 1
+Frame 7: FP: 35.0, Misses: 35.0
+Frame 8: Detected: 1
+Frame 8: FP: 35.0, Misses: 34.0
+Frame 9: Detected: 6
+Frame 9: FP: 30.0, Misses: 32.0
+Frame 10: Detected: 8
+Frame 10: FP: 28.0, Misses: 30.0
+Frame 11: Detected: 6
+Frame 11: FP: 30.0, Misses: 32.0
+Frame 12: Detected: 3
+Frame 12: FP: 33.0, Misses: 34.0
+Frame 13: Detected: 7
+Frame 13: FP: 29.0, Misses: 32.0
+Frame 14: Detected: 5
+Frame 14: FP: 31.0, Misses: 34.0
+Frame 15: Detected: 5
+Frame 15: FP: 31.0, Misses: 34.0
+Frame 16: Detected: 3
+Frame 16: FP: 33.0, Misses: 37.0
+Frame 17: Detected: 1
+Frame 17: FP: 35.0, Misses: 38.0
+Frame 18: Detected: 8
+Frame 18: FP: 28.0, Misses: 31.0
+Frame 19: Detected: 3
+Frame 19: FP: 33.0, Misses: 35.0
+Frame 20: Detected: 6
+Frame 20: FP: 30.0, Misses: 34.0
+Frame 21: Detected: 5
+Frame 21: FP: 31.0, Misses: 34.0
+Frame 22: Detected: 6
+Frame 22: FP: 30.0, Misses: 31.0
+Frame 23: Detected: 4
+Frame 23: FP: 32.0, Misses: 32.0
+Frame 24: Detected: 2
+Frame 24: FP: 34.0, Misses: 33.0
+Frame 25: Detected: 6
+Frame 25: FP: 30.0, Misses: 30.0
+Frame 26: Detected: 6
+Frame 26: FP: 30.0, Misses: 30.0
+Frame 27: Detected: 5
+Frame 27: FP: 31.0, Misses: 32.0
+Frame 28: Detected: 10
+Frame 28: FP: 26.0, Misses: 27.0
+Frame 29: Detected: 10
+Frame 29: FP: 26.0, Misses: 27.0
+Frame 30: Detected: 7
+Frame 30: FP: 29.0, Misses: 29.0
+Frame 31: Detected: 3
+Frame 31: FP: 33.0, Misses: 31.0
+Frame 32: Detected: 4
+Frame 32: FP: 32.0, Misses: 32.0
+Frame 33: Detected: 4
+Frame 33: FP: 32.0, Misses: 32.0
+Frame 34: Detected: 6
+Frame 34: FP: 30.0, Misses: 31.0
+Frame 35: Detected: 6
+Frame 35: FP: 30.0, Misses: 30.0
+Frame 36: Detected: 3
+Frame 36: FP: 33.0, Misses: 33.0
+Frame 37: Detected: 3
+Frame 37: FP: 33.0, Misses: 31.0
+Frame 38: Detected: 2
+Frame 38: FP: 34.0, Misses: 34.0
+Frame 39: Detected: 5
+Frame 39: FP: 31.0, Misses: 34.0
+Frame 40: Detected: 6
+Frame 40: FP: 30.0, Misses: 34.0
+moda: 0.0%, modp: 36.1%, prec: 13.2%, recall: 12.7%
+epoch:1-training
+batch:0,f:9,loss:{'labels': tensor(0.2556, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0133, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:1,f:9,loss:{'labels': tensor(0.2750, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0130, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:2,f:9,loss:{'labels': tensor(0.2806, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0138, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:3,f:9,loss:{'labels': tensor(0.2678, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0151, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:4,f:9,loss:{'labels': tensor(0.2763, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0148, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:5,f:9,loss:{'labels': tensor(0.2886, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0125, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:6,f:9,loss:{'labels': tensor(0.2683, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0133, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:7,f:9,loss:{'labels': tensor(0.2841, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0136, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:8,f:9,loss:{'labels': tensor(0.2751, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0129, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:9,f:9,loss:{'labels': tensor(0.2792, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0138, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:10,f:9,loss:{'labels': tensor(0.2777, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0126, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:11,f:9,loss:{'labels': tensor(0.2789, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0139, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:12,f:9,loss:{'labels': tensor(0.2771, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0131, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:13,f:9,loss:{'labels': tensor(0.2744, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0150, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:14,f:9,loss:{'labels': tensor(0.2704, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0123, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:15,f:9,loss:{'labels': tensor(0.2636, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0136, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:16,f:9,loss:{'labels': tensor(0.2642, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0126, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:17,f:9,loss:{'labels': tensor(0.2783, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0132, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:18,f:9,loss:{'labels': tensor(0.2525, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0129, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:19,f:9,loss:{'labels': tensor(0.2872, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0129, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:20,f:9,loss:{'labels': tensor(0.2855, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0149, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:21,f:9,loss:{'labels': tensor(0.2516, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0122, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:22,f:9,loss:{'labels': tensor(0.2527, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0130, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:23,f:9,loss:{'labels': tensor(0.2452, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0138, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:24,f:9,loss:{'labels': tensor(0.2314, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0131, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:25,f:9,loss:{'labels': tensor(0.2501, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0136, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:26,f:9,loss:{'labels': tensor(0.2389, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0143, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:27,f:9,loss:{'labels': tensor(0.2064, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0135, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:28,f:9,loss:{'labels': tensor(0.2166, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0134, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:29,f:9,loss:{'labels': tensor(0.1947, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0127, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:30,f:9,loss:{'labels': tensor(0.2013, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0132, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:31,f:9,loss:{'labels': tensor(0.1698, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0124, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:32,f:9,loss:{'labels': tensor(0.1717, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0132, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:33,f:9,loss:{'labels': tensor(0.1419, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0110, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:34,f:9,loss:{'labels': tensor(0.1417, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0120, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:35,f:9,loss:{'labels': tensor(0.1574, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0098, device='cuda:0', grad_fn=<MeanBackward0>)}
+epoch:1
+Frame 1: Detected: 23
+Frame 1: FP: 13.0, Misses: 15.0
+Frame 2: Detected: 22
+Frame 2: FP: 14.0, Misses: 17.0
+Frame 3: Detected: 23
+Frame 3: FP: 13.0, Misses: 16.0
+Frame 4: Detected: 24
+Frame 4: FP: 12.0, Misses: 15.0
+Frame 5: Detected: 21
+Frame 5: FP: 15.0, Misses: 16.0
+Frame 6: Detected: 19
+Frame 6: FP: 17.0, Misses: 18.0
+Frame 7: Detected: 18
+Frame 7: FP: 18.0, Misses: 18.0
+Frame 8: Detected: 16
+Frame 8: FP: 20.0, Misses: 19.0
+Frame 9: Detected: 22
+Frame 9: FP: 14.0, Misses: 16.0
+Frame 10: Detected: 23
+Frame 10: FP: 13.0, Misses: 15.0
+Frame 11: Detected: 23
+Frame 11: FP: 13.0, Misses: 15.0
+Frame 12: Detected: 19
+Frame 12: FP: 17.0, Misses: 18.0
+Frame 13: Detected: 25
+Frame 13: FP: 11.0, Misses: 14.0
+Frame 14: Detected: 24
+Frame 14: FP: 12.0, Misses: 15.0
+Frame 15: Detected: 20
+Frame 15: FP: 16.0, Misses: 19.0
+Frame 16: Detected: 23
+Frame 16: FP: 13.0, Misses: 17.0
+Frame 17: Detected: 21
+Frame 17: FP: 15.0, Misses: 18.0
+Frame 18: Detected: 25
+Frame 18: FP: 11.0, Misses: 14.0
+Frame 19: Detected: 20
+Frame 19: FP: 16.0, Misses: 18.0
+Frame 20: Detected: 26
+Frame 20: FP: 10.0, Misses: 14.0
+Frame 21: Detected: 23
+Frame 21: FP: 13.0, Misses: 16.0
+Frame 22: Detected: 20
+Frame 22: FP: 16.0, Misses: 17.0
+Frame 23: Detected: 19
+Frame 23: FP: 17.0, Misses: 17.0
+Frame 24: Detected: 21
+Frame 24: FP: 15.0, Misses: 14.0
+Frame 25: Detected: 24
+Frame 25: FP: 12.0, Misses: 12.0
+Frame 26: Detected: 22
+Frame 26: FP: 14.0, Misses: 14.0
+Frame 27: Detected: 21
+Frame 27: FP: 15.0, Misses: 16.0
+Frame 28: Detected: 26
+Frame 28: FP: 10.0, Misses: 11.0
+Frame 29: Detected: 18
+Frame 29: FP: 18.0, Misses: 19.0
+Frame 30: Detected: 21
+Frame 30: FP: 15.0, Misses: 15.0
+Frame 31: Detected: 20
+Frame 31: FP: 16.0, Misses: 14.0
+Frame 32: Detected: 21
+Frame 32: FP: 15.0, Misses: 15.0
+Frame 33: Detected: 19
+Frame 33: FP: 17.0, Misses: 17.0
+Frame 34: Detected: 21
+Frame 34: FP: 15.0, Misses: 16.0
+Frame 35: Detected: 20
+Frame 35: FP: 16.0, Misses: 16.0
+Frame 36: Detected: 21
+Frame 36: FP: 15.0, Misses: 15.0
+Frame 37: Detected: 22
+Frame 37: FP: 14.0, Misses: 12.0
+Frame 38: Detected: 22
+Frame 38: FP: 14.0, Misses: 14.0
+Frame 39: Detected: 20
+Frame 39: FP: 16.0, Misses: 19.0
+Frame 40: Detected: 20
+Frame 40: FP: 16.0, Misses: 20.0
+moda: 18.5%, modp: 50.3%, prec: 59.6%, recall: 57.4%
+epoch:2-training
+batch:0,f:9,loss:{'labels': tensor(0.1717, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0096, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:1,f:9,loss:{'labels': tensor(0.2177, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0079, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:2,f:9,loss:{'labels': tensor(0.1505, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0084, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:3,f:9,loss:{'labels': tensor(0.1391, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0108, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:4,f:9,loss:{'labels': tensor(0.1576, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0088, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:5,f:9,loss:{'labels': tensor(0.1490, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0091, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:6,f:9,loss:{'labels': tensor(0.1835, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0077, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:7,f:9,loss:{'labels': tensor(0.1561, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0095, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:8,f:9,loss:{'labels': tensor(0.1647, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0077, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:9,f:9,loss:{'labels': tensor(0.1517, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0080, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:10,f:9,loss:{'labels': tensor(0.1623, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0070, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:11,f:9,loss:{'labels': tensor(0.1564, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0079, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:12,f:9,loss:{'labels': tensor(0.1526, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0082, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:13,f:9,loss:{'labels': tensor(0.1525, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0061, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:14,f:9,loss:{'labels': tensor(0.1331, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0064, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:15,f:9,loss:{'labels': tensor(0.1633, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0057, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:16,f:9,loss:{'labels': tensor(0.1485, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0063, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:17,f:9,loss:{'labels': tensor(0.1434, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0062, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:18,f:9,loss:{'labels': tensor(0.1263, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0060, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:19,f:9,loss:{'labels': tensor(0.1450, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0071, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:20,f:9,loss:{'labels': tensor(0.1406, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0053, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:21,f:9,loss:{'labels': tensor(0.1499, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0057, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:22,f:9,loss:{'labels': tensor(0.1652, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0056, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:23,f:9,loss:{'labels': tensor(0.1426, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0081, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:24,f:9,loss:{'labels': tensor(0.1324, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0064, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:25,f:9,loss:{'labels': tensor(0.1363, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0061, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:26,f:9,loss:{'labels': tensor(0.1349, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0073, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:27,f:9,loss:{'labels': tensor(0.1229, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0071, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:28,f:9,loss:{'labels': tensor(0.1355, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0052, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:29,f:9,loss:{'labels': tensor(0.1256, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0075, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:30,f:9,loss:{'labels': tensor(0.1573, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0053, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:31,f:9,loss:{'labels': tensor(0.1384, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0060, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:32,f:9,loss:{'labels': tensor(0.1513, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0070, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:33,f:9,loss:{'labels': tensor(0.1508, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0061, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:34,f:9,loss:{'labels': tensor(0.1138, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0046, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:35,f:9,loss:{'labels': tensor(0.1096, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0051, device='cuda:0', grad_fn=<MeanBackward0>)}
+epoch:2
+Frame 1: Detected: 27
+Frame 1: FP: 9.0, Misses: 11.0
+Frame 2: Detected: 28
+Frame 2: FP: 8.0, Misses: 11.0
+Frame 3: Detected: 29
+Frame 3: FP: 7.0, Misses: 10.0
+Frame 4: Detected: 32
+Frame 4: FP: 4.0, Misses: 7.0
+Frame 5: Detected: 30
+Frame 5: FP: 6.0, Misses: 7.0
+Frame 6: Detected: 27
+Frame 6: FP: 9.0, Misses: 10.0
+Frame 7: Detected: 25
+Frame 7: FP: 11.0, Misses: 11.0
+Frame 8: Detected: 27
+Frame 8: FP: 9.0, Misses: 8.0
+Frame 9: Detected: 25
+Frame 9: FP: 11.0, Misses: 13.0
+Frame 10: Detected: 29
+Frame 10: FP: 7.0, Misses: 9.0
+Frame 11: Detected: 27
+Frame 11: FP: 9.0, Misses: 11.0
+Frame 12: Detected: 29
+Frame 12: FP: 7.0, Misses: 8.0
+Frame 13: Detected: 30
+Frame 13: FP: 6.0, Misses: 9.0
+Frame 14: Detected: 29
+Frame 14: FP: 7.0, Misses: 10.0
+Frame 15: Detected: 25
+Frame 15: FP: 11.0, Misses: 14.0
+Frame 16: Detected: 28
+Frame 16: FP: 8.0, Misses: 12.0
+Frame 17: Detected: 29
+Frame 17: FP: 7.0, Misses: 10.0
+Frame 18: Detected: 29
+Frame 18: FP: 7.0, Misses: 10.0
+Frame 19: Detected: 27
+Frame 19: FP: 9.0, Misses: 11.0
+Frame 20: Detected: 28
+Frame 20: FP: 8.0, Misses: 12.0
+Frame 21: Detected: 29
+Frame 21: FP: 7.0, Misses: 10.0
+Frame 22: Detected: 23
+Frame 22: FP: 13.0, Misses: 14.0
+Frame 23: Detected: 28
+Frame 23: FP: 8.0, Misses: 8.0
+Frame 24: Detected: 26
+Frame 24: FP: 10.0, Misses: 9.0
+Frame 25: Detected: 28
+Frame 25: FP: 8.0, Misses: 8.0
+Frame 26: Detected: 29
+Frame 26: FP: 7.0, Misses: 7.0
+Frame 27: Detected: 28
+Frame 27: FP: 8.0, Misses: 9.0
+Frame 28: Detected: 27
+Frame 28: FP: 9.0, Misses: 10.0
+Frame 29: Detected: 25
+Frame 29: FP: 11.0, Misses: 12.0
+Frame 30: Detected: 28
+Frame 30: FP: 8.0, Misses: 8.0
+Frame 31: Detected: 27
+Frame 31: FP: 9.0, Misses: 7.0
+Frame 32: Detected: 27
+Frame 32: FP: 9.0, Misses: 9.0
+Frame 33: Detected: 29
+Frame 33: FP: 7.0, Misses: 7.0
+Frame 34: Detected: 29
+Frame 34: FP: 7.0, Misses: 8.0
+Frame 35: Detected: 28
+Frame 35: FP: 8.0, Misses: 8.0
+Frame 36: Detected: 25
+Frame 36: FP: 11.0, Misses: 11.0
+Frame 37: Detected: 25
+Frame 37: FP: 11.0, Misses: 9.0
+Frame 38: Detected: 23
+Frame 38: FP: 13.0, Misses: 13.0
+Frame 39: Detected: 27
+Frame 39: FP: 9.0, Misses: 12.0
+Frame 40: Detected: 28
+Frame 40: FP: 8.0, Misses: 12.0
+moda: 50.7%, modp: 69.0%, prec: 76.3%, recall: 73.6%
+epoch:3-training
+batch:0,f:9,loss:{'labels': tensor(0.1235, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0065, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:1,f:9,loss:{'labels': tensor(0.1570, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0064, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:2,f:9,loss:{'labels': tensor(0.1330, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0053, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:3,f:9,loss:{'labels': tensor(0.1616, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0048, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:4,f:9,loss:{'labels': tensor(0.1145, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0056, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:5,f:9,loss:{'labels': tensor(0.1184, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0059, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:6,f:9,loss:{'labels': tensor(0.1259, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0051, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:7,f:9,loss:{'labels': tensor(0.1246, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0063, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:8,f:9,loss:{'labels': tensor(0.1178, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0064, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:9,f:9,loss:{'labels': tensor(0.1176, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0052, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:10,f:9,loss:{'labels': tensor(0.1214, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0058, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:11,f:9,loss:{'labels': tensor(0.0793, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0061, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:12,f:9,loss:{'labels': tensor(0.1008, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0059, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:13,f:9,loss:{'labels': tensor(0.1025, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0054, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:14,f:9,loss:{'labels': tensor(0.1284, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0055, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:15,f:9,loss:{'labels': tensor(0.1250, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0060, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:16,f:9,loss:{'labels': tensor(0.1388, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0060, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:17,f:9,loss:{'labels': tensor(0.1163, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0049, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:18,f:9,loss:{'labels': tensor(0.1190, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0053, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:19,f:9,loss:{'labels': tensor(0.0968, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0056, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:20,f:9,loss:{'labels': tensor(0.1192, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0051, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:21,f:9,loss:{'labels': tensor(0.1267, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0046, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:22,f:9,loss:{'labels': tensor(0.1547, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0052, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:23,f:9,loss:{'labels': tensor(0.1292, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0048, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:24,f:9,loss:{'labels': tensor(0.1075, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0041, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:25,f:9,loss:{'labels': tensor(0.1160, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0051, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:26,f:9,loss:{'labels': tensor(0.1444, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0052, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:27,f:9,loss:{'labels': tensor(0.1098, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0064, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:28,f:9,loss:{'labels': tensor(0.0960, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0062, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:29,f:9,loss:{'labels': tensor(0.1035, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0047, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:30,f:9,loss:{'labels': tensor(0.1318, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0065, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:31,f:9,loss:{'labels': tensor(0.1221, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0056, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:32,f:9,loss:{'labels': tensor(0.1303, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0058, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:33,f:9,loss:{'labels': tensor(0.1370, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0044, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:34,f:9,loss:{'labels': tensor(0.1246, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0067, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:35,f:9,loss:{'labels': tensor(0.0913, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0043, device='cuda:0', grad_fn=<MeanBackward0>)}
+epoch:3
+Frame 1: Detected: 30
+Frame 1: FP: 6.0, Misses: 8.0
+Frame 2: Detected: 28
+Frame 2: FP: 8.0, Misses: 11.0
+Frame 3: Detected: 29
+Frame 3: FP: 7.0, Misses: 10.0
+Frame 4: Detected: 29
+Frame 4: FP: 7.0, Misses: 10.0
+Frame 5: Detected: 31
+Frame 5: FP: 5.0, Misses: 6.0
+Frame 6: Detected: 29
+Frame 6: FP: 7.0, Misses: 8.0
+Frame 7: Detected: 28
+Frame 7: FP: 8.0, Misses: 8.0
+Frame 8: Detected: 29
+Frame 8: FP: 7.0, Misses: 6.0
+Frame 9: Detected: 30
+Frame 9: FP: 6.0, Misses: 8.0
+Frame 10: Detected: 31
+Frame 10: FP: 5.0, Misses: 7.0
+Frame 11: Detected: 28
+Frame 11: FP: 8.0, Misses: 10.0
+Frame 12: Detected: 30
+Frame 12: FP: 6.0, Misses: 7.0
+Frame 13: Detected: 31
+Frame 13: FP: 5.0, Misses: 8.0
+Frame 14: Detected: 30
+Frame 14: FP: 6.0, Misses: 9.0
+Frame 15: Detected: 30
+Frame 15: FP: 6.0, Misses: 9.0
+Frame 16: Detected: 32
+Frame 16: FP: 4.0, Misses: 8.0
+Frame 17: Detected: 29
+Frame 17: FP: 7.0, Misses: 10.0
+Frame 18: Detected: 28
+Frame 18: FP: 8.0, Misses: 11.0
+Frame 19: Detected: 28
+Frame 19: FP: 8.0, Misses: 10.0
+Frame 20: Detected: 31
+Frame 20: FP: 5.0, Misses: 9.0
+Frame 21: Detected: 27
+Frame 21: FP: 9.0, Misses: 12.0
+Frame 22: Detected: 29
+Frame 22: FP: 7.0, Misses: 8.0
+Frame 23: Detected: 29
+Frame 23: FP: 7.0, Misses: 7.0
+Frame 24: Detected: 27
+Frame 24: FP: 9.0, Misses: 8.0
+Frame 25: Detected: 31
+Frame 25: FP: 5.0, Misses: 5.0
+Frame 26: Detected: 27
+Frame 26: FP: 9.0, Misses: 9.0
+Frame 27: Detected: 26
+Frame 27: FP: 10.0, Misses: 11.0
+Frame 28: Detected: 27
+Frame 28: FP: 9.0, Misses: 10.0
+Frame 29: Detected: 26
+Frame 29: FP: 10.0, Misses: 11.0
+Frame 30: Detected: 26
+Frame 30: FP: 10.0, Misses: 10.0
+Frame 31: Detected: 24
+Frame 31: FP: 12.0, Misses: 10.0
+Frame 32: Detected: 28
+Frame 32: FP: 8.0, Misses: 8.0
+Frame 33: Detected: 26
+Frame 33: FP: 10.0, Misses: 10.0
+Frame 34: Detected: 27
+Frame 34: FP: 9.0, Misses: 10.0
+Frame 35: Detected: 30
+Frame 35: FP: 6.0, Misses: 6.0
+Frame 36: Detected: 28
+Frame 36: FP: 8.0, Misses: 8.0
+Frame 37: Detected: 27
+Frame 37: FP: 9.0, Misses: 7.0
+Frame 38: Detected: 28
+Frame 38: FP: 8.0, Misses: 8.0
+Frame 39: Detected: 30
+Frame 39: FP: 6.0, Misses: 9.0
+Frame 40: Detected: 28
+Frame 40: FP: 8.0, Misses: 12.0
+moda: 56.5%, modp: 73.9%, prec: 79.3%, recall: 76.4%
+epoch:4-training
+batch:0,f:9,loss:{'labels': tensor(0.1122, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0060, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:1,f:9,loss:{'labels': tensor(0.1221, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0053, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:2,f:9,loss:{'labels': tensor(0.1048, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0055, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:3,f:9,loss:{'labels': tensor(0.0896, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0048, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:4,f:9,loss:{'labels': tensor(0.1194, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0048, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:5,f:9,loss:{'labels': tensor(0.0758, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0042, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:6,f:9,loss:{'labels': tensor(0.1290, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0045, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:7,f:9,loss:{'labels': tensor(0.1181, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0061, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:8,f:9,loss:{'labels': tensor(0.1173, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0055, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:9,f:9,loss:{'labels': tensor(0.1146, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0045, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:10,f:9,loss:{'labels': tensor(0.0954, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0054, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:11,f:9,loss:{'labels': tensor(0.1104, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0053, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:12,f:9,loss:{'labels': tensor(0.1134, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0042, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:13,f:9,loss:{'labels': tensor(0.1176, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0045, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:14,f:9,loss:{'labels': tensor(0.1096, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0046, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:15,f:9,loss:{'labels': tensor(0.0975, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0045, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:16,f:9,loss:{'labels': tensor(0.1305, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0055, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:17,f:9,loss:{'labels': tensor(0.1131, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0048, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:18,f:9,loss:{'labels': tensor(0.1291, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0050, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:19,f:9,loss:{'labels': tensor(0.1063, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0038, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:20,f:9,loss:{'labels': tensor(0.0976, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0033, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:21,f:9,loss:{'labels': tensor(0.0852, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0040, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:22,f:9,loss:{'labels': tensor(0.1112, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0045, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:23,f:9,loss:{'labels': tensor(0.1366, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0042, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:24,f:9,loss:{'labels': tensor(0.1067, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0045, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:25,f:9,loss:{'labels': tensor(0.0939, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0049, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:26,f:9,loss:{'labels': tensor(0.1210, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0043, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:27,f:9,loss:{'labels': tensor(0.1025, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0058, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:28,f:9,loss:{'labels': tensor(0.1042, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0049, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:29,f:9,loss:{'labels': tensor(0.0763, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0051, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:30,f:9,loss:{'labels': tensor(0.0878, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0059, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:31,f:9,loss:{'labels': tensor(0.1106, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0071, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:32,f:9,loss:{'labels': tensor(0.0975, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0049, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:33,f:9,loss:{'labels': tensor(0.1022, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0041, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:34,f:9,loss:{'labels': tensor(0.0954, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0043, device='cuda:0', grad_fn=<MeanBackward0>)}
+batch:35,f:9,loss:{'labels': tensor(0.1089, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0050, device='cuda:0', grad_fn=<MeanBackward0>)}

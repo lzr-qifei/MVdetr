@@ -27,15 +27,8 @@ def submit_one_seq(
     # seq_name = seq_dir.split("/")[-1]
     seq_name = os.path.split(seq_dir)[-1]
     device = model.device
-    current_id = 0
-    ids_to_results = {}
-    id_deque = OrderedSet()     # an ID deque for inference, the ID will be recycled if the dictionary is not enough.
-    detr_outputs = None
-    # Trajectory history:
-    if only_detr:
-        trajectory_history = None
-    else:
-        trajectory_history = deque(maxlen=max_temporal_length)
+    
+    
 
     if fake_submit:
         print(f"[Fake] Start >> Submit seq {seq_name.split('/')[-1]}, {len(dataloader)} frames ......")
@@ -44,6 +37,15 @@ def submit_one_seq(
 
     # for i, (image, ori_image) in enumerate(seq_dataloader):
     for idx,batch in enumerate(dataloader):
+        current_id = 0
+        ids_to_results = {}
+        id_deque = OrderedSet()     # an ID deque for inference, the ID will be recycled if the dictionary is not enough.
+        detr_outputs = None
+        # Trajectory history:
+        if only_detr:
+            trajectory_history = None
+        else:
+            trajectory_history = deque(maxlen=max_temporal_length)
         mota_pred_list = []
         # ori_h, ori_w = ori_image.shape[1], ori_image.shape[2]
         # frames = batch["nested_tensors"]

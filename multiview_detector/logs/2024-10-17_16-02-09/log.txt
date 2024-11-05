@@ -1,0 +1,229 @@
+
+YAML content:
+ACCUMULATE_STEPS: 4
+AUG: true
+AUGMENTATION: true
+AVAILABLE_GPUS: '0'
+BASE_LR_RATIO: 0.1
+BATCH_SIZE: 1
+BOTTLENECK_DIM: 128
+CLIP_MAX_NORM: 0.1
+DATASET:
+- MultiviewX
+DATA_ROOT: /root/autodl-tmp/
+DETR_CHECKPOINT_FRAMES: 5
+DETR_GT: /root/autodl-tmp/MultiviewX/gt.txt
+DETR_HIDDEN_DIM: 128
+DETR_NUM_TRAIN_FRAMES: 2
+DET_THRESH: 0.5
+DEVICE: cuda
+DROPCAM: 0.0
+EPOCHS: 14
+GIT_VERSION: null
+ID_DECODER_LAYERS: 6
+ID_LOSS_WEIGHT: 1
+ID_THRESH: 0.1
+IMG_KERNEL_SIZE: 10
+IMG_REDUCE: 12
+LENGTH_DETR_TRAIN: 1
+LENGTH_PER_SEQUENCE: 1
+LOG_DIR: /root/MVdetr/multiview_detector/logs
+LR: 0.0005
+LR_BACKBONE_NAMES:
+- backbone.0
+LR_BACKBONE_SCALE: 0.1
+LR_LINEAR_PROJ_NAMES:
+- reference_points
+- sampling_offsets
+LR_LINEAR_PROJ_SCALE: 0.05
+LR_WARMUP_EPOCHS: 1
+MAX_TEMPORAL_LENGTH: 10
+MODE: null
+MOT_GT: /root/MVdetr/multiview_detector/results/tracker/gt
+NUM_CLASSES: 1
+NUM_CPU_PER_GPU: null
+NUM_ID_VOCABULARY: 200
+NUM_WORKERS: 4
+OUT_DIR: /root/MVdetr/multiview_detector/results/
+RESUME: null
+RESUME_MODEL: null
+RESUME_OPTIMIZER: true
+RESUME_SCHEDULER: true
+RESUME_STATES: true
+SAMPLE_INTERVALS:
+- 1
+SAMPLE_LENGTHS:
+- 10
+SAMPLE_MODES:
+- random_interval
+SAMPLE_STEPS:
+- 0
+SAVE_CHECKPOINT_PER_EPOCH: 5
+SCHEDULER_GAMMA: 0.1
+SCHEDULER_MILESTONES:
+- 8
+- 12
+SCHEDULER_TYPE: MultiStep
+SEED: 42
+SEMI_SUPERVISED: 0
+SEQ_DECODER_CHECKPOINT: false
+SEQ_HIDDEN_DIM: 128
+SUPER_CONFIG_PATH: null
+TRAINING: true
+TRAIN_RATIO: 0.9
+TRAIN_STAGE: full
+TRAJ_DROP_RATIO: 0.5
+TRAJ_SWITCH_RATIO: 0.3
+USE_DISTRIBUTED: false
+WEIGHT_DECAY: 0.0001
+WORLD_KERNEL_SIZE: 10
+WORLD_REDUCE: 2
+
+epoch:0-training
+{'labels': tensor(1.1848, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0182, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([420])
+ids unique:  torch.Size([51])
+idx:0,loss:tensor([8.7322], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(0.0004, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0177, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.4521], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.5186, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0176, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([382])
+ids unique:  torch.Size([45])
+idx:1,loss:tensor([8.0280], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(0.2063, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0174, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([6.1102], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2934, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0174, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([389])
+ids unique:  torch.Size([49])
+idx:2,loss:tensor([6.9604], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.9632, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0181, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.5034], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.3624, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0170, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([406])
+ids unique:  torch.Size([50])
+idx:3,loss:tensor([7.2598], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(12.8873, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0176, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.6835], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.3203, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0205, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([387])
+ids unique:  torch.Size([48])
+idx:4,loss:tensor([7.1798], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(7.9881, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0185, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.5160], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.3120, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0170, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([384])
+ids unique:  torch.Size([47])
+idx:5,loss:tensor([6.9492], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(2.4988, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0178, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.4733], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.3273, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0188, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([405])
+ids unique:  torch.Size([50])
+idx:6,loss:tensor([7.0254], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(1.4164, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0178, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.4323], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.3097, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0178, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([396])
+ids unique:  torch.Size([49])
+idx:7,loss:tensor([6.9757], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(1.9138, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0182, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.4641], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2936, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0194, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([367])
+ids unique:  torch.Size([44])
+idx:8,loss:tensor([7.1391], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.2810, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0171, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.5805], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2936, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0176, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([385])
+ids unique:  torch.Size([44])
+idx:9,loss:tensor([6.9139], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(4.9098, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0171, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.4453], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.3026, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0177, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([370])
+ids unique:  torch.Size([49])
+idx:10,loss:tensor([6.9365], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(6.1292, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0185, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.4473], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.3071, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0177, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([384])
+ids unique:  torch.Size([44])
+idx:11,loss:tensor([6.9327], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(6.1030, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0169, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.4347], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2888, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0199, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([389])
+ids unique:  torch.Size([50])
+idx:12,loss:tensor([6.9684], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(5.2018, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0182, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3978], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2961, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0173, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([381])
+ids unique:  torch.Size([50])
+idx:13,loss:tensor([6.7612], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(4.1967, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0182, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3051], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2824, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0176, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([402])
+ids unique:  torch.Size([47])
+idx:14,loss:tensor([6.7883], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.3231, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0173, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3439], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2999, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0154, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([403])
+ids unique:  torch.Size([51])
+idx:15,loss:tensor([6.8683], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(2.8195, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0173, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.4985], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2906, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0177, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([403])
+ids unique:  torch.Size([45])
+idx:16,loss:tensor([6.8722], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(2.7146, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0164, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.4036], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2974, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0172, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([366])
+ids unique:  torch.Size([47])
+idx:17,loss:tensor([6.7767], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(2.8482, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0175, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3200], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2912, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0181, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([385])
+ids unique:  torch.Size([47])
+idx:18,loss:tensor([6.8812], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.2070, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0186, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3949], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2967, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0169, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([384])
+ids unique:  torch.Size([47])
+idx:19,loss:tensor([6.7662], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.7380, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0175, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3253], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2978, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0182, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([372])
+ids unique:  torch.Size([51])
+idx:20,loss:tensor([6.8175], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(4.2472, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0178, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3101], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2817, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0152, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([389])
+ids unique:  torch.Size([44])
+idx:21,loss:tensor([6.6562], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(4.5665, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0167, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3352], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2986, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0157, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([368])
+ids unique:  torch.Size([47])
+idx:22,loss:tensor([6.7632], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(4.5797, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0169, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3791], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2820, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0165, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([398])
+ids unique:  torch.Size([50])
+idx:23,loss:tensor([6.7671], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(4.2370, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0162, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3787], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.3058, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0176, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([375])
+ids unique:  torch.Size([45])
+idx:24,loss:tensor([6.7605], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.8984, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0171, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.2691], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2820, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0148, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([387])
+ids unique:  torch.Size([47])
+idx:25,loss:tensor([6.6293], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.5044, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0158, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3247], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2873, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0159, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([402])
+ids unique:  torch.Size([49])
+idx:26,loss:tensor([6.7911], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.2843, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0169, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.4218], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2860, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0159, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([417])
+ids unique:  torch.Size([50])
+idx:27,loss:tensor([6.7670], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.2634, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0163, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3976], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2786, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0179, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([391])
+ids unique:  torch.Size([48])
+idx:28,loss:tensor([6.8255], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.4257, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0170, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3728], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2816, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0158, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([398])
+ids unique:  torch.Size([48])
+idx:29,loss:tensor([6.6649], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.6982, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0157, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3115], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2829, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0162, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([388])
+ids unique:  torch.Size([49])
+idx:30,loss:tensor([6.6994], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(4.0596, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0153, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3252], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2859, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0176, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([372])
+ids unique:  torch.Size([47])
+idx:31,loss:tensor([6.8090], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(4.3830, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0159, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3593], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2859, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0174, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([365])
+ids unique:  torch.Size([44])
+idx:32,loss:tensor([6.7859], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(4.5570, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0160, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3446], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2792, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0169, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([388])
+ids unique:  torch.Size([47])
+idx:33,loss:tensor([6.7102], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(4.4596, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0158, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3069], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2857, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0180, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([392])
+ids unique:  torch.Size([50])
+idx:34,loss:tensor([6.7725], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(4.2180, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0160, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3001], device='cuda:0', grad_fn=<DivBackward0>)
+{'labels': tensor(0.2803, device='cuda:0', grad_fn=<MulBackward0>), 'center': tensor(0.0145, device='cuda:0', grad_fn=<MeanBackward0>)}
+ids all:  torch.Size([410])
+ids unique:  torch.Size([47])
+idx:35,loss:tensor([6.6590], device='cuda:0', grad_fn=<AddBackward0>),{'loss_ce': tensor(3.8563, device='cuda:0', grad_fn=<MulBackward0>), 'class_error': tensor(100., device='cuda:0'), 'center': tensor(0.0155, device='cuda:0', grad_fn=<MeanBackward0>)},id_loss:tensor([5.3755], device='cuda:0', grad_fn=<DivBackward0>)
+epoch:0
+Start >> Submit seq MultiviewX, 4 frames ......
+Finish >> Submit seq MultiviewX. 

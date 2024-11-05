@@ -322,71 +322,71 @@ class SeqDecoder(nn.Module):
         unknown_ids = torch.stack(unknown_ids_list, dim=1)
         unknown_times = torch.stack(unknown_times_list, dim=1)
         unknown_masks = torch.stack(unknown_masks_list, dim=1)
-        print('unknown_ids: ',unknown_ids.shape)
+        # print('unknown_ids: ',unknown_ids.shape)
         # print('unknown_ids: ',unknown_ids)
         unknown_id_gts = None if unknown_id_gts_list is None else torch.stack(unknown_id_gts_list, dim=1)
 
         # Training Augmentation:
-        if self.training:
-            N, T = trajectory_features.shape[0], trajectory_features.shape[1] + 1
-            # Record which token is removed during this process:
-            trajectory_remove_masks = torch.zeros((N, T - 1), dtype=torch.bool, device=device)
+        # if self.training:
+        #     N, T = trajectory_features.shape[0], trajectory_features.shape[1] + 1
+        #     # Record which token is removed during this process:
+        #     trajectory_remove_masks = torch.zeros((N, T - 1), dtype=torch.bool, device=device)
 
-            # Trajectory Token Drop:
-            for n in range(N):
-                if random.random() < traj_drop_ratio:
-                    traj_begin = random.randint(0, T-1)
-                    traj_max_t = T - 1 - traj_begin
-                    traj_end = traj_begin + math.ceil(traj_max_t * random.random())
-                    trajectory_remove_masks[n, traj_begin: traj_end] = True
-            unknown_remove_masks = torch.cat([
-                trajectory_remove_masks[:, 1:],
-                torch.zeros((N, 1), dtype=torch.bool, device=device)
-            ], dim=1)
-            # Check if the trajectory augmentation process is legal.
-            # Specifically, we need to ensure there is at least one object can be supervised,
-            # or it may cause grad == None.
-            # TODO: This legal check is just a simple implementation, it may not be rigorous.
-            #       But it's enough for the current code.
-            is_legal = (~(trajectory_masks | trajectory_remove_masks) & ~(unknown_masks | unknown_remove_masks)).any().item()
-            if is_legal:
-                # We do not need to truly remove these tokens,
-                # just set their to invalid tokens by masks.
-                trajectory_masks = trajectory_masks | trajectory_remove_masks
-                unknown_masks = unknown_masks | unknown_remove_masks
-                # Also, we need to modify some ID ground-truths of "unknown" objects.
-                # For example, a token first appears at t=3,
-                # if I remove it at t=3, then I need to modify its ID GT at t=4 to the special token (newborn).
-                for n in range(N):
-                    line_traj_mask = trajectory_masks[n]
-                    if line_traj_mask[0].item():
-                        new_born_t = 0
-                        for _ in line_traj_mask:
-                            if _.item():
-                                new_born_t += 1
-                            else:
-                                break
-                        unknown_id_gts[n][:new_born_t] = self.num_id_vocabulary
+        #     # Trajectory Token Drop:
+        #     for n in range(N):
+        #         if random.random() < traj_drop_ratio:
+        #             traj_begin = random.randint(0, T-1)
+        #             traj_max_t = T - 1 - traj_begin
+        #             traj_end = traj_begin + math.ceil(traj_max_t * random.random())
+        #             trajectory_remove_masks[n, traj_begin: traj_end] = True
+        #     unknown_remove_masks = torch.cat([
+        #         trajectory_remove_masks[:, 1:],
+        #         torch.zeros((N, 1), dtype=torch.bool, device=device)
+        #     ], dim=1)
+        #     # Check if the trajectory augmentation process is legal.
+        #     # Specifically, we need to ensure there is at least one object can be supervised,
+        #     # or it may cause grad == None.
+        #     # TODO: This legal check is just a simple implementation, it may not be rigorous.
+        #     #       But it's enough for the current code.
+        #     is_legal = (~(trajectory_masks | trajectory_remove_masks) & ~(unknown_masks | unknown_remove_masks)).any().item()
+        #     if is_legal:
+        #         # We do not need to truly remove these tokens,
+        #         # just set their to invalid tokens by masks.
+        #         trajectory_masks = trajectory_masks | trajectory_remove_masks
+        #         unknown_masks = unknown_masks | unknown_remove_masks
+        #         # Also, we need to modify some ID ground-truths of "unknown" objects.
+        #         # For example, a token first appears at t=3,
+        #         # if I remove it at t=3, then I need to modify its ID GT at t=4 to the special token (newborn).
+        #         for n in range(N):
+        #             line_traj_mask = trajectory_masks[n]
+        #             if line_traj_mask[0].item():
+        #                 new_born_t = 0
+        #                 for _ in line_traj_mask:
+        #                     if _.item():
+        #                         new_born_t += 1
+        #                     else:
+        #                         break
+        #                 unknown_id_gts[n][:new_born_t] = self.num_id_vocabulary
 
-            # Trajectory Token Switch (Swap):
-            if traj_switch_ratio > 0.0:
-                for t in range(0, T-1):
-                    switch_p = torch.ones((N, ), dtype=torch.float, device=device) * traj_switch_ratio
-                    switch_map = torch.bernoulli(switch_p)
-                    switch_idxs = torch.nonzero(switch_map)     # objects to switch
-                    switch_idxs = switch_idxs.reshape((switch_idxs.shape[0], ))
-                    if len(switch_idxs) == 1 and N > 1:
-                        # Only one object can be switched, but we have more than one object.
-                        # So we need to randomly select another object to switch.
-                        switch_idxs = torch.as_tensor([switch_idxs[0].item(), random.randint(0, N - 1)], dtype=torch.long, device=device)
-                    if len(switch_idxs) > 1:
-                        # Switch the trajectory features, boxes and masks:
-                        shuffle_switch_idxs = switch_idxs[torch.randperm(len(switch_idxs)).to(device)]
-                        trajectory_features[switch_idxs, t, :] = trajectory_features[shuffle_switch_idxs, t, :]
-                        trajectory_pts[switch_idxs, t, :] = trajectory_pts[shuffle_switch_idxs, t, :]
-                        trajectory_masks[switch_idxs, t] = trajectory_masks[shuffle_switch_idxs, t]
-                    else:
-                        continue    # no object to switch
+        #     # Trajectory Token Switch (Swap):
+        #     if traj_switch_ratio > 0.0:
+        #         for t in range(0, T-1):
+        #             switch_p = torch.ones((N, ), dtype=torch.float, device=device) * traj_switch_ratio
+        #             switch_map = torch.bernoulli(switch_p)
+        #             switch_idxs = torch.nonzero(switch_map)     # objects to switch
+        #             switch_idxs = switch_idxs.reshape((switch_idxs.shape[0], ))
+        #             if len(switch_idxs) == 1 and N > 1:
+        #                 # Only one object can be switched, but we have more than one object.
+        #                 # So we need to randomly select another object to switch.
+        #                 switch_idxs = torch.as_tensor([switch_idxs[0].item(), random.randint(0, N - 1)], dtype=torch.long, device=device)
+        #             if len(switch_idxs) > 1:
+        #                 # Switch the trajectory features, boxes and masks:
+        #                 shuffle_switch_idxs = switch_idxs[torch.randperm(len(switch_idxs)).to(device)]
+        #                 trajectory_features[switch_idxs, t, :] = trajectory_features[shuffle_switch_idxs, t, :]
+        #                 trajectory_pts[switch_idxs, t, :] = trajectory_pts[shuffle_switch_idxs, t, :]
+        #                 trajectory_masks[switch_idxs, t] = trajectory_masks[shuffle_switch_idxs, t]
+        #             else:
+        #                 continue    # no object to switch
 
         return [{
             "trajectory": {

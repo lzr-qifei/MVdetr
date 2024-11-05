@@ -124,8 +124,8 @@ def main(config: dict,opt):
     matcher_batch = HungarianMatcher_batch(cost_class=2.0,cost_pts=50.0)
     criterion = SetCriterion(config['NUM_CLASSES'],matcher,matcher_batch,weight_dict,losses)
     # logger = Logger(config['LOG_DIR'])
-    log_dir = os.path.join(config['LOG_DIR'],f'{datetime.datetime.today():%Y-%m-%d_%H-%M-%S}_log.txt')
-    logger = Logger(log_dir)
+    log_dir = os.path.join(config['LOG_DIR'],f'{datetime.datetime.today():%Y-%m-%d_%H-%M-%S}')
+    logger = Logger(os.path.join(log_dir,'log.txt'))
     
     logger.log_yaml(opt.config)
     sys.stdout = logger
@@ -162,7 +162,7 @@ def main(config: dict,opt):
                         optimizer,epoch,
                         states,clip_max_norm,length_detr_train_frames,metrics,only_detr)
             if (epoch+1) % config["SAVE_CHECKPOINT_PER_EPOCH"] ==0:
-                    torch.save(model.state_dict(), os.path.join(config['LOG_DIR'], 'MultiviewDetector_{}.pth'.format(epoch)))
+                    torch.save(model.state_dict(), os.path.join(log_dir, 'MultiviewDetector_{}.pth'.format(epoch)))
             print(f'epoch:{epoch}')
             if only_detr:
                 trainer.evaluate_one_epoch_detr(config,dataset_test,only_detr)
@@ -437,18 +437,20 @@ class Trainer():
 
                             for b in range(B):
                                 pos = positions[topk_pts_idx,:].squeeze()
+                                score = scores[topk_pts_idx]
+                                score = score.cpu()
                                 pos_cpu = pos.cpu()
                                 pos_cpu[:,0] = pos_cpu[:,0]*1000
                                 pos_cpu[:,1] = pos_cpu[:,1]*640
                                 frame_idx = torch.ones([pos.shape[0], 1])* frame_id
-                                res = torch.cat([frame_idx, pos_cpu], dim=1)
+                                res = torch.cat([frame_idx, pos_cpu,score], dim=1)
                                 res_list.append(res)
 
                 t1 = time.time()
                 t_epoch = t1 - t0
                 if res_fpath is not None:
-                    res_list = torch.cat(res_list, dim=0).numpy() if res_list else np.empty([0, 3])
-                    np.savetxt(res_fpath, res_list, '%d')
+                    res_list = torch.cat(res_list, dim=0).numpy() if res_list else np.empty([0, 4])
+                    np.savetxt(res_fpath, res_list, '%f')
                     recall, precision, moda, modp = evaluate(os.path.abspath(res_fpath),
                                                             os.path.abspath(gt_fpath),
                                                             dataloader.dataset.base.__name__)
