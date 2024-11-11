@@ -149,7 +149,7 @@ class MVDeTr(nn.Module):
         fill_fc_weights(self.world_offset)
         pass
 
-    def forward(self, imgs, M,visualize=True ):#visualize=False
+    def forward(self, imgs, M,visualize=False ):#visualize=False
         B, N, C, H, W = imgs.shape
         imgs = imgs.view(B * N, C, H, W)
 
