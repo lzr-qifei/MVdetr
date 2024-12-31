@@ -39,6 +39,7 @@ multiview_detector/vis_results/*
 pip-log.txt
 pip-delete-this-directory.txt
 multiview_detector/logs/*.txt
+*.xlsx
 
 # Unit test / coverage reports
 htmlcov/

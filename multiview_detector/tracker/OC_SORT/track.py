@@ -67,7 +67,7 @@ def visualize_tracking_results(tracking_results, save_path=None):
 
     # Plot all frames in a single figure with higher resolution
     plt.figure(figsize=(12, 8), dpi=100)  # Set figure size and DPI
-    plt.title('GT Results')
+    plt.title('Tracking Results')
     plt.xlim(0, 1000)  # Adjust based on your data range
     plt.ylim(0, 640)  # Adjust based on your data range
 
@@ -91,15 +91,15 @@ def visualize_tracking_results(tracking_results, save_path=None):
         plt.savefig(save_path, dpi=300)  # Save with higher DPI
 
 def main():
-    input_file = '/root/test(1).txt'
-    output_file = '/root/MVdetr/multiview_detector/tracker/OC_SORT/results/pred_40_track_result.txt'
-    vis_path = '/root/MVdetr/multiview_detector/tracker/OC_SORT/results/1.png'
+    input_file = '/home/lizirui/det_results/test_wild.txt'
+    output_file = '/home/lizirui/MVdetr/multiview_detector/tracker/OC_SORT/wild_results/pred_40_track_result.txt'
+    vis_path = '/home/lizirui/MVdetr/multiview_detector/tracker/OC_SORT/wild_results/1.png'
 
     # Load detections from file
     detections = load_detections(input_file)
 
     # Initialize SORT tracker
-    tracker = OCSort(det_thresh=0.3,use_byte=True)
+    tracker = OCSort(det_thresh=0.1,use_byte=False)
 
     # Store the tracking results
     tracking_results = []
@@ -114,10 +114,10 @@ def main():
             x, y, trk_id = trk
             trk_id = int(trk_id)
             tracking_results.append([frame_id, x, y, trk_id])
-    with open('/root/MVdetr/multiview_detector/tracker/OC_SORT/test.txt', 'r') as f:
-        for line in f:
-            frame_id, gt_x, gt_y,id = map(float, line.strip().split(','))
-            pred_results.append([frame_id, gt_x, gt_y,id])
+    # with open('/root/MVdetr/multiview_detector/tracker/OC_SORT/test.txt', 'r') as f:
+    #     for line in f:
+    #         frame_id, gt_x, gt_y,id = map(float, line.strip().split(','))
+    #         pred_results.append([frame_id, gt_x, gt_y,id])
     # Save tracking results to file
     save_tracking_results(output_file, tracking_results)
     # visualize_tracking_results(tracking_results)

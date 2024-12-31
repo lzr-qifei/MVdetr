@@ -190,19 +190,21 @@ ASSO_FUNCS = {  "iou": iou_batch,
                 "giou": giou_batch,
                 "ciou": ciou_batch,
                 "diou": diou_batch,
-                "ct_dist": dist_batch}
+                "ct_dist": dist_batch,
+                "m_dist":mdist_batch}
 
 
 class OCSort(object):
-    def __init__(self, det_thresh, max_age=10, min_hits=1, 
-        iou_threshold=0.3,dist_threshold = 100, delta_t=3, asso_func="ct_dist", inertia=0.5, use_byte=False):
+    def __init__(self, det_thresh, max_age=40, min_hits=1, 
+        iou_threshold=0.1,dist_threshold = 150, delta_t=1, asso_func="ct_dist", inertia=0.5, use_byte=False):
         """
         Sets key parameters for SORT
         """
         self.max_age = max_age
         self.min_hits = min_hits
         self.iou_threshold = iou_threshold
-        self.dist_threshold = dist_threshold
+        self.e_dist_threshold = 150
+        self.m_dist_threshold = 35
         self.trackers = []
         self.frame_count = 0
         self.det_thresh = det_thresh
@@ -265,6 +267,10 @@ class OCSort(object):
 
         velocities = np.array(
             [trk.velocity if trk.velocity is not None else np.array((0, 0)) for trk in self.trackers])
+        covs = np.array(
+            [trk.kf.P if trk.kf.P is not None else NotImplementedError for trk in self.trackers])
+        m_noise = np.array(
+            [trk.kf.R if trk.kf.R is not None else NotImplementedError for trk in self.trackers])
         last_boxes = np.array([trk.last_observation for trk in self.trackers])
         k_observations = np.array(
             [k_previous_obs(trk.observations, trk.age, self.delta_t) for trk in self.trackers])
@@ -272,8 +278,22 @@ class OCSort(object):
         """
             First round of association
         """
-        matched, unmatched_dets, unmatched_trks = associate(
-            dets, trks, self.dist_threshold, velocities, k_observations, self.inertia)
+        # matched, unmatched_dets, unmatched_trks = associate(
+        #     dets, trks, self.dist_threshold, velocities, k_observations, self.inertia)
+
+        if self.trackers !=[]:
+            dets_x =  np.hstack([dets[:,:2], np.zeros((dets.shape[0], 2))])
+            trks_x = np.hstack([trks[:,:2], velocities])
+            # matched, unmatched_dets, unmatched_trks = associate_new(
+            #     dets, trks, self.m_dist_threshold, velocities,
+            #     k_observations, self.inertia,covs,dets_x,trks_x)
+            matched, unmatched_dets, unmatched_trks = associate_CMD(
+                dets, trks, self.m_dist_threshold, velocities,
+                k_observations, self.inertia,covs,m_noise,dets_x,trks_x)
+        else:
+            matched, unmatched_dets, unmatched_trks = associate(
+                dets, trks, self.e_dist_threshold, velocities,
+                k_observations, self.inertia)
         for m in matched:
             self.trackers[m[1]].update(dets[m[0]])
 
@@ -285,7 +305,7 @@ class OCSort(object):
             u_trks = trks[unmatched_trks]
             dist_left = self.asso_func(dets_second, u_trks)          # iou between low score detections and unmatched tracks
             dist_left = np.array(dist_left)
-            if dist_left.min() < self.dist_threshold:
+            if dist_left.min() < self.e_dist_threshold:
                 """
                     NOTE: by using a lower threshold, e.g., self.iou_threshold - 0.1, you may
                     get a higher performance especially on MOT17/MOT20 datasets. But we keep it
@@ -306,7 +326,7 @@ class OCSort(object):
             left_trks = last_boxes[unmatched_trks]
             dist_left = self.asso_func(left_dets, left_trks)
             dist_left = np.array(dist_left)
-            if dist_left.min() < self.dist_threshold:
+            if dist_left.min() < self.e_dist_threshold:
                 """
                     NOTE: by using a lower threshold, e.g., self.iou_threshold - 0.1, you may
                     get a higher performance especially on MOT17/MOT20 datasets. But we keep it
@@ -317,7 +337,7 @@ class OCSort(object):
                 to_remove_trk_indices = []
                 for m in rematched_indices:
                     det_ind, trk_ind = unmatched_dets[m[0]], unmatched_trks[m[1]]
-                    if dist_left[m[0], m[1]] > self.dist_threshold:
+                    if dist_left[m[0], m[1]] > self.e_dist_threshold:
                         continue
                     self.trackers[trk_ind].update(dets[det_ind])
                     to_remove_det_indices.append(det_ind)

@@ -19,7 +19,7 @@ def mot_metrics(tSource, gtSource, scale=0.025):
     dt = np.loadtxt(tSource, delimiter=',')
 
     accs = []
-    frame_id = 360
+    frame_id = 1800
     false_positives_per_frame = []
     for seq in np.unique(gt[:, 0]).astype(int):
         acc = mm.MOTAccumulator()
@@ -39,10 +39,12 @@ def mot_metrics(tSource, gtSource, scale=0.025):
             events = acc.events.loc[frame_id]
             num_false_positives = events[events.Type == 'FP'].shape[0]
             false_positives_per_frame.append(num_false_positives)
-            frame_id+=1
+            frame_id+=5
         accs.append(acc)
 
+    # metrics.compute_metrics(["HOTA"])
     mh = mm.metrics.create()
+    # summary = mh.compute_many(accs, metrics=['HOTA'], generate_overall=True)
     summary = mh.compute_many(accs, metrics=mm.metrics.motchallenge_metrics, generate_overall=True)
     print("\n")
     strsummary = mm.io.render_summary(
@@ -52,11 +54,11 @@ def mot_metrics(tSource, gtSource, scale=0.025):
     )
     print(strsummary)
     import pandas
-    summary.to_excel('/home/lizirui/MVdetr/multiview_detector/tracker/OC_SORT/results/eval'+formatted_time+'.xlsx')
+    summary.to_excel('/home/lizirui/MVdetr/multiview_detector/tracker/OC_SORT/wild_results/eval_wild'+formatted_time+'.xlsx')
 
     return summary
 
-gt = '/share2/dataset/MultiviewX/mota_gt.txt'
-
-pred = '/home/lizirui/MVdetr/multiview_detector/tracker/OC_SORT/results/mota_pred.txt'
+# gt = '/home/lizirui/det_results/mota_wild_test_gt.txt'
+gt = '/home/lizirui/det_results/aa.txt'
+pred = '/home/lizirui/MVdetr/multiview_detector/tracker/OC_SORT/wild_results/mota_pred.txt'
 mot_metrics(pred,gt,scale=0.4)
