@@ -14,7 +14,7 @@ current_time = datetime.datetime.now(beijing_tz)
 # 格式化时间
 formatted_time = current_time.strftime("%m-%d-%H-%M")
 
-def mot_metrics(tSource, gtSource, scale=0.025):
+def mot_metrics(tSource, gtSource,output_folder, scale=0.025):
     gt = np.loadtxt(gtSource, delimiter=',')
     dt = np.loadtxt(tSource, delimiter=',')
 
@@ -51,12 +51,14 @@ def mot_metrics(tSource, gtSource, scale=0.025):
         namemap=mm.io.motchallenge_metric_names
     )
     print(strsummary)
-    import pandas
-    summary.to_excel('/home/lizirui/MVdetr/multiview_detector/tracker/OC_SORT/results/eval'+formatted_time+'.xlsx')
+    import pandas,os
+    # summary.to_excel('/home/lizirui/MVdetr/multiview_detector/tracker/OC_SORT/wild_results/eval_wild'+formatted_time+'.xlsx')
+    ex_path = os.path.join(output_folder,f'wild-{formatted_time}.xlsx')
+    summary.to_excel(ex_path)
 
-    return summary
+    return
 
-gt = '/share2/dataset/MultiviewX/mota_gt.txt'
+# gt = '/share2/dataset/MultiviewX/mota_gt.txt'
 
-pred = '/home/lizirui/MVdetr/multiview_detector/tracker/OC_SORT/results/mota_pred.txt'
-mot_metrics(pred,gt,scale=0.4)
+# pred = '/home/lizirui/MVdetr/multiview_detector/tracker/OC_SORT/results/mota_pred.txt'
+# mot_metrics(pred,gt,scale=0.4)
