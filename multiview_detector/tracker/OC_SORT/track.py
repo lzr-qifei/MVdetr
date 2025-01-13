@@ -4,6 +4,7 @@ from scipy.optimize import linear_sum_assignment as linear_assignment
 import random
 import matplotlib.pyplot as plt
 from ocsort import OCSort
+from ocsort_oppsite import OCSort_opps
 import os
 # from eval_wild import mot_metrics_wild
 # from eval import mot_metrics
@@ -100,7 +101,7 @@ def save_and_transform_tracking_results(results, output_file):
     transform_file(tmpfile, output_file)
 
 
-def visualize_tracking_results(tracking_results, save_path=None):
+def visualize_tracking_results(tracking_results, save_path=None,dataset='wild'):
     """
     Visualizes the tracking results using matplotlib.
     
@@ -125,10 +126,14 @@ def visualize_tracking_results(tracking_results, save_path=None):
         tracks[trk_id].append((frame_id, x, y))
 
     # Plot all frames in a single figure with higher resolution
-    plt.figure(figsize=(12, 8), dpi=100)  # Set figure size and DPI
+    plt.figure(figsize=(12, 8), dpi=300)  # Set figure size and DPI
     plt.title('Tracking Results')
-    plt.xlim(0, 1000)  # Adjust based on your data range
-    plt.ylim(0, 640)  # Adjust based on your data range
+    if dataset=='wild':
+        plt.xlim(0, 480)  # Adjust based on your data range
+        plt.ylim(0, 1440)  # Adjust based on your data range
+    else:
+        plt.xlim(0, 1000)  # Adjust based on your data range
+        plt.ylim(0, 640)  # Adjust based on your data range
 
     for trk_id, track in tracks.items():
         # Sort by frame_id to ensure the trajectory is plotted correctly
@@ -143,7 +148,8 @@ def visualize_tracking_results(tracking_results, save_path=None):
 
     plt.xlabel('X Coordinate')
     plt.ylabel('Y Coordinate')
-    plt.legend(loc='upper right')
+    # plt.legend(loc=None)
+    # plt.legend.set_visible(False)
 
     # Save the plot if a path is provided
     if save_path:
@@ -174,7 +180,7 @@ def main():
     # 构建输出文件路径
     input_file = det_path
     output_file = os.path.join(output_folder, f'{exp_name}.txt')
-    vis_path = os.path.join(output_folder, 'path.png')
+    vis_path = os.path.join(output_folder, 'path.svg')
     gtfile = args.gt
 
     # 加载检测结果
@@ -182,6 +188,7 @@ def main():
 
     # 初始化 SORT tracker
     tracker = OCSort(det_thresh=0.1, use_byte=False)
+    # tracker = OCSort_opps(det_thresh=0.1, use_byte=False)
 
     # 存储跟踪结果
     tracking_results = []
@@ -198,11 +205,12 @@ def main():
 
     # 保存跟踪结果
     # save_tracking_results(output_file, tracking_results)
+    print('dist_mean: ',tracker.dist_mean/tracker.frame_count)
     save_and_transform_tracking_results(tracking_results, output_file)
     # 可视化跟踪结果
-    visualize_tracking_results(tracking_results, vis_path)
+    visualize_tracking_results(tracking_results, vis_path,args.eval)
     if evaluator is not None:
-        evaluator(output_file,gtfile,output_folder)
+        evaluator(output_file,gtfile,output_folder,1)
 
 if __name__ == "__main__":
     main()

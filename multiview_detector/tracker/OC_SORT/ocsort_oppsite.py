@@ -196,8 +196,8 @@ ASSO_FUNCS = {  "iou": iou_batch,
                 "m_dist":mdist_batch}
 
 
-class OCSort(object):
-    def __init__(self, det_thresh, max_age=40, min_hits=1, 
+class OCSort_opps(object):
+    def __init__(self, det_thresh, max_age=2, min_hits=1, 
         iou_threshold=0.1,dist_threshold = 150, delta_t=1, asso_func="ct_dist", inertia=0.5, use_byte=False):
         """
         Sets key parameters for SORT
@@ -291,7 +291,7 @@ class OCSort(object):
             # matched, unmatched_dets, unmatched_trks,dist_matrix = associate(
             #     dets, trks, self.e_dist_threshold, velocities,
             #     k_observations, self.inertia)
-            matched, unmatched_dets, unmatched_trks,dist_matrix = associate_new(
+            matched, unmatched_dets, unmatched_trks,dist_matrix = associate_opposite(
                 dets, trks, self.m_dist_threshold, velocities,
                 k_observations, self.inertia,covs,dets_x,trks_x)
             # matched, unmatched_dets, unmatched_trks,dist_matrix = associate_CMD(

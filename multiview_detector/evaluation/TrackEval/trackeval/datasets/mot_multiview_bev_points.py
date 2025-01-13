@@ -21,7 +21,7 @@ class WildTrack(_BaseDataset):
             'TRACKERS_FOLDER': os.path.join(code_path, 'data/trackers/mot_challenge/'),  # Trackers location
             'OUTPUT_FOLDER': None,  # Where to save eval results (if None, same as TRACKERS_FOLDER)
             'TRACKERS_TO_EVAL': None,  # Filenames of trackers to eval (if None, all in folder)
-            'GT_TO_EVAL': gt_loc,
+            'GT_TO_EVAL': None,
             'CLASSES_TO_EVAL': ['pedestrian'],  # Valid: ['pedestrian']
             'BENCHMARK': 'MOT17',  # Valid: 'MOT17', 'MOT16', 'MOT20', 'MOT15'
             'SPLIT_TO_EVAL': 'all',  # Valid: 'train', 'test', 'all'
@@ -204,7 +204,8 @@ class WildTrack(_BaseDataset):
         else:
             zip_file = None
             if is_gt:
-                file = self.config["GT_LOC_FORMAT"].format(gt_folder=self.gt_fol)
+                file = self.config["GT_LOC_FORMAT"].format(gt_folder=self.config['GT_FOLDER'],gt_loc=self.config['GT_TO_EVAL'][0])
+                # print(file)
             else:
                 file = os.path.join(self.tracker_fol, tracker)
 

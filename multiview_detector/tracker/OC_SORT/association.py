@@ -1,8 +1,6 @@
 import os
 import numpy as np
 
-
-
 def iou_batch(bboxes1, bboxes2):
     """
     From SORT: Computes IOU between two bboxes in the form [x1,y1,x2,y2]
@@ -347,7 +345,7 @@ def associate(detections, trackers, dist_threshold , velocities, previous_obs, v
     else:
         matches = np.concatenate(matches,axis=0)
 
-    return matches, np.array(unmatched_detections), np.array(unmatched_trackers)
+    return matches, np.array(unmatched_detections), np.array(unmatched_trackers),dist_matrix
 
 def associate_new(detections, trackers, dist_threshold , velocities, previous_obs, vdc_weight,
 covs,dets_x,trks_x):    
@@ -446,8 +444,73 @@ covs,dets_x,trks_x):
     else:
         matches = np.concatenate(matches,axis=0)
 
-    return matches, np.array(unmatched_detections), np.array(unmatched_trackers)
+    return matches, np.array(unmatched_detections), np.array(unmatched_trackers),dist_matrix
+def associate_opposite(detections, trackers, dist_threshold , velocities, previous_obs, vdc_weight,
+covs,dets_x,trks_x):    
+    if(len(trackers)==0):
+        return np.empty((0,2),dtype=int), np.arange(len(detections)), np.empty((0,3),dtype=int)
 
+    Y, X = speed_direction_batch(detections, previous_obs)
+    inertia_Y, inertia_X = velocities[:,0], velocities[:,1]
+    inertia_Y = np.repeat(inertia_Y[:, np.newaxis], Y.shape[1], axis=1)
+    inertia_X = np.repeat(inertia_X[:, np.newaxis], X.shape[1], axis=1)
+    diff_angle_cos = inertia_X * X + inertia_Y * Y
+    diff_angle_cos = np.clip(diff_angle_cos, a_min=-1, a_max=1)
+    diff_angle = np.arccos(diff_angle_cos)
+    diff_angle = (np.pi /2.0 - np.abs(diff_angle)) / np.pi
+
+    valid_mask = np.ones(previous_obs.shape[0])
+    valid_mask[np.where(previous_obs[:,2]<0)] = 0
+    
+    # iou_matrix = iou_batch(detections, trackers)
+    
+    dist_matrix = mdist_batch(dets_x,trks_x,covs)
+    scores = np.repeat(detections[:,-1][:, np.newaxis], trackers.shape[0], axis=1)
+    # dist_matrix = dist_matrix * scores
+    # iou_matrix = iou_matrix * scores # a trick sometiems works, we don't encourage this
+    valid_mask = np.repeat(valid_mask[:, np.newaxis], X.shape[1], axis=1)
+
+    angle_diff_cost = (valid_mask * diff_angle) * vdc_weight
+    angle_diff_cost = angle_diff_cost.T
+    # angle_diff_cost = angle_diff_cost * scores
+
+    if min(dist_matrix.shape) > 0:
+        a = (dist_matrix < dist_threshold).astype(np.int32)
+        if a.sum(1).max() == 1 and a.sum(0).max() == 1:
+            matched_indices = np.stack(np.where(a), axis=1)
+        else:
+            # X_min = np.min(dist_matrix)
+            # X_max = np.max(dist_matrix)
+            # X_norm = (dist_matrix - X_min) / (X_max - X_min) *10
+            # matched_indices = linear_assignment((X_norm+angle_diff_cost))
+            matched_indices = linear_assignment((-dist_matrix+angle_diff_cost))
+            # print(angle_diff_cost)
+    else:
+        matched_indices = np.empty(shape=(0,2))
+
+    unmatched_detections = []
+    for d, det in enumerate(detections):
+        if(d not in matched_indices[:,0]):
+            unmatched_detections.append(d)
+    unmatched_trackers = []
+    for t, trk in enumerate(trackers):
+        if(t not in matched_indices[:,1]):
+            unmatched_trackers.append(t)
+
+    # filter out matched with low IOU
+    matches = []
+    for m in matched_indices:
+        if(dist_matrix[m[0], m[1]] < dist_threshold):
+            unmatched_detections.append(m[0])
+            unmatched_trackers.append(m[1])
+        else:
+            matches.append(m.reshape(1,2))
+    if(len(matches)==0):
+        matches = np.empty((0,2),dtype=int)
+    else:
+        matches = np.concatenate(matches,axis=0)
+
+    return matches, np.array(unmatched_detections), np.array(unmatched_trackers),dist_matrix
 def associate_CMD(detections, trackers, dist_threshold , velocities, previous_obs, vdc_weight,
 covs,m_noise,dets_x,trks_x):    
     if(len(trackers)==0):
@@ -468,6 +531,7 @@ covs,m_noise,dets_x,trks_x):
     # iou_matrix = iou_batch(detections, trackers)
     
     dist_matrix = CMD_batch(dets_x,trks_x,covs,m_noise)
+    # histogram.add_matrix(dist_matrix)
     # ###test ####
     # def visual(mat,path):
     #     import matplotlib.pyplot as plt
@@ -545,7 +609,7 @@ covs,m_noise,dets_x,trks_x):
     else:
         matches = np.concatenate(matches,axis=0)
 
-    return matches, np.array(unmatched_detections), np.array(unmatched_trackers)
+    return matches, np.array(unmatched_detections), np.array(unmatched_trackers),dist_matrix
 
 def associate_kitti(detections, trackers, det_cates, iou_threshold, 
         velocities, previous_obs, vdc_weight):
